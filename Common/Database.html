@@ -1,1841 +1,257 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-Hnas" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>数据库 - 开发知识库</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>数据库 · 开发知识库</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
         
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-    
-
-    
+        <!-- Custom theme stylesheets -->
         
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="Network.html" />
-    
-    
-    <link rel="prev" href="VSCode.html" />
-    
-
-    </head>
+            </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 开发知识库</a></li><li class="chapter-item expanded "><a href="../Navigator/index.html"><strong aria-hidden="true">2.</strong> 常用导航</a></li><li class="chapter-item expanded "><a href="../Common/index.html"><strong aria-hidden="true">3.</strong> 通用</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Common/Git.html"><strong aria-hidden="true">3.1.</strong> Git</a></li><li class="chapter-item expanded "><a href="../Common/VI.html"><strong aria-hidden="true">3.2.</strong> VI</a></li><li class="chapter-item expanded "><a href="../Common/Shell.html"><strong aria-hidden="true">3.3.</strong> Shell</a></li><li class="chapter-item expanded "><a href="../Common/Markdown.html"><strong aria-hidden="true">3.4.</strong> Markdown</a></li><li class="chapter-item expanded "><a href="../Common/Regex.html"><strong aria-hidden="true">3.5.</strong> 正则表达式</a></li><li class="chapter-item expanded "><a href="../Common/Test.html"><strong aria-hidden="true">3.6.</strong> 测试</a></li><li class="chapter-item expanded "><a href="../Common/VSCode.html"><strong aria-hidden="true">3.7.</strong> VSCode</a></li><li class="chapter-item expanded "><a href="../Common/Database.html" class="active"><strong aria-hidden="true">3.8.</strong> 数据库</a></li><li class="chapter-item expanded "><a href="../Common/Network.html"><strong aria-hidden="true">3.9.</strong> 网络</a></li><li class="chapter-item expanded "><a href="../Common/Tools.html"><strong aria-hidden="true">3.10.</strong> 常用工具</a></li><li class="chapter-item expanded "><a href="../Common/Algorithm.html"><strong aria-hidden="true">3.11.</strong> 算法</a></li><li class="chapter-item expanded "><a href="../Common/Graphics.html"><strong aria-hidden="true">3.12.</strong> 图像处理</a></li><li class="chapter-item expanded "><a href="../Common/OperateSystem.html"><strong aria-hidden="true">3.13.</strong> 操作系统</a></li><li class="chapter-item expanded "><a href="../Common/Secure.html"><strong aria-hidden="true">3.14.</strong> 安全</a></li><li class="chapter-item expanded "><a href="../Common/ITConcept.html"><strong aria-hidden="true">3.15.</strong> 行业概念</a></li></ol></li><li class="chapter-item expanded "><a href="../Software/index.html"><strong aria-hidden="true">4.</strong> 软件</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Software/Architecture.html"><strong aria-hidden="true">4.1.</strong> 软件架构</a></li><li class="chapter-item expanded "><a href="../Software/SoftwareDesign.html"><strong aria-hidden="true">4.2.</strong> 软件设计</a></li><li class="chapter-item expanded "><a href="../Software/DesignPattern.html"><strong aria-hidden="true">4.3.</strong> 设计模式</a></li><li class="chapter-item expanded "><a href="../Software/Document.html"><strong aria-hidden="true">4.4.</strong> 文档</a></li></ol></li><li class="chapter-item expanded "><a href="../iOS/index.html"><strong aria-hidden="true">5.</strong> iOS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../iOS/Performance.html"><strong aria-hidden="true">5.1.</strong> 性能相关</a></li><li class="chapter-item expanded "><a href="../iOS/UI.html"><strong aria-hidden="true">5.2.</strong> UI相关</a></li><li class="chapter-item expanded "><a href="../iOS/Swift.html"><strong aria-hidden="true">5.3.</strong> Swift</a></li><li class="chapter-item expanded "><a href="../iOS/ObjC.html"><strong aria-hidden="true">5.4.</strong> Objective-C</a></li><li class="chapter-item expanded "><a href="../iOS/SwiftUI.html"><strong aria-hidden="true">5.5.</strong> SwiftUI</a></li><li class="chapter-item expanded "><a href="../iOS/Runtime.html"><strong aria-hidden="true">5.6.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../iOS/Thread.html"><strong aria-hidden="true">5.7.</strong> 多线程</a></li><li class="chapter-item expanded "><a href="../iOS/DarkMode.html"><strong aria-hidden="true">5.8.</strong> 黑暗模式适配</a></li><li class="chapter-item expanded "><a href="../iOS/UniversalLinks.html"><strong aria-hidden="true">5.9.</strong> Universal Links支持</a></li><li class="chapter-item expanded "><a href="../iOS/Event.html"><strong aria-hidden="true">5.10.</strong> 事件相关</a></li><li class="chapter-item expanded "><a href="../iOS/WKWebview.html"><strong aria-hidden="true">5.11.</strong> WKWebview</a></li><li class="chapter-item expanded "><a href="../iOS/Scheme.html"><strong aria-hidden="true">5.12.</strong> Scheme</a></li><li class="chapter-item expanded "><a href="../iOS/Sign.html"><strong aria-hidden="true">5.13.</strong> 签名相关</a></li><li class="chapter-item expanded "><a href="../iOS/UnitTest.html"><strong aria-hidden="true">5.14.</strong> 单元测试</a></li><li class="chapter-item expanded "><a href="../iOS/Framework/index.html"><strong aria-hidden="true">5.15.</strong> 框架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../iOS/Framework/ReactiveObjC.html"><strong aria-hidden="true">5.15.1.</strong> ReactiveObjC</a></li><li class="chapter-item expanded "><a href="../iOS/Framework/SDWebImage.html"><strong aria-hidden="true">5.15.2.</strong> SDWebImage</a></li></ol></li><li class="chapter-item expanded "><a href="../iOS/Question.html"><strong aria-hidden="true">5.16.</strong> 问题集合</a></li></ol></li><li class="chapter-item expanded "><a href="../Web/index.html"><strong aria-hidden="true">6.</strong> Web</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Web/HTML.html"><strong aria-hidden="true">6.1.</strong> HTML</a></li><li class="chapter-item expanded "><a href="../Web/CSS.html"><strong aria-hidden="true">6.2.</strong> CSS</a></li><li class="chapter-item expanded "><a href="../Web/JS.html"><strong aria-hidden="true">6.3.</strong> JS</a></li><li class="chapter-item expanded "><a href="../Web/TypeScript.html"><strong aria-hidden="true">6.4.</strong> TypeScript</a></li><li class="chapter-item expanded "><a href="../Web/React.html"><strong aria-hidden="true">6.5.</strong> React</a></li><li class="chapter-item expanded "><a href="../Web/Vue.html"><strong aria-hidden="true">6.6.</strong> Vue</a></li><li class="chapter-item expanded "><a href="../Web/WebAssembly.html"><strong aria-hidden="true">6.7.</strong> WebAssembly</a></li><li class="chapter-item expanded "><a href="../Web/CROS.html"><strong aria-hidden="true">6.8.</strong> 同源策略 &amp; 跨域</a></li><li class="chapter-item expanded "><a href="../Web/Cookie.html"><strong aria-hidden="true">6.9.</strong> Cookie</a></li><li class="chapter-item expanded "><a href="../Web/DOM.html"><strong aria-hidden="true">6.10.</strong> DOM</a></li><li class="chapter-item expanded "><a href="../Web/JSEngine.html"><strong aria-hidden="true">6.11.</strong> JS引擎</a></li><li class="chapter-item expanded "><a href="../Web/Canvas.html"><strong aria-hidden="true">6.12.</strong> Canvas</a></li></ol></li><li class="chapter-item expanded "><a href="../Flutter/index.html"><strong aria-hidden="true">7.</strong> Flutter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Flutter/Reference.html"><strong aria-hidden="true">7.1.</strong> Flutter框架</a></li><li class="chapter-item expanded "><a href="../Flutter/Dart.html"><strong aria-hidden="true">7.2.</strong> Dart</a></li><li class="chapter-item expanded "><a href="../Flutter/Layout.html"><strong aria-hidden="true">7.3.</strong> 布局</a></li><li class="chapter-item expanded "><a href="../Flutter/Animation.html"><strong aria-hidden="true">7.4.</strong> 动画</a></li><li class="chapter-item expanded "><a href="../Flutter/Widgets.html"><strong aria-hidden="true">7.5.</strong> 组件</a></li><li class="chapter-item expanded "><a href="../Flutter/State.html"><strong aria-hidden="true">7.6.</strong> 状态管理</a></li><li class="chapter-item expanded "><a href="../Flutter/Theme.html"><strong aria-hidden="true">7.7.</strong> 主题</a></li><li class="chapter-item expanded "><a href="../Flutter/Source.html"><strong aria-hidden="true">7.8.</strong> 源码 &amp; 原理</a></li><li class="chapter-item expanded "><a href="../Flutter/Test.html"><strong aria-hidden="true">7.9.</strong> 测试</a></li><li class="chapter-item expanded "><a href="../Flutter/Performance.html"><strong aria-hidden="true">7.10.</strong> 性能相关</a></li><li class="chapter-item expanded "><a href="../Flutter/Web.html"><strong aria-hidden="true">7.11.</strong> Web开发</a></li><li class="chapter-item expanded "><a href="../Flutter/Desktop.html"><strong aria-hidden="true">7.12.</strong> Desktop开发</a></li></ol></li><li class="chapter-item expanded "><a href="../Server/index.html"><strong aria-hidden="true">8.</strong> 后台</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Server/Linux.html"><strong aria-hidden="true">8.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="../Server/Go.html"><strong aria-hidden="true">8.2.</strong> GO语言</a></li><li class="chapter-item expanded "><a href="../Server/NodeJS.html"><strong aria-hidden="true">8.3.</strong> Node.js</a></li><li class="chapter-item expanded "><a href="../Server/Docker.html"><strong aria-hidden="true">8.4.</strong> Docker</a></li><li class="chapter-item expanded "><a href="../Server/K8S.html"><strong aria-hidden="true">8.5.</strong> K8S</a></li></ol></li><li class="chapter-item expanded "><a href="../Language/index.html"><strong aria-hidden="true">9.</strong> 语言</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Language/Swift.html"><strong aria-hidden="true">9.1.</strong> Swift</a></li><li class="chapter-item expanded "><a href="../Language/Dart.html"><strong aria-hidden="true">9.2.</strong> Dart</a></li><li class="chapter-item expanded "><a href="../Language/CPP.html"><strong aria-hidden="true">9.3.</strong> C++</a></li><li class="chapter-item expanded "><a href="../Language/Rust.html"><strong aria-hidden="true">9.4.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../Language/JS.html"><strong aria-hidden="true">9.5.</strong> JS</a></li><li class="chapter-item expanded "><a href="../Language/TypeScript.html"><strong aria-hidden="true">9.6.</strong> TypeScript</a></li><li class="chapter-item expanded "><a href="../Language/WebAssembly.html"><strong aria-hidden="true">9.7.</strong> WebAssembly</a></li><li class="chapter-item expanded "><a href="../Language/Haskell.html"><strong aria-hidden="true">9.8.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="../Language/ArmAssembly.html"><strong aria-hidden="true">9.9.</strong> ARM汇编</a></li><li class="chapter-item expanded "><a href="../Language/Compiler.html"><strong aria-hidden="true">9.10.</strong> 编译器</a></li><li class="chapter-item expanded "><a href="../Language/Functional.html"><strong aria-hidden="true">9.11.</strong> 函数式编程</a></li></ol></li><li class="chapter-item expanded "><a href="../CrossPlatform/index.html"><strong aria-hidden="true">10.</strong> 跨平台</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../CrossPlatform/ReactNative.html"><strong aria-hidden="true">10.1.</strong> React Native</a></li><li class="chapter-item expanded "><a href="../CrossPlatform/Hippy.html"><strong aria-hidden="true">10.2.</strong> Hippy</a></li></ol></li><li class="chapter-item expanded "><a href="../Note/index.html"><strong aria-hidden="true">11.</strong> 笔记</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Note/10xWork.html"><strong aria-hidden="true">11.1.</strong> 10x程序员工作法</a></li><li class="chapter-item expanded "><a href="../Note/ProfessionalJS.html"><strong aria-hidden="true">11.2.</strong> JavaScript高级程序设计</a></li><li class="chapter-item expanded "><a href="../Note/XSW_ArchTech.html"><strong aria-hidden="true">11.3.</strong> 许式伟的架构课</a></li><li class="chapter-item expanded "><a href="../Note/DDD_Distilled.html"><strong aria-hidden="true">11.4.</strong> 领域驱动设计精粹</a></li><li class="chapter-item expanded "><a href="../Note/SoftwareDesign.html"><strong aria-hidden="true">11.5.</strong> 软件设计之美</a></li><li class="chapter-item expanded "><a href="../Note/DDDPractice.html"><strong aria-hidden="true">11.6.</strong> DDD实战课</a></li><li class="chapter-item expanded "><a href="../Note/DDDThoughtworks.html"><strong aria-hidden="true">11.7.</strong> 领域驱动设计综述(Thoughtworks洞见)</a></li><li class="chapter-item expanded "><a href="../Note/SoftwareArchitecture.html"><strong aria-hidden="true">11.8.</strong> 架构整洁之道</a></li><li class="chapter-item expanded "><a href="../Note/XPExplained.html"><strong aria-hidden="true">11.9.</strong> 解析极限编程</a></li><li class="chapter-item expanded "><a href="../Note/RustSwift.html"><strong aria-hidden="true">11.10.</strong> Rust / Swift对比</a></li></ol></li><li class="chapter-item expanded "><a href="../Article/READMD.html"><strong aria-hidden="true">12.</strong> 文章</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Article/SoftwareDesign.html"><strong aria-hidden="true">12.1.</strong> 浅谈软件设计</a></li><li class="chapter-item expanded "><a href="../Article/ExtremeProgramming.html"><strong aria-hidden="true">12.2.</strong> 解析极限编程</a></li><li class="chapter-item expanded "><a href="../Article/FunctionalProgramming.html"><strong aria-hidden="true">12.3.</strong> 浅谈函数式编程</a></li><li class="chapter-item expanded "><a href="../Article/DartIterableEffective.html"><strong aria-hidden="true">12.4.</strong> Dart中自定义Iterable高效操作</a></li><li class="chapter-item expanded "><a href="../Article/FlutterExperience.html"><strong aria-hidden="true">12.5.</strong> Flutter开发小结</a></li><li class="chapter-item expanded "><a href="../Article/Builder_Runner.html"><strong aria-hidden="true">12.6.</strong> builder_runner实现简介</a></li><li class="chapter-item expanded "><a href="../Article/Compiler_Parser.html"><strong aria-hidden="true">12.7.</strong> 词法&amp;语法分析工具介绍</a></li><li class="chapter-item expanded "><a href="../Article/WKWebview_Cookie.html"><strong aria-hidden="true">12.8.</strong> WKWebview Cookie开发及需要注意的点</a></li></ol></li><li class="chapter-item expanded "><a href="../Other/index.html"><strong aria-hidden="true">13.</strong> 其它</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Other/Design.html"><strong aria-hidden="true">13.1.</strong> 设计相关</a></li><li class="chapter-item expanded "><a href="../Other/Blog.html"><strong aria-hidden="true">13.2.</strong> 博客搭建</a></li><li class="chapter-item expanded "><a href="../Other/MacOS.html"><strong aria-hidden="true">13.3.</strong> MacOS</a></li></ol></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
                 
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
 
+                    <h1 class="menu-title">开发知识库</h1>
 
-<ul class="summary">
-    
-    
+                    <div class="right-buttons">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
 
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                    开发知识库
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="../Navigator/">
-            
-                <a href="../Navigator/">
-            
-                    
-                    0. 常用导航
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    1. 通用
-            
-                </a>
-            
-
-            
-            <ul class="articles">
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
                 
-    
-        <li class="chapter " data-level="1.3.1" data-path="Git.html">
-            
-                <a href="Git.html">
-            
-                    
-                    Git
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="VI.html">
-            
-                <a href="VI.html">
-            
-                    
-                    VI
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="Shell.html">
-            
-                <a href="Shell.html">
-            
-                    
-                    Shell
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="Markdown.html">
-            
-                <a href="Markdown.html">
-            
-                    
-                    Markdown
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="Regex.html">
-            
-                <a href="Regex.html">
-            
-                    
-                    正则表达式
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="Test.html">
-            
-                <a href="Test.html">
-            
-                    
-                    测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.7" data-path="VSCode.html">
-            
-                <a href="VSCode.html">
-            
-                    
-                    VSCode
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.3.8" data-path="Database.html">
-            
-                <a href="Database.html">
-            
-                    
-                    数据库
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.9" data-path="Network.html">
-            
-                <a href="Network.html">
-            
-                    
-                    网络
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.10" data-path="Tools.html">
-            
-                <a href="Tools.html">
-            
-                    
-                    常用工具
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.11" data-path="Algorithm.html">
-            
-                <a href="Algorithm.html">
-            
-                    
-                    算法
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.12" data-path="Graphics.html">
-            
-                <a href="Graphics.html">
-            
-                    
-                    图像处理
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.13" data-path="OperateSystem.html">
-            
-                <a href="OperateSystem.html">
-            
-                    
-                    操作系统
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.14" data-path="Secure.html">
-            
-                <a href="Secure.html">
-            
-                    
-                    安全
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.15" data-path="ITConcept.html">
-            
-                <a href="ITConcept.html">
-            
-                    
-                    行业概念
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="../Software/">
-            
-                <a href="../Software/">
-            
-                    
-                    2. 软件
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="../Software/Architecture.html">
-            
-                <a href="../Software/Architecture.html">
-            
-                    
-                    软件架构
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="../Software/SoftwareDesign.html">
-            
-                <a href="../Software/SoftwareDesign.html">
-            
-                    
-                    软件设计
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="../Software/DesignPattern.html">
-            
-                <a href="../Software/DesignPattern.html">
-            
-                    
-                    设计模式
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="../Software/Document.html">
-            
-                <a href="../Software/Document.html">
-            
-                    
-                    文档
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="../iOS/">
-            
-                <a href="../iOS/">
-            
-                    
-                    3. iOS
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="../iOS/Performance.html">
-            
-                <a href="../iOS/Performance.html">
-            
-                    
-                    性能相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="../iOS/UI.html">
-            
-                <a href="../iOS/UI.html">
-            
-                    
-                    UI相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.3" data-path="../iOS/Swift.html">
-            
-                <a href="../iOS/Swift.html">
-            
-                    
-                    Swift
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.4" data-path="../iOS/ObjC.html">
-            
-                <a href="../iOS/ObjC.html">
-            
-                    
-                    Objective-C
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.5" data-path="../iOS/SwiftUI.html">
-            
-                <a href="../iOS/SwiftUI.html">
-            
-                    
-                    SwiftUI
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.6" data-path="../iOS/Runtime.html">
-            
-                <a href="../iOS/Runtime.html">
-            
-                    
-                    Runtime
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.7" data-path="../iOS/Thread.html">
-            
-                <a href="../iOS/Thread.html">
-            
-                    
-                    多线程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.8" data-path="../iOS/DarkMode.html">
-            
-                <a href="../iOS/DarkMode.html">
-            
-                    
-                    黑暗模式适配
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.9" data-path="../iOS/UniversalLinks.html">
-            
-                <a href="../iOS/UniversalLinks.html">
-            
-                    
-                    Universal Links支持
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.10" data-path="../iOS/Event.html">
-            
-                <a href="../iOS/Event.html">
-            
-                    
-                    事件相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.11" data-path="../iOS/WKWebview.html">
-            
-                <a href="../iOS/WKWebview.html">
-            
-                    
-                    WKWebview
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.12" data-path="../iOS/Scheme.html">
-            
-                <a href="../iOS/Scheme.html">
-            
-                    
-                    Scheme
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.13" data-path="../iOS/Sign.html">
-            
-                <a href="../iOS/Sign.html">
-            
-                    
-                    签名相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.14" data-path="../iOS/UnitTest.html">
-            
-                <a href="../iOS/UnitTest.html">
-            
-                    
-                    单元测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.15" data-path="../iOS/Framework/">
-            
-                <a href="../iOS/Framework/">
-            
-                    
-                    框架
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.15.1" data-path="../iOS/Framework/ReactiveObjC.html">
-            
-                <a href="../iOS/Framework/ReactiveObjC.html">
-            
-                    
-                    ReactiveObjC
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.15.2" data-path="../iOS/Framework/SDWebImage.html">
-            
-                <a href="../iOS/Framework/SDWebImage.html">
-            
-                    
-                    SDWebImage
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.16" data-path="../iOS/Question.html">
-            
-                <a href="../iOS/Question.html">
-            
-                    
-                    问题集合
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="../Web/">
-            
-                <a href="../Web/">
-            
-                    
-                    4. Web
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="../Web/HTML.html">
-            
-                <a href="../Web/HTML.html">
-            
-                    
-                    HTML
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="../Web/CSS.html">
-            
-                <a href="../Web/CSS.html">
-            
-                    
-                    CSS
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="../Web/JS.html">
-            
-                <a href="../Web/JS.html">
-            
-                    
-                    JS
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="../Web/TypeScript.html">
-            
-                <a href="../Web/TypeScript.html">
-            
-                    
-                    TypeScript
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="../Web/React.html">
-            
-                <a href="../Web/React.html">
-            
-                    
-                    React
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.6" data-path="../Web/Vue.html">
-            
-                <a href="../Web/Vue.html">
-            
-                    
-                    Vue
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.7" data-path="../Web/WebAssembly.html">
-            
-                <a href="../Web/WebAssembly.html">
-            
-                    
-                    WebAssembly
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.8" data-path="../Web/CROS.html">
-            
-                <a href="../Web/CROS.html">
-            
-                    
-                    同源策略 & 跨域
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.9" data-path="../Web/Cookie.html">
-            
-                <a href="../Web/Cookie.html">
-            
-                    
-                    Cookie
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.10" data-path="../Web/DOM.html">
-            
-                <a href="../Web/DOM.html">
-            
-                    
-                    DOM
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.11" data-path="../Web/JSEngine.html">
-            
-                <a href="../Web/JSEngine.html">
-            
-                    
-                    JS引擎
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.12" data-path="../Web/Canvas.html">
-            
-                <a href="../Web/Canvas.html">
-            
-                    
-                    Canvas
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="../Flutter/">
-            
-                <a href="../Flutter/">
-            
-                    
-                    5. Flutter
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="../Flutter/Reference.html">
-            
-                <a href="../Flutter/Reference.html">
-            
-                    
-                    Flutter框架
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="../Flutter/Dart.html">
-            
-                <a href="../Flutter/Dart.html">
-            
-                    
-                    Dart
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="../Flutter/Layout.html">
-            
-                <a href="../Flutter/Layout.html">
-            
-                    
-                    布局
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="../Flutter/Animation.html">
-            
-                <a href="../Flutter/Animation.html">
-            
-                    
-                    动画
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="../Flutter/Widgets.html">
-            
-                <a href="../Flutter/Widgets.html">
-            
-                    
-                    组件
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.6" data-path="../Flutter/State.html">
-            
-                <a href="../Flutter/State.html">
-            
-                    
-                    状态管理
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.7" data-path="../Flutter/Theme.html">
-            
-                <a href="../Flutter/Theme.html">
-            
-                    
-                    主题
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.8" data-path="../Flutter/Source.html">
-            
-                <a href="../Flutter/Source.html">
-            
-                    
-                    源码 & 原理
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.9" data-path="../Flutter/Test.html">
-            
-                <a href="../Flutter/Test.html">
-            
-                    
-                    测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.10" data-path="../Flutter/Performance.html">
-            
-                <a href="../Flutter/Performance.html">
-            
-                    
-                    性能相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.11" data-path="../Flutter/Web.html">
-            
-                <a href="../Flutter/Web.html">
-            
-                    
-                    Web开发
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.12" data-path="../Flutter/Desktop.html">
-            
-                <a href="../Flutter/Desktop.html">
-            
-                    
-                    Desktop开发
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="../Server/">
-            
-                <a href="../Server/">
-            
-                    
-                    6. 后台
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.8.1" data-path="../Server/Linux.html">
-            
-                <a href="../Server/Linux.html">
-            
-                    
-                    Linux
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8.2" data-path="../Server/Go.html">
-            
-                <a href="../Server/Go.html">
-            
-                    
-                    GO语言
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8.3" data-path="../Server/NodeJS.html">
-            
-                <a href="../Server/NodeJS.html">
-            
-                    
-                    Node.js
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8.4" data-path="../Server/Docker.html">
-            
-                <a href="../Server/Docker.html">
-            
-                    
-                    Docker
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8.5" data-path="../Server/K8S.html">
-            
-                <a href="../Server/K8S.html">
-            
-                    
-                    K8S
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="../Language/">
-            
-                <a href="../Language/">
-            
-                    
-                    7. 语言
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.9.1" data-path="../Language/Swift.html">
-            
-                <a href="../Language/Swift.html">
-            
-                    
-                    Swift
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.2" data-path="../Language/Dart.html">
-            
-                <a href="../Language/Dart.html">
-            
-                    
-                    Dart
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.3" data-path="../Language/CPP.html">
-            
-                <a href="../Language/CPP.html">
-            
-                    
-                    C++
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.4" data-path="../Language/Rust.html">
-            
-                <a href="../Language/Rust.html">
-            
-                    
-                    Rust
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.5" data-path="../Language/JS.html">
-            
-                <a href="../Language/JS.html">
-            
-                    
-                    JS
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.6" data-path="../Language/TypeScript.html">
-            
-                <a href="../Language/TypeScript.html">
-            
-                    
-                    TypeScript
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.7" data-path="../Language/WebAssembly.html">
-            
-                <a href="../Language/WebAssembly.html">
-            
-                    
-                    WebAssembly
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.8" data-path="../Language/Haskell.html">
-            
-                <a href="../Language/Haskell.html">
-            
-                    
-                    Haskell
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.9" data-path="../Language/ArmAssembly.html">
-            
-                <a href="../Language/ArmAssembly.html">
-            
-                    
-                    ARM汇编
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.10" data-path="../Language/Compiler.html">
-            
-                <a href="../Language/Compiler.html">
-            
-                    
-                    编译器
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.11" data-path="../Language/Functional.html">
-            
-                <a href="../Language/Functional.html">
-            
-                    
-                    函数式编程
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="../CrossPlatform/">
-            
-                <a href="../CrossPlatform/">
-            
-                    
-                    8. 跨平台
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.10.1" data-path="../CrossPlatform/ReactNative.html">
-            
-                <a href="../CrossPlatform/ReactNative.html">
-            
-                    
-                    React Native
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10.2" data-path="../CrossPlatform/Hippy.html">
-            
-                <a href="../CrossPlatform/Hippy.html">
-            
-                    
-                    Hippy
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11" data-path="../Note/">
-            
-                <a href="../Note/">
-            
-                    
-                    9. 笔记
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.11.1" data-path="../Note/10xWork.html">
-            
-                <a href="../Note/10xWork.html">
-            
-                    
-                    10x程序员工作法
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.2" data-path="../Note/ProfessionalJS.html">
-            
-                <a href="../Note/ProfessionalJS.html">
-            
-                    
-                    JavaScript高级程序设计
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.3" data-path="../Note/XSW_ArchTech.html">
-            
-                <a href="../Note/XSW_ArchTech.html">
-            
-                    
-                    许式伟的架构课
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.4" data-path="../Note/DDD_Distilled.html">
-            
-                <a href="../Note/DDD_Distilled.html">
-            
-                    
-                    领域驱动设计精粹
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.5" data-path="../Note/SoftwareDesign.html">
-            
-                <a href="../Note/SoftwareDesign.html">
-            
-                    
-                    软件设计之美
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.6" data-path="../Note/DDDPractice.html">
-            
-                <a href="../Note/DDDPractice.html">
-            
-                    
-                    DDD实战课
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.7" data-path="../Note/DDDThoughtworks.html">
-            
-                <a href="../Note/DDDThoughtworks.html">
-            
-                    
-                    领域驱动设计综述(Thoughtworks洞见)
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.8" data-path="../Note/SoftwareArchitecture.html">
-            
-                <a href="../Note/SoftwareArchitecture.html">
-            
-                    
-                    架构整洁之道
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.9" data-path="../Note/XPExplained.html">
-            
-                <a href="../Note/XPExplained.html">
-            
-                    
-                    解析极限编程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.11.10" data-path="../Note/RustSwift.html">
-            
-                <a href="../Note/RustSwift.html">
-            
-                    
-                    Rust / Swift对比
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12" data-path="../Article/READMD.html">
-            
-                <a href="../Article/READMD.html">
-            
-                    
-                    10. 文章
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.12.1" data-path="../Article/SoftwareDesign.html">
-            
-                <a href="../Article/SoftwareDesign.html">
-            
-                    
-                    浅谈软件设计
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.2" data-path="../Article/ExtremeProgramming.html">
-            
-                <a href="../Article/ExtremeProgramming.html">
-            
-                    
-                    解析极限编程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.3" data-path="../Article/FunctionalProgramming.html">
-            
-                <a href="../Article/FunctionalProgramming.html">
-            
-                    
-                    浅谈函数式编程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.4" data-path="../Article/DartIterableEffective.html">
-            
-                <a href="../Article/DartIterableEffective.html">
-            
-                    
-                    Dart中自定义Iterable高效操作
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.5" data-path="../Article/FlutterExperience.html">
-            
-                <a href="../Article/FlutterExperience.html">
-            
-                    
-                    Flutter开发小结
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.6" data-path="../Article/Builder_Runner.html">
-            
-                <a href="../Article/Builder_Runner.html">
-            
-                    
-                    builder_runner实现简介
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.7" data-path="../Article/Compiler_Parser.html">
-            
-                <a href="../Article/Compiler_Parser.html">
-            
-                    
-                    词法&语法分析工具介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.12.8" data-path="../Article/WKWebview_Cookie.html">
-            
-                <a href="../Article/WKWebview_Cookie.html">
-            
-                    
-                    WKWebview Cookie开发及需要注意的点
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.13" data-path="../Other/">
-            
-                <a href="../Other/">
-            
-                    
-                    11. 其它
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.13.1" data-path="../Other/Design.html">
-            
-                <a href="../Other/Design.html">
-            
-                    
-                    设计相关
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.13.2" data-path="../Other/Blog.html">
-            
-                <a href="../Other/Blog.html">
-            
-                    
-                    博客搭建
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.13.3" data-path="../Other/MacOS.html">
-            
-                <a href="../Other/MacOS.html">
-            
-                    
-                    MacOS
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >数据库</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h1 id="&#x6570;&#x636E;&#x5E93;">&#x6570;&#x636E;&#x5E93;</h1>
-<h3 id="&#x8D44;&#x6599;">&#x8D44;&#x6599;</h3>
-<p><a href="https://www.jianshu.com/p/107c6b045245" target="_blank">&#x8D85;&#x5168;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5206;&#x7C7B;&#x4ECB;&#x7ECD;</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/27789602" target="_blank">&#x4E8B;&#x52A1;&#x7684;ACID&#x7279;&#x6027;</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/69380112" target="_blank">&#x901A;&#x4FD7;&#x6613;&#x61C2; &#x4E8B;&#x52A1;&#x3001;ACID&#x3001;&#x810F;&#x8BFB;&#x3001;&#x810F;&#x5199;&#x3001;&#x5E7B;&#x8BFB;&#x3001;&#x8BFB;&#x5DF2;&#x63D0;&#x4EA4;&#x3001;&#x5FEB;&#x7167;&#x9694;&#x79BB;&#x3001;&#x8BFB;&#x5199;&#x9501;&#x3001;&#x4E24;&#x9636;&#x6BB5;&#x9501;&#x5B9A; &#x7684;&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;</a></p>
-<p><a href="https://db-engines.com/en/ranking" target="_blank">&#x6570;&#x636E;&#x5E93;&#x6392;&#x540D;</a></p>
-<h3 id="&#x57FA;&#x7840;&#x6982;&#x5FF5;">&#x57FA;&#x7840;&#x6982;&#x5FF5;</h3>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="数据库"><a class="header" href="#数据库">数据库</a></h1>
+<h3 id="资料"><a class="header" href="#资料">资料</a></h3>
+<p><a href="https://www.jianshu.com/p/107c6b045245">超全的数据库分类介绍</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27789602">事务的ACID特性</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/69380112">通俗易懂 事务、ACID、脏读、脏写、幻读、读已提交、快照隔离、读写锁、两阶段锁定 的区别与联系</a></p>
+<p><a href="https://db-engines.com/en/ranking">数据库排名</a></p>
+<h3 id="基础概念"><a class="header" href="#基础概念">基础概念</a></h3>
 <ul>
-<li>&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5982;MySQL&#x3001;Oracle&#x3001;SQL Server</li>
-<li>&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</li>
-<li>&#x4E8B;&#x52A1;&#xFF1A;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x4E00;&#x7CFB;&#x5217;&#x64CD;&#x4F5C;&#x7684;&#x6700;&#x5C0F;&#x903B;&#x8F91;&#x5355;&#x5143;&#xFF0C;&#x8FD9;&#x4E2A;&#x903B;&#x8F91;&#x5355;&#x5143;&#x5185;&#x7684;&#x64CD;&#x4F5C;&#x8981;&#x4E48;&#x5168;&#x90E8;&#x6210;&#x529F;&#xFF0C;&#x8981;&#x4E48;&#x5C31;&#x5168;&#x90E8;&#x5931;&#x8D25;&#x3002;</li>
+<li>关系型数据库，如MySQL、Oracle、SQL Server</li>
+<li>非关系型数据库</li>
+<li>事务：一个或者一系列操作的最小逻辑单元，这个逻辑单元内的操作要么全部成功，要么就全部失败。</li>
 </ul>
-<h4 id="aicd">AICD</h4>
+<h4 id="aicd"><a class="header" href="#aicd">AICD</a></h4>
 <ul>
-<li>&#x539F;&#x5B50;&#x6027;</li>
-<li>&#x9694;&#x79BB;&#x6027;&#xFF1A;&#x4E8B;&#x52A1;&#x4E4B;&#x95F4;&#x4E0D;&#x4F1A;&#x76F8;&#x4E92;&#x5F71;&#x54CD;&#xFF0C;&#x5982;&#x679C;&#x591A;&#x4E2A;&#x4E8B;&#x52A1;&#x64CD;&#x4F5C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x4F1A;&#x4E32;&#x884C;&#x5904;&#x7406;&#x3002;</li>
-<li>&#x4E00;&#x81F4;&#x6027;</li>
-<li>&#x6301;&#x4E45;&#x6027;&#xFF1A;&#x4E00;&#x65E6;&#x4E8B;&#x52A1;&#x6210;&#x529F;&#x63D0;&#x4EA4;&#x540E;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x4E22;&#x5931;&#x3002;</li>
+<li>原子性</li>
+<li>隔离性：事务之间不会相互影响，如果多个事务操作一个对象时，会串行处理。</li>
+<li>一致性</li>
+<li>持久性：一旦事务成功提交后，就不会丢失。</li>
 </ul>
-<h4 id="orm">ORM</h4>
-<p>ORM &#x5C31;&#x662F;&#x901A;&#x8FC7;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x5B8C;&#x6210;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x662F;&quot;&#x5BF9;&#x8C61;-&#x5173;&#x7CFB;&#x6620;&#x5C04;&quot;&#xFF08;Object/Relational Mapping&#xFF09; &#x7684;&#x7F29;&#x5199;&#x3002;</p>
-<h4 id="&#x7D22;&#x5F15;">&#x7D22;&#x5F15;</h4>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODEzNDA4OA==&amp;mid=2650317286&amp;idx=1&amp;sn=10273b8b2d75583ee75355bc4f30f3cf&amp;chksm=bec369c189b4e0d71fbe466cfe6319cbcabf87c506352e2c03eefa7f2560c0e2ff1c6bb80014&amp;mpshare=1&amp;scene=1&amp;srcid=07275NaWbWibeXaMQhvuIGhR&amp;sharer_sharetime=1627353559190&amp;sharer_shareid=46db0b7b20a25a2d43b9732f9afbb07d&amp;version=3.1.10.90255&amp;platform=mac#rd" target="_blank">&#x5FAE;&#x4FE1;&#x5927;&#x725B;&#x6559;&#x4F60;&#x6DF1;&#x5165;&#x4E86;&#x89E3;&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;</a></p>
-<p>&#x7D22;&#x5F15;&#x7684;&#x672C;&#x8D28;&#xFF0C;&#x662F;&#x5728;&#x6570;&#x636E;&#x8868;&#x4E4B;&#x5916;&#xFF0C;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x63D0;&#x5347;&#x67E5;&#x8BE2;&#x6548;&#x7387;&#x3002;</p>
-<h3 id="&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;">&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</h3>
-<p>&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x662F;&#x6307;&#x91C7;&#x7528;&#x4E86;&#x5173;&#x7CFB;&#x6A21;&#x578B;&#x6765;&#x7EC4;&#x7EC7;&#x6570;&#x636E;&#x7684;&#x6570;&#x636E;&#x5E93;&#x3002;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5173;&#x7CFB;&#x6A21;&#x5F0F;&#x5C31;&#x662F;&#x4E8C;&#x7EF4;&#x8868;&#x683C;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x91CC;&#x9762;&#x7684;&#x6838;&#x5FC3;&#x6982;&#x5FF5;&#x662F; <strong>&#x8054;&#x7ED3;</strong></p>
-<h3 id="&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;">&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</h3>
-<table>
-<thead>
-<tr>
-<th>&#x7C7B;&#x578B;</th>
-<th>&#x793A;&#x4F8B;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>KV&#x5B58;&#x50A8;</td>
-<td>LevelDB&#x3001;Redis</td>
-</tr>
-<tr>
-<td>&#x5217;&#x5B58;&#x50A8;</td>
-<td>HBase</td>
-</tr>
-<tr>
-<td>&#x6587;&#x6863;&#x578B;</td>
-<td>MongoDB</td>
-</tr>
-<tr>
-<td>&#x641C;&#x7D22;&#x578B;</td>
-<td>ElasticSearch</td>
-</tr>
-<tr>
-<td>&#x56FE;&#x5F62;&#x6570;&#x636E;&#x5E93;</td>
-<td>Neo4J</td>
-</tr>
-</tbody>
-</table>
-<p>&#x5217;&#x5B58;&#x50A8;&#x7C7B;&#x578B;&#x7684;&#x4ECB;&#x7ECD;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#xFF1A;<a href="https://juejin.im/entry/6844903750012780558" target="_blank">&#x4E94;&#x5206;&#x949F;&#x8F7B;&#x677E;&#x4E86;&#x89E3;Hbase&#x5217;&#x5F0F;&#x5B58;&#x50A8;</a></p>
-<p>&#x4E86;&#x89E3;&#x6587;&#x6863;&#x5B58;&#x50A8;&#xFF0C;&#x53C2;&#x8003;MongoDB&#x4ECB;&#x7ECD;&#xFF1A;<a href="https://zhuanlan.zhihu.com/p/87722764" target="_blank">&#x4E86;&#x89E3; MongoDB &#x770B;&#x8FD9;&#x4E00;&#x7BC7;&#x5C31;&#x591F;&#x4E86;</a></p>
-<h3 id="&#x5E38;&#x7528;&#x6570;&#x636E;&#x5E93;">&#x5E38;&#x7528;&#x6570;&#x636E;&#x5E93;</h3>
-<h4 id="leveldb">LevelDB</h4>
-<p><a href="https://zhuanlan.zhihu.com/p/67833030" target="_blank">LevelDB&#x6DF1;&#x5165;&#x6D45;&#x51FA;&#x4E4B;&#x6574;&#x4F53;&#x67B6;&#x6784;</a></p>
-<h4 id="sqlite">SQLite</h4>
-<h5 id="ios&#x7AEF;&#x6027;&#x80FD;&#x4F18;&#x5316;">iOS&#x7AEF;&#x6027;&#x80FD;&#x4F18;&#x5316;</h5>
-<p><a href="https://www.jianshu.com/p/660df4731d63" target="_blank">iOS &#x5E73;&#x53F0; SQLite &#x6027;&#x80FD;&#x4F18;&#x5316;</a></p>
+<h4 id="orm"><a class="header" href="#orm">ORM</a></h4>
+<p>ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术，是&quot;对象-关系映射&quot;（Object/Relational Mapping） 的缩写。</p>
+<h4 id="索引"><a class="header" href="#索引">索引</a></h4>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODEzNDA4OA==&amp;mid=2650317286&amp;idx=1&amp;sn=10273b8b2d75583ee75355bc4f30f3cf&amp;chksm=bec369c189b4e0d71fbe466cfe6319cbcabf87c506352e2c03eefa7f2560c0e2ff1c6bb80014&amp;mpshare=1&amp;scene=1&amp;srcid=07275NaWbWibeXaMQhvuIGhR&amp;sharer_sharetime=1627353559190&amp;sharer_shareid=46db0b7b20a25a2d43b9732f9afbb07d&amp;version=3.1.10.90255&amp;platform=mac#rd">微信大牛教你深入了解数据库索引</a></p>
+<p>索引的本质，是在数据表之外，建立一个新的数据结构，提升查询效率。</p>
+<h3 id="关系型数据库"><a class="header" href="#关系型数据库">关系型数据库</a></h3>
+<p>关系型数据库是指采用了关系模型来组织数据的数据库。简单来说，关系模式就是二维表格模型。</p>
+<p>里面的核心概念是 <strong>联结</strong></p>
+<h3 id="非关系型数据库"><a class="header" href="#非关系型数据库">非关系型数据库</a></h3>
+<table><thead><tr><th>类型</th><th>示例</th></tr></thead><tbody>
+<tr><td>KV存储</td><td>LevelDB、Redis</td></tr>
+<tr><td>列存储</td><td>HBase</td></tr>
+<tr><td>文档型</td><td>MongoDB</td></tr>
+<tr><td>搜索型</td><td>ElasticSearch</td></tr>
+<tr><td>图形数据库</td><td>Neo4J</td></tr>
+</tbody></table>
+<p>列存储类型的介绍可以参考：<a href="https://juejin.im/entry/6844903750012780558">五分钟轻松了解Hbase列式存储</a></p>
+<p>了解文档存储，参考MongoDB介绍：<a href="https://zhuanlan.zhihu.com/p/87722764">了解 MongoDB 看这一篇就够了</a></p>
+<h3 id="常用数据库"><a class="header" href="#常用数据库">常用数据库</a></h3>
+<h4 id="leveldb"><a class="header" href="#leveldb">LevelDB</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/67833030">LevelDB深入浅出之整体架构</a></p>
+<h4 id="sqlite"><a class="header" href="#sqlite">SQLite</a></h4>
+<h5 id="ios端性能优化"><a class="header" href="#ios端性能优化">iOS端性能优化</a></h5>
+<p><a href="https://www.jianshu.com/p/660df4731d63">iOS 平台 SQLite 性能优化</a></p>
 <ul>
-<li>Pragma&#x53C2;&#x6570;&#x4F18;&#x5316;&#xFF08;<a href="https://sqlite.org/pragma.html&#xFF09;" target="_blank">https://sqlite.org/pragma.html&#xFF09;</a></li>
-<li>&#x6709;&#x6548;&#x4F7F;&#x7528;&#x7D22;&#x5F15; &#xFF08;&#x7D22;&#x5F15;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x63D0;&#x5347;&#x67E5;&#x8BE2;&#x6548;&#x7387;&#xFF09;(&#x5185;&#x7F6E;&#x7684;explain&#x529F;&#x80FD;&#x67E5;&#x770B;&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;)</li>
-<li>&#x5C3D;&#x53EF;&#x80FD;&#x907F;&#x514D;&#x5168;&#x8868;&#x626B;&#x63CF;&#x3002;</li>
-<li><p>&#x51CF;&#x5C11;&#x65E0;&#x6548;&#x6570;&#x636E;&#x7684;&#x67E5;&#x8BE2;&#x3002;</p>
+<li>
+<p>Pragma参数优化（https://sqlite.org/pragma.html）</p>
 </li>
-<li><p>&#x7F16;&#x5199;&#x5408;&#x7406;&#x7684;&#x8BED;&#x53E5;</p>
+<li>
+<p>有效使用索引 （索引可以有效提升查询效率）(内置的explain功能查看语句的执行流程)</p>
+</li>
+<li>
+<p>尽可能避免全表扫描。</p>
+</li>
+<li>
+<p>减少无效数据的查询。</p>
+</li>
+<li>
+<p>编写合理的语句</p>
 </li>
 <li></li>
 </ul>
 
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+                    </main>
 
-                        </div>
-                    </div>
-                
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../Common/VSCode.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="../Common/Network.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../Common/VSCode.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
-                <a href="VSCode.html" class="navigation navigation-prev " aria-label="Previous page: VSCode">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="Network.html" class="navigation navigation-next " aria-label="Next page: 网络">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+                                    <a rel="next" href="../Common/Network.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"数据库","level":"1.3.8","depth":2,"next":{"title":"网络","level":"1.3.9","depth":2,"path":"Common/Network.md","ref":"Common/Network.md","articles":[]},"previous":{"title":"VSCode","level":"1.3.7","depth":2,"path":"Common/VSCode.md","ref":"Common/VSCode.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"开发知识库","gitbook":"*"},"file":{"path":"Common/Database.md","mtime":"2021-10-01T12:38:18.753Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-01T12:39:00.808Z"},"basePath":"..","book":{"language":""}});
-        });
-    </script>
-</div>
+        </div>
 
         
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
         
-        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
         
-    
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
         
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
         
-    
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
+        <!-- Custom JS scripts -->
+        
+        
     </body>
 </html>
-
