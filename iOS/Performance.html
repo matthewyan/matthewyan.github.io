@@ -266,6 +266,38 @@
 <li>监听用户是否开了低电量模式，低电量模式可以做不同的优化 （<code>NSProcessInfoPowerStateDidChangeNotification</code>）</li>
 <li>……</li>
 </ul>
+<h3 id="instruments"><a class="header" href="#instruments">Instruments</a></h3>
+<p><a href="https://time.geekbang.org/column/article/90546">性能监控：衡量 App 质量的那把尺</a></p>
+<p>Instruments能力：（有部分能力在模拟器上是不支持的）</p>
+<ul>
+<li>
+<p>App Launch：统计启动耗时，并有相应接口的耗时细节</p>
+</li>
+<li>
+<p>Activity Monitor：监视CPU、内存、磁盘、网络等信息</p>
+</li>
+<li>
+<p>Allocations：匿名虚拟内存及堆的状态，可以查看内存增长时主要是哪些对象的申请导致的</p>
+</li>
+<li>
+<p>Animation Hitches：动画、滚动等性能检测</p>
+</li>
+<li>
+<p>Energy Log：电量使用信息</p>
+</li>
+<li>
+<p>Leaks：检查泄露内存</p>
+</li>
+<li>
+<p>Zombies：测量一般内存使用情况，并关注过度释放的Zobies对象检测</p>
+</li>
+<li>
+<p>Time Profiler：对相应进程执行进行采样</p>
+</li>
+</ul>
+<p>Instruments支持开发自定义插件</p>
+<h4 id="signpost"><a class="header" href="#signpost">Signpost</a></h4>
+<p>支持在Instrument中显示自定义事件：<a href="http://blog.chendongnan.com/2019/06/30/WWDC2019Session411-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8Instrument/">WWDC 2019 Session 411译文</a></p>
 <h3 id="metrics使用"><a class="header" href="#metrics使用">Metrics使用</a></h3>
 <p>测试指定性能指标：</p>
 <pre><code class="language-oc">- (void)testReSizeImagePerformance {
