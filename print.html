@@ -584,7 +584,26 @@ driver.get('http://www.baidu.com/')
 <h5 id="webdriveragent"><a class="header" href="#webdriveragent">WebDriverAgent</a></h5>
 <p>要使用Appium，要先理解 <code>WebDriverAgent</code>。它是在iOS端实现了WebDriver协议的工具，由Facebook开发，但目前由appium团队维护。</p>
 <p>其工作原理可参考：<a href="https://zhuanlan.zhihu.com/p/38915197">WebDriverAgent入门篇-安装和使用</a> 中的原理部分。</p>
-<p><a href="https://testerhome.com/articles/27059">理解和使用 WebDriverAgent</a></p>
+<p>其它资料：<a href="https://testerhome.com/articles/27059">理解和使用 WebDriverAgent</a></p>
+<h5 id="模拟器上使用步骤"><a class="header" href="#模拟器上使用步骤">模拟器上使用步骤</a></h5>
+<ul>
+<li><code>git clone https://github.com/appium/WebDriverAgent.git</code></li>
+<li><code>brew install Carthage</code></li>
+<li><code>./Script/build.sh</code></li>
+<li>打开 <code>WebDriverAgent.xcodeproj</code></li>
+<li>选择 <code>WebDriverAgentRunner</code>的target，<code>Cmd + U</code>运行测试用例</li>
+<li>在控制台中可以看到类似：<code>ServerURLHere-&gt;http://192.168.0.102:8100&lt;-ServerURLHere</code> 这样的字眼</li>
+<li>浏览器中输入：<code>http://192.168.0.102:8100/status</code>，即可获取当前设备状态。</li>
+</ul>
+<p>其它的操作命令可以在这儿查看：<a href="https://github.com/facebookarchive/WebDriverAgent/wiki/Queries">Queries</a></p>
+<p>除了在shell中使用curl来控制手机操作，还有一些三方封装，如：<a href="https://github.com/openatx/facebook-wda">facebook-wda</a>，其可以使用类似 <code>driver.home()</code> 这样简单命令进行更简单的控制。</p>
+<blockquote>
+<p>WebDriverAgent的实现入口代码，可以在<code>WebDriverAgentRunner</code>的<code>UITestingUITests.m</code>中看到。即 <code>testRunner</code>接口的实现，当执行<code>Cmd + U</code>时，即启动了一个http server，通过接收电脑的指令以在手机端实现一些操作。</p>
+</blockquote>
+<h5 id="ios-xcuitest-driver"><a class="header" href="#ios-xcuitest-driver">iOS XCUITest Driver</a></h5>
+<p>依赖于 <code>WebDriverAgent</code></p>
+<h4 id="detox"><a class="header" href="#detox">Detox</a></h4>
+<p><a href="https://juejin.cn/post/6862979132976791566">Detox: 高效进行 React Native E2E 测试</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vscode"><a class="header" href="#vscode">VSCode</a></h1>
 <p>VSCoce远程开发配置：https://juejin.im/post/5cf9d23ce51d45773d4685d9</p>
 <p>远程开发配置好后，连接到远程服务器后，就用“打开文件夹”功能，就可以打开远端目录</p>
