@@ -797,6 +797,12 @@ driver.get('http://www.baidu.com/')
 <p>按照约定，GET的请求参数一般放在url中，POST的请求参数一般放在body中</p>
 </li>
 </ul>
+<h3 id="ntp"><a class="header" href="#ntp">NTP</a></h3>
+<p>即 <code>Network Time Protocol</code>，网络时间协议，使计算机间时间同步化的一种协议，可以提供高精准度的时间校正（LAN上与标准间差小于1毫秒，WAN上几十毫秒）。</p>
+<blockquote>
+<p>NTP的作用可参看：<a href="https://cloud.tencent.com/developer/news/284119">ntp服务器是什么，有什么用？</a></p>
+</blockquote>
+<p>网络上一般有公共的NTP服务器，除 <code>pool.ntp.org</code> 外还有apple提供的<code>time.apple.com</code>等。国内也有一些，参考：<a href="https://www.jianshu.com/p/28864ab7fdd9">国内常用NTP服务器地址</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="常用工具"><a class="header" href="#常用工具">常用工具</a></h1>
 <h4 id="统计代码行数"><a class="header" href="#统计代码行数">统计代码行数</a></h4>
 <p>安装：</p>
@@ -2583,6 +2589,27 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <p><a href="https://david-smith.org/iosversionstats/">系统、设备占比</a></p>
 <p><a href="https://www.theiphonewiki.com/wiki/Models">设备标识与设备型号的对应</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="框架-1"><a class="header" href="#框架-1">框架</a></h1>
+<h3 id="apns"><a class="header" href="#apns">APNs</a></h3>
+<h4 id="silent-push"><a class="header" href="#silent-push">Silent push</a></h4>
+<p>不管应用是否被杀掉，都能呼起App。</p>
+<p>静默推送调用的接口：<code>application: didReceiveRemoteNotification:fetchCompletionHandler</code></p>
+<h3 id="pushkit"><a class="header" href="#pushkit">PushKit</a></h3>
+<p><a href="https://juejin.cn/post/6844903879914553357">iOS : PushKit的使用</a></p>
+<p><a href="https://www.jianshu.com/p/f9bef7e7a4ab">iOS中不一样的推送---PushKit</a></p>
+<table><thead><tr><th></th><th>APNs</th><th>PushKit</th></tr></thead><tbody>
+<tr><td>PayLoads Size</td><td>4096B</td><td>5120B</td></tr>
+<tr><td>权限</td><td>需要获取</td><td>不需要获取权限</td></tr>
+<tr><td>成功率</td><td></td><td>送达率更高</td></tr>
+</tbody></table>
+<h3 id="callkit"><a class="header" href="#callkit">CallKit</a></h3>
+<blockquote>
+<p>Display the system-calling UI for your app’s VoIP services.</p>
+</blockquote>
+<h3 id="voip"><a class="header" href="#voip">VoIP</a></h3>
+<p>即<code>Voice over IP</code>，是一种语音通话技术，通过对传统的模拟语音信号进行数字化、压缩、打包，封装成帧等一系列处理，使得语音业务可以通过IP网进行承载。</p>
+<p>在iOS上，即网络电话功能接口。可参考：<a href="https://devzhangh.com/2020/01/15/iOS-VoIP/">iOS VoIP</a>、<a href="https://www.jianshu.com/p/3bf73a293535">iOS Call Kit for VOIP</a></p>
+<h3 id="push-extension"><a class="header" href="#push-extension">Push Extension</a></h3>
+<p>可以实现交互式的push: <a href="https://developer.apple.com/documentation/usernotifications/implementing_communication_notifications">Implementing Communication Notifications</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reactiveobjc"><a class="header" href="#reactiveobjc">ReactiveObjC</a></h1>
 <p><a href="https://blog.codescv.com/ios/reactive-1.html">ReactiveCocoa 代码阅读笔记 (1) 双向绑定</a></p>
 <p><a href="https://www.jianshu.com/p/d7d951a99db8">ReactiveCocoa 中 RACSignal 是如何发送信号的</a></p>
