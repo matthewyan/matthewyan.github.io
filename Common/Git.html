@@ -167,6 +167,7 @@
 <h5 id="已经push到远端的提交"><a class="header" href="#已经push到远端的提交">已经push到远端的提交</a></h5>
 <table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git revert commitid</code></td><td>重置某次提交，会生成一条新的commit记录 (处理完<code>git push</code>即可)</td></tr>
+<tr><td><code>git revert commitid -m [num]</code></td><td>重置某次提交，merge的代码，往往有多个父记录，需要用-m参数指定revert到哪个父记录（父记录可以通过<code>git log</code>查看，前面的就是1，后面的就是2）</td></tr>
 <tr><td><code>git revert HEAD</code></td><td>将最新的提交revert掉</td></tr>
 </tbody></table>
 <p>还有一种不安全的方式：<code>git reset --hard commitID</code> 然后 <code>git push -f</code>。 表示先在本地重置到某次提交，然后强制将远端的记录用本地替换。</p>
