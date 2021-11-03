@@ -343,6 +343,33 @@ Value: Light
 <li>使用Xcode7及以后版本编译：对于注册的scheme数量不限制，但是只有前50个调用canOpenURL的，返回值才是对的，从第51个开始，canOpenURL返回的值不保证是对的</li>
 <li>使用Xcode6及以前版本编译：canOpenURL仅能调用50次，超过50次后就会返回false（应用重装或升级可以重置计数）</li>
 </ul>
+<h3 id="新特性"><a class="header" href="#新特性">新特性</a></h3>
+<h4 id="app-clip"><a class="header" href="#app-clip">App Clip</a></h4>
+<p><a href="https://www.163.com/dy/article/FTVVMRR105119FKC.html">App Clip的使用指南！</a></p>
+<p>App Clip打开方式：</p>
+<ul>
+<li>用相机 app 扫描 App Clips 码</li>
+<li>用 iPhone 触碰 NFC 卡片或标签</li>
+<li>用 Safari 浏览器访问相应链接</li>
+<li>用 iMessage 分享、打开 App Clips</li>
+<li>在系统自带地图 app 中唤起/跳转</li>
+<li>在 App 资源库中查看最近用过的 App Clips</li>
+</ul>
+<blockquote>
+<p>如果要在页面上配置支持App Clip，参考：<a href="https://blog.jonyfang.com/2020/06/28/2020-06-28-configure-and-link-appClips/">WWDC20 10146 - App Clips 的配置及链接处理</a></p>
+</blockquote>
+<h4 id="aswebauthenticationsession"><a class="header" href="#aswebauthenticationsession">ASWebAuthenticationSession</a></h4>
+<p><a href="https://juejin.cn/post/6961361942002958344">如何通过 ASWebAuthenticationSession 获取身份验证 code 码</a></p>
+<h3 id="extension"><a class="header" href="#extension">Extension</a></h3>
+<p>Extension类型：<a href="https://developer.apple.com/cn/app-extensions/">App 扩展</a></p>
+<h3 id="keychain"><a class="header" href="#keychain">KeyChain</a></h3>
+<p><a href="https://juejin.cn/post/6844903921765318669">iOS Keychain(钥匙串)原理及使用</a></p>
+<p>能力：</p>
+<ul>
+<li>可以私有，即不被其它App获取</li>
+<li>可以公有，可以被同一个Group下的应用获取</li>
+<li>可以存储：<code>密码</code>、<code>证书</code> 甚至普通的笔记等。</li>
+</ul>
 <h3 id="其它"><a class="header" href="#其它">其它</a></h3>
 <p><a href="https://swift.gg/2015/11/25/tvos-introduction/">tvOS 入门：开发你的第一个 tvOS 应用</a></p>
 <p><a href="http://www.woshipm.com/pd/4150041.html">iOS14新增了ATT权限</a></p>
