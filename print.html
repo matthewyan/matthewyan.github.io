@@ -159,6 +159,7 @@
 <li><a href="http://aso.oa.com/keyword/sort">ASO搜索优化工具</a></li>
 <li><a href="http://www.osstatus.com/">iOS错误码查询</a></li>
 <li><a href="http://tool.chinaz.com/Tools/Unicode.aspx">Unicode转中文</a></li>
+<li><a href="https://replit.com/">replit</a>：在线开发环境，能在远端直接跑httpsvr，在本机进行访问。</li>
 </ul>
 <h3 id="其它工具"><a class="header" href="#其它工具">其它工具</a></h3>
 <ul>
@@ -560,7 +561,7 @@ s ae2e0fa Message2
 <p>e2e与UI测试区别可以参见：<a href="https://stackoverflow.com/a/57216637">What's the difference between a UI test and an E2E Test?</a></p>
 </blockquote>
 <ul>
-<li>渗透测试：<a href="https://zhuanlan.zhihu.com/p/82996394">什么是渗透测试</a></li>
+<li>渗透测试：<a href="https://zhuanlan.zhihu.com/p/82996394">什么是渗透测试</a>、<a href="https://www.synopsys.com/zh-cn/glossary/what-is-penetration-testing.html">渗透测试</a></li>
 </ul>
 <h3 id="测试方式"><a class="header" href="#测试方式">测试方式</a></h3>
 <h4 id="回归测试"><a class="header" href="#回归测试">回归测试</a></h4>
@@ -798,6 +799,11 @@ driver.get('http://www.baidu.com/')
 <p><a href="https://www.zhihu.com/question/36767829">什么是DES加密？</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一）</a></p>
 </blockquote>
+<blockquote>
+<p>Https并不是绝对安全的，其是可以通过抓包工具来抓包并解包的。</p>
+<p>只要用户在手机上安装了指定证书，并手动设置将其信任，则该证书就会被认为是有效的了。</p>
+</blockquote>
+<p>Https因使用加密算法，带来的性能影响：客户端的响应时间没有明显的变化；服务器的吞吐量大约减少了 5% 到 8%，CPU 的使用大约增加了 2% 到 5% （数据来源：https://time.geekbang.org/column/article/317963）</p>
 <h4 id="get--post区别"><a class="header" href="#get--post区别">GET / POST区别</a></h4>
 <ul>
 <li>
@@ -1037,6 +1043,34 @@ rm -rf ~/.cocoapods/
 <h3 id="ssh"><a class="header" href="#ssh">SSH</a></h3>
 <p><a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH原理与运用（一）：远程登录</a></p>
 <p><a href="https://wangdoc.com/ssh/index.html">SSH教程</a></p>
+<h3 id="openssl"><a class="header" href="#openssl">OpenSSL</a></h3>
+<p>OpenSSL：功能丰富且自包含的开源安全工具箱。包含如下子模块：</p>
+<ul>
+<li>
+<p>SSL协议实现</p>
+</li>
+<li>
+<p>大量软算法</p>
+</li>
+<li>
+<p>大数运算</p>
+</li>
+<li>
+<p>非对称算法密钥生成</p>
+</li>
+<li>
+<p>证书请求编解码</p>
+</li>
+<li>
+<p>数字证书编解码</p>
+</li>
+<li>
+<p>……</p>
+</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/103843630">OpenSSL 入门：密码学基础知识</a></p>
+</li>
+</ul>
 <h3 id="arm指针认证"><a class="header" href="#arm指针认证">ARM指针认证</a></h3>
 <p><a href="https://www.jianshu.com/p/62bf046b7701">ARM-指针认证</a></p>
 <p>可以用来保护栈内存空间，防御栈溢出攻击和ROP/JOP攻击。</p>
@@ -1046,6 +1080,9 @@ rm -rf ~/.cocoapods/
 <h3 id="tee"><a class="header" href="#tee">TEE</a></h3>
 <p><a href="https://segmentfault.com/a/1190000037622124">TEE可信执行环境技术简介</a></p>
 <p>设计的核心即双系统，设备共享，但在系统看来，是都有各自的寄存器等。安全性高的操作，都放到TEE中来跑。</p>
+<h3 id="2fa-双因素认证"><a class="header" href="#2fa-双因素认证">2FA (双因素认证)</a></h3>
+<p><a href="https://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html">双因素认证（2FA）教程</a></p>
+<p><a href="https://bbs.huaweicloud.com/blogs/detail/205528">解读登录双因子认证（MFA）特性背后的TOTP原理</a></p>
 <h3 id="加密算法"><a class="header" href="#加密算法">加密算法</a></h3>
 <h4 id="des"><a class="header" href="#des">DES</a></h4>
 <p>对称加密算法。</p>
@@ -1057,6 +1094,8 @@ rm -rf ~/.cocoapods/
 <p>现在很多芯片，在硬件层次上提供了专门的加解密电路。比如苹果ARM芯片，有专门的AES加密电路。</p>
 <h4 id="rc4"><a class="header" href="#rc4">RC4</a></h4>
 <p><a href="https://zh.wikipedia.org/wiki/RC4">RC4</a></p>
+<h4 id="totp"><a class="header" href="#totp">TOTP</a></h4>
+<p>基于时间的一次性密码算法</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="架构图"><a class="header" href="#架构图">架构图</a></h2>
 <p>画架构图的工具：</p>
@@ -1746,6 +1785,9 @@ Value: Light
 <li>可以公有，可以被同一个Group下的应用获取</li>
 <li>可以存储：<code>密码</code>、<code>证书</code> 甚至普通的笔记等。</li>
 </ul>
+<h3 id="安全-1"><a class="header" href="#安全-1">安全</a></h3>
+<p><a href="https://bingozb.github.io/views/default/17.html">Objective-C 代码混淆</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/33109826">iOS App的加固保护原理</a></p>
 <h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
 <p><a href="https://swift.gg/2015/11/25/tvos-introduction/">tvOS 入门：开发你的第一个 tvOS 应用</a></p>
 <p><a href="http://www.woshipm.com/pd/4150041.html">iOS14新增了ATT权限</a></p>
@@ -5864,13 +5906,15 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>其中<code>QT</code>也是采用自绘控件实现的跨平台，与<code>Flutter</code>的实现方式相似。</p>
 <h3 id="资料-42"><a class="header" href="#资料-42">资料</a></h3>
 <p><a href="https://juejin.im/post/6844903872130088974">全网最全 Flutter 与 React Native 深入对比分析</a></p>
+<p><a href="https://segmentfault.com/a/1190000039099456">年终盘点跨平台技术优劣势对比（Hybrid、RN、Weex、Flutter）</a></p>
 <h3 id="flutter-vs-rn-vs-native"><a class="header" href="#flutter-vs-rn-vs-native">Flutter vs RN vs Native</a></h3>
 <p><a href="https://medium.com/swlh/flutter-vs-native-vs-react-native-examining-performance-31338f081980">Flutter vs Native vs React-Native: Examining performance</a></p>
 <p><a href="https://medium.com/swlh/flutter-vs-react-native-vs-native-deep-performance-comparison-990b90c11433">Flutter vs React Native vs Native: Deep Performance Comparison</a></p>
 <p><strong>结论</strong>：</p>
-<table><thead><tr><th>类型/平台</th><th>Native</th><th>Flutter</th><th>RN</th></tr></thead><tbody>
+<table><thead><tr><th>类型\平台</th><th>Native</th><th>Flutter</th><th>RN</th></tr></thead><tbody>
 <tr><td>密集性计算</td><td>OC效率优于Swift</td><td>比Native慢20%至5倍不等</td><td>比Native慢1个量级</td></tr>
 <tr><td>UI</td><td></td><td>使用的<a href="https://juejin.im/post/6844903938030829582">Flare</a>来测的动画，做的优化与Lottie不同，对比不能完全说明问题</td><td>耗电量、内存都是最高的</td></tr>
+<tr><td>安装包</td><td></td><td>iOS:增量11M / Android:增量1.5M</td><td>iOS:增量1.4M / Android:增量8M</td></tr>
 </tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="react-native"><a class="header" href="#react-native">React Native</a></h1>
 <p>最简单的理解，React Native类似NodeJS，都是通过扩展JS引擎，使JS代码有了调用Native接口的能力。</p>
