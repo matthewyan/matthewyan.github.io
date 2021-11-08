@@ -1148,6 +1148,12 @@ rm -rf ~/.cocoapods/
 <h4 id="加盐"><a class="header" href="#加盐">加盐</a></h4>
 <p>密码加盐，可以比较好的防止<a href="https://zh.wikipedia.org/wiki/%E5%BD%A9%E8%99%B9%E8%A1%A8">彩虹表</a>攻击。</p>
 <h4 id="https双向认证"><a class="header" href="#https双向认证">Https双向认证</a></h4>
+<h4 id="byod-bring-your-own-device"><a class="header" href="#byod-bring-your-own-device">BYOD (Bring Your Own Device)</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/217529833">BYOD安全解决方案</a></p>
+<h4 id="代码混淆--加固"><a class="header" href="#代码混淆--加固">代码混淆 / 加固</a></h4>
+<p>将程序代码转换成功能上等价，但是难于阅读和理解的形式的行为。</p>
+<p>Swift代码混淆库：<a href="https://github.com/rockbruno/swiftshield">swiftshield</a></p>
+<p>商业加固方案：<a href="https://www.ijiami.cn/sdkProtection">爱加密</a>、<a href="https://dun.163.com/product/sdk-reinforce">网易易盾</a>、<a href="https://shop.shell.virbox.com/store/products/ios365">VIRBOX</a>(一年5万元)、<a href="https://jiagu.360.cn/#/global/details/source">360加固</a>等。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="资料-7"><a class="header" href="#资料-7">资料</a></h2>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MTgxODgwNA==&amp;mid=2247484247&amp;idx=1&amp;sn=51fff44b1f02e5829d1a329fee369404&amp;chksm=fc73be8ccb04379ac4848cd323b5c6e660bd4ae01dbc012944014c41fb083aa2e8640a46de28&amp;token=101727656&amp;lang=zh_CN#rd">康威定律</a>：软件架构反映了组织架构。因此通过调整组织架构，反过来也能推动软件架构的演进。</p>
@@ -1847,6 +1853,7 @@ Value: Light
 <h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
 <p><a href="https://swift.gg/2015/11/25/tvos-introduction/">tvOS 入门：开发你的第一个 tvOS 应用</a></p>
 <p><a href="http://www.woshipm.com/pd/4150041.html">iOS14新增了ATT权限</a></p>
+<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="性能相关"><a class="header" href="#性能相关">性能相关</a></h1>
 <h3 id="资料-12"><a class="header" href="#资料-12">资料</a></h3>
 <p><a href="https://github.com/skyming/iOS-Performance-Optimization">iOS 性能优化合集</a></p>
@@ -2130,6 +2137,24 @@ Value: Light
 <p>但是当在View上有多个手势时，有些表现异常的地方，参考Demo: <a href="http://git.code.oa.com/matthewyan/GestureDemo.git">GestureDemo</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift"><a class="header" href="#swift">Swift</a></h1>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
+<h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
+class Test {
+    dynamic func foo() {
+        print(&quot;bar&quot;)
+    }
+}
+    
+extension Test {
+    @_dynamicReplacement(for: foo())
+    func foo_new() {
+        print(&quot;bar new&quot;)
+    }
+}
+    
+Test().foo() // bar new
+</code></pre>
 <h4 id="_functionbuilder"><a class="header" href="#_functionbuilder">@_functionBuilder</a></h4>
 <blockquote>
 <p>Swift 5.1</p>
@@ -4862,6 +4887,24 @@ app.get('/', function (req, res) {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift-1"><a class="header" href="#swift-1">Swift</a></h1>
 <h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
+<h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
+class Test {
+    dynamic func foo() {
+        print(&quot;bar&quot;)
+    }
+}
+    
+extension Test {
+    @_dynamicReplacement(for: foo())
+    func foo_new() {
+        print(&quot;bar new&quot;)
+    }
+}
+    
+Test().foo() // bar new
+</code></pre>
 <h4 id="_functionbuilder-1"><a class="header" href="#_functionbuilder-1">@_functionBuilder</a></h4>
 <blockquote>
 <p>Swift 5.1</p>

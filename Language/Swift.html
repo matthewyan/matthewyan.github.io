@@ -136,6 +136,24 @@
                     <main>
                         <h1 id="swift"><a class="header" href="#swift">Swift</a></h1>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
+<h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
+class Test {
+    dynamic func foo() {
+        print(&quot;bar&quot;)
+    }
+}
+    
+extension Test {
+    @_dynamicReplacement(for: foo())
+    func foo_new() {
+        print(&quot;bar new&quot;)
+    }
+}
+    
+Test().foo() // bar new
+</code></pre>
 <h4 id="_functionbuilder"><a class="header" href="#_functionbuilder">@_functionBuilder</a></h4>
 <blockquote>
 <p>Swift 5.1</p>
