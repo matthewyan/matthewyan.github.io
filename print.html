@@ -1627,6 +1627,18 @@ Events</p>
 <p><a href="https://www.jianshu.com/p/29c9aee9cbf4">LLDB常用命令</a></p>
 <p><a href="iOS/%5Bchisel%5D(https://github.com/facebook/chisel)">chisel</a>：facebook开源lldb插件</p>
 <p>LLDB支持插件开发：<a href="https://www.jianshu.com/p/b3854a648dad">LLDB插件(三)</a></p>
+<p>Debugger原理：<a href="https://zhuanlan.zhihu.com/p/372135871">Debugger 原理揭秘</a>、<a href="https://zhuanlan.zhihu.com/p/34003929">调试程序时，设置断点的原理是什么？</a></p>
+<blockquote>
+<p>Debugger插入断点，就是在机器码中相应位置替换为<code>0xcc</code>(即INT 3)，也即操作系统软中断，执行到该位置自然会断下来。断下下之后会立即将该位置的指令码还原，以便于继续调试执行。
+其实还有硬中断，也可以实现断点。</p>
+</blockquote>
+<p>LLDB能力：</p>
+<ul>
+<li>断点相关操作</li>
+<li>控制执行流程</li>
+<li>执行某些代码</li>
+<li>……</li>
+</ul>
 <h4 id="命令-1"><a class="header" href="#命令-1">命令</a></h4>
 <ul>
 <li><code>expression somesth</code>：执行某个表达式</li>
@@ -1853,6 +1865,13 @@ Value: Light
 <p><a href="https://zhuanlan.zhihu.com/p/33109826">iOS App的加固保护原理</a></p>
 <p><a href="https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web">安全隔区</a>：可以直接在独立的SoC中生成密钥，并且无法被读取。所有的加解密操作放入其中进行运算。</p>
 <p><a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave?language=objc">Storing Keys in the Secure Enclave</a></p>
+<h4 id="砸壳"><a class="header" href="#砸壳">砸壳</a></h4>
+<p><a href="https://www.jianshu.com/p/41e4035c656f">2020 iOS 逆向学习-砸壳</a></p>
+<h4 id="monkeydev"><a class="header" href="#monkeydev">MonkeyDev</a></h4>
+<p><a href="https://github.com/AloneMonkey/MonkeyDev">MonkeyDev</a></p>
+<h4 id="cycript"><a class="header" href="#cycript">Cycript</a></h4>
+<p>主要用于在iOS上进行逆向工作。</p>
+<p><a href="https://juejin.cn/post/6844903821253017614">iOS 逆向之 Cycript 高级玩法（非越狱） &amp; .cy文件的封装</a></p>
 <h3 id="hook"><a class="header" href="#hook">Hook</a></h3>
 <p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
 <p>Hook手段：</p>
