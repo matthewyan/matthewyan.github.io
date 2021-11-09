@@ -1154,6 +1154,9 @@ rm -rf ~/.cocoapods/
 <p>将程序代码转换成功能上等价，但是难于阅读和理解的形式的行为。</p>
 <p>Swift代码混淆库：<a href="https://github.com/rockbruno/swiftshield">swiftshield</a></p>
 <p>商业加固方案：<a href="https://www.ijiami.cn/sdkProtection">爱加密</a>、<a href="https://dun.163.com/product/sdk-reinforce">网易易盾</a>、<a href="https://shop.shell.virbox.com/store/products/ios365">VIRBOX</a>(一年5万元)、<a href="https://jiagu.360.cn/#/global/details/source">360加固</a>等。</p>
+<h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
+<h4 id="数字版权管理"><a class="header" href="#数字版权管理">数字版权管理</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/83344191">数字版权管理（Digital Right Management，DRM）概述</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="资料-7"><a class="header" href="#资料-7">资料</a></h2>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MTgxODgwNA==&amp;mid=2247484247&amp;idx=1&amp;sn=51fff44b1f02e5829d1a329fee369404&amp;chksm=fc73be8ccb04379ac4848cd323b5c6e660bd4ae01dbc012944014c41fb083aa2e8640a46de28&amp;token=101727656&amp;lang=zh_CN#rd">康威定律</a>：软件架构反映了组织架构。因此通过调整组织架构，反过来也能推动软件架构的演进。</p>
@@ -1850,10 +1853,43 @@ Value: Light
 <p><a href="https://zhuanlan.zhihu.com/p/33109826">iOS App的加固保护原理</a></p>
 <p><a href="https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web">安全隔区</a>：可以直接在独立的SoC中生成密钥，并且无法被读取。所有的加解密操作放入其中进行运算。</p>
 <p><a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave?language=objc">Storing Keys in the Secure Enclave</a></p>
-<h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
+<h3 id="hook"><a class="header" href="#hook">Hook</a></h3>
+<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
+<p>Hook手段：</p>
+<ul>
+<li><code>Method Swizzle</code></li>
+<li><code>fishhook</code></li>
+</ul>
+<blockquote>
+<p>fishhook仅可以hook系统的c接口。</p>
+</blockquote>
+<p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
+<h3 id="截屏录屏相关"><a class="header" href="#截屏录屏相关">截屏、录屏相关</a></h3>
+<h4 id="截屏录屏检测"><a class="header" href="#截屏录屏检测">截屏、录屏检测</a></h4>
+<p><a href="https://www.jianshu.com/p/06a8fb3aabab">iOS 录屏和截屏监听</a></p>
+<ul>
+<li>截屏通知：<code>UIApplicationUserDidTakeScreenshot</code></li>
+<li>录屏通知：<code>UIScreenCapturedDidChange</code> (&gt;= iOS11)</li>
+</ul>
+<h4 id="代码截屏方式"><a class="header" href="#代码截屏方式">代码截屏方式</a></h4>
+<p><a href="https://www.tutorialspoint.com/how-to-take-a-screenshot-programmatically-in-iphone-ios">How to take a screenshot programmatically in iPhone/iOS?</a></p>
+<p>示例代码：</p>
+<pre><code class="language-swift">func takeshot(_ sender: Any) {
+   var image :UIImage?
+   let currentLayer = UIApplication.shared.keyWindow!.layer
+   let currentScale = UIScreen.main.scale
+   UIGraphicsBeginImageContextWithOptions(currentLayer.frame.size, false, currentScale);
+   guard let currentContext = UIGraphicsGetCurrentContext() else {return}
+   currentLayer.render(in: currentContext)
+   image = UIGraphicsGetImageFromCurrentImageContext()
+   UIGraphicsEndImageContext()
+   guard let img = image else { return }
+   UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+}
+</code></pre>
+<h3 id="其它-3"><a class="header" href="#其它-3">其它</a></h3>
 <p><a href="https://swift.gg/2015/11/25/tvos-introduction/">tvOS 入门：开发你的第一个 tvOS 应用</a></p>
 <p><a href="http://www.woshipm.com/pd/4150041.html">iOS14新增了ATT权限</a></p>
-<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="性能相关"><a class="header" href="#性能相关">性能相关</a></h1>
 <h3 id="资料-12"><a class="header" href="#资料-12">资料</a></h3>
 <p><a href="https://github.com/skyming/iOS-Performance-Optimization">iOS 性能优化合集</a></p>
@@ -2136,6 +2172,14 @@ Value: Light
 </blockquote>
 <p>但是当在View上有多个手势时，有些表现异常的地方，参考Demo: <a href="http://git.code.oa.com/matthewyan/GestureDemo.git">GestureDemo</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift"><a class="header" href="#swift">Swift</a></h1>
+<h3 id="与oc桥接"><a class="header" href="#与oc桥接">与OC桥接</a></h3>
+<p>如果要在OC中调用Swift接口：</p>
+<ul>
+<li>Swift类要设为<code>public</code></li>
+<li>类要继承<code>NSObject</code></li>
+<li>接口要用<code>@objc public</code>来修饰</li>
+<li>OC文件中引入<code>&lt;ProductModuleName&gt;-Swift.h</code></li>
+</ul>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
@@ -2878,7 +2922,7 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li><a href="https://zhuanlan.zhihu.com/p/96986818">深入理解浏览器原理</a></li>
 <li><a href="https://blog.poetries.top/browser-working-principle/">浏览器工作原理与实践</a></li>
 </ul>
-<h3 id="其它-3"><a class="header" href="#其它-3">其它</a></h3>
+<h3 id="其它-4"><a class="header" href="#其它-4">其它</a></h3>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程</a></li>
@@ -3277,7 +3321,7 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-4"><a class="header" href="#其它-4">其它</a></h3>
+<h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
 <h4 id="jsaot"><a class="header" href="#jsaot">JSAOT</a></h4>
 <p>JS/TS转C语言</p>
 <p>https://github.com/andrei-markeev/ts2c</p>
@@ -3420,7 +3464,7 @@ cookies.forEach { cookie in
 <p>这种方式设置的Cookie，在域的处理上也需要注意：</p>
 <p>如果是访问的<code>docs.qq.com</code>，则<code>qq.com</code>域下的Cookie是不会被设置的，但<code>.qq.com</code>域下的Cookie会被设置(<code>docs.qq.com</code>、<code>.docs.qq.com</code>域的Cookie也都会被设置)</p>
 </blockquote>
-<h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
+<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
 <p>服务端设置Cookie，是通过在响应头里加<code>Set-Cookie</code>字段
 参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">Set Cookie</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom"><a class="header" href="#dom">DOM</a></h1>
@@ -4322,7 +4366,7 @@ return Consumer&lt;CartModel&gt;(
 <p>最简单的理解，BloC就是利用了 <code>StreamBuilder</code> + <code>Stream</code> 来管理状态的。具体可以参看该Demo:<a href="https://github.com/OpenFlutter/Flutter-Notebook/tree/master/mecury_project/example/bloc_demo">block_demo</a>,   Demo对应的文章：<a href="https://juejin.im/post/5bb6f344f265da0aa664d68a">状态管理探索篇——BLoC(三)</a></p>
 <p>但被广泛使用的<a href="https://pub.dev/packages/flutter_bloc">flutter_bloc</a>，没有直接使用StreamBuilder，而是自己实现了类似StreamBuilder的<code>BlocBuilder</code>。在实现上，<code>flutter_bloc</code>也有类似<code>Redux</code>的状态转换的<code>纯方法</code>。</p>
 <h3 id="redux"><a class="header" href="#redux">Redux</a></h3>
-<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
+<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
 <ul>
 <li><a href="https://www.reddit.com/r/FlutterDev/comments/brz0nu/scoped_model_vs_provider/">Scoped model vs Provider</a>: Scoped model与Provider的区别</li>
 </ul>
@@ -4886,6 +4930,14 @@ app.get('/', function (req, res) {
 <li><a href="https://segmentfault.com/a/1190000016433829">彻底理解链接器：二，符号决议</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift-1"><a class="header" href="#swift-1">Swift</a></h1>
+<h3 id="与oc桥接-1"><a class="header" href="#与oc桥接-1">与OC桥接</a></h3>
+<p>如果要在OC中调用Swift接口：</p>
+<ul>
+<li>Swift类要设为<code>public</code></li>
+<li>类要继承<code>NSObject</code></li>
+<li>接口要用<code>@objc public</code>来修饰</li>
+<li>OC文件中引入<code>&lt;ProductModuleName&gt;-Swift.h</code></li>
+</ul>
 <h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
@@ -5629,7 +5681,7 @@ main() {
 <ul>
 <li><a href="https://learnku.com/articles/31161">Rust模块和文件</a>：对模块说的非常清晰的文章</li>
 </ul>
-<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
+<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
@@ -5725,7 +5777,7 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
+<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
 <h4 id="jsaot-1"><a class="header" href="#jsaot-1">JSAOT</a></h4>
 <p>JS/TS转C语言</p>
 <p>https://github.com/andrei-markeev/ts2c</p>
@@ -5992,7 +6044,7 @@ Functor即定义了统一的协议和语言，可以对容器数据进行转换�
 单位元在维基百科上的定义：在半群S的集合S上存在一元素e，使得任意与集合S中的元素a都符合 a·e = e·a = a</p>
 </blockquote>
 <p>Swiftz实现：https://github.com/typelift/Swiftz/blob/master/Sources/Swiftz/Monoid.swift</p>
-<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
+<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
 <h4 id="pointfree"><a class="header" href="#pointfree">Pointfree</a></h4>
 <p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">pointfree</a>，函数无须提及将要操作的数据是什么样的。</p>
 <pre><code class="language-js">// 非 pointfree，因为提到了数据：word
@@ -6160,7 +6212,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="精益创业"><a class="header" href="#精益创业">精益创业</a></h3>
 <p>精益创业，是要解决的是面向不确定性创造新事物。精益创业的思路就是“试”，通过尝试<code>MVP</code>(最小可行产品)来降低尝试成本。</p>
 <p>精益创业的方法论就是“开发”-&gt;“测量”-&gt;“认知”这样一个反馈循环。其中收获的<strong>认知</strong>是最重要的，它是经过验证的。</p>
-<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
+<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
 <p>在所有迭代前可以添加一个<strong>迭代 0</strong>，所谓迭代 0，就是在迭代 1 之前的一个迭代，我们可以把它理解成开发的准备阶段。</p>
 <p>扩大自己的上下文，跨越自己的位置思考，甚至跨越两三级的角度上来看问题，让自己更有全局视野。</p>
 <p>IT 行业中大多数人的专业程度是不够的。</p>
@@ -6200,7 +6252,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
 <p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
-<h4 id="其它-11"><a class="header" href="#其它-11">其它</a></h4>
+<h4 id="其它-12"><a class="header" href="#其它-12">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
 <p>一定要尽早暴露问题，出现了问题，主动拋出来，越晚拋，隐患就越大。但在工作中暴露自己的问题，是很大的挑战，因为这里还面临着一个心理问题：会不会让别人觉得自己不行。</p>
@@ -6753,7 +6805,7 @@ console.log(typeof Person);	// function
 <p><code>建模</code> 是<code>DDD</code>的基础概念</p>
 <h2 id="ddd对我而言"><a class="header" href="#ddd对我而言">DDD对我而言</a></h2>
 <h3 id="优秀设计糟糕设计和有效设计"><a class="header" href="#优秀设计糟糕设计和有效设计">优秀设计、糟糕设计和有效设计</a></h3>
-<h2 id="其它-12"><a class="header" href="#其它-12">其它</a></h2>
+<h2 id="其它-13"><a class="header" href="#其它-13">其它</a></h2>
 <p>目前</p>
 <p><code>DDD</code>的核心就是将业务架构映射到系统架构上，在业务变化调整时，对应的系统架构也做调整。</p>
 <p>领域驱动设计包括战略建模和战术建模: 战略设计侧重于高层次、宏观上去划分和集成限界上下文，而战术设计则关注更具体使用建模工具来细化上下文。</p>
@@ -7193,7 +7245,7 @@ console.log(typeof Person);	// function
 <li>面向表达式的语言。（除了<code>use</code>这种声明语句，其它基本都是表达式）</li>
 <li>没有 <code>三元操作符</code></li>
 </ul>
-<h3 id="其它-13"><a class="header" href="#其它-13">其它</a></h3>
+<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>

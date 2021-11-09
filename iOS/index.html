@@ -375,10 +375,43 @@ Value: Light
 <p><a href="https://zhuanlan.zhihu.com/p/33109826">iOS App的加固保护原理</a></p>
 <p><a href="https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web">安全隔区</a>：可以直接在独立的SoC中生成密钥，并且无法被读取。所有的加解密操作放入其中进行运算。</p>
 <p><a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave?language=objc">Storing Keys in the Secure Enclave</a></p>
+<h3 id="hook"><a class="header" href="#hook">Hook</a></h3>
+<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
+<p>Hook手段：</p>
+<ul>
+<li><code>Method Swizzle</code></li>
+<li><code>fishhook</code></li>
+</ul>
+<blockquote>
+<p>fishhook仅可以hook系统的c接口。</p>
+</blockquote>
+<p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
+<h3 id="截屏录屏相关"><a class="header" href="#截屏录屏相关">截屏、录屏相关</a></h3>
+<h4 id="截屏录屏检测"><a class="header" href="#截屏录屏检测">截屏、录屏检测</a></h4>
+<p><a href="https://www.jianshu.com/p/06a8fb3aabab">iOS 录屏和截屏监听</a></p>
+<ul>
+<li>截屏通知：<code>UIApplicationUserDidTakeScreenshot</code></li>
+<li>录屏通知：<code>UIScreenCapturedDidChange</code> (&gt;= iOS11)</li>
+</ul>
+<h4 id="代码截屏方式"><a class="header" href="#代码截屏方式">代码截屏方式</a></h4>
+<p><a href="https://www.tutorialspoint.com/how-to-take-a-screenshot-programmatically-in-iphone-ios">How to take a screenshot programmatically in iPhone/iOS?</a></p>
+<p>示例代码：</p>
+<pre><code class="language-swift">func takeshot(_ sender: Any) {
+   var image :UIImage?
+   let currentLayer = UIApplication.shared.keyWindow!.layer
+   let currentScale = UIScreen.main.scale
+   UIGraphicsBeginImageContextWithOptions(currentLayer.frame.size, false, currentScale);
+   guard let currentContext = UIGraphicsGetCurrentContext() else {return}
+   currentLayer.render(in: currentContext)
+   image = UIGraphicsGetImageFromCurrentImageContext()
+   UIGraphicsEndImageContext()
+   guard let img = image else { return }
+   UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+}
+</code></pre>
 <h3 id="其它"><a class="header" href="#其它">其它</a></h3>
 <p><a href="https://swift.gg/2015/11/25/tvos-introduction/">tvOS 入门：开发你的第一个 tvOS 应用</a></p>
 <p><a href="http://www.woshipm.com/pd/4150041.html">iOS14新增了ATT权限</a></p>
-<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
 
                     </main>
 

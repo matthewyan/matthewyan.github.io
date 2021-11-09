@@ -135,6 +135,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="swift"><a class="header" href="#swift">Swift</a></h1>
+<h3 id="与oc桥接"><a class="header" href="#与oc桥接">与OC桥接</a></h3>
+<p>如果要在OC中调用Swift接口：</p>
+<ul>
+<li>Swift类要设为<code>public</code></li>
+<li>类要继承<code>NSObject</code></li>
+<li>接口要用<code>@objc public</code>来修饰</li>
+<li>OC文件中引入<code>&lt;ProductModuleName&gt;-Swift.h</code></li>
+</ul>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
