@@ -158,7 +158,11 @@ cookies.forEach { cookie in
 }
 </code></pre>
 <h3 id="四通过svr端set-cookie设置"><a class="header" href="#四通过svr端set-cookie设置">四、通过Svr端<code>Set-Cookie</code>设置</a></h3>
+<p>普通Cookie设置：</p>
 <pre><code class="language-swift">// node.js
+const express = require('express')
+const app = express()
+
 app.get('/', (req, res) =&gt; {
   let options = {
       domain: 'matthewyan1.repl.co',
@@ -169,6 +173,30 @@ app.get('/', (req, res) =&gt; {
   // Set cookie
   res.cookie('myTestCookie', '223', options)
   res.send('Hello World!!!')
+})
+app.listen(port, () =&gt; {
+  console.log(`Example app listening at port ${port}`)
+})
+</code></pre>
+<blockquote>
+<p>Server端设的Cookie(包括Session Cookie)，在iOS端用 <code>WKWebsiteDataStore</code> 是可以读取到的。</p>
+</blockquote>
+<p>Session Cookie设置：</p>
+<pre><code class="language-swift">// node.js
+const express = require('express')
+const app = express()
+var cookieSession = require('cookie-session')
+
+app.use(cookieSession({
+  name: 'skey',
+  keys: ['matthew'],
+}));
+app.get('/', function (req, res, next) {
+  req.session.views = (req.session.views || 0) + 1
+  res.end('Hello!')
+})
+app.listen(port, () =&gt; {
+  console.log(`Example app listening at port ${port}`)
 })
 </code></pre>
 <h2 id="cookie删除方式"><a class="header" href="#cookie删除方式">Cookie删除方式</a></h2>

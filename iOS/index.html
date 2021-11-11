@@ -214,7 +214,7 @@
 <p>动态库：动态库分两种，一种是系统的tbd、dylib。一种是.framework。</p>
 <ul>
 <li>tbd是系统使用的，真正的动态库。</li>
-<li>framework是动态加载到进程内存空间的，更多是为了同一进程内的多个目标使用。比如缩主和Extension可以共享。</li>
+<li>framework是动态加载到进程内存空间的，更多是为了同一进程内的多个目标使用。比如宿主和Extension可以共享。</li>
 <li>framework可以使用dlopen来加载。</li>
 <li>.tbd 其实是一个YAML本文文件，描述了需要链接的动态库的信息。主要目的是为了减少app 的下载大小。</li>
 </ul>

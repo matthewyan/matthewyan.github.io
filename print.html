@@ -1157,6 +1157,7 @@ rm -rf ~/.cocoapods/
 <h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
 <h4 id="数字版权管理"><a class="header" href="#数字版权管理">数字版权管理</a></h4>
 <p><a href="https://zhuanlan.zhihu.com/p/83344191">数字版权管理（Digital Right Management，DRM）概述</a></p>
+<p>DRM可以防截屏：<a href="https://www.jianshu.com/p/86d0cfed5f4e">iOS防截屏方案(基于DRM)</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="资料-7"><a class="header" href="#资料-7">资料</a></h2>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MTgxODgwNA==&amp;mid=2247484247&amp;idx=1&amp;sn=51fff44b1f02e5829d1a329fee369404&amp;chksm=fc73be8ccb04379ac4848cd323b5c6e660bd4ae01dbc012944014c41fb083aa2e8640a46de28&amp;token=101727656&amp;lang=zh_CN#rd">康威定律</a>：软件架构反映了组织架构。因此通过调整组织架构，反过来也能推动软件架构的演进。</p>
@@ -1692,7 +1693,7 @@ Events</p>
 <p>动态库：动态库分两种，一种是系统的tbd、dylib。一种是.framework。</p>
 <ul>
 <li>tbd是系统使用的，真正的动态库。</li>
-<li>framework是动态加载到进程内存空间的，更多是为了同一进程内的多个目标使用。比如缩主和Extension可以共享。</li>
+<li>framework是动态加载到进程内存空间的，更多是为了同一进程内的多个目标使用。比如宿主和Extension可以共享。</li>
 <li>framework可以使用dlopen来加载。</li>
 <li>.tbd 其实是一个YAML本文文件，描述了需要链接的动态库的信息。主要目的是为了减少app 的下载大小。</li>
 </ul>
@@ -2319,6 +2320,12 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-environment-property-wrapper">@Environment与@EnvironmentObject的区别</a></li>
 <li><a href="https://www.objc.io/blog/2019/10/29/swiftui-environment/">SwiftUI: Setting Environment Values</a></li>
 </ul>
+<h3 id="test"><a class="header" href="#test">Test</a></h3>
+<p><a href="https://www.appcoda.com/ui-testing-swiftui-xctest/">Introduction to UI Testing in SwiftUI Using XCTest Framework</a></p>
+<p>SwiftUI也支持UI测试，要获取元素可以通过：</p>
+<pre><code class="language-swift">// XCUIApplication中也包含了其它各种获取元素的接口，如textFields、images等
+let txt = app.staticTexts[&quot;some text&quot;]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
 <h3 id="资料-15"><a class="header" href="#资料-15">资料</a></h3>
 <ul>
@@ -3483,6 +3490,9 @@ cookies.forEach { cookie in
 <p>这种方式设置的Cookie，在域的处理上也需要注意：</p>
 <p>如果是访问的<code>docs.qq.com</code>，则<code>qq.com</code>域下的Cookie是不会被设置的，但<code>.qq.com</code>域下的Cookie会被设置(<code>docs.qq.com</code>、<code>.docs.qq.com</code>域的Cookie也都会被设置)</p>
 </blockquote>
+<h3 id="chrome"><a class="header" href="#chrome">Chrome</a></h3>
+<p>在Chrome中查看Cookie的方式：</p>
+<img src="Web/./images/chrome_cookie_store.jpg" style="zoom:67%;" />
 <h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
 <p>服务端设置Cookie，是通过在响应头里加<code>Set-Cookie</code>字段
 参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">Set Cookie</a></p>
@@ -3565,12 +3575,9 @@ JSContext *context = [webView valueForKeyPath:@&quot;documentView.webView.mainFr
 <div style="break-before: page; page-break-before: always;"></div><h1 id="flutter"><a class="header" href="#flutter">Flutter</a></h1>
 <h3 id="资料-24"><a class="header" href="#资料-24">资料</a></h3>
 <ul>
-<li>
-<p><a href="https://www.yuque.com/xytech/flutter">闲鱼技术文章列表</a></p>
-</li>
-<li>
-<p><a href="https://mp.weixin.qq.com/s/adC-YUWd-xuUlzeAPHzJoQ">Flutter包大小治理上的探索与实践</a></p>
-</li>
+<li><a href="https://www.yuque.com/xytech/flutter">闲鱼技术文章列表</a></li>
+<li><a href="https://mp.weixin.qq.com/s/adC-YUWd-xuUlzeAPHzJoQ">Flutter包大小治理上的探索与实践</a></li>
+<li><a href="https://juejin.cn/post/6895991156204404750">深入进阶-从一次点击探寻Flutter事件分发原理</a></li>
 </ul>
 <h3 id="命令-3"><a class="header" href="#命令-3">命令</a></h3>
 <table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
@@ -8544,7 +8551,11 @@ cookies.forEach { cookie in
 }
 </code></pre>
 <h3 id="四通过svr端set-cookie设置"><a class="header" href="#四通过svr端set-cookie设置">四、通过Svr端<code>Set-Cookie</code>设置</a></h3>
+<p>普通Cookie设置：</p>
 <pre><code class="language-swift">// node.js
+const express = require('express')
+const app = express()
+
 app.get('/', (req, res) =&gt; {
   let options = {
       domain: 'matthewyan1.repl.co',
@@ -8555,6 +8566,30 @@ app.get('/', (req, res) =&gt; {
   // Set cookie
   res.cookie('myTestCookie', '223', options)
   res.send('Hello World!!!')
+})
+app.listen(port, () =&gt; {
+  console.log(`Example app listening at port ${port}`)
+})
+</code></pre>
+<blockquote>
+<p>Server端设的Cookie(包括Session Cookie)，在iOS端用 <code>WKWebsiteDataStore</code> 是可以读取到的。</p>
+</blockquote>
+<p>Session Cookie设置：</p>
+<pre><code class="language-swift">// node.js
+const express = require('express')
+const app = express()
+var cookieSession = require('cookie-session')
+
+app.use(cookieSession({
+  name: 'skey',
+  keys: ['matthew'],
+}));
+app.get('/', function (req, res, next) {
+  req.session.views = (req.session.views || 0) + 1
+  res.end('Hello!')
+})
+app.listen(port, () =&gt; {
+  console.log(`Example app listening at port ${port}`)
 })
 </code></pre>
 <h2 id="cookie删除方式"><a class="header" href="#cookie删除方式">Cookie删除方式</a></h2>
