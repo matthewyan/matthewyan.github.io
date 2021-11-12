@@ -135,6 +135,29 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="wkwebview"><a class="header" href="#wkwebview">WKWebview</a></h1>
+<p><a href="https://segmentfault.com/a/1190000039111381">WKWebView 请求拦截探索与实践</a></p>
+<p><a href="https://tommygirl.cn/2021/08/11/WKWebView-Use/">WKWebView 实战篇</a></p>
+<p>能力列表：</p>
+<ul>
+<li>支持双向认证</li>
+</ul>
+<h3 id="nsurlprotocol"><a class="header" href="#nsurlprotocol">NSURLProtocol</a></h3>
+<p><a href="https://juejin.cn/post/6844904079458566152">深度理解 NSURLProtocol</a></p>
+<p>目的：</p>
+<ul>
+<li>重定向网络请求，解决 DNS 域名劫持的问题</li>
+<li>进行全局或局部的网络请求设置，比如修改请求地址、header 等</li>
+<li>忽略网络请求，使用 H5 离线包或是缓存数据等</li>
+<li>自定义网络请求的返回结果，比如过滤敏感信息</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>可以拦截所有基于<code>URL Loading System</code>的网络请求。（包括基于它们实现的AFNetworking等）</li>
+<li>UIWebView请求可以被拦截</li>
+<li>默认无法拦截WKWebView (网上有同学利用私有API来实现拦截，不确定现在是否还可以用：<a href="https://www.jianshu.com/p/8f5e1082f5e0">NSURLProtocol对WKWebView的处理</a>)</li>
+</ul>
+<h3 id="wkurlschemehandler"><a class="header" href="#wkurlschemehandler">WKURLSchemeHandler</a></h3>
+<p><a href="https://www.jianshu.com/p/6bae04c91297">WKURLSchemeHandler 的能与不能</a></p>
 <h3 id="可配置能力"><a class="header" href="#可配置能力">可配置能力</a></h3>
 <h5 id="wkwebviewconfiguration"><a class="header" href="#wkwebviewconfiguration">WKWebViewConfiguration</a></h5>
 <p>是用来初始化时作的配置，可以配置如下项</p>

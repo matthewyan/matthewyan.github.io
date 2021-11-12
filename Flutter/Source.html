@@ -171,6 +171,13 @@
 <li>打开example工程里的Xcode工程，并且把<code>out/ios_debug_sim_unopt</code>目录下的<code>products.xcodeproj</code>工程拖到示例主工程中。此时就可以直接在Flutter引擎代码里下断点进行调试了</li>
 <li>如果修改了引擎的代码，需要看到效果的话，需要在src目录下，再执行该命令：<code>ninja -C out/ios_debug_sim_unopt</code></li>
 </ul>
+<h3 id="dartvm原理"><a class="header" href="#dartvm原理">DartVM原理</a></h3>
+<p><a href="http://gityuan.com/2019/10/05/dart_vm/">Dart虚拟机运行原理</a></p>
+<h4 id="jit执行流程"><a class="header" href="#jit执行流程">JIT执行流程</a></h4>
+<p>DartVM直接执行的不是Dart源码，而是dill二进制。该二进制包含了序列化的Kernel AST。</p>
+<blockquote>
+<p>Kernel AST被用在多种场景下，如Dart VM、dev_compiler以及dart2js等。</p>
+</blockquote>
 <h3 id="引擎源码"><a class="header" href="#引擎源码">引擎源码</a></h3>
 <ul>
 <li><a href="http://gityuan.com/img/flutter_boot/ClassEngine.jpg">引擎类图</a></li>

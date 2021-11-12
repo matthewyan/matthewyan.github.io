@@ -143,6 +143,12 @@
 <li>接口要用<code>@objc public</code>来修饰</li>
 <li>OC文件中引入<code>&lt;ProductModuleName&gt;-Swift.h</code></li>
 </ul>
+<h3 id="调用framework中的私有接口"><a class="header" href="#调用framework中的私有接口">调用Framework中的私有接口</a></h3>
+<ul>
+<li>通过<code>nm</code>查看符号列表</li>
+<li>创建C的头文件，声明相应符号 （调用时，可能需要去掉最前面的下划线）</li>
+<li>在OC/Swift中调用C头文件中声明的函数即可</li>
+</ul>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
