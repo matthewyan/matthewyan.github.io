@@ -156,6 +156,43 @@
 <li><a href="https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-environment-property-wrapper">@Environment与@EnvironmentObject的区别</a></li>
 <li><a href="https://www.objc.io/blog/2019/10/29/swiftui-environment/">SwiftUI: Setting Environment Values</a></li>
 </ul>
+<h3 id="uikit桥接至swiftui中"><a class="header" href="#uikit桥接至swiftui中">UIKit桥接至SwiftUI中</a></h3>
+<p>官方文档有相关示例：<a href="https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit">interfacing-with-uikit</a>，里面介绍了<a href="https://developer.apple.com/documentation/swiftui/uiviewcontrollerrepresentable">UIViewControllerRepresentable</a>和<a href="https://developer.apple.com/documentation/swiftui/uiviewrepresentable">UIViewRepresentable</a>。</p>
+<p>UITextView移植到SwiftUI中来使用示例：</p>
+<pre><code class="language-swift">struct TextView: UIViewRepresentable {
+    @Binding var text: String   // textView的文本会通过回调写到这儿
+
+    func makeCoordinator() -&gt; Coordinator {
+        Coordinator(self)
+    }
+
+    func makeUIView(context: Context) -&gt; UITextView {
+        let view = UITextView()
+        view.isUserInteractionEnabled = true
+        view.becomeFirstResponder()
+        view.delegate = context.coordinator
+        view.isEditable = true
+        view.font = .systemFont(ofSize: 30)
+        return view
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
+    }
+
+    class Coordinator: NSObject, UITextViewDelegate {
+        var tView: TextView
+
+        init(_ view: TextView) {
+            self.tView = view
+        }
+
+        func textViewDidChange(_ sender: UITextView) {
+            tView.text = sender.text
+        }
+    }
+}
+</code></pre>
 <h3 id="test"><a class="header" href="#test">Test</a></h3>
 <p><a href="https://www.appcoda.com/ui-testing-swiftui-xctest/">Introduction to UI Testing in SwiftUI Using XCTest Framework</a></p>
 <p>SwiftUI也支持UI测试，要获取元素可以通过：</p>
