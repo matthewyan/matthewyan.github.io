@@ -3106,6 +3106,8 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li>编辑<code>launch.json</code>，将url修改为<code>npm run dev</code>后启动的页面url</li>
 <li>然后再在VSCode中执行调试，此时下的断点就可以正常断下来了</li>
 </ul>
+<h2 id="安全-2"><a class="header" href="#安全-2">安全</a></h2>
+<h3 id="代码混淆"><a class="header" href="#代码混淆">代码混淆</a></h3>
 <h2 id="框架-2"><a class="header" href="#框架-2">框架</a></h2>
 <p>Svelte</p>
 <h3 id="angular"><a class="header" href="#angular">Angular</a></h3>
@@ -3131,7 +3133,6 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <p>函数式的js语言，可以转为js，也可以转为其它语言，如go语言。也很适合配合nodejs写后端代码</p>
 <h3 id="elm"><a class="header" href="#elm">Elm</a></h3>
 <h3 id="reasonml"><a class="header" href="#reasonml">ReasonML</a></h3>
-<h3 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h3>
 <h2 id="evernote待整理"><a class="header" href="#evernote待整理">Evernote，待整理</a></h2>
 <p>https://github.com/wx-chevalier/Web-Series</p>
 <p>浏览器工作原理与实践
@@ -3274,8 +3275,6 @@ https://legacy.gitbook.com/book/llh911001/mostly-adequate-guide-chinese</p>
 <p>http://www.ruanyifeng.com/blog/2017/03/ramda.html
 http://www.bootcss.com/p/underscore/</p>
 <p>http://asmjs.org/</p>
-<p>WebAssembly，编译运行
-http://web.jobbole.com/95160/</p>
 <p>https://github.com/jashkenas/coffeescript/wiki/List-of-languages-that-compile-to-JS</p>
 <p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -3544,7 +3543,7 @@ NaN
 <h4 id="工作步骤"><a class="header" href="#工作步骤">工作步骤</a></h4>
 <p><a href="https://cloud.tencent.com/developer/article/1520009">一文掌握React 渲染原理及性能优化</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vue"><a class="header" href="#vue">Vue</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
 <h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
@@ -3552,9 +3551,10 @@ NaN
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
-<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
 <li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 </ul>
 <h4 id="wasm快的原因"><a class="header" href="#wasm快的原因">WASM快的原因</a></h4>
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
@@ -6031,7 +6031,7 @@ NaN
 <li>支持可选参数，通过在参数类型后加<code>?</code>。可选参数需要放在参数列表的后面</li>
 <li>支持默认参数</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-2"><a class="header" href="#webassembly-2">WebAssembly</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
 <h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
@@ -6039,9 +6039,10 @@ NaN
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
-<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
 <li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 </ul>
 <h4 id="wasm快的原因-1"><a class="header" href="#wasm快的原因-1">WASM快的原因</a></h4>
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>

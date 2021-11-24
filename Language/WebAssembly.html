@@ -142,9 +142,10 @@
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
-<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
 <li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 </ul>
 <h4 id="wasm快的原因"><a class="header" href="#wasm快的原因">WASM快的原因</a></h4>
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
