@@ -338,6 +338,17 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>WebView的goBack接口执行需要时间，如果连接调用goBack，并不能回退多个页面，只能回退到上个页面。参考：<a href="https://nixwang.com/2014/08/03/pits-on-ios/">在 iOS 上踩过的坑</a>。如果需要连续跳转多个页面，需要用如下接口：</p>
 <pre><code class="language-swift">open func go(to item: WKBackForwardListItem) -&gt; WKNavigation?
 </code></pre>
+<h3 id="能力"><a class="header" href="#能力">能力</a></h3>
+<h4 id="获取html内容"><a class="header" href="#获取html内容">获取Html内容</a></h4>
+<ul>
+<li>使用NSString提供的<code>stringWithContentsOfURL</code>接口</li>
+<li>通过执行JS:<code>document.documentElement.outerHTML.toString()</code>获取 (<a href="https://stackoverflow.com/questions/34751860/get-html-from-wkwebview-in-swift">Get HTML from WKWebview in Swift</a>)</li>
+</ul>
+<h4 id="获取js方法及实现"><a class="header" href="#获取js方法及实现">获取JS方法及实现</a></h4>
+<ul>
+<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code> </li>
+<li>获取某方法实现，执行JS: <code>somefunc.toString()</code> (<a href="https://www.quora.com/Is-there-a-way-to-get-the-source-code-of-a-function-in-JavaScript">Is there a way to get the source code of a function in JavaScript?</a>)</li>
+</ul>
 
                     </main>
 

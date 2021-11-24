@@ -2755,6 +2755,17 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>WebView的goBack接口执行需要时间，如果连接调用goBack，并不能回退多个页面，只能回退到上个页面。参考：<a href="https://nixwang.com/2014/08/03/pits-on-ios/">在 iOS 上踩过的坑</a>。如果需要连续跳转多个页面，需要用如下接口：</p>
 <pre><code class="language-swift">open func go(to item: WKBackForwardListItem) -&gt; WKNavigation?
 </code></pre>
+<h3 id="能力-1"><a class="header" href="#能力-1">能力</a></h3>
+<h4 id="获取html内容"><a class="header" href="#获取html内容">获取Html内容</a></h4>
+<ul>
+<li>使用NSString提供的<code>stringWithContentsOfURL</code>接口</li>
+<li>通过执行JS:<code>document.documentElement.outerHTML.toString()</code>获取 (<a href="https://stackoverflow.com/questions/34751860/get-html-from-wkwebview-in-swift">Get HTML from WKWebview in Swift</a>)</li>
+</ul>
+<h4 id="获取js方法及实现"><a class="header" href="#获取js方法及实现">获取JS方法及实现</a></h4>
+<ul>
+<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code> </li>
+<li>获取某方法实现，执行JS: <code>somefunc.toString()</code> (<a href="https://www.quora.com/Is-there-a-way-to-get-the-source-code-of-a-function-in-JavaScript">Is there a way to get the source code of a function in JavaScript?</a>)</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="签名相关"><a class="header" href="#签名相关">签名相关</a></h1>
 <p>签名实现原理，是基于非对称加密实现的。核心实现是基于公钥加密的数据只能用私钥解，私钥加密的只能用公钥解。</p>
 <p>CA数字签名一句话概括：CA机构(可信)用自己的私钥加密第三方的公钥和信息生成的，其可以保证其内容的安全性。（操作系统会内置CA证书）</p>
@@ -3536,6 +3547,59 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
+<ul>
+<li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>一次编译到处运行，具有跨平台特性。</li>
+<li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
+<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>代码安全性高，需要通过逆向来分析代码逻辑</li>
+<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+</ul>
+<h4 id="wasm快的原因"><a class="header" href="#wasm快的原因">WASM快的原因</a></h4>
+<p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
+<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段，而且</p>
+<h3 id="示例"><a class="header" href="#示例">示例</a></h3>
+<p>C++代码：</p>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+
+int hello() {
+  printf(&quot;Good&quot;);
+}
+</code></pre>
+<p>编译为WASM，就为如下二进制内容：</p>
+<pre><code>0061 736d 0100 0000 0190 8080 8000 0360
+017f 017f 6002 7f7f 017f 6000 017f 028e
+8080 8000 0103 656e 7606 7072 696e 7466
+0001 0382 8080 8000 0102 0484 8080 8000
+0170 0000 0583 8080 8000 0100 0106 8180
+8080 0000 0796 8080 8000 0206 6d65 6d6f
+7279 0200 095f 5a35 6865 6c6c 6f76 0001
+0a90 8080 8000 018a 8080 8000 0041 1041
+0010 001a 000b 0b8b 8080 8000 0100 4110
+0b05 476f 6f64 00
+</code></pre>
+<p>其WAT的可读形式为：</p>
+<pre><code>(module
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
+ (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (table 0 anyfunc)
+ (memory $0 1)
+ (data (i32.const 16) &quot;Good\00&quot;)
+ (export &quot;memory&quot; (memory $0))
+ (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (func $_Z5hellov (; 1 ;) (result i32)
+  (drop
+   (call $printf
+    (i32.const 16)
+    (i32.const 0)
+   )
+  )
+  (unreachable)
+ )
+)
+</code></pre>
 <h3 id="支持的语言"><a class="header" href="#支持的语言">支持的语言</a></h3>
 <p><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></p>
 <p><a href="https://www.rust-lang.org/zh-CN/">Rust</a></p>
@@ -3561,6 +3625,8 @@ NaN
 <li><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly">MDN文档</a></li>
 <li><a href="https://wapm.io/">WAPM</a> WebAssembly Package Manager</li>
 <li><a href="https://hltj.me/wasm/2019/04/04/standardizing-wasi.html">标准化中的 WASI</a></li>
+<li><a href="https://github.com/WAVM/WAVM">WAVM</a>：可以跑在Windows/Linux/Mac等上的WASM执行引擎。（或者叫虚拟机）</li>
+<li><a href="http://www.shankusu.me/wasm/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CwebAssembly%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/">编程语言、虚拟机和 webAssembly 三者有什么关系</a>：非常清晰的解释了WASM是什么。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="同源策略--跨域"><a class="header" href="#同源策略--跨域">同源策略 &amp; 跨域</a></h1>
 <h3 id="跨域访问"><a class="header" href="#跨域访问">跨域访问</a></h3>
@@ -3808,7 +3874,7 @@ https://juejin.im/post/5c768ad2f265da2dce1f535c</p>
 <p><a href="https://github.com/toly1994328/FlutterUnit.git">FlutterUnit</a>: 非常好的查看各组件使用的示例</p>
 <p><a href="https://flutter-go.pub/flutter_go_web/#WidgetPage">Flutter go组件预览</a>: 可以查看有哪些组件可用，展示效果如何</p>
 <p><a href="https://flutter-widget.live/zh_CN/basics/introduction">Flutter组件实时预览</a>：更全面的组件预览，包括动画等</p>
-<h5 id="示例"><a class="header" href="#示例">示例</a></h5>
+<h5 id="示例-1"><a class="header" href="#示例-1">示例</a></h5>
 <p><a href="https://github.com/lohanidamodar/flutter_ui_challenges">flutter_ui_challenges</a>: 可以查看各种效果，以及代码如何实现</p>
 <p><a href="https://github.com/2d-inc/HistoryOfEverything">HistoryOfEverything</a>: 万物起源的代码，做的很漂亮的应用</p>
 <p><a href="https://codepen.io/topic/flutter/templates">Codepen在线示例</a></p>
@@ -4453,7 +4519,7 @@ FadeTransition(
 <p>如果要自定义动画时，把builder调用参数里的animation拿来作为parent就可以</p>
 </blockquote>
 <h3 id="hero动画"><a class="header" href="#hero动画">Hero动画</a></h3>
-<h4 id="能力-1"><a class="header" href="#能力-1">能力</a></h4>
+<h4 id="能力-2"><a class="header" href="#能力-2">能力</a></h4>
 <ul>
 <li>在同一个Page中，是支持多个Hero组件的</li>
 <li>同一个Page中的每个Hero组件，都可以有自己的动画方式</li>
@@ -5109,7 +5175,7 @@ app.get('/', function (req, res) {
 <li>创建C的头文件，声明相应符号 （调用时，可能需要去掉最前面的下划线）</li>
 <li>在OC/Swift中调用C头文件中声明的函数即可</li>
 </ul>
-<h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
+<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
@@ -5681,7 +5747,7 @@ main() {
 <li><a href="https://github.com/kelthuzadx/EffectiveModernCppChinese">《Effective Modern C++ 》</a></li>
 <li><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5">cppreference.com</a></li>
 </ul>
-<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
+<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
 <ul>
 <li>支持默认参数 (如果某个参数是默认参数，那么它后面的参数必须都是默认参数)</li>
 <li>支持类型的自动推断 (auto)</li>
@@ -5968,6 +6034,59 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-2"><a class="header" href="#webassembly-2">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
+<ul>
+<li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>一次编译到处运行，具有跨平台特性。</li>
+<li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
+<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>代码安全性高，需要通过逆向来分析代码逻辑</li>
+<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+</ul>
+<h4 id="wasm快的原因-1"><a class="header" href="#wasm快的原因-1">WASM快的原因</a></h4>
+<p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
+<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段，而且</p>
+<h3 id="示例-2"><a class="header" href="#示例-2">示例</a></h3>
+<p>C++代码：</p>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+
+int hello() {
+  printf(&quot;Good&quot;);
+}
+</code></pre>
+<p>编译为WASM，就为如下二进制内容：</p>
+<pre><code>0061 736d 0100 0000 0190 8080 8000 0360
+017f 017f 6002 7f7f 017f 6000 017f 028e
+8080 8000 0103 656e 7606 7072 696e 7466
+0001 0382 8080 8000 0102 0484 8080 8000
+0170 0000 0583 8080 8000 0100 0106 8180
+8080 0000 0796 8080 8000 0206 6d65 6d6f
+7279 0200 095f 5a35 6865 6c6c 6f76 0001
+0a90 8080 8000 018a 8080 8000 0041 1041
+0010 001a 000b 0b8b 8080 8000 0100 4110
+0b05 476f 6f64 00
+</code></pre>
+<p>其WAT的可读形式为：</p>
+<pre><code>(module
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
+ (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (table 0 anyfunc)
+ (memory $0 1)
+ (data (i32.const 16) &quot;Good\00&quot;)
+ (export &quot;memory&quot; (memory $0))
+ (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (func $_Z5hellov (; 1 ;) (result i32)
+  (drop
+   (call $printf
+    (i32.const 16)
+    (i32.const 0)
+   )
+  )
+  (unreachable)
+ )
+)
+</code></pre>
 <h3 id="支持的语言-1"><a class="header" href="#支持的语言-1">支持的语言</a></h3>
 <p><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></p>
 <p><a href="https://www.rust-lang.org/zh-CN/">Rust</a></p>
@@ -5993,6 +6112,8 @@ NaN
 <li><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly">MDN文档</a></li>
 <li><a href="https://wapm.io/">WAPM</a> WebAssembly Package Manager</li>
 <li><a href="https://hltj.me/wasm/2019/04/04/standardizing-wasi.html">标准化中的 WASI</a></li>
+<li><a href="https://github.com/WAVM/WAVM">WAVM</a>：可以跑在Windows/Linux/Mac等上的WASM执行引擎。（或者叫虚拟机）</li>
+<li><a href="http://www.shankusu.me/wasm/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CwebAssembly%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/">编程语言、虚拟机和 webAssembly 三者有什么关系</a>：非常清晰的解释了WASM是什么。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="haskell"><a class="header" href="#haskell">Haskell</a></h1>
 <h3 id="安装"><a class="header" href="#安装">安装</a></h3>

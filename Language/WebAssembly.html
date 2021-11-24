@@ -137,6 +137,59 @@
                         <h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<h3 id="特性"><a class="header" href="#特性">特性</a></h3>
+<ul>
+<li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>一次编译到处运行，具有跨平台特性。</li>
+<li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
+<li>可以通过<code>window.WebAssembly</code>对象与JS互通</li>
+<li>代码安全性高，需要通过逆向来分析代码逻辑</li>
+<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+</ul>
+<h4 id="wasm快的原因"><a class="header" href="#wasm快的原因">WASM快的原因</a></h4>
+<p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
+<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段，而且</p>
+<h3 id="示例"><a class="header" href="#示例">示例</a></h3>
+<p>C++代码：</p>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+
+int hello() {
+  printf(&quot;Good&quot;);
+}
+</code></pre>
+<p>编译为WASM，就为如下二进制内容：</p>
+<pre><code>0061 736d 0100 0000 0190 8080 8000 0360
+017f 017f 6002 7f7f 017f 6000 017f 028e
+8080 8000 0103 656e 7606 7072 696e 7466
+0001 0382 8080 8000 0102 0484 8080 8000
+0170 0000 0583 8080 8000 0100 0106 8180
+8080 0000 0796 8080 8000 0206 6d65 6d6f
+7279 0200 095f 5a35 6865 6c6c 6f76 0001
+0a90 8080 8000 018a 8080 8000 0041 1041
+0010 001a 000b 0b8b 8080 8000 0100 4110
+0b05 476f 6f64 00
+</code></pre>
+<p>其WAT的可读形式为：</p>
+<pre><code>(module
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
+ (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (table 0 anyfunc)
+ (memory $0 1)
+ (data (i32.const 16) &quot;Good\00&quot;)
+ (export &quot;memory&quot; (memory $0))
+ (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (func $_Z5hellov (; 1 ;) (result i32)
+  (drop
+   (call $printf
+    (i32.const 16)
+    (i32.const 0)
+   )
+  )
+  (unreachable)
+ )
+)
+</code></pre>
 <h3 id="支持的语言"><a class="header" href="#支持的语言">支持的语言</a></h3>
 <p><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></p>
 <p><a href="https://www.rust-lang.org/zh-CN/">Rust</a></p>
@@ -162,6 +215,8 @@
 <li><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly">MDN文档</a></li>
 <li><a href="https://wapm.io/">WAPM</a> WebAssembly Package Manager</li>
 <li><a href="https://hltj.me/wasm/2019/04/04/standardizing-wasi.html">标准化中的 WASI</a></li>
+<li><a href="https://github.com/WAVM/WAVM">WAVM</a>：可以跑在Windows/Linux/Mac等上的WASM执行引擎。（或者叫虚拟机）</li>
+<li><a href="http://www.shankusu.me/wasm/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CwebAssembly%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/">编程语言、虚拟机和 webAssembly 三者有什么关系</a>：非常清晰的解释了WASM是什么。</li>
 </ul>
 
                     </main>
