@@ -2557,6 +2557,8 @@ let txt = app.staticTexts[&quot;some text&quot;]
 <p>能力列表：</p>
 <ul>
 <li>支持双向认证</li>
+<li>不支持<code>Service Worker</code> (即不支持PWA)</li>
+<li>支持WebAssembly (iOS15上验证支持)</li>
 </ul>
 <h3 id="nsurlprotocol"><a class="header" href="#nsurlprotocol">NSURLProtocol</a></h3>
 <p><a href="https://juejin.cn/post/6844904079458566152">深度理解 NSURLProtocol</a></p>
@@ -3549,16 +3551,18 @@ NaN
 <h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
-<li>一次编译到处运行，具有跨平台特性。</li>
+<li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
 <li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
 <li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
 <li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
+<li>可以利用LLVM对中间码进行优化。(即会先生成LLVM IR，进行相应优化，再转为WASM) (<a href="https://zhuanlan.zhihu.com/p/339950505">C++场景下LLVM IR与WebAssembly的关系</a>)</li>
+<li>LLVM后端，可以生成WebAssembly目标。(<a href="https://llvm.org/docs/GettingStarted.html">LLVM GettingStarted</a>)</li>
 </ul>
 <h4 id="wasm快的原因"><a class="header" href="#wasm快的原因">WASM快的原因</a></h4>
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
-<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段，而且</p>
+<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段。</p>
 <h3 id="示例"><a class="header" href="#示例">示例</a></h3>
 <p>C++代码：</p>
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
@@ -3606,15 +3610,26 @@ int hello() {
 <p><a href="https://github.com/golang/go/wiki/WebAssembly">go</a></p>
 <p><a href="https://swiftwasm.org/">Swift</a> (fork后还未合入swift工程)</p>
 <p>语言列表：<a href="https://github.com/appcypher/awesome-wasm-langs">awesome-wasm-langs</a></p>
+<h4 id="emscripten"><a class="header" href="#emscripten">Emscripten</a></h4>
+<p>基于LLVM/Clang的编译器，它将C/C++源码编译为WebAssembly。编译出来的代码可以在浏览器、Node.js等中执行。</p>
+<p>Emscripten也是支持将C/C++编译为asm.js的。</p>
+<h4 id="asmjs"><a class="header" href="#asmjs">asm.js</a></h4>
+<p><a href="https://www.ruanyifeng.com/blog/2017/09/asmjs_emscripten.html">asm.js 和 Emscripten 入门教程</a></p>
+<p><code>asm.js</code>可以理解为<code>wasm</code>的前身，也是通过符合指定的条件，来让JS代码在某些JS引擎上执行更快。asm.js更多是面向JS引擎，而非普通开发者的。</p>
+<ul>
+<li>它的变量一律都是静态类型</li>
+<li>取消垃圾回收机制</li>
+<li>是JS的一个严格子集 （即不支持asm.js的引擎也可以正常运行）</li>
+<li>JavaScript引擎识别出asm.js，就跳过语法分析，直接转成字节码</li>
+<li>速度大约是原生代码的50%</li>
+<li>不是面向开发者，而是从其它语言编译而来</li>
+</ul>
 <h3 id="解释引擎"><a class="header" href="#解释引擎">解释引擎</a></h3>
 <ul>
 <li><a href="https://github.com/wasm3/wasm3">wasm3</a> 支持在iOS上使用</li>
 </ul>
-<h3 id="asmjs"><a class="header" href="#asmjs">asm.js</a></h3>
-<p><code>asm.js</code>可以理解为<code>wasm</code>的前身，也是通过符合指定的条件，来让JS代码在某些JS引擎上执行更快。asm.js更多是面向JS引擎，而非普通开发者的。</p>
 <h3 id="资料-20"><a class="header" href="#资料-20">资料</a></h3>
 <ul>
-<li><a href="https://www.ruanyifeng.com/blog/2017/09/asmjs_emscripten.html">asm.js 和 Emscripten 入门教程</a></li>
 <li><a href="https://blog.csdn.net/code_for_free/article/details/53674210">asm.js：面向未来的开发</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/25865972">WebAssembly 为什么比 asm.js 快？</a></li>
 <li><a href="https://github.com/poetries/browser-working-principle/blob/master/docs/guide/part3/lesson14.md">编译器和解析器：V8如何执行一段JavaScript代码的</a></li>
@@ -3627,6 +3642,7 @@ int hello() {
 <li><a href="https://hltj.me/wasm/2019/04/04/standardizing-wasi.html">标准化中的 WASI</a></li>
 <li><a href="https://github.com/WAVM/WAVM">WAVM</a>：可以跑在Windows/Linux/Mac等上的WASM执行引擎。（或者叫虚拟机）</li>
 <li><a href="http://www.shankusu.me/wasm/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CwebAssembly%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/">编程语言、虚拟机和 webAssembly 三者有什么关系</a>：非常清晰的解释了WASM是什么。</li>
+<li><a href="https://segmentfault.com/a/1190000012786949">WebAssembly和Emscripten工作整理</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="同源策略--跨域"><a class="header" href="#同源策略--跨域">同源策略 &amp; 跨域</a></h1>
 <h3 id="跨域访问"><a class="header" href="#跨域访问">跨域访问</a></h3>
@@ -5158,6 +5174,8 @@ app.get('/', function (req, res) {
 </ul>
 <h3 id="clang"><a class="header" href="#clang">Clang</a></h3>
 <p>将OC代码转为cpp代码：<code>clang -rewrite-objc main.m</code></p>
+<h3 id="llvm"><a class="header" href="#llvm">LLVM</a></h3>
+<p><a href="https://github.com/tuoxie007/play_with_llvm">Play with LLVM</a></p>
 <h3 id="nm工具"><a class="header" href="#nm工具">nm工具</a></h3>
 <p><a href="https://blog.csdn.net/wvtear/article/details/50016285">nm命令中符号类型详解</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift-1"><a class="header" href="#swift-1">Swift</a></h1>
@@ -6037,16 +6055,18 @@ NaN
 <h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
-<li>一次编译到处运行，具有跨平台特性。</li>
+<li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
 <li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
 <li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
 <li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
+<li>可以利用LLVM对中间码进行优化。(即会先生成LLVM IR，进行相应优化，再转为WASM) (<a href="https://zhuanlan.zhihu.com/p/339950505">C++场景下LLVM IR与WebAssembly的关系</a>)</li>
+<li>LLVM后端，可以生成WebAssembly目标。(<a href="https://llvm.org/docs/GettingStarted.html">LLVM GettingStarted</a>)</li>
 </ul>
 <h4 id="wasm快的原因-1"><a class="header" href="#wasm快的原因-1">WASM快的原因</a></h4>
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
-<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段，而且</p>
+<p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段。</p>
 <h3 id="示例-2"><a class="header" href="#示例-2">示例</a></h3>
 <p>C++代码：</p>
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
@@ -6094,15 +6114,26 @@ int hello() {
 <p><a href="https://github.com/golang/go/wiki/WebAssembly">go</a></p>
 <p><a href="https://swiftwasm.org/">Swift</a> (fork后还未合入swift工程)</p>
 <p>语言列表：<a href="https://github.com/appcypher/awesome-wasm-langs">awesome-wasm-langs</a></p>
+<h4 id="emscripten-1"><a class="header" href="#emscripten-1">Emscripten</a></h4>
+<p>基于LLVM/Clang的编译器，它将C/C++源码编译为WebAssembly。编译出来的代码可以在浏览器、Node.js等中执行。</p>
+<p>Emscripten也是支持将C/C++编译为asm.js的。</p>
+<h4 id="asmjs-1"><a class="header" href="#asmjs-1">asm.js</a></h4>
+<p><a href="https://www.ruanyifeng.com/blog/2017/09/asmjs_emscripten.html">asm.js 和 Emscripten 入门教程</a></p>
+<p><code>asm.js</code>可以理解为<code>wasm</code>的前身，也是通过符合指定的条件，来让JS代码在某些JS引擎上执行更快。asm.js更多是面向JS引擎，而非普通开发者的。</p>
+<ul>
+<li>它的变量一律都是静态类型</li>
+<li>取消垃圾回收机制</li>
+<li>是JS的一个严格子集 （即不支持asm.js的引擎也可以正常运行）</li>
+<li>JavaScript引擎识别出asm.js，就跳过语法分析，直接转成字节码</li>
+<li>速度大约是原生代码的50%</li>
+<li>不是面向开发者，而是从其它语言编译而来</li>
+</ul>
 <h3 id="解释引擎-1"><a class="header" href="#解释引擎-1">解释引擎</a></h3>
 <ul>
 <li><a href="https://github.com/wasm3/wasm3">wasm3</a> 支持在iOS上使用</li>
 </ul>
-<h3 id="asmjs-1"><a class="header" href="#asmjs-1">asm.js</a></h3>
-<p><code>asm.js</code>可以理解为<code>wasm</code>的前身，也是通过符合指定的条件，来让JS代码在某些JS引擎上执行更快。asm.js更多是面向JS引擎，而非普通开发者的。</p>
 <h3 id="资料-38"><a class="header" href="#资料-38">资料</a></h3>
 <ul>
-<li><a href="https://www.ruanyifeng.com/blog/2017/09/asmjs_emscripten.html">asm.js 和 Emscripten 入门教程</a></li>
 <li><a href="https://blog.csdn.net/code_for_free/article/details/53674210">asm.js：面向未来的开发</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/25865972">WebAssembly 为什么比 asm.js 快？</a></li>
 <li><a href="https://github.com/poetries/browser-working-principle/blob/master/docs/guide/part3/lesson14.md">编译器和解析器：V8如何执行一段JavaScript代码的</a></li>
@@ -6115,6 +6146,7 @@ int hello() {
 <li><a href="https://hltj.me/wasm/2019/04/04/standardizing-wasi.html">标准化中的 WASI</a></li>
 <li><a href="https://github.com/WAVM/WAVM">WAVM</a>：可以跑在Windows/Linux/Mac等上的WASM执行引擎。（或者叫虚拟机）</li>
 <li><a href="http://www.shankusu.me/wasm/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CwebAssembly%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB/">编程语言、虚拟机和 webAssembly 三者有什么关系</a>：非常清晰的解释了WASM是什么。</li>
+<li><a href="https://segmentfault.com/a/1190000012786949">WebAssembly和Emscripten工作整理</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="haskell"><a class="header" href="#haskell">Haskell</a></h1>
 <h3 id="安装"><a class="header" href="#安装">安装</a></h3>
@@ -6220,7 +6252,7 @@ $ alias grun='java org.antlr.v4.gui.TestRig'
 <p>PEG是<code>解析表达文法</code>，具体解释可以参见：<a href="https://zh.wikipedia.org/wiki/%E8%A7%A3%E6%9E%90%E8%A1%A8%E8%BE%BE%E6%96%87%E6%B3%95">解析表达文法</a></p>
 <p>Lex&amp;Yacc是基于CFG(上下文无关文法)实现的，但类似<a href="https://pegjs.org/">pegjs</a>是基于PEG来实现的</p>
 <p><a href="https://zhuanlan.zhihu.com/p/49833910">PEG.js 介绍与基础使用</a></p>
-<h3 id="llvm"><a class="header" href="#llvm">LLVM</a></h3>
+<h3 id="llvm-1"><a class="header" href="#llvm-1">LLVM</a></h3>
 <h5 id="基础"><a class="header" href="#基础">基础</a></h5>
 <p><a href="http://llvm.org/docs/index.html">官方文档</a></p>
 <p><a href="http://www.nagain.com/activity/article/4/">llvm之旅第一站 － 编译及简单使用</a></p>
