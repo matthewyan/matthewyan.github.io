@@ -2304,16 +2304,16 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://blog.csdn.net/businiao_zell/article/details/45872939">SEL类型数据和selector的用法</a>：SEL就是方法的包装，包含了调用地址</li>
 <li><a href="https://tech.meituan.com/2015/08/12/deep-understanding-object-c-of-method-caching.html">深入理解 Objective-C：方法缓存</a></li>
 <li><a href="https://blog.csdn.net/potato512/article/details/80947303">Runtime消息转发</a></li>
+<li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a>：可以调试的objc-runtime源代码</li>
 </ul>
-<h4 id="介绍"><a class="header" href="#介绍">介绍</a></h4>
-<p>将一些在编译和链接过程中的工作，放到了运行阶段。</p>
 <h4 id="能力"><a class="header" href="#能力">能力</a></h4>
+<p>将一些在编译和链接过程中的工作，放到了运行阶段。</p>
 <ul>
 <li>可以运行时新增类、方法、属性等</li>
 <li>可以运行时交换两个方法</li>
 <li>获得某个类所有成员方法、成员变量</li>
 </ul>
-<h5 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h5>
+<h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
 <ul>
 <li>普通@interface定义的对象，都是从NSObject继承的。其存在一个属性，即<code>Class isa</code>。</li>
@@ -2333,6 +2333,133 @@ d.data  // 变为&quot;Hello World&quot;
 </ul>
 <p>示意图：（来源https://www.jianshu.com/p/b42db8b06088）</p>
 <img src="iOS/./images/rt_objc_class.png" style="zoom:50%;" />
+<h4 id="关键对象实现"><a class="header" href="#关键对象实现">关键对象实现</a></h4>
+<pre><code class="language-c++">struct objc_object {
+    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;
+};
+
+struct objc_class : objc_object {
+    Class superclass;
+    cache_t cache;             // formerly cache pointer and vtable
+    class_data_bits_t bits;    // 要找函数、属性等数据，要通过该字段获取
+    ...
+}
+</code></pre>
+<pre><code class="language-c++">struct class_data_bits_t {
+    friend objc_class;
+
+    // Values are the FAST_ flags above.
+    uintptr_t bits;
+  
+    // 返回的class_rw_t中，包含了方法列表
+    class_rw_t* data() const {
+        return (class_rw_t *)(bits &amp; FAST_DATA_MASK);
+    }
+    ...
+}
+</code></pre>
+<pre><code class="language-c++">// https://www.jianshu.com/p/823eaedb3697
+// class_rw_t和class_ro_t的专门解释
+// class_rw_t存储的方法、属性等，是在运行时动态生成或变化的
+struct class_rw_t {
+    // Be warned that Symbolication knows the layout of this structure.
+    uint32_t flags;
+    uint16_t witness;
+#if SUPPORT_INDEXED_ISA
+    uint16_t index;
+#endif
+
+    explicit_atomic&lt;uintptr_t&gt; ro_or_rw_ext;
+
+    Class firstSubclass;
+    Class nextSiblingClass;
+  
+    using ro_or_rw_ext_t = objc::PointerUnion&lt;const class_ro_t, class_rw_ext_t, PTRAUTH_STR(&quot;class_ro_t&quot;), PTRAUTH_STR(&quot;class_rw_ext_t&quot;)&gt;;
+
+    const ro_or_rw_ext_t get_ro_or_rwe() const {
+        return ro_or_rw_ext_t{ro_or_rw_ext};
+    }
+  
+    // 返回指向的class_ro_t结构
+    const class_ro_t *ro() const { ... }
+    // 返回指向的class_rw_ext_t结构
+    class_rw_ext_t *ext() const { ... }
+  
+    // 返回方法列表 (其实是去class_rw_ext_t和class_ro_t结构中读取)
+    const method_array_t methods() const {
+        auto v = get_ro_or_rwe();
+        if (v.is&lt;class_rw_ext_t *&gt;()) {
+            return v.get&lt;class_rw_ext_t *&gt;(&amp;ro_or_rw_ext)-&gt;methods;
+        } else {
+            return method_array_t{v.get&lt;const class_ro_t *&gt;(&amp;ro_or_rw_ext)-&gt;baseMethods()};
+        }
+    }
+  
+    // 属性列表
+    const property_array_t properties() const { ... }
+    // 协议列表
+    const protocol_array_t protocols() const { ... }
+}
+</code></pre>
+<pre><code class="language-c++">// 编译期就已经决定好的了，运行时不会修改 (存储在clean memory中)
+struct class_ro_t {
+    uint32_t flags;
+    uint32_t instanceStart;
+    uint32_t instanceSize;
+#ifdef __LP64__
+    uint32_t reserved;
+#endif
+
+    const uint8_t * ivarLayout;
+    
+    const char * name;
+    WrappedPtr&lt;method_list_t, PtrauthStrip&gt; baseMethodList;
+    protocol_list_t * baseProtocols;
+    const ivar_list_t * ivars;
+
+    const uint8_t * weakIvarLayout;
+    property_list_t *baseProperties;
+    ...
+};
+</code></pre>
+<pre><code class="language-c++">// iOS14中新增的类型，为了优化内存
+// https://huang-libo.github.io/posts/Objective-C-Runtime-Changes-in-iOS-14
+struct class_rw_ext_t {
+    DECLARE_AUTHED_PTR_TEMPLATE(class_ro_t)
+    class_ro_t_authed_ptr&lt;const class_ro_t&gt; ro;
+    method_array_t methods;
+    property_array_t properties;
+    protocol_array_t protocols;
+    char *demangledName;
+    uint32_t version;
+};
+</code></pre>
+<pre><code class="language-c++">struct method_t {
+    static const uint32_t smallMethodListFlag = 0x80000000;
+
+    method_t(const method_t &amp;other) = delete;
+
+    // 核心数据
+    struct big {
+        SEL name;
+        const char *types;
+        MethodListIMP imp;	// 就是IMP类型，真正的函数地址
+    };
+}
+</code></pre>
+<pre><code class="language-c++">// Category生成的结构
+struct category_t {
+    const char *name;
+    classref_t cls;
+    WrappedPtr&lt;method_list_t, PtrauthStrip&gt; instanceMethods;
+    WrappedPtr&lt;method_list_t, PtrauthStrip&gt; classMethods;
+    struct protocol_list_t *protocols;
+    struct property_list_t *instanceProperties;
+    // Fields below this point are not always present on disk.
+    struct property_list_t *_classProperties;
+    ...
+};
+</code></pre>
 <h4 id="消息"><a class="header" href="#消息">消息</a></h4>
 <ul>
 <li>SEL定义为<code>struct objc_selector</code> （目前仅是一个字符串，苹果将其实现隐藏了）</li>
