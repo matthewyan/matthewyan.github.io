@@ -154,7 +154,7 @@
 </ul>
 <h3 id="开发工具"><a class="header" href="#开发工具">开发工具</a></h3>
 <ul>
-<li><a href="https://david-smith.org/iosversionstats/">iOS系统版本占有率</a></li>
+<li><a href="https://david-smith.org/iosversionstats/">iOS系统版本占有率</a> | <a href="https://developer.apple.com/support/app-store/">官方统计(更新不及时)</a></li>
 <li><a href="https://www.theiphonewiki.com/wiki/Models">设备定义</a></li>
 <li><a href="http://aso.oa.com/keyword/sort">ASO搜索优化工具</a></li>
 <li><a href="http://www.osstatus.com/">iOS错误码查询</a></li>
@@ -1160,10 +1160,9 @@ rm -rf ~/.cocoapods/
 <p>脱VMP壳：<a href="https://www.cnblogs.com/theseventhson/p/14274653.html">VMP壳爆破实战-破解某编辑类软件&amp;指令替换原理</a></p>
 <h3 id="其它-2"><a class="header" href="#其它-2">其它</a></h3>
 <h4 id="数字版权管理"><a class="header" href="#数字版权管理">数字版权管理</a></h4>
-<p><a href="https://zhuanlan.zhihu.com/p/83344191">数字版权管理（Digital Right Management，DRM）概述</a></p>
-<p>DRM可以防截屏：<a href="https://www.jianshu.com/p/86d0cfed5f4e">iOS防截屏方案(基于DRM)</a></p>
-<p>DRM商业使用是需要授权的，具体授权价格参考：<a href="https://www.drm-x.com/Fees-Compare-4.0.aspx?lang=zh">DRM版权保护价格和套餐</a></p>
 <ul>
+<li><a href="https://zhuanlan.zhihu.com/p/83344191">数字版权管理（Digital Right Management，DRM）概述</a></li>
+<li>DRM可以防截屏：<a href="https://www.jianshu.com/p/86d0cfed5f4e">iOS防截屏方案(基于DRM)</a></li>
 <li>DRM是在iOS10后开始支持 (<a href="https://developer.apple.com/forums/thread/63725">iOS 10 AVPlayer with fairplay DRM screenshot black</a>)</li>
 </ul>
 <h4 id="数字水印"><a class="header" href="#数字水印">数字水印</a></h4>
@@ -2305,6 +2304,7 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://tech.meituan.com/2015/08/12/deep-understanding-object-c-of-method-caching.html">深入理解 Objective-C：方法缓存</a></li>
 <li><a href="https://blog.csdn.net/potato512/article/details/80947303">Runtime消息转发</a></li>
 <li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a>：可以调试的objc-runtime源代码</li>
+<li><a href="https://huang-libo.github.io/posts/Objective-C-Runtime-Changes-in-iOS-14">【iOS 14】Objective-C Runtime 的优化</a></li>
 </ul>
 <h4 id="能力"><a class="header" href="#能力">能力</a></h4>
 <p>将一些在编译和链接过程中的工作，放到了运行阶段。</p>
@@ -2443,7 +2443,7 @@ struct class_rw_ext_t {
     struct big {
         SEL name;
         const char *types;
-        MethodListIMP imp;	// 就是IMP类型，真正的函数地址
+        MethodListIMP imp;	// 就是IMP类型，该地址就是该函数的实现，https://www.jianshu.com/p/27ee04f3ed7b 中有示例
     };
 }
 </code></pre>

@@ -172,6 +172,7 @@
 <li><a href="https://tech.meituan.com/2015/08/12/deep-understanding-object-c-of-method-caching.html">深入理解 Objective-C：方法缓存</a></li>
 <li><a href="https://blog.csdn.net/potato512/article/details/80947303">Runtime消息转发</a></li>
 <li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a>：可以调试的objc-runtime源代码</li>
+<li><a href="https://huang-libo.github.io/posts/Objective-C-Runtime-Changes-in-iOS-14">【iOS 14】Objective-C Runtime 的优化</a></li>
 </ul>
 <h4 id="能力"><a class="header" href="#能力">能力</a></h4>
 <p>将一些在编译和链接过程中的工作，放到了运行阶段。</p>
@@ -310,7 +311,7 @@ struct class_rw_ext_t {
     struct big {
         SEL name;
         const char *types;
-        MethodListIMP imp;	// 就是IMP类型，真正的函数地址
+        MethodListIMP imp;	// 就是IMP类型，该地址就是该函数的实现，https://www.jianshu.com/p/27ee04f3ed7b 中有示例
     };
 }
 </code></pre>
