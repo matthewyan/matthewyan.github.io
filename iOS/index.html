@@ -333,9 +333,11 @@ Value: Light
 <h3 id="安全"><a class="header" href="#安全">安全</a></h3>
 <p><a href="https://bingozb.github.io/views/default/17.html">Objective-C 代码混淆</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/33109826">iOS App的加固保护原理</a></p>
-<p><a href="https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web">安全隔区</a>：可以直接在独立的SoC中生成密钥，并且无法被读取。所有的加解密操作放入其中进行运算。</p>
-<p><a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave?language=objc">Storing Keys in the Secure Enclave</a></p>
 <p><a href="https://github.com/kam800/MachObfuscator">MachObfuscator</a></p>
+<h4 id="安全隔区-secure-enclave"><a class="header" href="#安全隔区-secure-enclave">安全隔区 (Secure Enclave)</a></h4>
+<p>官方文档：<a href="https://support.apple.com/zh-cn/guide/security/sec59b0b31ff/web">安全隔区</a></p>
+<p>作用：可以直接在独立的SoC中生成密钥，并且无法被读取。所有的加解密操作放入其中进行运算。它带来的好处是<strong>密钥不会泄露</strong>，别人拿到你加密后的数据无法解密的。只有你的应用才可以调用系统接口解密该数据。</p>
+<p>使用系统加密库，即可使用安全隔区，具体使用参见：<a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave?language=objc">Storing Keys in the Secure Enclave</a></p>
 <h4 id="砸壳"><a class="header" href="#砸壳">砸壳</a></h4>
 <p><a href="https://www.jianshu.com/p/41e4035c656f">2020 iOS 逆向学习-砸壳</a></p>
 <h4 id="monkeydev"><a class="header" href="#monkeydev">MonkeyDev</a></h4>
@@ -343,17 +345,6 @@ Value: Light
 <h4 id="cycript"><a class="header" href="#cycript">Cycript</a></h4>
 <p>主要用于在iOS上进行逆向工作。</p>
 <p><a href="https://juejin.cn/post/6844903821253017614">iOS 逆向之 Cycript 高级玩法（非越狱） &amp; .cy文件的封装</a></p>
-<h3 id="hook"><a class="header" href="#hook">Hook</a></h3>
-<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
-<p>Hook手段：</p>
-<ul>
-<li><code>Method Swizzle</code> (class_replaceMethod、method_exchangeImplementations)</li>
-<li><code>fishhook</code></li>
-</ul>
-<blockquote>
-<p>fishhook仅可以hook系统的c接口。</p>
-</blockquote>
-<p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
 <h3 id="截屏录屏相关"><a class="header" href="#截屏录屏相关">截屏、录屏相关</a></h3>
 <h4 id="截屏录屏检测"><a class="header" href="#截屏录屏检测">截屏、录屏检测</a></h4>
 <p><a href="https://www.jianshu.com/p/06a8fb3aabab">iOS 录屏和截屏监听</a></p>

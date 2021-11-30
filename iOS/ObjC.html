@@ -181,6 +181,17 @@
 <li>可以运行时交换两个方法</li>
 <li>获得某个类所有成员方法、成员变量</li>
 </ul>
+<h4 id="hook"><a class="header" href="#hook">Hook</a></h4>
+<p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
+<p>Hook手段：</p>
+<ul>
+<li><code>Method Swizzle</code> (class_replaceMethod、method_exchangeImplementations)</li>
+<li><code>fishhook</code></li>
+</ul>
+<blockquote>
+<p>fishhook仅可以hook系统的c接口。</p>
+</blockquote>
+<p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
 <h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
 <ul>
