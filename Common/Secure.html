@@ -242,6 +242,35 @@
 <p><a href="https://juejin.cn/post/6844903505782636557">漫画：AES 算法的底层原理</a></p>
 <p>对称加密算法，用来替代DES。</p>
 <p>现在很多芯片，在硬件层次上提供了专门的加解密电路。比如苹果ARM芯片，有专门的AES加密电路。</p>
+<p>原理概述：</p>
+<ul>
+<li>明文会拆成多个块，每个块128字节。然后对每个块分别加密。</li>
+<li>加密完之后再拼接起来，就是密文</li>
+<li>不足128字节的情况，需要<strong>填充</strong>，填充也有不同的方式，有PKCS5Padding、ISO10126Padding等</li>
+<li>块加密过程，也有不同的处理模式，目前有CBC、ECB、CTR、CFB、OFB模式。（加密模式与解密模式必须一致）</li>
+<li>AES加密过程，不是一次性将数据块直接加密成密文的，而是分多轮加密才得到结果。</li>
+<li>加密中，除首轮和最后一轮，都是<code>字节替代</code>、<code>行移位</code>、<code>列混淆</code>、<code>加轮密钥</code>顺序来操作的。（首轮只有<code>加轮密钥</code>，最后轮没有<code>列混淆</code>）</li>
+<li><code>S盒</code>是AES中关键内容，是16*16的二维常量数组。</li>
+<li><code>字节替代</code>即用<code>S盒</code>进行运算得到的结果</li>
+<li><code>列混淆</code>是利用<code>修补矩阵</code>进行乘积得到结果</li>
+<li><code>加轮密钥</code>即让128字节的密钥变成4*4的矩阵，与数据块进行异或运算</li>
+<li>每一轮的密钥都不同，其涉及到<code>扩展密钥</code>的原因，扩展密钥是由最初的密钥生成的</li>
+<li><code>AES128</code>、<code>AES192</code>、<code>AES256</code>分别进行的加密轮数为：10、12、14轮</li>
+<li>其解密过程即将所有流程反过来操作一遍</li>
+</ul>
+<h5 id="s盒"><a class="header" href="#s盒">S盒</a></h5>
+<p>S盒是非线程结构，用来模糊密钥和密文的。加密用S盒，解密时会使用逆S盒</p>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/S%E7%9B%92">S盒</a></li>
+<li><a href="https://xuanxuanblingbling.github.io/ctf/crypto/2019/11/01/sbox/">AES的S盒生成</a>)</li>
+<li><a href="https://www.cnblogs.com/Junbo20141201/p/9369860.html">AES128加密-S盒和逆S盒构造推导及代码实现</a></li>
+</ul>
+<h5 id="白盒加密"><a class="header" href="#白盒加密">白盒加密</a></h5>
+<p>白盒加密，本质是将密钥与S盒融合，并成查表操作，以此隐藏密钥。</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/JCJRmBAsWANSqTLrAT4lsw">浅析白盒加密技术</a></li>
+<li><a href="https://f5.pm/52409">让密钥消失不见——AES密钥白盒及其攻防</a></li>
+</ul>
 <h4 id="rc4"><a class="header" href="#rc4">RC4</a></h4>
 <p><a href="https://zh.wikipedia.org/wiki/RC4">RC4</a></p>
 <h4 id="totp"><a class="header" href="#totp">TOTP</a></h4>
