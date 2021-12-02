@@ -171,6 +171,15 @@
 </ul>
 <p>MachO格式：</p>
 <img src="./images/macho_fmt.webp" style="zoom:50%;" />
+<p>结构中的vmsize、vmaddress，都会分页对齐（iOS中一般16K的分页大小：<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html">AboutMemory</a>）</p>
+<p>每个库都有自己的代码内存区间，并且每个库的偏移可以获得</p>
+<p>Header之后的Load Commands是比较关键的信息，其内的数据：</p>
+<ul>
+<li>__PAGEZERO是Mach-O加载进内存之后附加的一块区域，不占用实际大小，它不可读，不可写，主要用来捕捉NULL指针的引用。如果访问__PAGEZERO段，会引起程序崩溃</li>
+<li>__TEXT，用来存放代码段，只读</li>
+<li>__DATA，数据段</li>
+<li>__LINKEDIT，包含动态链接器所需的符号、字符串表等数据</li>
+</ul>
 <h3 id="概念"><a class="header" href="#概念">概念</a></h3>
 <h4 id="rvaraw"><a class="header" href="#rvaraw">RVA/RAW</a></h4>
 <p><a href="https://www.jianshu.com/p/231206f9fbaf">PE文件结构中的RVA与RAW</a></p>
@@ -198,7 +207,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   const char* name = _dyld_get_image_name(i);
   // base_addr是静态基址
   intptr_t base_addr = _dyld_get_image_vmaddr_slide(i);
-  // mach_header是真正的基址
+  // mach_header是真正的内存基址
   const struct mach_header *m_addr = _dyld_get_image_header(i);
   NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
 }

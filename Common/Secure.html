@@ -242,6 +242,11 @@
 <p><a href="https://juejin.cn/post/6844903505782636557">漫画：AES 算法的底层原理</a></p>
 <p>对称加密算法，用来替代DES。</p>
 <p>现在很多芯片，在硬件层次上提供了专门的加解密电路。比如苹果ARM芯片，有专门的AES加密电路。</p>
+<p>在iOS上，要使用AES加密，有两种方式：</p>
+<ul>
+<li>使用系统提供的<code>CCCrypt</code>接口 (<code>CommonCryptor</code>框架中的接口) (参考：<a href="https://www.jianshu.com/p/a455957889ff">iOS加密之AES</a>)</li>
+<li>第三方开源库：<a href="https://github.com/krzyzanowskim/CryptoSwift">CryptoSwift</a></li>
+</ul>
 <p>原理概述：</p>
 <ul>
 <li>明文会拆成多个块，每个块128字节。然后对每个块分别加密。</li>

@@ -1136,6 +1136,11 @@ rm -rf ~/.cocoapods/
 <p><a href="https://juejin.cn/post/6844903505782636557">漫画：AES 算法的底层原理</a></p>
 <p>对称加密算法，用来替代DES。</p>
 <p>现在很多芯片，在硬件层次上提供了专门的加解密电路。比如苹果ARM芯片，有专门的AES加密电路。</p>
+<p>在iOS上，要使用AES加密，有两种方式：</p>
+<ul>
+<li>使用系统提供的<code>CCCrypt</code>接口 (<code>CommonCryptor</code>框架中的接口) (参考：<a href="https://www.jianshu.com/p/a455957889ff">iOS加密之AES</a>)</li>
+<li>第三方开源库：<a href="https://github.com/krzyzanowskim/CryptoSwift">CryptoSwift</a></li>
+</ul>
 <p>原理概述：</p>
 <ul>
 <li>明文会拆成多个块，每个块128字节。然后对每个块分别加密。</li>
@@ -1631,6 +1636,7 @@ Events</p>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/25020707">干货！如何绘制产品流程图</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/67533900">关于流程图，你想知道的都在这里</a></li>
+<li><a href="https://www.cnblogs.com/lukelook/p/11217031.html">流程图图形标准含义</a></li>
 </ul>
 <p>目的：</p>
 <ul>
@@ -1664,6 +1670,10 @@ Events</p>
 <blockquote>
 <p>用例是用户期望系统具备的功能，每一个用例说明一个系统提供给它的使用者的一种服务或功能。</p>
 </blockquote>
+<h3 id="数据流图"><a class="header" href="#数据流图">数据流图</a></h3>
+<p><a href="https://zhuanlan.zhihu.com/p/231863024">如何画好数据流图？</a></p>
+<h3 id="活动图"><a class="header" href="#活动图">活动图</a></h3>
+<p><a href="http://www.woshipm.com/pd/555549.html">活动图实例：细谈UML建模语言中的活动图模型</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ios"><a class="header" href="#ios">iOS</a></h1>
 <h3 id="资料-11"><a class="header" href="#资料-11">资料</a></h3>
 <p><a href="https://cloud.tencent.com/developer/article/1047692">iOS学习——iOS 整体框架及类继承框架图</a></p>
@@ -2666,6 +2676,15 @@ let txt = app.staticTexts[&quot;some text&quot;]
 </ul>
 <p>MachO格式：</p>
 <img src="iOS/./images/macho_fmt.webp" style="zoom:50%;" />
+<p>结构中的vmsize、vmaddress，都会分页对齐（iOS中一般16K的分页大小：<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html">AboutMemory</a>）</p>
+<p>每个库都有自己的代码内存区间，并且每个库的偏移可以获得</p>
+<p>Header之后的Load Commands是比较关键的信息，其内的数据：</p>
+<ul>
+<li>__PAGEZERO是Mach-O加载进内存之后附加的一块区域，不占用实际大小，它不可读，不可写，主要用来捕捉NULL指针的引用。如果访问__PAGEZERO段，会引起程序崩溃</li>
+<li>__TEXT，用来存放代码段，只读</li>
+<li>__DATA，数据段</li>
+<li>__LINKEDIT，包含动态链接器所需的符号、字符串表等数据</li>
+</ul>
 <h3 id="概念-2"><a class="header" href="#概念-2">概念</a></h3>
 <h4 id="rvaraw"><a class="header" href="#rvaraw">RVA/RAW</a></h4>
 <p><a href="https://www.jianshu.com/p/231206f9fbaf">PE文件结构中的RVA与RAW</a></p>
@@ -2693,7 +2712,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   const char* name = _dyld_get_image_name(i);
   // base_addr是静态基址
   intptr_t base_addr = _dyld_get_image_vmaddr_slide(i);
-  // mach_header是真正的基址
+  // mach_header是真正的内存基址
   const struct mach_header *m_addr = _dyld_get_image_header(i);
   NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
 }
