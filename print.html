@@ -1780,6 +1780,9 @@ Events</p>
 <tr><td><code>open -a Simulator</code></td><td>启动默认模拟器</td></tr>
 </tbody></table>
 <p>Xcode 13，要显示<code>Product Folder</code>：Menu -&gt; Product -&gt; Show Build Folder in Finder</p>
+<h4 id="main-thread-checker"><a class="header" href="#main-thread-checker">Main Thread Checker</a></h4>
+<p><a href="https://www.jianshu.com/p/6cad4fe9f21a">Xcode9 新特性之Main Thread Checker</a></p>
+<p>可以用来检测必须要在主线程执行的函数，是否在主线程执行了。当打开它的时候，也会带来一些影响，比如判断系统函数指针时，可能会发现指向错误。</p>
 <h3 id="模拟器"><a class="header" href="#模拟器">模拟器</a></h3>
 <ul>
 <li>iOS12模拟器截屏：点击模拟器上方的相机图标即可</li>
@@ -2361,6 +2364,10 @@ d.data  // 变为&quot;Hello World&quot;
 <p>fishhook仅可以hook系统的c接口。</p>
 </blockquote>
 <p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
+<h4 id="分类"><a class="header" href="#分类">分类</a></h4>
+<p>分类中的同名函数，是会覆盖原类的函数。</p>
+<p>调用优先级：分类(category) &gt; 本类 &gt; 父类</p>
+<p><a href="https://tech.meituan.com/2015/03/03/diveintocategory.html">深入理解Objective-C：Category</a></p>
 <h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
 <ul>
@@ -2715,6 +2722,15 @@ for (uint32_t i = 0; i &lt; c; i++) {
   // mach_header是真正的内存基址
   const struct mach_header *m_addr = _dyld_get_image_header(i);
   NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
+}
+</code></pre>
+<p>通过某个函数，获取所在模块的信息： (<a href="https://segmentfault.com/q/1010000000183909">ios中怎么获得模块基址和模块长度？</a>)</p>
+<pre><code class="language-objective-c">static void baseaddr(const char *cls, const char *sel){
+    Dl_info info;
+    IMP imp = class_getClassMethod(objc_getClass(cls), sel_registerName(sel));
+    if (dladdr(imp, &amp;info)){
+        printf(&quot;name: %s, fbase: %s\n&quot;, info.dli_fname, info.dli_fbase);
+    }
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="多线程"><a class="header" href="#多线程">多线程</a></h1>
@@ -3252,6 +3268,27 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <h3 id="fishhook"><a class="header" href="#fishhook">FishHook</a></h3>
 <p><a href="https://juejin.cn/post/6844903789783154702">fishhook的实现原理浅析</a></p>
 <p>fishhook虽然可以hook c函数，但其无法hook自己写的，直接编译进mach-o中的函数。</p>
+<p>fishhook简单使用： (<a href="https://www.qingheblog.online/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/fishhook%E5%8E%9F%E7%90%86/">fishhook原理</a>)</p>
+<pre><code class="language-objc">- (void)hook
+{
+    struct rebinding logRebind;
+    logRebind.name = &quot;NSLog&quot;;
+    logRebind.replacement = MyLog;
+    logRebind.replaced = (void *)&amp;originalNSLog;
+    
+    struct rebinding rebs[] = {logRebind};    
+    rebind_symbols(rebs, 1);
+}
+
+static void (*originalNSLog)(NSString *format, ...);
+
+void MyLog(NSString *format, ...){
+    // do sth you  want
+    
+    // orignal func
+    originalNSLog(format);
+}
+</code></pre>
 <h3 id="sdwebimage"><a class="header" href="#sdwebimage">SDWebImage</a></h3>
 <p><a href="https://www.jianshu.com/p/5a0e1e1b1541">SDWebImage的缓存策略</a></p>
 <p>内存缓存 + 磁盘缓存</p>

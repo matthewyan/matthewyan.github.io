@@ -192,6 +192,10 @@
 <p>fishhook仅可以hook系统的c接口。</p>
 </blockquote>
 <p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
+<h4 id="分类"><a class="header" href="#分类">分类</a></h4>
+<p>分类中的同名函数，是会覆盖原类的函数。</p>
+<p>调用优先级：分类(category) &gt; 本类 &gt; 父类</p>
+<p><a href="https://tech.meituan.com/2015/03/03/diveintocategory.html">深入理解Objective-C：Category</a></p>
 <h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
 <ul>

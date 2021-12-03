@@ -178,6 +178,27 @@
 <h3 id="fishhook"><a class="header" href="#fishhook">FishHook</a></h3>
 <p><a href="https://juejin.cn/post/6844903789783154702">fishhook的实现原理浅析</a></p>
 <p>fishhook虽然可以hook c函数，但其无法hook自己写的，直接编译进mach-o中的函数。</p>
+<p>fishhook简单使用： (<a href="https://www.qingheblog.online/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/fishhook%E5%8E%9F%E7%90%86/">fishhook原理</a>)</p>
+<pre><code class="language-objc">- (void)hook
+{
+    struct rebinding logRebind;
+    logRebind.name = &quot;NSLog&quot;;
+    logRebind.replacement = MyLog;
+    logRebind.replaced = (void *)&amp;originalNSLog;
+    
+    struct rebinding rebs[] = {logRebind};    
+    rebind_symbols(rebs, 1);
+}
+
+static void (*originalNSLog)(NSString *format, ...);
+
+void MyLog(NSString *format, ...){
+    // do sth you  want
+    
+    // orignal func
+    originalNSLog(format);
+}
+</code></pre>
 <h3 id="sdwebimage"><a class="header" href="#sdwebimage">SDWebImage</a></h3>
 <p><a href="https://www.jianshu.com/p/5a0e1e1b1541">SDWebImage的缓存策略</a></p>
 <p>内存缓存 + 磁盘缓存</p>

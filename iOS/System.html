@@ -212,6 +212,15 @@ for (uint32_t i = 0; i &lt; c; i++) {
   NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
 }
 </code></pre>
+<p>通过某个函数，获取所在模块的信息： (<a href="https://segmentfault.com/q/1010000000183909">ios中怎么获得模块基址和模块长度？</a>)</p>
+<pre><code class="language-objective-c">static void baseaddr(const char *cls, const char *sel){
+    Dl_info info;
+    IMP imp = class_getClassMethod(objc_getClass(cls), sel_registerName(sel));
+    if (dladdr(imp, &amp;info)){
+        printf(&quot;name: %s, fbase: %s\n&quot;, info.dli_fname, info.dli_fbase);
+    }
+}
+</code></pre>
 
                     </main>
 
