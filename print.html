@@ -2346,12 +2346,13 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a>：可以调试的objc-runtime源代码</li>
 <li><a href="https://huang-libo.github.io/posts/Objective-C-Runtime-Changes-in-iOS-14">【iOS 14】Objective-C Runtime 的优化</a></li>
 </ul>
-<h4 id="能力"><a class="header" href="#能力">能力</a></h4>
+<h4 id="特点"><a class="header" href="#特点">特点</a></h4>
 <p>将一些在编译和链接过程中的工作，放到了运行阶段。</p>
 <ul>
 <li>可以运行时新增类、方法、属性等</li>
 <li>可以运行时交换两个方法</li>
 <li>获得某个类所有成员方法、成员变量</li>
+<li>运行时库跟系统是绑定的，也即不同系统上，其实现可能是不同的</li>
 </ul>
 <h4 id="hook"><a class="header" href="#hook">Hook</a></h4>
 <p><a href="https://www.jianshu.com/p/86a0982398ca">基于iOS简单的hook原理及防护</a></p>
@@ -2365,9 +2366,24 @@ d.data  // 变为&quot;Hello World&quot;
 </blockquote>
 <p>反<code>Method Swizzle</code> Hook原理：使用fishhook修改<code>method_exchangeImplementations</code>指向自己的接口，在自己的接口中进行判断。</p>
 <h4 id="分类"><a class="header" href="#分类">分类</a></h4>
-<p>分类中的同名函数，是会覆盖原类的函数。</p>
-<p>调用优先级：分类(category) &gt; 本类 &gt; 父类</p>
 <p><a href="https://tech.meituan.com/2015/03/03/diveintocategory.html">深入理解Objective-C：Category</a></p>
+<ul>
+<li>
+<p>分类中的同名函数，是会覆盖原类的函数。</p>
+</li>
+<li>
+<p>调用优先级：分类(category) &gt; 本类 &gt; 父类</p>
+</li>
+<li>
+<p>如果两个扩展中，存在同名函数，则后编译的生效 (<a href="https://www.jianshu.com/p/39735f57443d">Category同名方法执行顺序</a>)</p>
+</li>
+<li>
+<p>通过<code>class_addMethod</code>添加的方法，往往是最后添加的，其一般会最先调用</p>
+</li>
+<li>
+<p>如果希望所有的同名函数都可以被调用到，可以通过<code>class_copyMethodList</code>拿到所有的函数，然后逐渐调用同名的接口。(该方法返回的顺序，就是调用查找的顺序)</p>
+</li>
+</ul>
 <h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
 <ul>
@@ -2501,6 +2517,24 @@ struct class_rw_ext_t {
         MethodListIMP imp;	// 就是IMP类型，该地址就是该函数的实现，https://www.jianshu.com/p/27ee04f3ed7b 中有示例
     };
 }
+</code></pre>
+<pre><code class="language-objective-c">// method_array_t，是一个二维数组，存放了方法列表的数组
+class method_array_t : 
+    public list_array_tt&lt;method_t, method_list_t, method_list_t_authed_ptr&gt;
+{
+    typedef list_array_tt&lt;method_t, method_list_t, method_list_t_authed_ptr&gt; Super;
+
+ public:
+    method_array_t() : Super() { }
+    method_array_t(method_list_t *l) : Super(l) { }
+
+    const method_list_t_authed_ptr&lt;method_list_t&gt; *beginCategoryMethodLists() const {
+        return beginLists();
+    }
+    
+    const method_list_t_authed_ptr&lt;method_list_t&gt; *endCategoryMethodLists(Class cls) const;
+};
+
 </code></pre>
 <pre><code class="language-c++">// Category生成的结构
 struct category_t {
@@ -3028,7 +3062,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>WebView的goBack接口执行需要时间，如果连接调用goBack，并不能回退多个页面，只能回退到上个页面。参考：<a href="https://nixwang.com/2014/08/03/pits-on-ios/">在 iOS 上踩过的坑</a>。如果需要连续跳转多个页面，需要用如下接口：</p>
 <pre><code class="language-swift">open func go(to item: WKBackForwardListItem) -&gt; WKNavigation?
 </code></pre>
-<h3 id="能力-1"><a class="header" href="#能力-1">能力</a></h3>
+<h3 id="能力"><a class="header" href="#能力">能力</a></h3>
 <h4 id="获取html内容"><a class="header" href="#获取html内容">获取Html内容</a></h4>
 <ul>
 <li>使用NSString提供的<code>stringWithContentsOfURL</code>接口</li>
@@ -4845,7 +4879,7 @@ FadeTransition(
 <p>如果要自定义动画时，把builder调用参数里的animation拿来作为parent就可以</p>
 </blockquote>
 <h3 id="hero动画"><a class="header" href="#hero动画">Hero动画</a></h3>
-<h4 id="能力-2"><a class="header" href="#能力-2">能力</a></h4>
+<h4 id="能力-1"><a class="header" href="#能力-1">能力</a></h4>
 <ul>
 <li>在同一个Page中，是支持多个Hero组件的</li>
 <li>同一个Page中的每个Hero组件，都可以有自己的动画方式</li>
