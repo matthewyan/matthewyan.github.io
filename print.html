@@ -2343,7 +2343,7 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://blog.csdn.net/businiao_zell/article/details/45872939">SEL类型数据和selector的用法</a>：SEL就是方法的包装，包含了调用地址</li>
 <li><a href="https://tech.meituan.com/2015/08/12/deep-understanding-object-c-of-method-caching.html">深入理解 Objective-C：方法缓存</a></li>
 <li><a href="https://blog.csdn.net/potato512/article/details/80947303">Runtime消息转发</a></li>
-<li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a>：可以调试的objc-runtime源代码</li>
+<li><a href="https://github.com/RetVal/objc-runtime">objc-runtime</a> | <a href="https://github.com/0xxd0/objc4">objc4</a>：可以调试的objc-runtime源代码</li>
 <li><a href="https://huang-libo.github.io/posts/Objective-C-Runtime-Changes-in-iOS-14">【iOS 14】Objective-C Runtime 的优化</a></li>
 </ul>
 <h4 id="特点"><a class="header" href="#特点">特点</a></h4>
@@ -2549,6 +2549,11 @@ struct category_t {
     ...
 };
 </code></pre>
+<h5 id="其它对象"><a class="header" href="#其它对象">其它对象</a></h5>
+<ul>
+<li><code>PointerUnion</code>：联合体指针，期内存储的值要么A，要么B (两个值互斥的情况使用)</li>
+<li><code>list_array_tt</code>，可以用来存储一维或二维数组数据。(<a href="https://jianli2017.top/wiki/IOS/Runtime/objc/5list_array_tt/">list_array_tt 结构详解</a>)</li>
+</ul>
 <h4 id="消息"><a class="header" href="#消息">消息</a></h4>
 <ul>
 <li>SEL定义为<code>struct objc_selector</code> （目前仅是一个字符串，苹果将其实现隐藏了）</li>
