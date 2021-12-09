@@ -139,30 +139,30 @@
 <ul>
 <li><a href="https://www.zhihu.com/question/323439136/answer/850516697">如何评价 Flutter for Web?</a></li>
 <li><a href="https://mp.weixin.qq.com/s/NGqF2OTvsV1A2KLiMXE2PQ">Flutter web 最新进展: 发掘更多可能！</a></li>
+<li><a href="https://tech.meituan.com/2021/03/18/flutterweb-in-meituanwaimai.html">FlutterWeb在美团外卖的实践</a></li>
+</ul>
+<h3 id="特性特点"><a class="header" href="#特性特点">特性/特点</a></h3>
+<ul>
+<li>通过<code>package:js</code>，支持与JS的交互 （<a href="https://dart.dev/web/js-interop">JavaScript interoperability</a>、<a href="https://blog.csdn.net/weixin_26735419/article/details/109122797">flutter web_在Flutter Web中使用JavaScript代码</a>）</li>
+<li>发布资源，主要是<code>main.dart.js</code>。默认Demo中，其大小就有1.3M</li>
+<li>在Web上渲染时，支持通过CanvasKit来实现 （即Web版Skia）</li>
+<li>但类似TextField输入框，仍然会存在DOM结点。(即DOM中存在Input标签)</li>
 </ul>
 <h3 id="flutter-web使用"><a class="header" href="#flutter-web使用">Flutter Web使用</a></h3>
-<pre><code class="language-sh"># 1. Flutter 1.12版本，需要先切为beta版本才可以使用web功能
-# 如果无法使用，请注意开代理
-flutter channel beta
-flutter upgrade
-flutter config --enable-web
-
-# 2. 然后重启vscode
-
-# 3. 查看device是否出现了chrome
+<pre><code class="language-sh"># 1. 查看device是否出现了chrome
 flutter devices
 
-# 4. Cmd + Shift + P，即可创建Flutter工程了
+# 2. Cmd + Shift + P，即可创建Flutter工程了
 
-# 5. 如果是之前创建的工程，现在执行如下命令即可使工程支持web
+# 3. 如果是之前创建的工程，现在执行如下命令即可使工程支持web
+# 新建的工程默认就支持
 flutter create .
 
-# 6. 运行即可
+# 4. 运行即可
 flutter run -d chrome
 
-# 7. 生成发布版本
+# 5. 生成发布版本
 flutter build web	# 在工程的build/web目录下，就会生成可以发布的资源
-
 </code></pre>
 <p>如果遇到错误 <code>websocket not upgraded error</code>，采用这篇文章的解决方案：
 <a href="https://github.com/flutter/flutter/issues/11444">websocket not upgraded error</a>
@@ -173,6 +173,13 @@ flutter build web	# 在工程的build/web目录下，就会生成可以发布的
 <h3 id="flutter-for-web实现原理"><a class="header" href="#flutter-for-web实现原理">Flutter For Web实现原理</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/71042536">Flutter for Web 详细预研</a></p>
 <p>Dart转为JS，界面上部分转换成标准的html标签，部分转换成通过Canvas绘制的自定义标签，最终构成一个dom树。</p>
+<h4 id="canvaskit"><a class="header" href="#canvaskit">CanvasKit</a></h4>
+<p><a href="https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/">CanvasKit简介</a></p>
+<ul>
+<li>CanvasKit是用Skia编译为WASM来实现在Web端支持Skia图形API的</li>
+<li>Skia编译至CanvasKit时，并没有多很多工作量，只是增加了一些胶水代码</li>
+<li>CanvasKit利用了WebGL提供的绘制接口</li>
+</ul>
 <h3 id="参考"><a class="header" href="#参考">参考</a></h3>
 <p><a href="https://flutter.cn/docs/get-started/web">Flutter Web开启方式</a></p>
 

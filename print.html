@@ -2364,6 +2364,7 @@ d.data  // 变为&quot;Hello World&quot;
 <li>可以运行时新增类、方法、属性等</li>
 <li>可以运行时交换两个方法</li>
 <li>获得某个类所有成员方法、成员变量</li>
+<li>可以通过<code>objc_copyClassList</code>或<code>objc_getClassList</code>获取所有已注册的类 (系统类有很多，在Demo中得到2W多个类) (<a href="https://www.jianshu.com/p/bf6c81fc2434">runtime使用篇: objc_getClassList 和 objc_copyClassList</a>)</li>
 <li>运行时库跟系统是绑定的，也即不同系统上，其实现可能是不同的</li>
 </ul>
 <h4 id="hook"><a class="header" href="#hook">Hook</a></h4>
@@ -2633,6 +2634,10 @@ struct category_t {
 <li>子线程释放Timer也需要注意，<code>timer.invalidate()</code>的调用线程要与Timer的创建线程是同一个</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swiftui"><a class="header" href="#swiftui">SwiftUI</a></h1>
+<h3 id="特性-1"><a class="header" href="#特性-1">特性</a></h3>
+<ul>
+<li>支持UI测试 (获取元素：<code>app.staticTexts[&quot;some text&quot;]</code>)</li>
+</ul>
 <h3 id="swiftui-demo"><a class="header" href="#swiftui-demo">SwiftUI Demo</a></h3>
 <ul>
 <li><a href="https://github.com/WillieWangWei/">SwiftUI-Tutorials</a></li>
@@ -2784,6 +2789,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
     }
 }
 </code></pre>
+<p>动态库的macho中，也包含了该该动态库的vmsize，即占用虚拟内存大小。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="多线程"><a class="header" href="#多线程">多线程</a></h1>
 <h3 id="多线程方式"><a class="header" href="#多线程方式">多线程方式</a></h3>
 <ul>
@@ -2882,6 +2888,11 @@ for (uint32_t i = 0; i &lt; c; i++) {
 <li>支持双向认证</li>
 <li>不支持<code>Service Worker</code> (即不支持PWA)</li>
 <li>支持WebAssembly (iOS15上验证支持)</li>
+</ul>
+<p>JS相关</p>
+<ul>
+<li><code>addUserScript</code>接口可以注入同名函数，并将原来的函数覆盖</li>
+<li><code>evaluateJavaScript</code>可以注入同名函数，并覆盖原来的函数</li>
 </ul>
 <h3 id="nsurlprotocol"><a class="header" href="#nsurlprotocol">NSURLProtocol</a></h3>
 <p><a href="https://juejin.cn/post/6844904079458566152">深度理解 NSURLProtocol</a></p>
@@ -3460,7 +3471,7 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <h3 id="angular"><a class="header" href="#angular">Angular</a></h3>
 <p>Angular与AngularJS是有差异的，参考：<a href="https://www.zhihu.com/question/67839941">Angular和AngularJS之间的关系？</a></p>
 <p><a href="https://www.zhihu.com/question/383137600/answer/1128792388">Angular 过时了吗? - 谢亚东的回答 - 知乎</a></p>
-<h5 id="特性-1"><a class="header" href="#特性-1">特性</a></h5>
+<h5 id="特性-2"><a class="header" href="#特性-2">特性</a></h5>
 <ul>
 <li>零配置 CLI，不用关心任何webpack Config</li>
 <li>官方提供所有的必须组件</li>
@@ -3819,6 +3830,15 @@ https://github.com/mrdoob/three.js/</p>
 <li><a href="Web/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
 </ul>
+<h3 id="js特性"><a class="header" href="#js特性">JS特性</a></h3>
+<ul>
+<li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
+<li>通过<code>func.toString()</code>，可以获取函数的代码实现 (代码中的注释等也都可以获取到)</li>
+<li><code>document.documentElement.outerHTML</code>可以获取较完整的HTML内容。但类似<code>DOCTYPE</code>是无法获取到的。 (<a href="https://segmentfault.com/q/1010000000513457">javascript如何获取当前网页的源码？</a>)</li>
+<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容 </li>
+<li>JS没有函数重载的功能 (<a href="https://zhuanlan.zhihu.com/p/64876386">js 函数的重载</a>)</li>
+<li>JS可以在函数内部嵌套函数</li>
+</ul>
 <h3 id="js动态特性"><a class="header" href="#js动态特性">JS动态特性</a></h3>
 <p>JavaScript 虽然被称为是“动态语言”，但确实是拥有静态语义的。</p>
 <pre><code class="language-shell"># 这些执行在不同的环境中，表现其实是不一样的，如在node、chrome的控制台中表现也不一样
@@ -3910,7 +3930,7 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
-<h3 id="特性-2"><a class="header" href="#特性-2">特性</a></h3>
+<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
@@ -5310,30 +5330,30 @@ final BuildContext context = tester.element(find.text('Go'));
 <ul>
 <li><a href="https://www.zhihu.com/question/323439136/answer/850516697">如何评价 Flutter for Web?</a></li>
 <li><a href="https://mp.weixin.qq.com/s/NGqF2OTvsV1A2KLiMXE2PQ">Flutter web 最新进展: 发掘更多可能！</a></li>
+<li><a href="https://tech.meituan.com/2021/03/18/flutterweb-in-meituanwaimai.html">FlutterWeb在美团外卖的实践</a></li>
+</ul>
+<h3 id="特性特点"><a class="header" href="#特性特点">特性/特点</a></h3>
+<ul>
+<li>通过<code>package:js</code>，支持与JS的交互 （<a href="https://dart.dev/web/js-interop">JavaScript interoperability</a>、<a href="https://blog.csdn.net/weixin_26735419/article/details/109122797">flutter web_在Flutter Web中使用JavaScript代码</a>）</li>
+<li>发布资源，主要是<code>main.dart.js</code>。默认Demo中，其大小就有1.3M</li>
+<li>在Web上渲染时，支持通过CanvasKit来实现 （即Web版Skia）</li>
+<li>但类似TextField输入框，仍然会存在DOM结点。(即DOM中存在Input标签)</li>
 </ul>
 <h3 id="flutter-web使用"><a class="header" href="#flutter-web使用">Flutter Web使用</a></h3>
-<pre><code class="language-sh"># 1. Flutter 1.12版本，需要先切为beta版本才可以使用web功能
-# 如果无法使用，请注意开代理
-flutter channel beta
-flutter upgrade
-flutter config --enable-web
-
-# 2. 然后重启vscode
-
-# 3. 查看device是否出现了chrome
+<pre><code class="language-sh"># 1. 查看device是否出现了chrome
 flutter devices
 
-# 4. Cmd + Shift + P，即可创建Flutter工程了
+# 2. Cmd + Shift + P，即可创建Flutter工程了
 
-# 5. 如果是之前创建的工程，现在执行如下命令即可使工程支持web
+# 3. 如果是之前创建的工程，现在执行如下命令即可使工程支持web
+# 新建的工程默认就支持
 flutter create .
 
-# 6. 运行即可
+# 4. 运行即可
 flutter run -d chrome
 
-# 7. 生成发布版本
+# 5. 生成发布版本
 flutter build web	# 在工程的build/web目录下，就会生成可以发布的资源
-
 </code></pre>
 <p>如果遇到错误 <code>websocket not upgraded error</code>，采用这篇文章的解决方案：
 <a href="https://github.com/flutter/flutter/issues/11444">websocket not upgraded error</a>
@@ -5344,6 +5364,13 @@ flutter build web	# 在工程的build/web目录下，就会生成可以发布的
 <h3 id="flutter-for-web实现原理"><a class="header" href="#flutter-for-web实现原理">Flutter For Web实现原理</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/71042536">Flutter for Web 详细预研</a></p>
 <p>Dart转为JS，界面上部分转换成标准的html标签，部分转换成通过Canvas绘制的自定义标签，最终构成一个dom树。</p>
+<h4 id="canvaskit"><a class="header" href="#canvaskit">CanvasKit</a></h4>
+<p><a href="https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/">CanvasKit简介</a></p>
+<ul>
+<li>CanvasKit是用Skia编译为WASM来实现在Web端支持Skia图形API的</li>
+<li>Skia编译至CanvasKit时，并没有多很多工作量，只是增加了一些胶水代码</li>
+<li>CanvasKit利用了WebGL提供的绘制接口</li>
+</ul>
 <h3 id="参考"><a class="header" href="#参考">参考</a></h3>
 <p><a href="https://flutter.cn/docs/get-started/web">Flutter Web开启方式</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="flutter-desktop"><a class="header" href="#flutter-desktop">Flutter Desktop</a></h1>
@@ -5574,7 +5601,7 @@ app.get('/', function (req, res) {
 <li>创建C的头文件，声明相应符号 （调用时，可能需要去掉最前面的下划线）</li>
 <li>在OC/Swift中调用C头文件中声明的函数即可</li>
 </ul>
-<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
+<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
@@ -6146,7 +6173,7 @@ main() {
 <li><a href="https://github.com/kelthuzadx/EffectiveModernCppChinese">《Effective Modern C++ 》</a></li>
 <li><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5">cppreference.com</a></li>
 </ul>
-<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
+<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
 <ul>
 <li>支持默认参数 (如果某个参数是默认参数，那么它后面的参数必须都是默认参数)</li>
 <li>支持类型的自动推断 (auto)</li>
@@ -6383,6 +6410,15 @@ impl Rectangle {
 <li><a href="Language/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
 </ul>
+<h3 id="js特性-1"><a class="header" href="#js特性-1">JS特性</a></h3>
+<ul>
+<li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
+<li>通过<code>func.toString()</code>，可以获取函数的代码实现 (代码中的注释等也都可以获取到)</li>
+<li><code>document.documentElement.outerHTML</code>可以获取较完整的HTML内容。但类似<code>DOCTYPE</code>是无法获取到的。 (<a href="https://segmentfault.com/q/1010000000513457">javascript如何获取当前网页的源码？</a>)</li>
+<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容 </li>
+<li>JS没有函数重载的功能 (<a href="https://zhuanlan.zhihu.com/p/64876386">js 函数的重载</a>)</li>
+<li>JS可以在函数内部嵌套函数</li>
+</ul>
 <h3 id="js动态特性-1"><a class="header" href="#js动态特性-1">JS动态特性</a></h3>
 <p>JavaScript 虽然被称为是“动态语言”，但确实是拥有静态语义的。</p>
 <pre><code class="language-shell"># 这些执行在不同的环境中，表现其实是不一样的，如在node、chrome的控制台中表现也不一样
@@ -6433,7 +6469,7 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
-<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
+<h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>

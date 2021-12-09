@@ -143,6 +143,15 @@
 <li><a href="../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
 </ul>
+<h3 id="js特性"><a class="header" href="#js特性">JS特性</a></h3>
+<ul>
+<li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
+<li>通过<code>func.toString()</code>，可以获取函数的代码实现 (代码中的注释等也都可以获取到)</li>
+<li><code>document.documentElement.outerHTML</code>可以获取较完整的HTML内容。但类似<code>DOCTYPE</code>是无法获取到的。 (<a href="https://segmentfault.com/q/1010000000513457">javascript如何获取当前网页的源码？</a>)</li>
+<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容 </li>
+<li>JS没有函数重载的功能 (<a href="https://zhuanlan.zhihu.com/p/64876386">js 函数的重载</a>)</li>
+<li>JS可以在函数内部嵌套函数</li>
+</ul>
 <h3 id="js动态特性"><a class="header" href="#js动态特性">JS动态特性</a></h3>
 <p>JavaScript 虽然被称为是“动态语言”，但确实是拥有静态语义的。</p>
 <pre><code class="language-shell"># 这些执行在不同的环境中，表现其实是不一样的，如在node、chrome的控制台中表现也不一样
