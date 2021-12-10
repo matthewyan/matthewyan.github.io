@@ -142,7 +142,8 @@
 <li><a href="https://nshipster.cn/__attribute__/">NSHipster <strong>attribute</strong></a></li>
 <li><a href="https://juejin.cn/post/6844904101839372295">iOS底层原理：weak的实现原理</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">OC中参数类型定义</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/81449078"> ARC 实现的原理</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/81449078">ARC 实现的原理</a></li>
+<li><a href="https://zesming.com/oc-super/">简谈 OC 中陌生而又熟悉的 super</a>： <code>super</code> 是一个关键字，给 <code>super</code> 发消息实际上是一种调用继承链上父类实现的方法的方式</li>
 </ul>
 <h3 id="语法"><a class="header" href="#语法">语法</a></h3>
 <h4 id="所有权"><a class="header" href="#所有权">所有权</a></h4>
@@ -212,6 +213,9 @@
 <li>
 <p>如果希望所有的同名函数都可以被调用到，可以通过<code>class_copyMethodList</code>拿到所有的函数，然后逐渐调用同名的接口。(该方法返回的顺序，就是调用查找的顺序)</p>
 </li>
+<li>
+<p><code>class_copyMethodList</code>只会获取当前类的方法列表，父类的方法列表不会返回</p>
+</li>
 </ul>
 <h4 id="对象--类实现"><a class="header" href="#对象--类实现">对象 &amp; 类实现</a></h4>
 <p>所有的类、元类，都是运行时创建的。</p>
@@ -240,7 +244,7 @@
 
 struct objc_class : objc_object {
     Class superclass;
-    cache_t cache;             // formerly cache pointer and vtable
+    cache_t cache;             // 方法列表的缓存，调用过的方法会存储在这儿
     class_data_bits_t bits;    // 要找函数、属性等数据，要通过该字段获取
     ...
 }
@@ -383,13 +387,19 @@ struct category_t {
 <li><code>PointerUnion</code>：联合体指针，期内存储的值要么A，要么B (两个值互斥的情况使用)</li>
 <li><code>list_array_tt</code>，可以用来存储一维或二维数组数据。(<a href="https://jianli2017.top/wiki/IOS/Runtime/objc/5list_array_tt/">list_array_tt 结构详解</a>)</li>
 </ul>
-<h4 id="消息"><a class="header" href="#消息">消息</a></h4>
+<h4 id="消息方法"><a class="header" href="#消息方法">消息/方法</a></h4>
 <ul>
 <li>SEL定义为<code>struct objc_selector</code> （目前仅是一个字符串，苹果将其实现隐藏了）</li>
 <li>不同类的同名方法（即使参数不同），它们的SEL也是相同的</li>
+<li><code>sel_isEqual</code>可以用来判断两个SEL是否相同</li>
 <li><code>@selector</code>及<code>sel_registerName</code>可以获取SEL方法选择器</li>
 <li>IMP实际上是一个函数指针</li>
 <li>在cache中存的是<code>method_t</code>类型，里面包含了SEL和IMP</li>
+<li><code>class_copyMethodList</code>只会获取当前类的方法列表，父类的方法列表不会返回</li>
+<li><code>super</code>会从继承链上找父类的方法实现，然后进行调用</li>
+<li><code>objc_msgSend</code>可以直接调用某个类的某个方法 (<code>id objc_msgSend(id self, SEL _cmd, ...)</code>)</li>
+<li><code>objc_msgSendSuper</code>可以直接调用某个父类的方法</li>
+<li>消息调用时，会优先从<code>objc_class</code>的<code>cache_t</code>中查找方法。</li>
 </ul>
 <p>消息调用示意图：（来源：https://www.jianshu.com/p/782d7ce86d0f）</p>
 <img src="./images/rt_method_forward.png" style="zoom:80%;" />
