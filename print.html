@@ -4184,8 +4184,15 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <p>目前小程序采用了WebView + JSCore的设计，渲染使用WebView，JS逻辑使用JSCore。这样做的目的，是为了安全性，即控制小程序逻辑直接操作DOM树等。参考：<a href="https://zhaomenghuan.js.org/blog/wechat-miniprogram-principle-analysis.html">微信小程序技术原理分析</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="canvas"><a class="header" href="#canvas">Canvas</a></h1>
 <h3 id="资料-22"><a class="header" href="#资料-22">资料</a></h3>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial">Canvas教程</a></p>
-<p><a href="https://github.com/supperjet/H5-Animation.git">H5 Animation</a></p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial">Canvas教程</a></li>
+<li><a href="https://github.com/supperjet/H5-Animation.git">H5 Animation</a></li>
+<li><a href="https://segmentfault.com/a/1190000040564730">HTML界的“苏炳添”——详解Canvas优越性能和实际应用</a></li>
+</ul>
+<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
+<ul>
+<li>Canvas的绘制性能是高于DOM的 (<a href="https://segmentfault.com/a/1190000040564730">HTML界的“苏炳添”</a>)</li>
+</ul>
 <h3 id="原理-2"><a class="header" href="#原理-2">原理</a></h3>
 <ul>
 <li>Canvas目前在大部分浏览器上都有使用硬件加速</li>
@@ -5612,7 +5619,7 @@ app.get('/', function (req, res) {
 <li>创建C的头文件，声明相应符号 （调用时，可能需要去掉最前面的下划线）</li>
 <li>在OC/Swift中调用C头文件中声明的函数即可</li>
 </ul>
-<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
+<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
@@ -6184,7 +6191,7 @@ main() {
 <li><a href="https://github.com/kelthuzadx/EffectiveModernCppChinese">《Effective Modern C++ 》</a></li>
 <li><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5">cppreference.com</a></li>
 </ul>
-<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
+<h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
 <ul>
 <li>支持默认参数 (如果某个参数是默认参数，那么它后面的参数必须都是默认参数)</li>
 <li>支持类型的自动推断 (auto)</li>
@@ -6480,7 +6487,7 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
-<h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
+<h3 id="特性-7"><a class="header" href="#特性-7">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
