@@ -147,6 +147,7 @@
 <li>支持双向认证</li>
 <li>不支持<code>Service Worker</code> (即不支持PWA)</li>
 <li>支持WebAssembly (iOS15上验证支持)</li>
+<li>资源会有缓存，并有默认的缓存策略 (<a href="https://www.jianshu.com/p/a3911d4808ba">WKWebView缓存问题 - 图片资源</a>)</li>
 </ul>
 <p>JS相关</p>
 <ul>
@@ -225,7 +226,8 @@
 <li>设置导航记录 (backForwardList)</li>
 <li>自定义UA</li>
 <li>前进、后退、重新加载等</li>
-<li>Webview截屏能力 (<code>-takeSnapshotWithConfiguration:completionHandler:</code>)</li>
+<li>Webview截屏能力 (iOS11: <code>-takeSnapshotWithConfiguration:completionHandler:</code>)</li>
+<li>可以知道网页是否在视频录制 (iOS15: <code>cameraCaptureState</code>)</li>
 </ul>
 <h3 id="wkwebview实现代理"><a class="header" href="#wkwebview实现代理">WKWebview实现代理</a></h3>
 <p><a href="https://nemocdz.github.io/post/ios-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86proxy%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/">iOS 设置代理（Proxy）方案总结</a></p>
