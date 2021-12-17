@@ -147,6 +147,7 @@
 <li>发布资源，主要是<code>main.dart.js</code>。默认Demo中，其大小就有1.3M</li>
 <li>在Web上渲染时，支持通过CanvasKit来实现 （即Web版Skia）</li>
 <li>但类似TextField输入框，仍然会存在DOM结点。(即DOM中存在Input标签)</li>
+<li>以CanvasKit来运行时，在iOS15真机验证可行。(创建的默认demo，使用canvaskit参数编译)</li>
 </ul>
 <h3 id="flutter-web使用"><a class="header" href="#flutter-web使用">Flutter Web使用</a></h3>
 <pre><code class="language-sh"># 1. 查看device是否出现了chrome
@@ -160,6 +161,7 @@ flutter create .
 
 # 4. 运行即可
 flutter run -d chrome
+# flutter run -d chrome --web-renderer canvaskit，可以指定以canvaskit来运行
 
 # 5. 生成发布版本
 flutter build web	# 在工程的build/web目录下，就会生成可以发布的资源
