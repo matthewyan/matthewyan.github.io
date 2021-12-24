@@ -459,6 +459,25 @@ struct category_t {
 <li>如果当前线程的runloop还没有启动过，还需要调用一下<code>run</code>接口</li>
 <li>子线程释放Timer也需要注意，<code>timer.invalidate()</code>的调用线程要与Timer的创建线程是同一个</li>
 </ul>
+<h3 id="其它"><a class="header" href="#其它">其它</a></h3>
+<h4 id="load-顺序"><a class="header" href="#load-顺序">+load 顺序</a></h4>
+<ul>
+<li>动态库<code>+load</code>最优先执行
+<ul>
+<li>跟加载顺序有关系</li>
+</ul>
+</li>
+<li>主应用内<code>+load</code>其次执行
+<ul>
+<li>跟文件编译顺序有关系</li>
+</ul>
+</li>
+<li>静态库<code>+load</code>最后执行
+<ul>
+<li>跟文件编译顺序有关系</li>
+</ul>
+</li>
+</ul>
 
                     </main>
 

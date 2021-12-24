@@ -2676,6 +2676,25 @@ struct category_t {
 <li>如果当前线程的runloop还没有启动过，还需要调用一下<code>run</code>接口</li>
 <li>子线程释放Timer也需要注意，<code>timer.invalidate()</code>的调用线程要与Timer的创建线程是同一个</li>
 </ul>
+<h3 id="其它-4"><a class="header" href="#其它-4">其它</a></h3>
+<h4 id="load-顺序"><a class="header" href="#load-顺序">+load 顺序</a></h4>
+<ul>
+<li>动态库<code>+load</code>最优先执行
+<ul>
+<li>跟加载顺序有关系</li>
+</ul>
+</li>
+<li>主应用内<code>+load</code>其次执行
+<ul>
+<li>跟文件编译顺序有关系</li>
+</ul>
+</li>
+<li>静态库<code>+load</code>最后执行
+<ul>
+<li>跟文件编译顺序有关系</li>
+</ul>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swiftui"><a class="header" href="#swiftui">SwiftUI</a></h1>
 <h3 id="特性-1"><a class="header" href="#特性-1">特性</a></h3>
 <ul>
@@ -3490,7 +3509,7 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li><a href="https://zhuanlan.zhihu.com/p/96986818">深入理解浏览器原理</a></li>
 <li><a href="https://blog.poetries.top/browser-working-principle/">浏览器工作原理与实践</a></li>
 </ul>
-<h3 id="其它-4"><a class="header" href="#其它-4">其它</a></h3>
+<h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程</a></li>
@@ -3879,6 +3898,7 @@ https://github.com/mrdoob/three.js/</p>
 <li><a href="https://segmentfault.com/a/1190000017927665">JavaScript是如何工作的</a></li>
 <li><a href="Web/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
+<li><a href="Web/../Note/ProfessionalJS.html">JS高级程序设计</a></li>
 </ul>
 <h3 id="js特性"><a class="header" href="#js特性">JS特性</a></h3>
 <ul>
@@ -3919,12 +3939,14 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
+<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
 <h4 id="jsaot"><a class="header" href="#jsaot">JSAOT</a></h4>
-<p>JS/TS转C语言</p>
-<p>https://github.com/andrei-markeev/ts2c</p>
-<p>https://andrei-markeev.github.io/ts2c/</p>
-<p>https://github.com/NectarJS/nectarjs</p>
+<p>JS/TS转C语言：</p>
+<ul>
+<li>https://github.com/andrei-markeev/ts2c</li>
+<li>https://andrei-markeev.github.io/ts2c/</li>
+<li>https://github.com/NectarJS/nectarjs</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="typescript-1"><a class="header" href="#typescript-1">TypeScript</a></h1>
 <h3 id="资料-18"><a class="header" href="#资料-18">资料</a></h3>
 <ul>
@@ -4135,7 +4157,7 @@ cookies.forEach { cookie in
 <h3 id="chrome"><a class="header" href="#chrome">Chrome</a></h3>
 <p>在Chrome中查看Cookie的方式：</p>
 <img src="Web/./images/chrome_cookie_store.jpg" style="zoom:67%;" />
-<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
+<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
 <p>服务端设置Cookie，是通过在响应头里加<code>Set-Cookie</code>字段
 参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">Set Cookie</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom"><a class="header" href="#dom">DOM</a></h1>
@@ -5068,7 +5090,7 @@ return Consumer&lt;CartModel&gt;(
 <p>最简单的理解，BloC就是利用了 <code>StreamBuilder</code> + <code>Stream</code> 来管理状态的。具体可以参看该Demo:<a href="https://github.com/OpenFlutter/Flutter-Notebook/tree/master/mecury_project/example/bloc_demo">block_demo</a>,   Demo对应的文章：<a href="https://juejin.im/post/5bb6f344f265da0aa664d68a">状态管理探索篇——BLoC(三)</a></p>
 <p>但被广泛使用的<a href="https://pub.dev/packages/flutter_bloc">flutter_bloc</a>，没有直接使用StreamBuilder，而是自己实现了类似StreamBuilder的<code>BlocBuilder</code>。在实现上，<code>flutter_bloc</code>也有类似<code>Redux</code>的状态转换的<code>纯方法</code>。</p>
 <h3 id="redux"><a class="header" href="#redux">Redux</a></h3>
-<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
+<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
 <ul>
 <li><a href="https://www.reddit.com/r/FlutterDev/comments/brz0nu/scoped_model_vs_provider/">Scoped model vs Provider</a>: Scoped model与Provider的区别</li>
 </ul>
@@ -6411,7 +6433,7 @@ main() {
 <ul>
 <li><a href="https://learnku.com/articles/31161">Rust模块和文件</a>：对模块说的非常清晰的文章</li>
 </ul>
-<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
+<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
@@ -6476,6 +6498,7 @@ impl Rectangle {
 <li><a href="https://segmentfault.com/a/1190000017927665">JavaScript是如何工作的</a></li>
 <li><a href="Language/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
+<li><a href="Language/../Note/ProfessionalJS.html">JS高级程序设计</a></li>
 </ul>
 <h3 id="js特性-1"><a class="header" href="#js特性-1">JS特性</a></h3>
 <ul>
@@ -6516,12 +6539,14 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
+<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
 <h4 id="jsaot-1"><a class="header" href="#jsaot-1">JSAOT</a></h4>
-<p>JS/TS转C语言</p>
-<p>https://github.com/andrei-markeev/ts2c</p>
-<p>https://andrei-markeev.github.io/ts2c/</p>
-<p>https://github.com/NectarJS/nectarjs</p>
+<p>JS/TS转C语言：</p>
+<ul>
+<li>https://github.com/andrei-markeev/ts2c</li>
+<li>https://andrei-markeev.github.io/ts2c/</li>
+<li>https://github.com/NectarJS/nectarjs</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="typescript-2"><a class="header" href="#typescript-2">TypeScript</a></h1>
 <h3 id="资料-36"><a class="header" href="#资料-36">资料</a></h3>
 <ul>
@@ -6853,7 +6878,7 @@ Functor即定义了统一的协议和语言，可以对容器数据进行转换�
 单位元在维基百科上的定义：在半群S的集合S上存在一元素e，使得任意与集合S中的元素a都符合 a·e = e·a = a</p>
 </blockquote>
 <p>Swiftz实现：https://github.com/typelift/Swiftz/blob/master/Sources/Swiftz/Monoid.swift</p>
-<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
+<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
 <h4 id="pointfree"><a class="header" href="#pointfree">Pointfree</a></h4>
 <p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">pointfree</a>，函数无须提及将要操作的数据是什么样的。</p>
 <pre><code class="language-js">// 非 pointfree，因为提到了数据：word
@@ -7021,7 +7046,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="精益创业"><a class="header" href="#精益创业">精益创业</a></h3>
 <p>精益创业，是要解决的是面向不确定性创造新事物。精益创业的思路就是“试”，通过尝试<code>MVP</code>(最小可行产品)来降低尝试成本。</p>
 <p>精益创业的方法论就是“开发”-&gt;“测量”-&gt;“认知”这样一个反馈循环。其中收获的<strong>认知</strong>是最重要的，它是经过验证的。</p>
-<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
+<h3 id="其它-12"><a class="header" href="#其它-12">其它</a></h3>
 <p>在所有迭代前可以添加一个<strong>迭代 0</strong>，所谓迭代 0，就是在迭代 1 之前的一个迭代，我们可以把它理解成开发的准备阶段。</p>
 <p>扩大自己的上下文，跨越自己的位置思考，甚至跨越两三级的角度上来看问题，让自己更有全局视野。</p>
 <p>IT 行业中大多数人的专业程度是不够的。</p>
@@ -7061,7 +7086,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
 <p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
-<h4 id="其它-12"><a class="header" href="#其它-12">其它</a></h4>
+<h4 id="其它-13"><a class="header" href="#其它-13">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
 <p>一定要尽早暴露问题，出现了问题，主动拋出来，越晚拋，隐患就越大。但在工作中暴露自己的问题，是很大的挑战，因为这里还面临着一个心理问题：会不会让别人觉得自己不行。</p>
@@ -7128,7 +7153,6 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li><a href="http://t.cn/EGeYqfX">敏捷软件开发的基本定理</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript高级程序设计"><a class="header" href="#javascript高级程序设计">JavaScript高级程序设计</a></h1>
-<p>[TOC]</p>
 <h2 id="前提"><a class="header" href="#前提">前提</a></h2>
 <h3 id="es标准"><a class="header" href="#es标准">ES标准</a></h3>
 <p>ES5即ES3.1，于2009年12月3日正式发布。这几年基本维持了一年一个版本的节奏。</p>
@@ -7614,7 +7638,7 @@ console.log(typeof Person);	// function
 <p><code>建模</code> 是<code>DDD</code>的基础概念</p>
 <h2 id="ddd对我而言"><a class="header" href="#ddd对我而言">DDD对我而言</a></h2>
 <h3 id="优秀设计糟糕设计和有效设计"><a class="header" href="#优秀设计糟糕设计和有效设计">优秀设计、糟糕设计和有效设计</a></h3>
-<h2 id="其它-13"><a class="header" href="#其它-13">其它</a></h2>
+<h2 id="其它-14"><a class="header" href="#其它-14">其它</a></h2>
 <p>目前</p>
 <p><code>DDD</code>的核心就是将业务架构映射到系统架构上，在业务变化调整时，对应的系统架构也做调整。</p>
 <p>领域驱动设计包括战略建模和战术建模: 战略设计侧重于高层次、宏观上去划分和集成限界上下文，而战术设计则关注更具体使用建模工具来细化上下文。</p>
@@ -8054,7 +8078,7 @@ console.log(typeof Person);	// function
 <li>面向表达式的语言。（除了<code>use</code>这种声明语句，其它基本都是表达式）</li>
 <li>没有 <code>三元操作符</code></li>
 </ul>
-<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
+<h3 id="其它-15"><a class="header" href="#其它-15">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
