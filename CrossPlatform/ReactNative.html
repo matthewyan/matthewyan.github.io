@@ -175,6 +175,9 @@
 <li>
 <p><a href="https://zeyio.com/rn-render/">React Native渲染原理浅析</a>：渲染过程的介绍</p>
 </li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/356940165">React Native 0.64 新变化 &amp; 再聊跨端技术</a></p>
+</li>
 </ul>
 <h3 id="使用"><a class="header" href="#使用">使用</a></h3>
 <h4 id="使用native-ui"><a class="header" href="#使用native-ui">使用Native UI</a></h4>
@@ -190,6 +193,26 @@
 <li>添加接口：RCT_EXPORT_METHOD</li>
 </ul>
 <p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeModule</p>
+<h3 id="核心概念"><a class="header" href="#核心概念">核心概念</a></h3>
+<h4 id="rn-bundle"><a class="header" href="#rn-bundle">RN Bundle</a></h4>
+<p><a href="https://juejin.cn/post/6844904003696853000">简述 ReactNative Bundle</a></p>
+<p>RN Bundle本质就是js包，为什么需要RN Bundle呢？</p>
+<ul>
+<li>将React(JSX)转为JS</li>
+<li>支持转为ES5</li>
+<li>依赖外部JS模块</li>
+<li>代码混淆</li>
+</ul>
+<p>RN Bundle组成部分：</p>
+<ul>
+<li>polyfills (做一些JS Context中的准备工作，如定义模块方法等)</li>
+<li>module 定义 (业务逻辑)</li>
+<li>require 调用 (用来加载必须的初始化及根组件)</li>
+</ul>
+<h5 id="module-id"><a class="header" href="#module-id">Module ID</a></h5>
+<p>是从0开始递增的数字，用来唯一标识各个Module</p>
+<h5 id="module-factory"><a class="header" href="#module-factory">Module Factory</a></h5>
+<p>作用：创建并导出组件类，并注册根组件。</p>
 <h3 id="原理--源码"><a class="header" href="#原理--源码">原理 &amp; 源码</a></h3>
 <p>RN使用及工作原理，简单来说，有如下几点：</p>
 <ul>
@@ -222,7 +245,7 @@
 <p><a href="https://developer.apple.com/documentation/javascriptcore">JavaScriptCore</a> 提供的C接口可以参考：<a href="https://juejin.im/post/6844903632639361038">JavaScriptCoreC语言API详细介绍</a></p>
 <p>RN中Native和JS交互的逻辑，说的比较清楚是这篇文章：<a href="https://juejin.im/post/6844903862113943560">RN 通信原理（for 前端）</a>。 对应的示例代码为：<a href="https://github.com/iostalks/Arch">iostalks/Arch</a></p>
 </blockquote>
-<h4 id="核心概念"><a class="header" href="#核心概念">核心概念</a></h4>
+<h4 id="核心类"><a class="header" href="#核心类">核心类</a></h4>
 <h5 id="rctrootview"><a class="header" href="#rctrootview">RCTRootView</a></h5>
 <p>RN在Native上的展示容器，所以RN基于这种实现，就很方便在已有的Native应用中进行插入某一个RN页面</p>
 <h5 id="rctshadowview"><a class="header" href="#rctshadowview">RCTShadowView</a></h5>

@@ -222,6 +222,19 @@ for (uint32_t i = 0; i &lt; c; i++) {
 }
 </code></pre>
 <p>动态库的macho中，也包含了该该动态库的vmsize，即占用虚拟内存大小。</p>
+<h3 id="硬件"><a class="header" href="#硬件">硬件</a></h3>
+<h4 id="arm64e"><a class="header" href="#arm64e">arm64e</a></h4>
+<h4 id="指针验签-指针认证-pac"><a class="header" href="#指针验签-指针认证-pac">指针验签 (指针认证, PAC)</a></h4>
+<ul>
+<li><a href="https://juejin.cn/post/6883002562581102600">arm64e 架构简介——指针验签</a></li>
+<li><a href="https://www.swiftthumb.com/archiver/?tid-232911.html">iOS 14.5 如何用 PAC 保护 Objective-C 对象</a></li>
+</ul>
+<p>目的：</p>
+<ul>
+<li>保护控制流程不被篡改, 可以防护栈溢出等攻击。</li>
+<li>保护数据指针不被修改。</li>
+</ul>
+<p>其实现原理，是64位的指针，高位的25位没有使用，用来存放指针签名数据。在指针间接跳转前进行验签。</p>
 
                     </main>
 
