@@ -193,6 +193,13 @@
 <li>添加接口：RCT_EXPORT_METHOD</li>
 </ul>
 <p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeModule</p>
+<h3 id="执行顺序"><a class="header" href="#执行顺序">执行顺序</a></h3>
+<p><a href="https://www.jianshu.com/p/b02c58c6e11e">RN iOS端启动过程解析</a></p>
+<ul>
+<li>创建<code>RCTBridge</code> (创建真正执行对象<code>RCTCxxBridge</code>)</li>
+<li>创建JS线程，并绑定Runloop</li>
+<li>注册Module (包括实现<code>RCTBridgeModule</code>协议的Module和通过<code>RCT_EXTERN</code>包装的Module)</li>
+</ul>
 <h3 id="核心概念"><a class="header" href="#核心概念">核心概念</a></h3>
 <h4 id="rn-bundle"><a class="header" href="#rn-bundle">RN Bundle</a></h4>
 <p><a href="https://juejin.cn/post/6844904003696853000">简述 ReactNative Bundle</a></p>
