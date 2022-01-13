@@ -216,6 +216,11 @@
 <li>module 定义 (业务逻辑)</li>
 <li>require 调用 (用来加载必须的初始化及根组件)</li>
 </ul>
+<p>Bundle有两种类型： (<a href="https://blog.csdn.net/gg_ios/article/details/100663016">分析一下metro下两种Bundle格式</a>)</p>
+<ul>
+<li>Plain Bundle</li>
+<li>RAM Bundle</li>
+</ul>
 <h5 id="module-id"><a class="header" href="#module-id">Module ID</a></h5>
 <p>是从0开始递增的数字，用来唯一标识各个Module</p>
 <h5 id="module-factory"><a class="header" href="#module-factory">Module Factory</a></h5>
@@ -252,6 +257,20 @@
 <p><a href="https://developer.apple.com/documentation/javascriptcore">JavaScriptCore</a> 提供的C接口可以参考：<a href="https://juejin.im/post/6844903632639361038">JavaScriptCoreC语言API详细介绍</a></p>
 <p>RN中Native和JS交互的逻辑，说的比较清楚是这篇文章：<a href="https://juejin.im/post/6844903862113943560">RN 通信原理（for 前端）</a>。 对应的示例代码为：<a href="https://github.com/iostalks/Arch">iostalks/Arch</a></p>
 </blockquote>
+<h4 id="native调用js"><a class="header" href="#native调用js">Native调用JS</a></h4>
+<p><a href="https://www.jianshu.com/p/dcc7bcb4c0e9">ReactNative IOS 运行原理之<OC TO JavaScript></a></p>
+<ul>
+<li>外部调用接口：<code>RCTBridge enqueueJSCall:(NSString *)moduleDotMethod args:(NSArray *)args</code></li>
+<li>核心执行接口：<code>NativeToJsBridge::callFunction</code></li>
+<li>支持OC调用JS前，需要先绑定Native&amp;JS，相应逻辑在<code>JSIExecutor::bindBridge</code>中处理</li>
+</ul>
+<p>执行顺序：</p>
+<ul>
+<li><code>RCTMessageThread::runOnQueue</code> 在JSThread中执行指定block （或<code>NativeToJsBridge::runOnExecutorQueue</code>）</li>
+<li><code>tryAndReturnError</code> 尝试执行相应逻辑，出了异常就会被捕获，并生成：<code>Exception *** was thrown from JS thread</code></li>
+<li><code>NativeToJsBridge::callFunction</code></li>
+<li><code>JSIExecutor::callFunction</code></li>
+</ul>
 <h4 id="核心类"><a class="header" href="#核心类">核心类</a></h4>
 <h5 id="rctrootview"><a class="header" href="#rctrootview">RCTRootView</a></h5>
 <p>RN在Native上的展示容器，所以RN基于这种实现，就很方便在已有的Native应用中进行插入某一个RN页面</p>
@@ -259,6 +278,10 @@
 <p>继承自NSObject，主要能力是在子线程进行布局相关的计算。与RCTView的关系类似UIView和CALayer的关系。</p>
 <h5 id="rctbridge"><a class="header" href="#rctbridge">RCTBridge</a></h5>
 <p>负责管理OC和JS的交互。 所有要暴露给JS的Native模块，都需要实现<code>RCTBridgeModule</code>协议</p>
+<h5 id="jscruntime"><a class="header" href="#jscruntime">JSCRuntime</a></h5>
+<p><a href="https://www.jianshu.com/p/1f322b841c31">ReactNative源码分析 - 通信机制</a></p>
+<p>RN &amp; JS 交互的核心类。</p>
+<p>数据共享的核心原理：Native及JS端，都是操作<code>JSContext</code>的<code>global</code>对象，通过设置其属性，来供两端使用。</p>
 
                     </main>
 
