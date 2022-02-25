@@ -3553,11 +3553,33 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
 </ul>
-<h3 id="多端框架"><a class="header" href="#多端框架">多端框架</a></h3>
+<h3 id="解决方案"><a class="header" href="#解决方案">解决方案</a></h3>
 <ul>
 <li><a href="https://juejin.im/post/5c90eb366fb9a070d4199cc9">小程序多端框架全面测评</a></li>
 <li><a href="https://mp.weixin.qq.com/s/jIDEHfuMnED6HTfNgjsW4w">深入测试一周，主流多端框架大比武</a></li>
 </ul>
+<h4 id="框架选型"><a class="header" href="#框架选型">框架选型</a></h4>
+<table><thead><tr><th>方案</th><th>优点</th><th>劣势</th><th>备注</th></tr></thead><tbody>
+<tr><td>React</td><td>可使用RN</td><td></td><td></td></tr>
+<tr><td>Vue</td><td></td><td></td><td></td></tr>
+<tr><td>Angular</td><td></td><td></td><td></td></tr>
+<tr><td><a href="https://github.com/NervJS/nerv">Nerv</a></td><td></td><td></td><td>京东开发，用来替代React，相关资料参考：<a href="https://jelly.jd.com/article/5c2d73af17b02c00473313c2">京东高性能前端框架</a></td></tr>
+</tbody></table>
+<h4 id="多端支持选型"><a class="header" href="#多端支持选型">多端支持选型</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/40705635">什么是 Native、Web App、Hybrid？</a></p>
+<table><thead><tr><th>方案</th><th>H5</th><th>小程序</th><th>Native</th><th>桌面</th><th>备注</th></tr></thead><tbody>
+<tr><td>React</td><td></td><td></td><td>√ (RN)</td><td></td><td></td></tr>
+<tr><td>Vue</td><td></td><td></td><td>√ (Weex)</td><td></td><td></td></tr>
+<tr><td><a href="https://taro-docs.jd.com/taro/docs">Taro</a></td><td>√</td><td>√ (微信、支付宝、飞书等)</td><td>√ (RN)</td><td></td><td>支持React/Vue开发</td></tr>
+<tr><td>Hybrid App</td><td>√</td><td></td><td>√</td><td></td><td>由Native通过JSBridge等方法提供统一的API，其余在Web实现</td></tr>
+</tbody></table>
+<h4 id="react技术栈"><a class="header" href="#react技术栈">React技术栈</a></h4>
+<table><thead><tr><th>方案</th><th>目的</th><th>备注</th></tr></thead><tbody>
+<tr><td>React Native</td><td></td><td></td></tr>
+<tr><td><a href="https://github.com/necolas/react-native-web">React Native for Web</a></td><td>可以让RN代码直接跑在Web中</td><td></td></tr>
+<tr><td><a href="https://github.com/microsoft/react-native-macos">React Native for macOS</a></td><td></td><td></td></tr>
+<tr><td><a href="https://github.com/microsoft/react-native-windows">React Native for Windows</a></td><td></td><td>资料：<a href="https://segmentfault.com/a/1190000039020824">轻松几步教你将React Native 项目运行在Web端</a></td></tr>
+</tbody></table>
 <h2 id="调试"><a class="header" href="#调试">调试</a></h2>
 <h3 id="vscode中调试页面"><a class="header" href="#vscode中调试页面">VSCode中调试页面</a></h3>
 <p>如果下载的源码需要用<code>npm run dev</code>来运行的话：</p>
@@ -4029,6 +4051,12 @@ NaN
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1499075">VSCode使用ts-node 调试TypeScript代码</a></li>
 <li><a href="https://jkchao.github.io/typescript-book-chinese/">深入理解 TypeScript</a></li>
+<li><a href="https://blog.rexskz.info/typescript-type-system-and-functional-programming.html">TypeScript 类型系统与函数式编程</a></li>
+</ul>
+<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
+<ul>
+<li>是静态、弱类型语言</li>
+<li>函数也是一等公民，支持函数式编程 </li>
 </ul>
 <h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
 <ul>
@@ -4080,7 +4108,7 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
-<h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
+<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
@@ -4328,7 +4356,7 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <li><a href="https://github.com/supperjet/H5-Animation.git">H5 Animation</a></li>
 <li><a href="https://segmentfault.com/a/1190000040564730">HTML界的“苏炳添”——详解Canvas优越性能和实际应用</a></li>
 </ul>
-<h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
+<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
 <ul>
 <li>Canvas的绘制性能是高于DOM的 (<a href="https://segmentfault.com/a/1190000040564730">HTML界的“苏炳添”</a>)</li>
 </ul>
@@ -5773,7 +5801,7 @@ app.get('/', function (req, res) {
 <li>创建C的头文件，声明相应符号 （调用时，可能需要去掉最前面的下划线）</li>
 <li>在OC/Swift中调用C头文件中声明的函数即可</li>
 </ul>
-<h3 id="特性-5"><a class="header" href="#特性-5">特性</a></h3>
+<h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
 <p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
@@ -6345,7 +6373,7 @@ main() {
 <li><a href="https://github.com/kelthuzadx/EffectiveModernCppChinese">《Effective Modern C++ 》</a></li>
 <li><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5">cppreference.com</a></li>
 </ul>
-<h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
+<h3 id="特性-7"><a class="header" href="#特性-7">特性</a></h3>
 <ul>
 <li>支持默认参数 (如果某个参数是默认参数，那么它后面的参数必须都是默认参数)</li>
 <li>支持类型的自动推断 (auto)</li>
@@ -6635,6 +6663,12 @@ NaN
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1499075">VSCode使用ts-node 调试TypeScript代码</a></li>
 <li><a href="https://jkchao.github.io/typescript-book-chinese/">深入理解 TypeScript</a></li>
+<li><a href="https://blog.rexskz.info/typescript-type-system-and-functional-programming.html">TypeScript 类型系统与函数式编程</a></li>
+</ul>
+<h3 id="特性-8"><a class="header" href="#特性-8">特性</a></h3>
+<ul>
+<li>是静态、弱类型语言</li>
+<li>函数也是一等公民，支持函数式编程 </li>
 </ul>
 <h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
 <ul>
@@ -6645,7 +6679,7 @@ NaN
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
 <p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
-<h3 id="特性-7"><a class="header" href="#特性-7">特性</a></h3>
+<h3 id="特性-9"><a class="header" href="#特性-9">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
@@ -6981,6 +7015,10 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="资料-42"><a class="header" href="#资料-42">资料</a></h3>
 <p><a href="https://juejin.im/post/6844903872130088974">全网最全 Flutter 与 React Native 深入对比分析</a></p>
 <p><a href="https://segmentfault.com/a/1190000039099456">年终盘点跨平台技术优劣势对比（Hybrid、RN、Weex、Flutter）</a></p>
+<table><thead><tr><th>方案</th><th>作用</th></tr></thead><tbody>
+<tr><td>RN</td><td>使用React开发iOS/Android应用</td></tr>
+<tr><td></td><td></td></tr>
+</tbody></table>
 <h3 id="flutter-vs-rn-vs-native"><a class="header" href="#flutter-vs-rn-vs-native">Flutter vs RN vs Native</a></h3>
 <p><a href="https://medium.com/swlh/flutter-vs-native-vs-react-native-examining-performance-31338f081980">Flutter vs Native vs React-Native: Examining performance</a></p>
 <p><a href="https://medium.com/swlh/flutter-vs-react-native-vs-native-deep-performance-comparison-990b90c11433">Flutter vs React Native vs Native: Deep Performance Comparison</a></p>
