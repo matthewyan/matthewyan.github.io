@@ -9732,6 +9732,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <ul>
 <li><a href="https://segmentfault.com/a/1190000040275586">微前端解决方案</a></li>
 <li><a href="https://martinfowler.com/articles/micro-frontends.html">Micro Frontends</a></li>
+<li><a href="https://juejin.cn/post/6844903953734336525">微前端入门</a> (上文的中译版)</li>
 </ul>
 <blockquote>
 <p>breaking up frontend monoliths into many smaller, more manageable pieces, and how this architecture can increase the effectiveness and efficiency of teams working on frontend code.</p>
@@ -9742,6 +9743,19 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>这个思路并不新鲜，DreamWaver、Storyboard都是使用界面拖拽开发的方式。为什么这两年开始火起来呢？其主要是随着云计算的兴起而活起来的，有资本推动的很大原因。</p>
 <p>目前很多公司都有自己的低代码开发平台，如<a href="https://cloud.tencent.com/product/weda">腾讯微搭</a>、<a href="https://www.alibabacloud.com/zh/product/yida">阿里宜搭</a>、<a href="https://suda.baidu.com/">百度爱速搭</a>等。</p>
 <p>要体验下如何使用，可以尝试 <a href="https://aisuda.github.io/amis-editor-demo/#/hello-world">AIMS Demo</a></p>
+<h3 id="mob编程"><a class="header" href="#mob编程">Mob编程</a></h3>
+<p><a href="https://www.jdon.com/48512">什么是Mob编程？</a></p>
+<p>Mob编程是一种软件开发方式，是结对编程的扩展，整个团队从事同一段代码编程。这类似于两个人坐在同一台计算机上，同时对一个任务或一个问题上进行结对编程。</p>
+<blockquote>
+<p><a href="https://www.thoughtworks.com/zh-cn/radar/techniques/remote-mob-programming">Thoughtworks</a> 正在实验的技术 </p>
+</blockquote>
+<h3 id="cbor"><a class="header" href="#cbor">CBOR</a></h3>
+<p>扩展性强、压缩性好、无须版本协商的二进制协议，它的数据大小要比JSON小很多，但要比ProtoBuf大。（PB是需要版本协商的）</p>
+<p>网友测试结果：150M的JSON，使用CBOR编码的数据为60M。（参考：<a href="https://blog.51cto.com/u_15023263/3790567">Protobuf vs CBOR：新一代的二进制序列化格式</a>）</p>
+<p>网上也有很多开源实现了，包括<a href="https://github.com/fxamacker/cbor">Go版本</a>、<a href="https://github.com/unrelentingtech/SwiftCBOR">Swift版本</a>等。</p>
+<blockquote>
+<p><a href="https://www.thoughtworks.com/zh-cn/radar/techniques/cbor-json-bilingual-protocols">Thoughtworks</a>实验中的技术</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="设计相关"><a class="header" href="#设计相关">设计相关</a></h1>
 <h3 id="设计工具"><a class="header" href="#设计工具">设计工具</a></h3>
 <p>一般使用 <a href="https://www.sketch.com/">sketch</a></p>
