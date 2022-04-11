@@ -1078,6 +1078,8 @@ rm -rf ~/.cocoapods/
 <li>警报协议。</li>
 </ul>
 <p>SSL支持双向认证：<a href="https://www.jianshu.com/p/fb5fe0165ef2">SSL双向认证和SSL单向认证的区别</a></p>
+<h3 id="x509"><a class="header" href="#x509">X.509</a></h3>
+<p>X.509是密码学里公钥证书的格式标准, SSL协议里默认也是使用该格式的证书。</p>
 <h3 id="openssl"><a class="header" href="#openssl">OpenSSL</a></h3>
 <p>OpenSSL：功能丰富且自包含的开源安全工具箱。包含如下子模块：</p>
 <ul>
@@ -2992,6 +2994,8 @@ for (uint32_t i = 0; i &lt; c; i++) {
 <li>不支持<code>Service Worker</code> (即不支持PWA)</li>
 <li>支持WebAssembly (iOS15上验证支持)</li>
 <li>资源会有缓存，并有默认的缓存策略 (<a href="https://www.jianshu.com/p/a3911d4808ba">WKWebView缓存问题 - 图片资源</a>)</li>
+<li>支持JIT</li>
+<li>支持asm.js</li>
 </ul>
 <p>JS相关</p>
 <ul>
@@ -4350,6 +4354,14 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 </code></pre>
 <h5 id="小程序设计"><a class="header" href="#小程序设计">小程序设计</a></h5>
 <p>目前小程序采用了WebView + JSCore的设计，渲染使用WebView，JS逻辑使用JSCore。这样做的目的，是为了安全性，即控制小程序逻辑直接操作DOM树等。参考：<a href="https://zhaomenghuan.js.org/blog/wechat-miniprogram-principle-analysis.html">微信小程序技术原理分析</a></p>
+<h3 id="其它开源js引擎"><a class="header" href="#其它开源js引擎">其它开源JS引擎</a></h3>
+<h4 id="quickjs"><a class="header" href="#quickjs">QuickJS</a></h4>
+<h4 id="goja"><a class="header" href="#goja"><a href="https://github.com/dop251/goja">goja</a></a></h4>
+<p>使用Go语言实现的JS引擎</p>
+<h3 id="其它技术"><a class="header" href="#其它技术">其它技术</a></h3>
+<h4 id="jit"><a class="header" href="#jit">JIT</a></h4>
+<p>即解释执行时，将部分经常执行的代码拿去编译，并将结果存起来，以便于下次执行时能直接复用上次的编译结果。如果代码执行的非常多，除了编译之外，还会对代码进行分析优化，以提升执行效率。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/25669120">JavaScript Just-in-time (JIT) 工作原理</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="canvas"><a class="header" href="#canvas">Canvas</a></h1>
 <h3 id="资料-22"><a class="header" href="#资料-22">资料</a></h3>
 <ul>
@@ -7933,6 +7945,7 @@ console.log(typeof Person);	// function
 <p>理解单一职责原则本质上就是要理解分离关注点。</p>
 <p>康威定律：一个组织设计出的系统，其结构受限于其组织的沟通结构。</p>
 <p>单一职责原则是基于康威定律的一个推论：一个软件系统的最佳结构高度依赖于使用这个软件的组织的内部结构。如果我们的软件结构不能够与组织结构对应，就会带来一系列麻烦 --- Robert Martin</p>
+<p>逆康威定律：软件的构架一定程度上可以影响组织结构。</p>
 <h3 id="开放封闭原则"><a class="header" href="#开放封闭原则">开放封闭原则</a></h3>
 <p>软件实体（类、模块、函数）应该对扩展开放，对修改封闭。</p>
 <p>阻碍程序员们构造出稳定模块的障碍，其实是构建模型的能力。</p>
@@ -9832,6 +9845,9 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>类似Appsflyer这种归因工具，当获取不到类似IDFA等设备识别码时，会通过类似ip、设备信息等模型数据来判断是否同一个设备。</p>
 <h3 id="拼写检查"><a class="header" href="#拼写检查">拼写检查</a></h3>
 <p><a href="https://www.ruanyifeng.com/blog/2012/10/spelling_corrector.html">贝叶斯推断及其互联网应用（三）：拼写检查</a></p>
+<h3 id="安全保护"><a class="header" href="#安全保护">安全保护</a></h3>
+<p>虚拟机方案是一种较通用的代码保护方案，这个不仅在Native可以使用，在Web端也有相应的实现。</p>
+<p>在<a href="https://mp.weixin.qq.com/s/sYIAB0S3UKL4SU5Wg0IhIg">不用 WebAssembly 也能实现 Web 虚拟机保护</a>中介绍的<a href="https://github.com/sablejs/sablejs">sablejs</a>就是Web的实现。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="专业英语"><a class="header" href="#专业英语">专业英语</a></h1>
 <h2 id="常用"><a class="header" href="#常用">常用</a></h2>
 <ul>
