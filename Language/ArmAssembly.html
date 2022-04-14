@@ -148,6 +148,11 @@
 <li>有31个通用寄存器，<code>r0 - r30</code>，汇编访问分别通过<code>x0 - x30</code>(读取64位数据)或<code>w0 - w30</code>(读取32位数据)</li>
 <li>有32个向量寄存器，为<code>v0 - v31</code>，为128位的寄存器。可以通过<code>Bn Hn Sn Dn Qn</code>来分别访问8/16/32/64/128比特</li>
 </ul>
+<p>在OC开发中，寄存器一般作用如下：(在Swift中不同)</p>
+<ul>
+<li>x0(rdi): 用来存放<code>self</code></li>
+<li>x1(rsi): 用来存放方法名</li>
+</ul>
 <h3 id="指令"><a class="header" href="#指令">指令</a></h3>
 <table><thead><tr><th>指令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>mov x0 x1</code> / <code>mov x0 #3</code></td><td>x0 = x1 / x0 = 3</td></tr>
