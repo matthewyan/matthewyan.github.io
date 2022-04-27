@@ -3550,6 +3550,7 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li><a href="https://insights.thoughtworks.cn/web-icon-history/">Web技术中图标的演化</a></li>
 <li><a href="https://github.com/wx-chevalier/Web-Series">Web系列文章</a></li>
 <li><a href="https://juejin.cn/post/6905294475539513352">前端面试题汇总</a></li>
+<li><a href="https://mp.weixin.qq.com/s/2WC4OsT7Wk_Rnh6KvQPpuQ">浅谈Web容器设计的边界和目标</a></li>
 </ul>
 <h3 id="浏览器相关"><a class="header" href="#浏览器相关">浏览器相关</a></h3>
 <ul>
@@ -4008,7 +4009,9 @@ https://github.com/mrdoob/three.js/</p>
 <li><a href="Web/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
 <li><a href="Web/../Note/ProfessionalJS.html">JS高级程序设计</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1843860">一觉醒来，竟发现自己看不懂 JS 了？</a>：可以明白JS的发展过程，新特性从开始到发布的过程等。</li>
 </ul>
+<h3 id="介绍"><a class="header" href="#介绍">介绍</a></h3>
 <h3 id="js特性"><a class="header" href="#js特性">JS特性</a></h3>
 <ul>
 <li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
@@ -4049,6 +4052,14 @@ NaN
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
 <h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
+<h4 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h4>
+<p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
+<p>除此之外，还有其它的虚拟机：</p>
+<ul>
+<li><a href="http://nodejs.cn/api/vm.html">Node.js中的VM虚拟机</a></li>
+<li><a href="https://github.com/justjake/quickjs-emscripten">QuickJS的WASM版本</a></li>
+<li><a href="https://github.com/sablejs/sablejs">sablejs</a>：使用JS写的JS虚拟机</li>
+</ul>
 <h4 id="jsaot"><a class="header" href="#jsaot">JSAOT</a></h4>
 <p>JS/TS转C语言：</p>
 <ul>
@@ -6637,7 +6648,9 @@ impl Rectangle {
 <li><a href="Language/../Note/ProfessionalJS.html">JavaScript高级程序设计</a></li>
 <li><a href="https://github.com/doodlewind/jshistory-cn">JavaScript 20 年</a></li>
 <li><a href="Language/../Note/ProfessionalJS.html">JS高级程序设计</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1843860">一觉醒来，竟发现自己看不懂 JS 了？</a>：可以明白JS的发展过程，新特性从开始到发布的过程等。</li>
 </ul>
+<h3 id="介绍-1"><a class="header" href="#介绍-1">介绍</a></h3>
 <h3 id="js特性-1"><a class="header" href="#js特性-1">JS特性</a></h3>
 <ul>
 <li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
@@ -6678,6 +6691,14 @@ NaN
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
 <h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
+<h4 id="虚拟机-1"><a class="header" href="#虚拟机-1">虚拟机</a></h4>
+<p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
+<p>除此之外，还有其它的虚拟机：</p>
+<ul>
+<li><a href="http://nodejs.cn/api/vm.html">Node.js中的VM虚拟机</a></li>
+<li><a href="https://github.com/justjake/quickjs-emscripten">QuickJS的WASM版本</a></li>
+<li><a href="https://github.com/sablejs/sablejs">sablejs</a>：使用JS写的JS虚拟机</li>
+</ul>
 <h4 id="jsaot-1"><a class="header" href="#jsaot-1">JSAOT</a></h4>
 <p>JS/TS转C语言：</p>
 <ul>
@@ -6868,7 +6889,7 @@ int hello() {
 <p><a href="https://zh.wikipedia.org/wiki/LR%E5%89%96%E6%9E%90%E5%99%A8">LR分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LL%E5%89%96%E6%9E%90%E5%99%A8">LL分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LALR%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8">LALR语法</a></p>
-<h3 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h3>
+<h3 id="虚拟机-2"><a class="header" href="#虚拟机-2">虚拟机</a></h3>
 <p>资料：<a href="https://www.yuque.com/sukha/rf1pdg/vf52fk">虚拟机随谈</a></p>
 <p>VM根据指令集架构分为<code>基于栈</code>和<code>寄存器</code>类型。vm的指令集如果只有零地址指令, 那么就只需要栈+PC寄存器就可以实现语义; 而如果还是有多地址指令, 那么就还要模拟寄存器.  这就是基于栈的虚拟机和基于寄存器的虚拟机的区别.</p>
 <h3 id="ast"><a class="header" href="#ast">AST</a></h3>
@@ -9921,6 +9942,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <tr><td>code standards</td><td>代码规范</td></tr>
 <tr><td>build package</td><td>打包</td></tr>
 <tr><td>Integration test</td><td>联调 (集成测试)</td></tr>
+<tr><td>Comment</td><td>注释</td></tr>
 </tbody></table>
 <h2 id="短语"><a class="header" href="#短语">短语</a></h2>
 <ul>
