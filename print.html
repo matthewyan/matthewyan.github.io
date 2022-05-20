@@ -1225,7 +1225,12 @@ rm -rf ~/.cocoapods/
 <p>蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="资料-7"><a class="header" href="#资料-7">资料</a></h2>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MTgxODgwNA==&amp;mid=2247484247&amp;idx=1&amp;sn=51fff44b1f02e5829d1a329fee369404&amp;chksm=fc73be8ccb04379ac4848cd323b5c6e660bd4ae01dbc012944014c41fb083aa2e8640a46de28&amp;token=101727656&amp;lang=zh_CN#rd">康威定律</a>：软件架构反映了组织架构。因此通过调整组织架构，反过来也能推动软件架构的演进。</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU2MTgxODgwNA==&amp;mid=2247484247&amp;idx=1&amp;sn=51fff44b1f02e5829d1a329fee369404&amp;chksm=fc73be8ccb04379ac4848cd323b5c6e660bd4ae01dbc012944014c41fb083aa2e8640a46de28&amp;token=101727656&amp;lang=zh_CN#rd">康威定律</a>：软件架构反映了组织架构。因此通过调整组织架构，反过来也能推动软件架构的演进。</li>
+<li><a href="https://github.com/toutiaoio/weekly.manong.io/blob/master/archives/architecture.md">码农周刊架构合集</a></li>
+<li><a href="https://mp.weixin.qq.com/s/DDcdJPynOzsfJdlFP3aBBg">左耳朵耗子：我做系统架构的一些原则</a></li>
+<li><a href="https://mp.weixin.qq.com/s/U2UuFZCXTQ1a8nN_iYsarw">如何画好一张架构图？</a></li>
+</ul>
 <h2 id="架构图"><a class="header" href="#架构图">架构图</a></h2>
 <p>画架构图的工具：</p>
 <ul>
@@ -2291,6 +2296,12 @@ imgView.animationRepeatCount = 0
 imgView.animationDuration = 0.5
 imgView.startAnimating()
 </code></pre>
+<h3 id="事件"><a class="header" href="#事件">事件</a></h3>
+<p><a href="http://roadmap.isylar.com/iOS/UIKit/UIResponder.html">iOS 事件响应链</a></p>
+<ul>
+<li>iOS事件传递顺序：从UIWindow开始向上传递</li>
+<li>iOS响应链顺序：从具体子View开始判断，子View不处理就交给父View</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swift"><a class="header" href="#swift">Swift</a></h1>
 <h3 id="与oc桥接"><a class="header" href="#与oc桥接">与OC桥接</a></h3>
 <p>如果要在OC中调用Swift接口：</p>
@@ -7132,41 +7143,24 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 </ul>
 <h3 id="资料-43"><a class="header" href="#资料-43">资料</a></h3>
 <ul>
-<li>
-<p><a href="https://reactnative.cn/docs/getting-started.html">ReactNative环境搭建</a></p>
-</li>
-<li>
-<p><a href="https://github.com/reactnativecn/react-native-guide">React-Native学习指南</a></p>
-</li>
-<li>
-<p><a href="https://insights.thoughtworks.cn/the-react-native-mystery/">React Native性能之谜</a></p>
-</li>
-<li>
-<p><a href="https://mrgaogang.github.io/react/">ReactNative源码解析</a>：基于iOS来分析</p>
-</li>
-<li>
-<p><a href="https://github.com/sucese/react-native">ReactNative源码分析</a>：基于安卓来分析</p>
-</li>
-<li>
-<p><a href="https://juejin.im/post/6844903862113943560">RN 通信原理（for 前端）</a></p>
-</li>
-<li>
-<p><a href="https://zxfcumtcs.github.io/2017/10/08/ReactNativeCommunicationMechanism/">ReactNative源码解析——通信机制详解(1/2)</a></p>
-</li>
-<li>
-<p><a href="https://zxfcumtcs.github.io/2017/10/12/ReactNativeCommunicationMechanism2/">ReactNative源码解析——通信机制详解(2/2)</a></p>
-</li>
-<li>
-<p><a href="https://juejin.im/post/6844904146840059918">JS核心理论之《React Native原理浅析》</a>：介绍了RN新的架构</p>
-</li>
-<li>
-<p><a href="https://zeyio.com/rn-render/">React Native渲染原理浅析</a>：渲染过程的介绍</p>
-</li>
-<li>
-<p><a href="https://zhuanlan.zhihu.com/p/356940165">React Native 0.64 新变化 &amp; 再聊跨端技术</a></p>
-</li>
+<li><a href="https://reactnative.cn/docs/environment-setup">ReactNative环境搭建</a></li>
+<li><a href="https://github.com/reactnativecn/react-native-guide">React-Native学习指南</a></li>
+<li><a href="https://insights.thoughtworks.cn/the-react-native-mystery/">React Native性能之谜</a></li>
+<li><a href="https://mrgaogang.github.io/react/">ReactNative源码解析</a>：基于iOS来分析</li>
+<li><a href="https://github.com/sucese/react-native">ReactNative源码分析</a>：基于安卓来分析</li>
+<li><a href="https://juejin.im/post/6844903862113943560">RN 通信原理（for 前端）</a></li>
+<li><a href="https://zxfcumtcs.github.io/2017/10/08/ReactNativeCommunicationMechanism/">ReactNative源码解析——通信机制详解(1/2)</a></li>
+<li><a href="https://zxfcumtcs.github.io/2017/10/12/ReactNativeCommunicationMechanism2/">ReactNative源码解析——通信机制详解(2/2)</a></li>
+<li><a href="https://juejin.im/post/6844904146840059918">JS核心理论之《React Native原理浅析》</a>：介绍了RN新的架构</li>
+<li><a href="https://zeyio.com/rn-render/">React Native渲染原理浅析</a>：渲染过程的介绍</li>
+<li><a href="https://zhuanlan.zhihu.com/p/356940165">React Native 0.64 新变化 &amp; 再聊跨端技术</a></li>
 </ul>
-<h3 id="使用-2"><a class="header" href="#使用-2">使用</a></h3>
+<h3 id="命令-5"><a class="header" href="#命令-5">命令</a></h3>
+<ul>
+<li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
+<li>打包jsbundle：<code>react-native bundle [参数]</code>   (具体参数使用参考：<a href="https://www.jianshu.com/p/2e053b2fcf97">react native 如何打包生成Js Bundle文件</a>)</li>
+</ul>
+<h3 id="开发"><a class="header" href="#开发">开发</a></h3>
 <h4 id="使用native-ui"><a class="header" href="#使用native-ui">使用Native UI</a></h4>
 <ul>
 <li>继承RCTViewManager</li>
