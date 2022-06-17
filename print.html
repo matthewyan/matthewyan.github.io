@@ -9862,6 +9862,11 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <ul>
 <li>Check: ☑  ▣  √  ☐  ☒</li>
 </ul>
+<h3 id="思维方式"><a class="header" href="#思维方式">思维方式</a></h3>
+<ul>
+<li><a href="https://xie.infoq.cn/article/f071a7af47827754e88d0bd9a">程序员必备的思维能力：结构化思维</a></li>
+<li><a href="http://www.woshipm.com/zhichang/4431417.html">结构化思维 | 干货！一文讲清楚必学的思维方式</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="概念术语"><a class="header" href="#概念术语">概念/术语</a></h1>
 <h3 id="六西格玛"><a class="header" href="#六西格玛">六西格玛</a></h3>
 <p>是指产品质量问题需要控制在 6 个标准误差里面。</p>
@@ -9917,7 +9922,11 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <h3 id="webcontainer"><a class="header" href="#webcontainer">WebContainer</a></h3>
 <p><a href="https://segmentfault.com/a/1190000041282864">什么是 StackBlitz 的 web container</a></p>
 <p>StackBlitz的WebContainer简而言之，就是在浏览器里可以运行Node.js等。(可以将浏览器视为一个操作系统，在其上提供了Web开发环境)</p>
-<p>这种思路其实可以进行更多的扩展，在上面做任何你想做的东西。</p>
+<blockquote>
+<p>为什么可以在浏览器中跑Node.js，原因是WASM的支持，即通过把Node.js转换为WebAssembly，然后跑在浏览器中。</p>
+<p>真实的情况是需要在WebAssembly层封装一些接口，模拟系统接口，支持Node.js的能力使用。<a href="https://blog.stackblitz.com/posts/introducing-webcontainers/">Introducing WebContainers</a>有思路的简单介绍。</p>
+</blockquote>
+<p>这种思路其实可以进行更多的扩展，你把浏览器看成一个操作系统即可，在上面做任何你想做的东西。</p>
 <p><a href="https://developer.aliyun.com/article/903428">建设下一代 Web 开放技术——WebContainer</a></p>
 <p>阿里的WebContainer，可以理解为在浏览器中，再提供一个安全、可控的执行环境。其实现需要在Host引擎中再执行一个VM JS Engine，并且可以自定义开放的接口，来进行API的管控。</p>
 <p>其重要的目的就是当前App中执行第三方服务时，可以进行安全约束。</p>
@@ -10015,6 +10024,24 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <h4 id="使用mac-book来扫描签名"><a class="header" href="#使用mac-book来扫描签名">使用Mac Book来扫描签名</a></h4>
 <p><a href="https://support.apple.com/zh-cn/guide/preview/prvw35725/mac">在 Mac 上的“预览”中填写和签署 PDF 表单</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="业界方案"><a class="header" href="#业界方案">业界方案</a></h1>
+<h3 id="终端容器无关化"><a class="header" href="#终端容器无关化">终端容器无关化</a></h3>
+<p><a href="https://tech.meituan.com/2021/11/11/meituan-waimai-containerless-framework.html">美团外卖终端容器无关化研发框架</a></p>
+<p>在保持顶层业务研发语言不变更的情况下，在下层可以兼容性地升级、替换终端容器的能力。</p>
+<h3 id="mcube"><a class="header" href="#mcube">MCube</a></h3>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU1MzE2NzIzMg==&amp;mid=2247489426&amp;idx=1&amp;sn=4f25b920de46f2492dab381c8d1fecab&amp;scene=21">京东App MCube动态化实践</a></p>
+<p>框架的卖点：</p>
+<ul>
+<li>动态化</li>
+<li>安装包大小</li>
+</ul>
+<p>这个框架的实现：</p>
+<ul>
+<li>使用Yoga做布局计算</li>
+<li>使用xml语法做UI描述</li>
+<li>使用Native View进行的渲染</li>
+<li>使用JS执行逻辑</li>
+</ul>
+<p>类似思路的框架也有挺多，如：<a href="https://github.com/alibaba/Tangram-iOS">Tangram</a>、<a href="https://github.com/Tencent/RapidView">RapidView</a>等</p>
 <h3 id="归因分析"><a class="header" href="#归因分析">归因分析</a></h3>
 <p>类似Appsflyer这种归因工具，当获取不到类似IDFA等设备识别码时，会通过类似ip、设备信息等模型数据来判断是否同一个设备。</p>
 <h3 id="拼写检查"><a class="header" href="#拼写检查">拼写检查</a></h3>

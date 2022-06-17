@@ -189,7 +189,11 @@
 <h3 id="webcontainer"><a class="header" href="#webcontainer">WebContainer</a></h3>
 <p><a href="https://segmentfault.com/a/1190000041282864">什么是 StackBlitz 的 web container</a></p>
 <p>StackBlitz的WebContainer简而言之，就是在浏览器里可以运行Node.js等。(可以将浏览器视为一个操作系统，在其上提供了Web开发环境)</p>
-<p>这种思路其实可以进行更多的扩展，在上面做任何你想做的东西。</p>
+<blockquote>
+<p>为什么可以在浏览器中跑Node.js，原因是WASM的支持，即通过把Node.js转换为WebAssembly，然后跑在浏览器中。</p>
+<p>真实的情况是需要在WebAssembly层封装一些接口，模拟系统接口，支持Node.js的能力使用。<a href="https://blog.stackblitz.com/posts/introducing-webcontainers/">Introducing WebContainers</a>有思路的简单介绍。</p>
+</blockquote>
+<p>这种思路其实可以进行更多的扩展，你把浏览器看成一个操作系统即可，在上面做任何你想做的东西。</p>
 <p><a href="https://developer.aliyun.com/article/903428">建设下一代 Web 开放技术——WebContainer</a></p>
 <p>阿里的WebContainer，可以理解为在浏览器中，再提供一个安全、可控的执行环境。其实现需要在Host引擎中再执行一个VM JS Engine，并且可以自定义开放的接口，来进行API的管控。</p>
 <p>其重要的目的就是当前App中执行第三方服务时，可以进行安全约束。</p>
