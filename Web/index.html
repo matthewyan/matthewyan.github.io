@@ -152,6 +152,18 @@
 <h3 id="概念"><a class="header" href="#概念">概念</a></h3>
 <h4 id="web30"><a class="header" href="#web30">Web3.0</a></h4>
 <p>基于区块链的去中心化。</p>
+<h4 id="web-worker"><a class="header" href="#web-worker">Web Worker</a></h4>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2018/07/web-worker.html">Web Worker 使用教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000039795656">浅探 Web Worker 与 JavaScript 沙箱</a></li>
+</ul>
+<p>Web Worker有如下特性：</p>
+<ul>
+<li>无法操作DOM</li>
+<li>适合在后台做密集计算的任务</li>
+<li>与主线程不在同一个上下文环境，只能通过<code>postMessage</code>接口进行通信</li>
+<li>调试同其它JS代码类似，只要在Worker加载的JS中设置断点，运行时即可中断</li>
+</ul>
 <h3 id="其它"><a class="header" href="#其它">其它</a></h3>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
@@ -362,9 +374,6 @@ var arr = [1, 2, 3]
 const [a, b] = arr
 console.log(a, b)    // 输出：1 2
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array</p>
-<p>JS是单线程的
-Web Worker，可以为JS创造多线程运行环境
-http://www.ruanyifeng.com/blog/2018/07/web-worker.html</p>
 <p>JavaScript 秘密花园
 http://bonsaiden.github.io/JavaScript-Garden/zh/</p>
 <p>JS博客
