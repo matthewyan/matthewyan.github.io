@@ -416,6 +416,11 @@ s ae2e0fa Message2
 <p><a href="https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/">Git LFS 操作指南</a></p>
 <h4 id="git-commitizen"><a class="header" href="#git-commitizen">git commitizen</a></h4>
 <ul>
+<li><code>npm install -g git-cz</code></li>
+<li><code>echo '{ &quot;path&quot;: &quot;git-cz&quot; }' &gt; ~/.czrc</code></li>
+</ul>
+<p>或者：(下面这种不带emoji)</p>
+<ul>
 <li><code>npm i -g commitizen &amp;&amp; npm i -g cz-conventional-changelog</code></li>
 <li><code>echo '{ &quot;path&quot;: &quot;cz-conventional-changelog&quot; }' &gt; ~/.czrc</code></li>
 </ul>
@@ -856,6 +861,12 @@ driver.get('http://www.baidu.com/')
 <tr><td>快速打开文件</td><td><code>Ctrl</code> + <code>p</code></td></tr>
 <tr><td>代码格式化</td><td><code>Shift</code> + <code>Option</code> + <code>F</code></td></tr>
 <tr><td>全局替换代码</td><td><code>Cmd + Shift + H</code></td></tr>
+</tbody></table>
+<h4 id="gem"><a class="header" href="#gem">Gem</a></h4>
+<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td><code>gem sources</code></td><td>查看所有的gem源</td></tr>
+<tr><td>gem sources -r url</td><td>删除指定的url源 (url要以/结尾)</td></tr>
+<tr><td><code>gem sources -a url</code></td><td>添加源</td></tr>
 </tbody></table>
 <h4 id="bundler"><a class="header" href="#bundler"><a href="https://www.bundler.cn/">Bundler</a></a></h4>
 <p>能够跟踪并安装所需的特定版本的 gem</p>
