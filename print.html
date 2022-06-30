@@ -1894,6 +1894,13 @@ Events</p>
 <h4 id="main-thread-checker"><a class="header" href="#main-thread-checker">Main Thread Checker</a></h4>
 <p><a href="https://www.jianshu.com/p/6cad4fe9f21a">Xcode9 新特性之Main Thread Checker</a></p>
 <p>可以用来检测必须要在主线程执行的函数，是否在主线程执行了。当打开它的时候，也会带来一些影响，比如判断系统函数指针时，可能会发现指向错误。</p>
+<h4 id="xcode-cloud"><a class="header" href="#xcode-cloud">Xcode Cloud</a></h4>
+<ul>
+<li><a href="https://juejin.cn/post/7088123584514228254">窥探 Xcode Cloud</a></li>
+<li><a href="https://juejin.cn/post/7088867511323590686">探索 Xcode Cloud Workflows</a></li>
+</ul>
+<p>本质是苹果提供的CI/CD服务，但其与Xcode进行了深度整合，可以更便捷的进行iOS的打包、测试等工作。</p>
+<p>看官方文档，其是支持自己的私有仓库，但需要做好授权工作。(<a href="https://developer.apple.com/documentation/xcode/making-dependencies-available-to-xcode-cloud">Grant Xcode Cloud access to private dependencies</a>)</p>
 <h3 id="模拟器"><a class="header" href="#模拟器">模拟器</a></h3>
 <ul>
 <li>iOS12模拟器截屏：点击模拟器上方的相机图标即可</li>
@@ -2388,6 +2395,9 @@ imgView.startAnimating()
 <h4 id="codable"><a class="header" href="#codable">Codable</a></h4>
 <p><a href="https://zhuanlan.zhihu.com/p/50043306">Swift之Codable实战技巧</a></p>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
+<h4 id="async--await"><a class="header" href="#async--await">async / await</a></h4>
+<p><a href="https://www.fatbobman.com/posts/combineAndAsync/">聊聊 Combine 和 async/await 之间的合作</a></p>
+<p>WWDC21上推出了<code>async / await</code>，并且在21年年底时，将其前向兼容到iOS13了。</p>
 <h4 id="some类型-不透明类型"><a class="header" href="#some类型-不透明类型">Some类型 (不透明类型)</a></h4>
 <blockquote>
 <p>Swift 5.1</p>
@@ -5993,6 +6003,9 @@ app.get('/', function (req, res) {
 <h4 id="codable-1"><a class="header" href="#codable-1">Codable</a></h4>
 <p><a href="https://zhuanlan.zhihu.com/p/50043306">Swift之Codable实战技巧</a></p>
 <h3 id="特性-6"><a class="header" href="#特性-6">特性</a></h3>
+<h4 id="async--await-1"><a class="header" href="#async--await-1">async / await</a></h4>
+<p><a href="https://www.fatbobman.com/posts/combineAndAsync/">聊聊 Combine 和 async/await 之间的合作</a></p>
+<p>WWDC21上推出了<code>async / await</code>，并且在21年年底时，将其前向兼容到iOS13了。</p>
 <h4 id="some类型-不透明类型-1"><a class="header" href="#some类型-不透明类型-1">Some类型 (不透明类型)</a></h4>
 <blockquote>
 <p>Swift 5.1</p>
