@@ -136,7 +136,7 @@
                     <main>
                         <h1 id="vim"><a class="header" href="#vim">VIM</a></h1>
 <h4 id="跳转"><a class="header" href="#跳转">跳转</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>10G</code> / <code>10gg</code></td><td>可以跳转到第10行 (<code>G</code>跳转至最后、<code>gg</code>跳转至最开头)</td></tr>
 <tr><td><code>ctrl-w-w</code></td><td>在多个内部窗口之间跳转</td></tr>
 <tr><td><code>0</code></td><td>移动光标到行首 (同 <code>^</code> )</td></tr>
@@ -149,9 +149,10 @@
 <tr><td><code>ctrl-f</code> / <code>ctrl-b</code></td><td>分别为向下翻页，向上翻页 (同<code>PgUp</code>和<code>pgDn</code>按键)</td></tr>
 <tr><td><code>ctrl-e</code> / <code>ctrl-y</code></td><td>分别为向下滚动，向上滚动</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="代码常用-基于as的vim插件验证"><a class="header" href="#代码常用-基于as的vim插件验证">代码常用 (基于AS的VIM插件验证)</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>%</code></td><td>匹配到对应的括号</td></tr>
 <tr><td><code>gD</code></td><td>跳转至符号定义处</td></tr>
 <tr><td><code>ctrl-]</code></td><td>跳转至符号定义处</td></tr>
@@ -163,9 +164,10 @@
 <tr><td><code>{</code> 、 <code>}</code></td><td>跳转至上一段或下一段的开头 (是以空行来区分段的)</td></tr>
 <tr><td><code>(</code> 、<code>)</code></td><td>跳到当前段落的开头或结尾</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="编辑"><a class="header" href="#编辑">编辑</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>d2w</code> / <code>d2e</code></td><td>删除两个单词 (w会删除单词后的空格、e不包括)</td></tr>
 <tr><td><code>daw</code></td><td>删除当前光标所在单词</td></tr>
 <tr><td><code>cw</code> / <code>ce</code></td><td>删除当前光标至单词末尾，并进入编辑模式</td></tr>
@@ -175,9 +177,10 @@
 <tr><td><code>&quot;+y</code></td><td>可以将内容复制到系统剪切板里。(如：<code>&quot;+yw</code>复制当前单词到系统剪切板)</td></tr>
 <tr><td><code>&quot;+p</code></td><td>将系统剪切板内容粘贴在光标后面</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="搜索替换"><a class="header" href="#搜索替换">搜索/替换</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>/</code></td><td>直接进入搜索模式，正向查找</td></tr>
 <tr><td><code>?</code></td><td>直接进入搜索模式，反向搜索</td></tr>
 <tr><td><code>ctrl-o</code></td><td>可以回到跳转前的光标位置，并且可以多次执行</td></tr>
@@ -185,9 +188,10 @@
 <tr><td><code>:s/old/new/g</code></td><td>在当前行，将所有old替换为new</td></tr>
 <tr><td><code>:%s/old/new/g</code></td><td>全文替换 (<code>:%s/old/new/gc</code>: 全文替换时需要确认)</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="命令"><a class="header" href="#命令">命令</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>:help [cmd]</code></td><td>查看帮助</td></tr>
 <tr><td><code>:q</code></td><td>可以关闭窗口，包括VIM内部打开的多个窗口</td></tr>
 <tr><td><code>ZQ</code></td><td>不保存退出 (<code>ZZ</code>是保存退出)</td></tr>
@@ -197,14 +201,15 @@
 <tr><td><code>v</code></td><td>进入可视模式，此时所有移动操作都可以用来选择内容 (选完再按<code>:</code>，就对选中内容操作)</td></tr>
 <tr><td><code>ctrl-d</code></td><td>可以将所有匹配的命令列出来。如输入<code>:e</code>后，按<code>ctrl-d</code>，就能列出来以e开头的命令</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="配置"><a class="header" href="#配置">配置</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>:set ic</code></td><td>设置搜索忽略大小写</td></tr>
 <tr><td><code>:set hls</code></td><td>设置搜索结果高亮</td></tr>
 <tr><td><code>:set is</code></td><td>搜索时每次键入都去尝试匹配</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

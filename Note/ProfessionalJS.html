@@ -204,7 +204,7 @@ document.head.appendChild(script);
 <li>支持<code>标签函数</code>，使用参考：<a href="https://zhuanlan.zhihu.com/p/31687266">ES6 - 标签函数</a></li>
 </ul>
 <h3 id="var与let区别"><a class="header" href="#var与let区别"><code>var</code>与<code>let</code>区别</a></h3>
-<table><thead><tr><th>var</th><th>let</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>var</th><th>let</th></tr></thead><tbody>
 <tr><td>声明的变量存在<code>提升</code>，会将变量声明移至作用域的顶部，并且默认赋值为<code>undefined</code></td><td>不提升</td></tr>
 <tr><td>声明的作用域是函数作用域</td><td>作用域是块作用域(即在if体里声明，只会在该if体中有效)</td></tr>
 <tr><td><code>var</code>声明的变量由于会提升，JS引擎会将多余的声明在作用域顶部合并</td><td><code>let</code>不会</td></tr>
@@ -212,6 +212,7 @@ document.head.appendChild(script);
 <tr><td>可以重复用var声明同名的变量</td><td>只能声明一次，再用<code>let</code>声明同名变量就会出错</td></tr>
 <tr><td>声明为全局作用域的变量，会成为<code>window</code>对象的属性</td><td><code>let</code>不会</td></tr>
 </tbody></table>
+</div>
 <blockquote>
 <p>在实际使用中，要<code>const</code>优先，其次<code>let</code>，不使用<code>var</code></p>
 </blockquote>

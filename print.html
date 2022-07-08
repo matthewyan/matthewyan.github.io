@@ -193,40 +193,45 @@
 </ul>
 <p>​	</p>
 <h3 id="clone"><a class="header" href="#clone">Clone</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git clone --depth=1 url</code></td><td>clone仓库，但git记录仅拉取深度为1的信息</td></tr>
 <tr><td><code>git clone -b ${branch} --depth=1</code></td><td>当仓库用depth=1来拉取后，有些远程分支信息是没有的，此时可以拉对应远程分支</td></tr>
 </tbody></table>
+</div>
 <h3 id="重置相关"><a class="header" href="#重置相关">重置相关</a></h3>
 <h5 id="还未添加到暂存区"><a class="header" href="#还未添加到暂存区">还未添加到暂存区</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git checkout .</code></td><td>丢弃所有文件的修改</td></tr>
 <tr><td><code>git checkout -- file</code></td><td>丢弃单个文件的修改</td></tr>
 <tr><td><code>git clean -xdf</code></td><td>丢弃所有新增的文件</td></tr>
 <tr><td><code>git clean -f a.txt</code></td><td>移除单个新增的文件</td></tr>
 <tr><td><code>git checkout . &amp;&amp; git clean -xdf</code></td><td>丢弃所有修改</td></tr>
 </tbody></table>
+</div>
 <h5 id="已添加到暂存区但还未提交"><a class="header" href="#已添加到暂存区但还未提交">已添加到暂存区，但还未提交</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reset HEAD</code></td><td>将修改移回工作区</td></tr>
 <tr><td><code>git reset --hard HEAD</code></td><td>将修改丢弃</td></tr>
 </tbody></table>
+</div>
 <h5 id="已经commit但还未push"><a class="header" href="#已经commit但还未push">已经commit，但还未push</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reset commitid</code></td><td>可以将commitid至HEAD之间的提交，全部移回到工作区</td></tr>
 <tr><td><code>git reset --hard HEAD^</code></td><td>跳到上个结点 (HEAD^^跳到上上个结点)</td></tr>
 </tbody></table>
+</div>
 <h5 id="已经push到远端的提交"><a class="header" href="#已经push到远端的提交">已经push到远端的提交</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git revert commitid</code></td><td>重置某次提交，会生成一条新的commit记录 (处理完<code>git push</code>即可)</td></tr>
 <tr><td><code>git revert commitid -m [num]</code></td><td>重置某次提交，merge的代码，往往有多个父记录，需要用-m参数指定revert到哪个父记录（父记录可以通过<code>git log</code>查看，前面的就是1，后面的就是2）</td></tr>
 <tr><td><code>git revert HEAD</code></td><td>将最新的提交revert掉</td></tr>
 </tbody></table>
+</div>
 <p>还有一种不安全的方式：<code>git reset --hard commitID</code> 然后 <code>git push -f</code>。 表示先在本地重置到某次提交，然后强制将远端的记录用本地替换。</p>
 <hr />
 <p>​	</p>
 <h3 id="分支相关"><a class="header" href="#分支相关">分支相关</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git checkout master</code></td><td>切换到本地已有的分支</td></tr>
 <tr><td><code>git checkout -b new_branch</code></td><td>新建一个分支，并切换至该分支</td></tr>
 <tr><td><code>git branch name</code></td><td>从当前分支创建一个新分支，但不切换</td></tr>
@@ -240,24 +245,27 @@
 <tr><td><code>git push origin --delete branch_name</code></td><td>删除远程分支</td></tr>
 <tr><td><code>git cherry-pick commitid</code></td><td>选择一个 commit，合并进当前分支</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="多仓库操作"><a class="header" href="#多仓库操作">多仓库操作</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git remote add another ***</code></td><td>添加另外一个仓库地址至本仓库，别名为another</td></tr>
 <tr><td><code>git remote rm another</code></td><td>删除别名为another的仓库地址</td></tr>
 <tr><td><code>git remote show origin</code></td><td>查看默认跟踪的源</td></tr>
 <tr><td><code>git push -u origin master</code></td><td>推送至指定远程仓库的指定分支</td></tr>
 <tr><td><code>git pull origin master</code></td><td>拉取指定远程仓库的指定分支</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="储藏区操作"><a class="header" href="#储藏区操作">储藏区操作</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git stash</code></td><td>将工作区的修改添加至储藏区</td></tr>
 <tr><td><code>git stash list</code></td><td>查看储藏区内容</td></tr>
 <tr><td><code>git stash pop</code></td><td>将最上面的储藏内容应用至工作区，并删除这条储藏记录</td></tr>
 <tr><td><code>git stash apply</code></td><td>将最上面的储藏内容应用至工作区，并保留这条储藏记录</td></tr>
 <tr><td><code>git stash apply stash@{0}</code></td><td>应用指定的储藏记录</td></tr>
 </tbody></table>
+</div>
 <blockquote>
 <p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E8%B4%AE%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86">Git 工具 - 贮藏与清理</a></p>
 </blockquote>
@@ -287,22 +295,24 @@ git rebase --abort	# 中止rebase
 <hr />
 <p>​	</p>
 <h3 id="submodule"><a class="header" href="#submodule">SubModule</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git submodule init</code></td><td>初始化工程 (新clone的代码，要更新submodule，也需要调用这个命令)</td></tr>
 <tr><td><code>git submodule update</code></td><td>更新submodule代码</td></tr>
 <tr><td><code>git submodule add https://gitrepo.git directory</code></td><td>添加submodule到当前工程</td></tr>
 <tr><td><code>git push origin HEAD:master</code></td><td>推送修改的代码至远端仓库指定分支</td></tr>
 </tbody></table>
+</div>
 <p>submodule相关信息，存储在了<code>.gitmodules</code>文件中</p>
 <p>要删除某个submodule，参考：<a href="https://gist.github.com/myusuf3/7f645819ded92bda6677">delete_git_submodule.md</a></p>
 <hr />
 <p>​	</p>
 <h3 id="subtree"><a class="header" href="#subtree">SubTree</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git subtree add --prefix=Path http://gitrepo.git master --squash</code></td><td>添加subtree</td></tr>
 <tr><td><code>git subtree pull --prefix=Path http://gitrepo.git master --squash</code></td><td>更新代码</td></tr>
 <tr><td><code>git subtree split --rejoin push --prefix=Path http://gitrepo.git master</code></td><td>推送代码</td></tr>
 </tbody></table>
+</div>
 <p>要查看subtree仓库有哪些，可以使用：</p>
 <pre><code class="language-shell">git log | grep git-subtree-dir | tr -d ' ' | cut -d &quot;:&quot; -f2 | sort | uniq
 </code></pre>
@@ -313,7 +323,7 @@ git rebase --abort	# 中止rebase
 <hr />
 <p>​	</p>
 <h3 id="其它命令"><a class="header" href="#其它命令">其它命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reflog</code></td><td>查看有执行的记录</td></tr>
 <tr><td><code>git show</code></td><td>查看最近一次提交的修改</td></tr>
 <tr><td><code>git show commitID</code></td><td>查看指定commitID的修改</td></tr>
@@ -323,6 +333,7 @@ git rebase --abort	# 中止rebase
 <tr><td><code>git config --global --unset http.proxy</code></td><td>清理掉git全局代理</td></tr>
 <tr><td><code>git config [--global] user.email &quot;email@example.com&quot;</code></td><td>配置本地或全局仓库的用户邮箱</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="mergerebase区别"><a class="header" href="#mergerebase区别">Merge、Rebase区别</a></h3>
 <blockquote>
@@ -441,7 +452,7 @@ s ae2e0fa Message2
 <p><a href="https://github.com/orhun/git-cliff">git-cliff</a>：可以根据提交信息生成changelog文件</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vim"><a class="header" href="#vim">VIM</a></h1>
 <h4 id="跳转"><a class="header" href="#跳转">跳转</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>10G</code> / <code>10gg</code></td><td>可以跳转到第10行 (<code>G</code>跳转至最后、<code>gg</code>跳转至最开头)</td></tr>
 <tr><td><code>ctrl-w-w</code></td><td>在多个内部窗口之间跳转</td></tr>
 <tr><td><code>0</code></td><td>移动光标到行首 (同 <code>^</code> )</td></tr>
@@ -454,9 +465,10 @@ s ae2e0fa Message2
 <tr><td><code>ctrl-f</code> / <code>ctrl-b</code></td><td>分别为向下翻页，向上翻页 (同<code>PgUp</code>和<code>pgDn</code>按键)</td></tr>
 <tr><td><code>ctrl-e</code> / <code>ctrl-y</code></td><td>分别为向下滚动，向上滚动</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="代码常用-基于as的vim插件验证"><a class="header" href="#代码常用-基于as的vim插件验证">代码常用 (基于AS的VIM插件验证)</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>%</code></td><td>匹配到对应的括号</td></tr>
 <tr><td><code>gD</code></td><td>跳转至符号定义处</td></tr>
 <tr><td><code>ctrl-]</code></td><td>跳转至符号定义处</td></tr>
@@ -468,9 +480,10 @@ s ae2e0fa Message2
 <tr><td><code>{</code> 、 <code>}</code></td><td>跳转至上一段或下一段的开头 (是以空行来区分段的)</td></tr>
 <tr><td><code>(</code> 、<code>)</code></td><td>跳到当前段落的开头或结尾</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="编辑"><a class="header" href="#编辑">编辑</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>d2w</code> / <code>d2e</code></td><td>删除两个单词 (w会删除单词后的空格、e不包括)</td></tr>
 <tr><td><code>daw</code></td><td>删除当前光标所在单词</td></tr>
 <tr><td><code>cw</code> / <code>ce</code></td><td>删除当前光标至单词末尾，并进入编辑模式</td></tr>
@@ -480,9 +493,10 @@ s ae2e0fa Message2
 <tr><td><code>&quot;+y</code></td><td>可以将内容复制到系统剪切板里。(如：<code>&quot;+yw</code>复制当前单词到系统剪切板)</td></tr>
 <tr><td><code>&quot;+p</code></td><td>将系统剪切板内容粘贴在光标后面</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="搜索替换"><a class="header" href="#搜索替换">搜索/替换</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>/</code></td><td>直接进入搜索模式，正向查找</td></tr>
 <tr><td><code>?</code></td><td>直接进入搜索模式，反向搜索</td></tr>
 <tr><td><code>ctrl-o</code></td><td>可以回到跳转前的光标位置，并且可以多次执行</td></tr>
@@ -490,9 +504,10 @@ s ae2e0fa Message2
 <tr><td><code>:s/old/new/g</code></td><td>在当前行，将所有old替换为new</td></tr>
 <tr><td><code>:%s/old/new/g</code></td><td>全文替换 (<code>:%s/old/new/gc</code>: 全文替换时需要确认)</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="命令"><a class="header" href="#命令">命令</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>:help [cmd]</code></td><td>查看帮助</td></tr>
 <tr><td><code>:q</code></td><td>可以关闭窗口，包括VIM内部打开的多个窗口</td></tr>
 <tr><td><code>ZQ</code></td><td>不保存退出 (<code>ZZ</code>是保存退出)</td></tr>
@@ -502,17 +517,18 @@ s ae2e0fa Message2
 <tr><td><code>v</code></td><td>进入可视模式，此时所有移动操作都可以用来选择内容 (选完再按<code>:</code>，就对选中内容操作)</td></tr>
 <tr><td><code>ctrl-d</code></td><td>可以将所有匹配的命令列出来。如输入<code>:e</code>后，按<code>ctrl-d</code>，就能列出来以e开头的命令</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h4 id="配置"><a class="header" href="#配置">配置</a></h4>
-<table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>操作</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>:set ic</code></td><td>设置搜索忽略大小写</td></tr>
 <tr><td><code>:set hls</code></td><td>设置搜索结果高亮</td></tr>
 <tr><td><code>:set is</code></td><td>搜索时每次键入都去尝试匹配</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="shell"><a class="header" href="#shell">Shell</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="shell"><a class="header" href="#shell">Shell</a></h1>
 <h3 id="资料-1"><a class="header" href="#资料-1">资料</a></h3>
 <p><a href="https://wangdoc.com/bash/">Bash 脚本教程</a></p>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>ctrl-r</code></td><td>搜索历史命令，可以从命令中间进行匹配。<code>Enter</code>可以直接执行，左右方向键可以对命令二次编辑</td></tr>
 <tr><td><code>ctrl-u</code></td><td>删除当前行的内容</td></tr>
 <tr><td><code>ctrl-w</code></td><td>删除你输入的最后一个单词</td></tr>
@@ -523,20 +539,23 @@ s ae2e0fa Message2
 <tr><td><code>set -o vi</code></td><td>命令行用vi的方式来使用</td></tr>
 <tr><td><code>set -o emacs</code></td><td>还原为默认方式</td></tr>
 </tbody></table>
+</div>
 <hr />
-<table><thead><tr><th>命令</th><th>使用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>使用</th></tr></thead><tbody>
 <tr><td><code>ctrl-z</code></td><td>将当前执行任务挂起</td></tr>
 <tr><td><code>jobs</code></td><td>列出所有子任务</td></tr>
 <tr><td><code>fg %1</code></td><td>将编号为1的挂起任务放到前台来执行</td></tr>
 <tr><td><code>bg %1</code></td><td>将编号为1的挂起任务在后台执行起来</td></tr>
 <tr><td><code>kill %1</code></td><td>立即强制中止编码为1的任务</td></tr>
 </tbody></table>
+</div>
 <hr />
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>man ascii</code></td><td>查看ascii码表</td></tr>
 <tr><td><code>cal</code></td><td>查看日历</td></tr>
 <tr><td><code>bc</code> / <code>python</code></td><td>使用计算器</td></tr>
 </tbody></table>
+</div>
 <h3 id="其它-1"><a class="header" href="#其它-1">其它</a></h3>
 <p>用JS写Shell的库：<a href="https://github.com/shelljs/shelljs">shelljs</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="markdown"><a class="header" href="#markdown">Markdown</a></h1>
@@ -679,13 +698,14 @@ driver.get('http://www.baidu.com/')
 <p>关系型数据库是指采用了关系模型来组织数据的数据库。简单来说，关系模式就是二维表格模型。</p>
 <p>里面的核心概念是 <strong>联结</strong></p>
 <h3 id="非关系型数据库"><a class="header" href="#非关系型数据库">非关系型数据库</a></h3>
-<table><thead><tr><th>类型</th><th>示例</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>类型</th><th>示例</th></tr></thead><tbody>
 <tr><td>KV存储</td><td>LevelDB、Redis</td></tr>
 <tr><td>列存储</td><td>HBase</td></tr>
 <tr><td>文档型</td><td>MongoDB</td></tr>
 <tr><td>搜索型</td><td>ElasticSearch</td></tr>
 <tr><td>图形数据库</td><td>Neo4J</td></tr>
 </tbody></table>
+</div>
 <p>列存储类型的介绍可以参考：<a href="https://juejin.im/entry/6844903750012780558">五分钟轻松了解Hbase列式存储</a></p>
 <p>了解文档存储，参考MongoDB介绍：<a href="https://zhuanlan.zhihu.com/p/87722764">了解 MongoDB 看这一篇就够了</a></p>
 <h3 id="常用数据库"><a class="header" href="#常用数据库">常用数据库</a></h3>
@@ -856,18 +876,20 @@ driver.get('http://www.baidu.com/')
 <p>VSCoce远程开发配置：https://juejin.im/post/5cf9d23ce51d45773d4685d9</p>
 <p>远程开发配置好后，连接到远程服务器后，就用“打开文件夹”功能，就可以打开远端目录</p>
 <h5 id="vscode快捷键"><a class="header" href="#vscode快捷键">VSCode快捷键</a></h5>
-<table><thead><tr><th>功能</th><th>快捷键</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>功能</th><th>快捷键</th></tr></thead><tbody>
 <tr><td>回退到上个位置</td><td><code>Ctrl</code> + <code>-</code></td></tr>
 <tr><td>快速打开文件</td><td><code>Ctrl</code> + <code>p</code></td></tr>
 <tr><td>代码格式化</td><td><code>Shift</code> + <code>Option</code> + <code>F</code></td></tr>
 <tr><td>全局替换代码</td><td><code>Cmd + Shift + H</code></td></tr>
 </tbody></table>
+</div>
 <h4 id="gem"><a class="header" href="#gem">Gem</a></h4>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>gem sources</code></td><td>查看所有的gem源</td></tr>
 <tr><td>gem sources -r url</td><td>删除指定的url源 (url要以/结尾)</td></tr>
 <tr><td><code>gem sources -a url</code></td><td>添加源</td></tr>
 </tbody></table>
+</div>
 <h4 id="bundler"><a class="header" href="#bundler"><a href="https://www.bundler.cn/">Bundler</a></a></h4>
 <p>能够跟踪并安装所需的特定版本的 gem</p>
 <p>安装bundler：<code>gem install bundler</code></p>
@@ -875,13 +897,14 @@ driver.get('http://www.baidu.com/')
 <h4 id="cocoapods"><a class="header" href="#cocoapods">cocoapods</a></h4>
 <p>安装：<code>sudo gem install cocoapods</code></p>
 <p>如果提示路径没有权限的错误，可以用<code>-n</code>参数指定路径：<code>sudo gem install cocoapods -n /usr/local/bin</code></p>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>sudo gem install cocoapods</code></td><td>安装及更新</td></tr>
 <tr><td><code>pod setup</code></td><td>安装spec仓库</td></tr>
 <tr><td><code>pod repo update</code></td><td>更新spec仓库</td></tr>
 <tr><td><code>pod repo add [name] [url]</code></td><td>添加三方源（会在<code>~/.cocoapods/repos</code>下面新增源）</td></tr>
 <tr><td><code>Pod repo remove [name]</code></td><td>移除相应三方源</td></tr>
 </tbody></table>
+</div>
 <p>彻底删除cocoapod:</p>
 <pre><code class="language-sh">for i in $( gem list --local --no-version | grep cocoapods );
 do 
@@ -913,7 +936,36 @@ rm -rf ~/.cocoapods/
 <h4 id="jenkins"><a class="header" href="#jenkins">Jenkins</a></h4>
 <p><a href="https://segmentfault.com/a/1190000038464808">别当工具人了，手摸手教会你 Jenkins ！</a></p>
 <h4 id="gitlab-ci"><a class="header" href="#gitlab-ci">Gitlab-CI</a></h4>
-<p><a href="https://juejin.cn/post/6844904045581172744">Gitlab-CI使用教程</a></p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904045581172744">Gitlab-CI使用教程</a></li>
+<li><a href="https://docs.gitlab.cn/jh/ci/">官方文档</a></li>
+</ul>
+<h5 id="gitlab-runner"><a class="header" href="#gitlab-runner">Gitlab-runner</a></h5>
+<p>gitlab-runner作用</p>
+<blockquote>
+<p>我们希望提交的代码可以执行某些任务，这些任务默认是放在工程根目录下的<code>.gitlab-ci.yml</code>中的。而如何执行这些命令，就是通过<code>gitlab-runner</code>这个工具来运行的。</p>
+</blockquote>
+<p>gitlab-runner使用</p>
+<ul>
+<li>
+<p>安装：<code>brew install gitlab-runner</code></p>
+</li>
+<li>
+<p>启动：<code>brew services start gitlab-runner</code></p>
+</li>
+<li>
+<p>注册：<code>gitlab-runner register</code></p>
+</li>
+<li>
+<p>从相应Git仓库下可以找到URL和Token，在Gitlab的<code>settings-&gt;CI-&gt;Runners-&gt;Expand</code>下面可以查看</p>
+</li>
+<li>
+<p>然后输入描述、tag(这个是比较重要的，标识)等信息</p>
+</li>
+<li>
+<p>设置执行环境，设置为<code>Shell</code>即可</p>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="算法"><a class="header" href="#算法">算法</a></h1>
 <ul>
 <li><a href="https://github.com/labuladong/fucking-algorithm">算法小抄</a></li>
@@ -1849,10 +1901,11 @@ Events</p>
 <p>Number of supported hardware watchpoints: 4</p>
 </blockquote>
 <h4 id="别名"><a class="header" href="#别名">别名</a></h4>
-<table><thead><tr><th>原名</th><th>别名</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>原名</th><th>别名</th></tr></thead><tbody>
 <tr><td>print</td><td>p</td></tr>
 <tr><td>expression</td><td>expr</td></tr>
 </tbody></table>
+</div>
 <p>可以自定义别名：</p>
 <p><code>command alias pb thread backtrace</code>：即可将pb定义为<code>thread backtrace</code></p>
 <h3 id="多媒体"><a class="header" href="#多媒体">多媒体</a></h3>
@@ -1886,10 +1939,11 @@ Events</p>
 <h3 id="xcode"><a class="header" href="#xcode">Xcode</a></h3>
 <p>Xcode中的<code>Do no embed</code>等作用：https://stackoverflow.com/questions/57687170/do-not-embed-embed-sign-embed-without-signing-what-are-they-what-th</p>
 <p>汇编调度：Xcode-&gt;Debug-&gt;Debug workflow-&gt;Always Show Disassembly</p>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>xcrun xctrace list devices</code></td><td>列出所有可用设备</td></tr>
 <tr><td><code>open -a Simulator</code></td><td>启动默认模拟器</td></tr>
 </tbody></table>
+</div>
 <p>Xcode 13，要显示<code>Product Folder</code>：Menu -&gt; Product -&gt; Show Build Folder in Finder</p>
 <h4 id="main-thread-checker"><a class="header" href="#main-thread-checker">Main Thread Checker</a></h4>
 <p><a href="https://www.jianshu.com/p/6cad4fe9f21a">Xcode9 新特性之Main Thread Checker</a></p>
@@ -3472,7 +3526,7 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <p><a href="https://blog.csdn.net/weixin_43843008/article/details/108620640">IOS上的monkey测试探索（一）</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="设备及系统"><a class="header" href="#设备及系统">设备及系统</a></h1>
 <h3 id="系统和设备对应关系"><a class="header" href="#系统和设备对应关系">系统和设备对应关系</a></h3>
-<table><thead><tr><th>系统</th><th>最低支持到的设备</th><th>最低设备芯片</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>系统</th><th>最低支持到的设备</th><th>最低设备芯片</th></tr></thead><tbody>
 <tr><td><a href="https://zh.wikipedia.org/wiki/IOS_5">iOS5</a></td><td>iPhone 3GS, iPad</td><td></td></tr>
 <tr><td><a href="https://zh.wikipedia.org/wiki/IOS_6">iOS6</a></td><td>iPhone 3GS，iPad2之后</td><td></td></tr>
 <tr><td><a href="https://zh.wikipedia.org/wiki/IOS_7">iOS7</a></td><td>iPhone 4及之后</td><td></td></tr>
@@ -3485,8 +3539,9 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <tr><td><a href="https://zh.wikipedia.org/wiki/IOS_14">iOS14</a></td><td>同iOS13</td><td></td></tr>
 <tr><td><a href="https://zh.wikipedia.org/wiki/IOS_15">iOS15</a></td><td>同iOS13</td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="设备尺寸及分辨率"><a class="header" href="#设备尺寸及分辨率">设备尺寸及分辨率</a></h3>
-<table><thead><tr><th>设备</th><th>渲染像素</th><th>逻辑像素</th><th>物理像素</th><th>尺寸</th><th>屏幕模式</th><th>PPI</th><th>提审需要</th><th>外观</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>设备</th><th>渲染像素</th><th>逻辑像素</th><th>物理像素</th><th>尺寸</th><th>屏幕模式</th><th>PPI</th><th>提审需要</th><th>外观</th></tr></thead><tbody>
 <tr><td>iPhone 12</td><td>2532 x 1170</td><td>844 x 390</td><td></td><td>6.1英寸</td><td>3x</td><td>460</td><td></td><td></td></tr>
 <tr><td>iPhone 12 Mini</td><td>2340 x 1080</td><td>780 x 360</td><td></td><td>5.4英寸</td><td>3x</td><td>476</td><td></td><td></td></tr>
 <tr><td>iPhone 12 Pro</td><td>2532 x 1170</td><td>844 x 390</td><td></td><td>6.1英寸</td><td>3x</td><td>460</td><td></td><td></td></tr>
@@ -3499,6 +3554,7 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <tr><td>iPad Pro(三代)</td><td>2732×2048</td><td></td><td></td><td></td><td>2x</td><td></td><td>✓</td><td>https://www.apple.com.cn/shop/buy-ipad/ipad-pro</td></tr>
 <tr><td>iPad Pro(二代)</td><td>2732×2048</td><td></td><td></td><td></td><td>2x</td><td></td><td>✓</td><td>带Home键、大边框</td></tr>
 </tbody></table>
+</div>
 <h3 id="参考资料-1"><a class="header" href="#参考资料-1">参考资料</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/47466485">iPhone &amp; iPad 屏幕尺寸，归纳及分析</a></p>
 <p><a href="https://juejin.im/post/5bfddc336fb9a049d441804e">史上最全iPhone分辨率和尺寸</a></p>
@@ -3515,11 +3571,12 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <h3 id="pushkit"><a class="header" href="#pushkit">PushKit</a></h3>
 <p><a href="https://juejin.cn/post/6844903879914553357">iOS : PushKit的使用</a></p>
 <p><a href="https://www.jianshu.com/p/f9bef7e7a4ab">iOS中不一样的推送---PushKit</a></p>
-<table><thead><tr><th></th><th>APNs</th><th>PushKit</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>APNs</th><th>PushKit</th></tr></thead><tbody>
 <tr><td>PayLoads Size</td><td>4096B</td><td>5120B</td></tr>
 <tr><td>权限</td><td>需要获取</td><td>不需要获取权限</td></tr>
 <tr><td>成功率</td><td></td><td>送达率更高</td></tr>
 </tbody></table>
+</div>
 <h3 id="callkit"><a class="header" href="#callkit">CallKit</a></h3>
 <blockquote>
 <p>Display the system-calling UI for your app’s VoIP services.</p>
@@ -3547,6 +3604,14 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <h4 id="cryptokit"><a class="header" href="#cryptokit">CryptoKit</a></h4>
 <p><a href="https://www.jianshu.com/p/9f2bb5914818">CryptoKit框架详细解析（二） —— CryptoKit使用入门简单示例（一）</a></p>
 <h2 id="三方"><a class="header" href="#三方">三方</a></h2>
+<h3 id="日志-1"><a class="header" href="#日志-1">日志</a></h3>
+<p><a href="https://www.jianshu.com/p/349d89250260">移动端日志收集方案对比</a></p>
+<p>在iOS上常用的日志系统：</p>
+<ul>
+<li><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a></li>
+<li><a href="https://github.com/Tencent/mars">Xlog</a>: 微信开源的Mars中的日志组件部分</li>
+<li><a href="https://github.com/Meituan-Dianping/Logan">Logan</a>：美团开源，也是使用mmap提升日志写入性能的组件</li>
+</ul>
 <h3 id="fishhook"><a class="header" href="#fishhook">FishHook</a></h3>
 <p><a href="https://juejin.cn/post/6844903789783154702">fishhook的实现原理浅析</a></p>
 <p>fishhook虽然可以hook c函数，但其无法hook自己写的，直接编译进mach-o中的函数。</p>
@@ -3692,7 +3757,7 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li><a href="https://mp.weixin.qq.com/s/jIDEHfuMnED6HTfNgjsW4w">深入测试一周，主流多端框架大比武</a></li>
 </ul>
 <h4 id="js框架选型"><a class="header" href="#js框架选型">JS框架选型</a></h4>
-<table><thead><tr><th>方案</th><th>优点</th><th>劣势</th><th>备注</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>方案</th><th>优点</th><th>劣势</th><th>备注</th></tr></thead><tbody>
 <tr><td>React</td><td>可使用RN</td><td></td><td></td></tr>
 <tr><td>Vue</td><td></td><td></td><td></td></tr>
 <tr><td>Angular</td><td></td><td></td><td></td></tr>
@@ -3700,21 +3765,24 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <tr><td><a href="https://www.solidjs.com/">Solid</a></td><td>速度快</td><td></td><td>a. 一出现就获得了很高的满意度: <a href="https://2021.stateofjs.com/zh-Hans/libraries/front-end-frameworks/">stateofjs2021</a><br />b. <a href="https://www.zhihu.com/question/460278146/answer/1894327701">如何评价前端框架 Solid?</a></td></tr>
 <tr><td><a href="https://github.com/NervJS/nerv">Nerv</a></td><td></td><td></td><td>京东开发，用来替代React，相关资料参考：<a href="https://jelly.jd.com/article/5c2d73af17b02c00473313c2">京东高性能前端框架</a></td></tr>
 </tbody></table>
+</div>
 <h4 id="多端支持选型"><a class="header" href="#多端支持选型">多端支持选型</a></h4>
 <p><a href="https://zhuanlan.zhihu.com/p/40705635">什么是 Native、Web App、Hybrid？</a></p>
-<table><thead><tr><th>方案</th><th>H5</th><th>小程序</th><th>Native</th><th>桌面</th><th>备注</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>方案</th><th>H5</th><th>小程序</th><th>Native</th><th>桌面</th><th>备注</th></tr></thead><tbody>
 <tr><td>React</td><td></td><td></td><td>√ (RN)</td><td></td><td></td></tr>
 <tr><td>Vue</td><td></td><td></td><td>√ (Weex)</td><td></td><td></td></tr>
 <tr><td><a href="https://taro-docs.jd.com/taro/docs">Taro</a></td><td>√</td><td>√ (微信、支付宝、飞书等)</td><td>√ (RN)</td><td></td><td>支持React/Vue开发</td></tr>
 <tr><td>Hybrid App</td><td>√</td><td></td><td>√</td><td></td><td>由Native通过JSBridge等方法提供统一的API，其余在Web实现</td></tr>
 </tbody></table>
+</div>
 <h4 id="react技术栈"><a class="header" href="#react技术栈">React技术栈</a></h4>
-<table><thead><tr><th>方案</th><th>目的</th><th>备注</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>方案</th><th>目的</th><th>备注</th></tr></thead><tbody>
 <tr><td>React Native</td><td></td><td></td></tr>
 <tr><td><a href="https://github.com/necolas/react-native-web">React Native for Web</a></td><td>可以让RN代码直接跑在Web中</td><td></td></tr>
 <tr><td><a href="https://github.com/microsoft/react-native-macos">React Native for macOS</a></td><td></td><td></td></tr>
 <tr><td><a href="https://github.com/microsoft/react-native-windows">React Native for Windows</a></td><td></td><td>资料：<a href="https://segmentfault.com/a/1190000039020824">轻松几步教你将React Native 项目运行在Web端</a></td></tr>
 </tbody></table>
+</div>
 <h2 id="调试"><a class="header" href="#调试">调试</a></h2>
 <h3 id="vscode中调试页面"><a class="header" href="#vscode中调试页面">VSCode中调试页面</a></h3>
 <p>如果下载的源码需要用<code>npm run dev</code>来运行的话：</p>
@@ -4559,7 +4627,7 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <li><a href="https://juejin.cn/post/6895991156204404750">深入进阶-从一次点击探寻Flutter事件分发原理</a></li>
 </ul>
 <h3 id="命令-3"><a class="header" href="#命令-3">命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>flutter create my_project</code></td><td>创建名称为my_project的工程</td></tr>
 <tr><td><code>flutter create --template=package hello</code></td><td>创建名为hello的package工程</td></tr>
 <tr><td><code>flutter doctor</code></td><td>查看Flutter的状态，如果有些配置没配置好，也会自动配置</td></tr>
@@ -4572,6 +4640,7 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <tr><td><code>flutter run</code></td><td>运行工程，可以用-d指定设备，如：<code>flutter run -d macOS</code></td></tr>
 <tr><td><code>flutter test --coverage</code></td><td>查看测试覆盖率</td></tr>
 </tbody></table>
+</div>
 <p>flutter的分支有如下几种：</p>
 <ul>
 <li>master: 最新代码分支，是最不稳定的，新增的功能后续也可能删除</li>
@@ -4588,19 +4657,21 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <li>全局使用版本：<code>fvm use &lt;version&gt;</code></li>
 </ul>
 <h3 id="android-studio快捷键"><a class="header" href="#android-studio快捷键">Android Studio快捷键</a></h3>
-<table><thead><tr><th>快捷键</th><th>含义</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>快捷键</th><th>含义</th></tr></thead><tbody>
 <tr><td><code>Optional + Enter</code></td><td>在某Widget上操作时，可以查看所有可以针对Widget的操作`</td></tr>
 <tr><td><code>Cmd + [</code> 及<code>Cmd + ]</code></td><td>浏览代码时的后退和前进</td></tr>
 </tbody></table>
+</div>
 <p>Android Studio也可以将快捷键设为其它IDE的，比如可以设置为Visual Studio的：<a href="https://www.jianshu.com/p/2f6248d5842c">Android Studio - 快捷键详解-MAC版</a></p>
 <h3 id="工程设置"><a class="header" href="#工程设置">工程设置</a></h3>
 <h4 id="依赖设置"><a class="header" href="#依赖设置">依赖设置</a></h4>
 <p>在<code>pubspec.yaml</code>中，<code>dependencies</code>项中添加依赖</p>
-<table><thead><tr><th>语法</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>语法</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>zefyr:</code></td><td>版本号不限定，尽可能使用新版本。也可以使用<code>zefyr: any</code></td></tr>
 <tr><td><code>zefyr: ^0.8</code></td><td>指明可以是兼容0.8的所有版本</td></tr>
 <tr><td><code>zefyr: '&gt;=0.8.0 &lt;0.10.0'</code></td><td>指明版本号范围，为大于等于0.8，小于0.10</td></tr>
 </tbody></table>
+</div>
 <p>flutter的所有可用依赖包，以及依赖包的更新日志，可以在<a href="https://pub.dev/">pub.dev</a>上搜索查看</p>
 <p>​	</p>
 <h3 id="vscode-1"><a class="header" href="#vscode-1">VSCode</a></h3>
@@ -4698,7 +4769,7 @@ final height = size.height;
 <p>在安装了Flutter的情况下，要直接使用dart，只需要将dart sdk配置到环境变量中即可。</p>
 <p>dart sdk的位置在<code>$FlutterPATH/cache/dart-sdk/bin</code>，具体使用参考：<a href="https://blog.csdn.net/qq_26287435/article/details/87917289">Dart配置环境变量</a></p>
 <h3 id="dart常用命令"><a class="header" href="#dart常用命令">Dart常用命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>dart main.dart</code></td><td>可以直接执行main.dart</td></tr>
 <tr><td><code>dart create myproj</code></td><td>创建dart工程</td></tr>
 <tr><td><code>dart create --template=package-simple mypackage</code></td><td>创建dart的package工程 （还有其它类型的template，通过<code>dart create --help</code>查看）</td></tr>
@@ -4706,6 +4777,7 @@ final height = size.height;
 <tr><td><code>dart pub publish</code></td><td>可以发布包至<code>pub.dev</code>上</td></tr>
 <tr><td><code>pub global activate somepackage</code></td><td>安装指定脚本并激活，然后可以使用该package bin目录下的脚本 (如安装并使用fvm)</td></tr>
 </tbody></table>
+</div>
 <h3 id="特性列表"><a class="header" href="#特性列表">特性列表</a></h3>
 <ul>
 <li>Dart是单线程语言 (Dart中的<code>Isolate</code>类似多线程，但不完全一样)</li>
@@ -5389,12 +5461,13 @@ return Consumer&lt;CartModel&gt;(
 <p>两种风格差异较大，除了样式上不一样，还有交互上的不同。</p>
 <p>在开发上，<code>Cupertino</code>风格的组件都有Cupertino的前缀。两种组件，有些可以相互使用，但有些组件，比如<code>AppBar</code>，只能在<code>MaterialApp</code>中使用的，否则就会出错。</p>
 <h4 id="两种风格对比"><a class="header" href="#两种风格对比">两种风格对比</a></h4>
-<table><thead><tr><th>Material</th><th>Cupertino</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Material</th><th>Cupertino</th></tr></thead><tbody>
 <tr><td>组件较多</td><td>组件较少</td></tr>
 <tr><td>开发体验好，可控制的参数多</td><td>开发体验一般</td></tr>
 <tr><td>主题支持好：在MaterialApp中，Material Widget和类似Text这种不属于具体风格的Widget，在Material中支持也更好</td><td>主题支持一般：CupertinoApp中，仅Cupertino组件被主题所控制。</td></tr>
 <tr><td>兼容性好：如MaterialApp跳转的子页面，appbar可以使用<code>CupertinoNavigationBar</code></td><td>兼容性差：如CupertinoApp跳转的子页面，appbar只能使用<code>CupertinoNavigationBar</code></td></tr>
 </tbody></table>
+</div>
 <p>​	</p>
 <p>Flutter中Material风格，与&quot;Material&quot;设计原则强烈相关。</p>
 <p>比如，<a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>中的<code>primaryColor</code>和<code>accentColor</code>，就是Material风格中的主要颜色和辅助颜色的使用。这儿在Material官网中对这两种颜色的使用说的非常清楚：<a href="https://material.io/design/color/#">The Color System</a></p>
@@ -5822,24 +5895,26 @@ func main() {
 <h3 id="资料-30"><a class="header" href="#资料-30">资料</a></h3>
 <p>Linux命令大全：<a href="https://github.com/jaywcjlove/linux-command">linux-command</a></p>
 <h3 id="系统命令"><a class="header" href="#系统命令">系统命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>ps auxf</code></td><td>查看所有进程</td></tr>
 <tr><td><code>disown</code></td><td>执行一个命令后，再执行disown，可以来保持后台一直执行</td></tr>
 <tr><td><code>crontab</code></td><td>定时任务，参考: <a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html">crontab 定时任务</a></td></tr>
 <tr><td><code>kill -9 pid</code></td><td>杀死指定id的进程</td></tr>
 </tbody></table>
+</div>
 <h3 id="普通命令"><a class="header" href="#普通命令">普通命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>ls -lR \| grep '.svg' \|wc -l</code></td><td>统计当前目录下，指定类型文件的个数</td></tr>
 <tr><td><code>ln dir/src.txt other/dest.txt</code></td><td>创建硬链接 (第一个参数是源，第二个参数是目的)</td></tr>
 <tr><td><code>which cmd</code></td><td>查看cmd命令所在的位置</td></tr>
 </tbody></table>
+</div>
 <h3 id="工具"><a class="header" href="#工具">工具</a></h3>
-<table><thead><tr><th>名称</th><th>示例</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>名称</th><th>示例</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>serve</code></td><td>serve -l 80 -s build</td><td>在80端口上启动一个简单的httpsvr，加载build目录</td></tr>
 <tr><td><code>scp</code></td><td>scp /home/a.zip root@129.20.0.2:/work/a.zip</td><td>拷贝本地相应目录的a.zip文件，至远程服务器的相应目录下</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="go语言"><a class="header" href="#go语言">GO语言</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="go语言"><a class="header" href="#go语言">GO语言</a></h1>
 <p>Go一共只有25个关键字，继承了C的简单、暴力的编程哲学:
 <a href="https://blog.csdn.net/K346K346/article/details/90265765">Golang 25 个保留关键字</a></p>
 <p>go中的数组是不可变的，切片是可变的。go的切片是更类似于Swift中的数组的集合。具体可参考：<a href="https://juejin.im/post/5c89bdd0f265da2de165e3a1">详解go语言的array和slice</a></p>
@@ -5874,10 +5949,10 @@ func sum(nums ...int) {
 <p><a href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md">Go Web编程</a> : 包含了基本的安装等信息</p>
 <hr />
 <h3 id="go命令列表"><a class="header" href="#go命令列表"><a href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/01.3.md">Go命令列表</a></a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>go get</code></td><td>更新指定的代码包及其依赖包，会安装在<code>GOPATH</code>环境变量指定的目录下面</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs"><a class="header" href="#nodejs">Node.js</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs"><a class="header" href="#nodejs">Node.js</a></h1>
 <h3 id="资料-32"><a class="header" href="#资料-32">资料</a></h3>
 <p><a href="https://segmentfault.com/a/1190000004139342">express中cookie的使用和cookie-parser的解读</a></p>
 <h3 id="代码-1"><a class="header" href="#代码-1">代码</a></h3>
@@ -6089,7 +6164,7 @@ d.data  // 变为&quot;Hello World&quot;
 <p>在安装了Flutter的情况下，要直接使用dart，只需要将dart sdk配置到环境变量中即可。</p>
 <p>dart sdk的位置在<code>$FlutterPATH/cache/dart-sdk/bin</code>，具体使用参考：<a href="https://blog.csdn.net/qq_26287435/article/details/87917289">Dart配置环境变量</a></p>
 <h3 id="dart常用命令-1"><a class="header" href="#dart常用命令-1">Dart常用命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>dart main.dart</code></td><td>可以直接执行main.dart</td></tr>
 <tr><td><code>dart create myproj</code></td><td>创建dart工程</td></tr>
 <tr><td><code>dart create --template=package-simple mypackage</code></td><td>创建dart的package工程 （还有其它类型的template，通过<code>dart create --help</code>查看）</td></tr>
@@ -6097,6 +6172,7 @@ d.data  // 变为&quot;Hello World&quot;
 <tr><td><code>dart pub publish</code></td><td>可以发布包至<code>pub.dev</code>上</td></tr>
 <tr><td><code>pub global activate somepackage</code></td><td>安装指定脚本并激活，然后可以使用该package bin目录下的脚本 (如安装并使用fvm)</td></tr>
 </tbody></table>
+</div>
 <h3 id="特性列表-1"><a class="header" href="#特性列表-1">特性列表</a></h3>
 <ul>
 <li>Dart是单线程语言 (Dart中的<code>Isolate</code>类似多线程，但不完全一样)</li>
@@ -6658,7 +6734,7 @@ main() {
 <li><a href="https://crates.io/">crates</a></li>
 </ul>
 <h3 id="命令-4"><a class="header" href="#命令-4">命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>rustc main.rs</code></td><td>编译main.rs为二进制文件</td></tr>
 <tr><td><code>cargo new hello</code></td><td>创建命为hello的Rust项目</td></tr>
 <tr><td><code>cargo build</code></td><td>构建Rust项目</td></tr>
@@ -6667,6 +6743,7 @@ main() {
 <tr><td><code>cargo run --example example_name</code></td><td>运行工程中的指定示例</td></tr>
 <tr><td><code>cargo run -- args</code></td><td>使用指定参数执行应用</td></tr>
 </tbody></table>
+</div>
 <h3 id="rust介绍"><a class="header" href="#rust介绍">Rust介绍</a></h3>
 <p>四大目标：</p>
 <ul>
@@ -6769,15 +6846,15 @@ main() {
 <li>使用 <code>r&quot;&quot;</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
 <li>使用 <code>r#&quot;&quot;#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>&quot;</code> 而不需要转义</li>
 </ul>
-<table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
 <tr><td>不可变类型</td><td><code>let x = 5</code></td><td><code>let x = 5</code></td></tr>
 <tr><td>可变类型</td><td><code>let mut x = 5</code></td><td><code>var x = 5</code></td></tr>
 <tr><td>支持元组</td><td><code>(1, true)</code></td><td><code>(1, true)</code></td></tr>
 </tbody></table>
+</div>
 <h3 id="有趣特性"><a class="header" href="#有趣特性">有趣特性</a></h3>
 <h5 id="loop中的break后可以跟数值"><a class="header" href="#loop中的break后可以跟数值">loop中的break后可以跟数值</a></h5>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut counter = 0;
 let result = loop {
@@ -6789,8 +6866,7 @@ let result = loop {
 <span class="boring">}
 </span></code></pre></pre>
 <h5 id="方法与函数做了明确的区分"><a class="header" href="#方法与函数做了明确的区分">方法与函数做了明确的区分</a></h5>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Rectangle {
     width: u32,
@@ -7054,7 +7130,7 @@ int hello() {
 <li>x1(rsi): 用来存放方法名</li>
 </ul>
 <h3 id="指令"><a class="header" href="#指令">指令</a></h3>
-<table><thead><tr><th>指令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>指令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>mov x0 x1</code> / <code>mov x0 #3</code></td><td>x0 = x1 / x0 = 3</td></tr>
 <tr><td><code>add x0 x1 #10</code> / <code>add x0 x1 x2</code></td><td>x0 = x1 + 10 / x0 = x1 + x2</td></tr>
 <tr><td><code>sub x0 x1 #10</code> / <code>sub x0 x1 x2</code></td><td>x0 = x1 - 10 / x0 = x1 - x2</td></tr>
@@ -7062,7 +7138,7 @@ int hello() {
 <tr><td><code>or x0 x1 x2</code></td><td>x0 = x1 | x2</td></tr>
 <tr><td><code>B</code>、<code>BL</code></td><td>跳转</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="编译器"><a class="header" href="#编译器">编译器</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="编译器"><a class="header" href="#编译器">编译器</a></h1>
 <h3 id="资料-41"><a class="header" href="#资料-41">资料</a></h3>
 <ul>
 <li><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">The Super Tiny Compiler</a>：几百行的非常简单的用来解释编译器工作的JS代码</li>
@@ -7259,19 +7335,21 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 </ul>
 <p>跨端方案概览：(来源：https://xie.infoq.cn/article/14cf232c76c322a77161a50f9)</p>
 <img src="CrossPlatform/./images/crossplatform_items.webp" style="zoom:80%;" />
-<table><thead><tr><th>方案</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>方案</th><th>作用</th></tr></thead><tbody>
 <tr><td>RN</td><td>使用React开发iOS/Android应用</td></tr>
 <tr><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="flutter-vs-rn-vs-native"><a class="header" href="#flutter-vs-rn-vs-native">Flutter vs RN vs Native</a></h3>
 <p><a href="https://medium.com/swlh/flutter-vs-native-vs-react-native-examining-performance-31338f081980">Flutter vs Native vs React-Native: Examining performance</a></p>
 <p><a href="https://medium.com/swlh/flutter-vs-react-native-vs-native-deep-performance-comparison-990b90c11433">Flutter vs React Native vs Native: Deep Performance Comparison</a></p>
 <p><strong>结论</strong>：</p>
-<table><thead><tr><th>类型\平台</th><th>Native</th><th>Flutter</th><th>RN</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>类型\平台</th><th>Native</th><th>Flutter</th><th>RN</th></tr></thead><tbody>
 <tr><td>密集性计算</td><td>OC效率优于Swift</td><td>比Native慢20%至5倍不等</td><td>比Native慢1个量级</td></tr>
 <tr><td>UI</td><td></td><td>使用的<a href="https://juejin.im/post/6844903938030829582">Flare</a>来测的动画，做的优化与Lottie不同，对比不能完全说明问题</td><td>耗电量、内存都是最高的</td></tr>
 <tr><td>安装包</td><td></td><td>iOS:增量11M / Android:增量1.5M</td><td>iOS:增量1.4M / Android:增量8M</td></tr>
 </tbody></table>
+</div>
 <h3 id="自渲染"><a class="header" href="#自渲染">自渲染</a></h3>
 <p>布局引擎效率对比：(来源：<a href="https://mp.weixin.qq.com/s?__biz=MzU1MzE2NzIzMg==&amp;mid=2247489426&amp;idx=1&amp;sn=4f25b920de46f2492dab381c8d1fecab&amp;scene=21">京东App MCube动态化实践</a>)</p>
 <p><img src="CrossPlatform/./images/ios_layout_performance.png" alt="" /></p>
@@ -7654,7 +7732,7 @@ document.head.appendChild(script);
 <li>支持<code>标签函数</code>，使用参考：<a href="https://zhuanlan.zhihu.com/p/31687266">ES6 - 标签函数</a></li>
 </ul>
 <h3 id="var与let区别"><a class="header" href="#var与let区别"><code>var</code>与<code>let</code>区别</a></h3>
-<table><thead><tr><th>var</th><th>let</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>var</th><th>let</th></tr></thead><tbody>
 <tr><td>声明的变量存在<code>提升</code>，会将变量声明移至作用域的顶部，并且默认赋值为<code>undefined</code></td><td>不提升</td></tr>
 <tr><td>声明的作用域是函数作用域</td><td>作用域是块作用域(即在if体里声明，只会在该if体中有效)</td></tr>
 <tr><td><code>var</code>声明的变量由于会提升，JS引擎会将多余的声明在作用域顶部合并</td><td><code>let</code>不会</td></tr>
@@ -7662,6 +7740,7 @@ document.head.appendChild(script);
 <tr><td>可以重复用var声明同名的变量</td><td>只能声明一次，再用<code>let</code>声明同名变量就会出错</td></tr>
 <tr><td>声明为全局作用域的变量，会成为<code>window</code>对象的属性</td><td><code>let</code>不会</td></tr>
 </tbody></table>
+</div>
 <blockquote>
 <p>在实际使用中，要<code>const</code>优先，其次<code>let</code>，不使用<code>var</code></p>
 </blockquote>
@@ -8515,12 +8594,12 @@ console.log(typeof Person);	// function
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
-<table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
 <tr><td>不可变类型</td><td><code>let x = 5</code></td><td><code>let x = 5</code></td></tr>
 <tr><td>可变类型</td><td><code>let mut x = 5</code></td><td><code>var x = 5</code></td></tr>
 <tr><td>支持元组</td><td><code>(1, true)</code></td><td><code>(1, true)</code></td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="12-文章"><a class="header" href="#12-文章">12. 文章</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="12-文章"><a class="header" href="#12-文章">12. 文章</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="浅谈软件设计-1"><a class="header" href="#浅谈软件设计-1">浅谈软件设计</a></h1>
 <blockquote>
 <p>文章通过读的一些资料加上自己的理解整理的，可能存在一些错误，欢迎指正</p>
@@ -10142,7 +10221,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <ul>
 <li><a href="https://learning.sohu.com/20080903/n259350805.shtml">老外生活中最常用的1000句英文短语</a></li>
 </ul>
-<table><thead><tr><th>短句</th><th>意思</th><th>短句</th><th>意思</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>短句</th><th>意思</th><th>短句</th><th>意思</th></tr></thead><tbody>
 <tr><td>I see</td><td>我明白了</td><td>I have no idea</td><td>我没有头绪</td></tr>
 <tr><td>Hold on</td><td>等一等</td><td>I'll see to it</td><td>我会留意的</td></tr>
 <tr><td>I agree</td><td>我同意</td><td>I'm in a hurry!</td><td>我在赶时间</td></tr>
@@ -10174,12 +10253,13 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <tr><td>Give me a hand</td><td>帮帮我</td><td>In a nutshell</td><td>简单的说</td></tr>
 <tr><td>How's it going?</td><td>怎么样了？</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h2 id="专业英语-1"><a class="header" href="#专业英语-1">专业英语</a></h2>
 <ul>
 <li><a href="https://blog.51cto.com/u_15090928/3002712">软件测试常用术语</a></li>
 <li><a href="https://people.ubuntu.com/%7Ehappyaron/l10n/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E6%9C%AF%E8%AF%AD%E8%A1%A8-old.html">软件工程中英对照术语表</a></li>
 </ul>
-<table><thead><tr><th>英文</th><th>含义</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>英文</th><th>含义</th></tr></thead><tbody>
 <tr><td>real device / physical device</td><td>真机</td></tr>
 <tr><td>codename</td><td>研发代号</td></tr>
 <tr><td>code standards</td><td>代码规范</td></tr>
@@ -10188,6 +10268,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <tr><td>Comment</td><td>注释</td></tr>
 <tr><td>Mutual Authentication</td><td>双向认证</td></tr>
 </tbody></table>
+</div>
 <h2 id="常用语句"><a class="header" href="#常用语句">常用语句</a></h2>
 <ul>
 <li>cert will be expired on 10/3 (证书3月10号将会过期)</li>

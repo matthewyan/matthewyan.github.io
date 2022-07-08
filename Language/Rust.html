@@ -174,7 +174,7 @@
 <li><a href="https://crates.io/">crates</a></li>
 </ul>
 <h3 id="命令"><a class="header" href="#命令">命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>rustc main.rs</code></td><td>编译main.rs为二进制文件</td></tr>
 <tr><td><code>cargo new hello</code></td><td>创建命为hello的Rust项目</td></tr>
 <tr><td><code>cargo build</code></td><td>构建Rust项目</td></tr>
@@ -183,6 +183,7 @@
 <tr><td><code>cargo run --example example_name</code></td><td>运行工程中的指定示例</td></tr>
 <tr><td><code>cargo run -- args</code></td><td>使用指定参数执行应用</td></tr>
 </tbody></table>
+</div>
 <h3 id="rust介绍"><a class="header" href="#rust介绍">Rust介绍</a></h3>
 <p>四大目标：</p>
 <ul>
@@ -285,15 +286,15 @@
 <li>使用 <code>r&quot;&quot;</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
 <li>使用 <code>r#&quot;&quot;#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>&quot;</code> 而不需要转义</li>
 </ul>
-<table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
 <tr><td>不可变类型</td><td><code>let x = 5</code></td><td><code>let x = 5</code></td></tr>
 <tr><td>可变类型</td><td><code>let mut x = 5</code></td><td><code>var x = 5</code></td></tr>
 <tr><td>支持元组</td><td><code>(1, true)</code></td><td><code>(1, true)</code></td></tr>
 </tbody></table>
+</div>
 <h3 id="有趣特性"><a class="header" href="#有趣特性">有趣特性</a></h3>
 <h5 id="loop中的break后可以跟数值"><a class="header" href="#loop中的break后可以跟数值">loop中的break后可以跟数值</a></h5>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut counter = 0;
 let result = loop {
@@ -305,8 +306,7 @@ let result = loop {
 <span class="boring">}
 </span></code></pre></pre>
 <h5 id="方法与函数做了明确的区分"><a class="header" href="#方法与函数做了明确的区分">方法与函数做了明确的区分</a></h5>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Rectangle {
     width: u32,

@@ -140,12 +140,13 @@
 <p>两种风格差异较大，除了样式上不一样，还有交互上的不同。</p>
 <p>在开发上，<code>Cupertino</code>风格的组件都有Cupertino的前缀。两种组件，有些可以相互使用，但有些组件，比如<code>AppBar</code>，只能在<code>MaterialApp</code>中使用的，否则就会出错。</p>
 <h4 id="两种风格对比"><a class="header" href="#两种风格对比">两种风格对比</a></h4>
-<table><thead><tr><th>Material</th><th>Cupertino</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Material</th><th>Cupertino</th></tr></thead><tbody>
 <tr><td>组件较多</td><td>组件较少</td></tr>
 <tr><td>开发体验好，可控制的参数多</td><td>开发体验一般</td></tr>
 <tr><td>主题支持好：在MaterialApp中，Material Widget和类似Text这种不属于具体风格的Widget，在Material中支持也更好</td><td>主题支持一般：CupertinoApp中，仅Cupertino组件被主题所控制。</td></tr>
 <tr><td>兼容性好：如MaterialApp跳转的子页面，appbar可以使用<code>CupertinoNavigationBar</code></td><td>兼容性差：如CupertinoApp跳转的子页面，appbar只能使用<code>CupertinoNavigationBar</code></td></tr>
 </tbody></table>
+</div>
 <p>​	</p>
 <p>Flutter中Material风格，与&quot;Material&quot;设计原则强烈相关。</p>
 <p>比如，<a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>中的<code>primaryColor</code>和<code>accentColor</code>，就是Material风格中的主要颜色和辅助颜色的使用。这儿在Material官网中对这两种颜色的使用说的非常清楚：<a href="https://material.io/design/color/#">The Color System</a></p>

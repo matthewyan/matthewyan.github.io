@@ -152,40 +152,45 @@
 </ul>
 <p>​	</p>
 <h3 id="clone"><a class="header" href="#clone">Clone</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git clone --depth=1 url</code></td><td>clone仓库，但git记录仅拉取深度为1的信息</td></tr>
 <tr><td><code>git clone -b ${branch} --depth=1</code></td><td>当仓库用depth=1来拉取后，有些远程分支信息是没有的，此时可以拉对应远程分支</td></tr>
 </tbody></table>
+</div>
 <h3 id="重置相关"><a class="header" href="#重置相关">重置相关</a></h3>
 <h5 id="还未添加到暂存区"><a class="header" href="#还未添加到暂存区">还未添加到暂存区</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git checkout .</code></td><td>丢弃所有文件的修改</td></tr>
 <tr><td><code>git checkout -- file</code></td><td>丢弃单个文件的修改</td></tr>
 <tr><td><code>git clean -xdf</code></td><td>丢弃所有新增的文件</td></tr>
 <tr><td><code>git clean -f a.txt</code></td><td>移除单个新增的文件</td></tr>
 <tr><td><code>git checkout . &amp;&amp; git clean -xdf</code></td><td>丢弃所有修改</td></tr>
 </tbody></table>
+</div>
 <h5 id="已添加到暂存区但还未提交"><a class="header" href="#已添加到暂存区但还未提交">已添加到暂存区，但还未提交</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reset HEAD</code></td><td>将修改移回工作区</td></tr>
 <tr><td><code>git reset --hard HEAD</code></td><td>将修改丢弃</td></tr>
 </tbody></table>
+</div>
 <h5 id="已经commit但还未push"><a class="header" href="#已经commit但还未push">已经commit，但还未push</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reset commitid</code></td><td>可以将commitid至HEAD之间的提交，全部移回到工作区</td></tr>
 <tr><td><code>git reset --hard HEAD^</code></td><td>跳到上个结点 (HEAD^^跳到上上个结点)</td></tr>
 </tbody></table>
+</div>
 <h5 id="已经push到远端的提交"><a class="header" href="#已经push到远端的提交">已经push到远端的提交</a></h5>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git revert commitid</code></td><td>重置某次提交，会生成一条新的commit记录 (处理完<code>git push</code>即可)</td></tr>
 <tr><td><code>git revert commitid -m [num]</code></td><td>重置某次提交，merge的代码，往往有多个父记录，需要用-m参数指定revert到哪个父记录（父记录可以通过<code>git log</code>查看，前面的就是1，后面的就是2）</td></tr>
 <tr><td><code>git revert HEAD</code></td><td>将最新的提交revert掉</td></tr>
 </tbody></table>
+</div>
 <p>还有一种不安全的方式：<code>git reset --hard commitID</code> 然后 <code>git push -f</code>。 表示先在本地重置到某次提交，然后强制将远端的记录用本地替换。</p>
 <hr />
 <p>​	</p>
 <h3 id="分支相关"><a class="header" href="#分支相关">分支相关</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git checkout master</code></td><td>切换到本地已有的分支</td></tr>
 <tr><td><code>git checkout -b new_branch</code></td><td>新建一个分支，并切换至该分支</td></tr>
 <tr><td><code>git branch name</code></td><td>从当前分支创建一个新分支，但不切换</td></tr>
@@ -199,24 +204,27 @@
 <tr><td><code>git push origin --delete branch_name</code></td><td>删除远程分支</td></tr>
 <tr><td><code>git cherry-pick commitid</code></td><td>选择一个 commit，合并进当前分支</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="多仓库操作"><a class="header" href="#多仓库操作">多仓库操作</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git remote add another ***</code></td><td>添加另外一个仓库地址至本仓库，别名为another</td></tr>
 <tr><td><code>git remote rm another</code></td><td>删除别名为another的仓库地址</td></tr>
 <tr><td><code>git remote show origin</code></td><td>查看默认跟踪的源</td></tr>
 <tr><td><code>git push -u origin master</code></td><td>推送至指定远程仓库的指定分支</td></tr>
 <tr><td><code>git pull origin master</code></td><td>拉取指定远程仓库的指定分支</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="储藏区操作"><a class="header" href="#储藏区操作">储藏区操作</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git stash</code></td><td>将工作区的修改添加至储藏区</td></tr>
 <tr><td><code>git stash list</code></td><td>查看储藏区内容</td></tr>
 <tr><td><code>git stash pop</code></td><td>将最上面的储藏内容应用至工作区，并删除这条储藏记录</td></tr>
 <tr><td><code>git stash apply</code></td><td>将最上面的储藏内容应用至工作区，并保留这条储藏记录</td></tr>
 <tr><td><code>git stash apply stash@{0}</code></td><td>应用指定的储藏记录</td></tr>
 </tbody></table>
+</div>
 <blockquote>
 <p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E8%B4%AE%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86">Git 工具 - 贮藏与清理</a></p>
 </blockquote>
@@ -246,22 +254,24 @@ git rebase --abort	# 中止rebase
 <hr />
 <p>​	</p>
 <h3 id="submodule"><a class="header" href="#submodule">SubModule</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git submodule init</code></td><td>初始化工程 (新clone的代码，要更新submodule，也需要调用这个命令)</td></tr>
 <tr><td><code>git submodule update</code></td><td>更新submodule代码</td></tr>
 <tr><td><code>git submodule add https://gitrepo.git directory</code></td><td>添加submodule到当前工程</td></tr>
 <tr><td><code>git push origin HEAD:master</code></td><td>推送修改的代码至远端仓库指定分支</td></tr>
 </tbody></table>
+</div>
 <p>submodule相关信息，存储在了<code>.gitmodules</code>文件中</p>
 <p>要删除某个submodule，参考：<a href="https://gist.github.com/myusuf3/7f645819ded92bda6677">delete_git_submodule.md</a></p>
 <hr />
 <p>​	</p>
 <h3 id="subtree"><a class="header" href="#subtree">SubTree</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git subtree add --prefix=Path http://gitrepo.git master --squash</code></td><td>添加subtree</td></tr>
 <tr><td><code>git subtree pull --prefix=Path http://gitrepo.git master --squash</code></td><td>更新代码</td></tr>
 <tr><td><code>git subtree split --rejoin push --prefix=Path http://gitrepo.git master</code></td><td>推送代码</td></tr>
 </tbody></table>
+</div>
 <p>要查看subtree仓库有哪些，可以使用：</p>
 <pre><code class="language-shell">git log | grep git-subtree-dir | tr -d ' ' | cut -d &quot;:&quot; -f2 | sort | uniq
 </code></pre>
@@ -272,7 +282,7 @@ git rebase --abort	# 中止rebase
 <hr />
 <p>​	</p>
 <h3 id="其它命令"><a class="header" href="#其它命令">其它命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reflog</code></td><td>查看有执行的记录</td></tr>
 <tr><td><code>git show</code></td><td>查看最近一次提交的修改</td></tr>
 <tr><td><code>git show commitID</code></td><td>查看指定commitID的修改</td></tr>
@@ -282,6 +292,7 @@ git rebase --abort	# 中止rebase
 <tr><td><code>git config --global --unset http.proxy</code></td><td>清理掉git全局代理</td></tr>
 <tr><td><code>git config [--global] user.email &quot;email@example.com&quot;</code></td><td>配置本地或全局仓库的用户邮箱</td></tr>
 </tbody></table>
+</div>
 <hr />
 <h3 id="mergerebase区别"><a class="header" href="#mergerebase区别">Merge、Rebase区别</a></h3>
 <blockquote>

@@ -142,7 +142,7 @@
 <li><a href="https://juejin.cn/post/6895991156204404750">深入进阶-从一次点击探寻Flutter事件分发原理</a></li>
 </ul>
 <h3 id="命令"><a class="header" href="#命令">命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>flutter create my_project</code></td><td>创建名称为my_project的工程</td></tr>
 <tr><td><code>flutter create --template=package hello</code></td><td>创建名为hello的package工程</td></tr>
 <tr><td><code>flutter doctor</code></td><td>查看Flutter的状态，如果有些配置没配置好，也会自动配置</td></tr>
@@ -155,6 +155,7 @@
 <tr><td><code>flutter run</code></td><td>运行工程，可以用-d指定设备，如：<code>flutter run -d macOS</code></td></tr>
 <tr><td><code>flutter test --coverage</code></td><td>查看测试覆盖率</td></tr>
 </tbody></table>
+</div>
 <p>flutter的分支有如下几种：</p>
 <ul>
 <li>master: 最新代码分支，是最不稳定的，新增的功能后续也可能删除</li>
@@ -171,19 +172,21 @@
 <li>全局使用版本：<code>fvm use &lt;version&gt;</code></li>
 </ul>
 <h3 id="android-studio快捷键"><a class="header" href="#android-studio快捷键">Android Studio快捷键</a></h3>
-<table><thead><tr><th>快捷键</th><th>含义</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>快捷键</th><th>含义</th></tr></thead><tbody>
 <tr><td><code>Optional + Enter</code></td><td>在某Widget上操作时，可以查看所有可以针对Widget的操作`</td></tr>
 <tr><td><code>Cmd + [</code> 及<code>Cmd + ]</code></td><td>浏览代码时的后退和前进</td></tr>
 </tbody></table>
+</div>
 <p>Android Studio也可以将快捷键设为其它IDE的，比如可以设置为Visual Studio的：<a href="https://www.jianshu.com/p/2f6248d5842c">Android Studio - 快捷键详解-MAC版</a></p>
 <h3 id="工程设置"><a class="header" href="#工程设置">工程设置</a></h3>
 <h4 id="依赖设置"><a class="header" href="#依赖设置">依赖设置</a></h4>
 <p>在<code>pubspec.yaml</code>中，<code>dependencies</code>项中添加依赖</p>
-<table><thead><tr><th>语法</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>语法</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>zefyr:</code></td><td>版本号不限定，尽可能使用新版本。也可以使用<code>zefyr: any</code></td></tr>
 <tr><td><code>zefyr: ^0.8</code></td><td>指明可以是兼容0.8的所有版本</td></tr>
 <tr><td><code>zefyr: '&gt;=0.8.0 &lt;0.10.0'</code></td><td>指明版本号范围，为大于等于0.8，小于0.10</td></tr>
 </tbody></table>
+</div>
 <p>flutter的所有可用依赖包，以及依赖包的更新日志，可以在<a href="https://pub.dev/">pub.dev</a>上搜索查看</p>
 <p>​	</p>
 <h3 id="vscode"><a class="header" href="#vscode">VSCode</a></h3>

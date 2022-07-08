@@ -152,18 +152,20 @@
 <p>VSCoce远程开发配置：https://juejin.im/post/5cf9d23ce51d45773d4685d9</p>
 <p>远程开发配置好后，连接到远程服务器后，就用“打开文件夹”功能，就可以打开远端目录</p>
 <h5 id="vscode快捷键"><a class="header" href="#vscode快捷键">VSCode快捷键</a></h5>
-<table><thead><tr><th>功能</th><th>快捷键</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>功能</th><th>快捷键</th></tr></thead><tbody>
 <tr><td>回退到上个位置</td><td><code>Ctrl</code> + <code>-</code></td></tr>
 <tr><td>快速打开文件</td><td><code>Ctrl</code> + <code>p</code></td></tr>
 <tr><td>代码格式化</td><td><code>Shift</code> + <code>Option</code> + <code>F</code></td></tr>
 <tr><td>全局替换代码</td><td><code>Cmd + Shift + H</code></td></tr>
 </tbody></table>
+</div>
 <h4 id="gem"><a class="header" href="#gem">Gem</a></h4>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>gem sources</code></td><td>查看所有的gem源</td></tr>
 <tr><td>gem sources -r url</td><td>删除指定的url源 (url要以/结尾)</td></tr>
 <tr><td><code>gem sources -a url</code></td><td>添加源</td></tr>
 </tbody></table>
+</div>
 <h4 id="bundler"><a class="header" href="#bundler"><a href="https://www.bundler.cn/">Bundler</a></a></h4>
 <p>能够跟踪并安装所需的特定版本的 gem</p>
 <p>安装bundler：<code>gem install bundler</code></p>
@@ -171,13 +173,14 @@
 <h4 id="cocoapods"><a class="header" href="#cocoapods">cocoapods</a></h4>
 <p>安装：<code>sudo gem install cocoapods</code></p>
 <p>如果提示路径没有权限的错误，可以用<code>-n</code>参数指定路径：<code>sudo gem install cocoapods -n /usr/local/bin</code></p>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>sudo gem install cocoapods</code></td><td>安装及更新</td></tr>
 <tr><td><code>pod setup</code></td><td>安装spec仓库</td></tr>
 <tr><td><code>pod repo update</code></td><td>更新spec仓库</td></tr>
 <tr><td><code>pod repo add [name] [url]</code></td><td>添加三方源（会在<code>~/.cocoapods/repos</code>下面新增源）</td></tr>
 <tr><td><code>Pod repo remove [name]</code></td><td>移除相应三方源</td></tr>
 </tbody></table>
+</div>
 <p>彻底删除cocoapod:</p>
 <pre><code class="language-sh">for i in $( gem list --local --no-version | grep cocoapods );
 do 
@@ -209,7 +212,36 @@ rm -rf ~/.cocoapods/
 <h4 id="jenkins"><a class="header" href="#jenkins">Jenkins</a></h4>
 <p><a href="https://segmentfault.com/a/1190000038464808">别当工具人了，手摸手教会你 Jenkins ！</a></p>
 <h4 id="gitlab-ci"><a class="header" href="#gitlab-ci">Gitlab-CI</a></h4>
-<p><a href="https://juejin.cn/post/6844904045581172744">Gitlab-CI使用教程</a></p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904045581172744">Gitlab-CI使用教程</a></li>
+<li><a href="https://docs.gitlab.cn/jh/ci/">官方文档</a></li>
+</ul>
+<h5 id="gitlab-runner"><a class="header" href="#gitlab-runner">Gitlab-runner</a></h5>
+<p>gitlab-runner作用</p>
+<blockquote>
+<p>我们希望提交的代码可以执行某些任务，这些任务默认是放在工程根目录下的<code>.gitlab-ci.yml</code>中的。而如何执行这些命令，就是通过<code>gitlab-runner</code>这个工具来运行的。</p>
+</blockquote>
+<p>gitlab-runner使用</p>
+<ul>
+<li>
+<p>安装：<code>brew install gitlab-runner</code></p>
+</li>
+<li>
+<p>启动：<code>brew services start gitlab-runner</code></p>
+</li>
+<li>
+<p>注册：<code>gitlab-runner register</code></p>
+</li>
+<li>
+<p>从相应Git仓库下可以找到URL和Token，在Gitlab的<code>settings-&gt;CI-&gt;Runners-&gt;Expand</code>下面可以查看</p>
+</li>
+<li>
+<p>然后输入描述、tag(这个是比较重要的，标识)等信息</p>
+</li>
+<li>
+<p>设置执行环境，设置为<code>Shell</code>即可</p>
+</li>
+</ul>
 
                     </main>
 

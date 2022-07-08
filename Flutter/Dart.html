@@ -138,7 +138,7 @@
 <p>在安装了Flutter的情况下，要直接使用dart，只需要将dart sdk配置到环境变量中即可。</p>
 <p>dart sdk的位置在<code>$FlutterPATH/cache/dart-sdk/bin</code>，具体使用参考：<a href="https://blog.csdn.net/qq_26287435/article/details/87917289">Dart配置环境变量</a></p>
 <h3 id="dart常用命令"><a class="header" href="#dart常用命令">Dart常用命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>dart main.dart</code></td><td>可以直接执行main.dart</td></tr>
 <tr><td><code>dart create myproj</code></td><td>创建dart工程</td></tr>
 <tr><td><code>dart create --template=package-simple mypackage</code></td><td>创建dart的package工程 （还有其它类型的template，通过<code>dart create --help</code>查看）</td></tr>
@@ -146,6 +146,7 @@
 <tr><td><code>dart pub publish</code></td><td>可以发布包至<code>pub.dev</code>上</td></tr>
 <tr><td><code>pub global activate somepackage</code></td><td>安装指定脚本并激活，然后可以使用该package bin目录下的脚本 (如安装并使用fvm)</td></tr>
 </tbody></table>
+</div>
 <h3 id="特性列表"><a class="header" href="#特性列表">特性列表</a></h3>
 <ul>
 <li>Dart是单线程语言 (Dart中的<code>Isolate</code>类似多线程，但不完全一样)</li>

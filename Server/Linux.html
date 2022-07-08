@@ -138,24 +138,26 @@
 <h3 id="资料"><a class="header" href="#资料">资料</a></h3>
 <p>Linux命令大全：<a href="https://github.com/jaywcjlove/linux-command">linux-command</a></p>
 <h3 id="系统命令"><a class="header" href="#系统命令">系统命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>ps auxf</code></td><td>查看所有进程</td></tr>
 <tr><td><code>disown</code></td><td>执行一个命令后，再执行disown，可以来保持后台一直执行</td></tr>
 <tr><td><code>crontab</code></td><td>定时任务，参考: <a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html">crontab 定时任务</a></td></tr>
 <tr><td><code>kill -9 pid</code></td><td>杀死指定id的进程</td></tr>
 </tbody></table>
+</div>
 <h3 id="普通命令"><a class="header" href="#普通命令">普通命令</a></h3>
-<table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>ls -lR \| grep '.svg' \|wc -l</code></td><td>统计当前目录下，指定类型文件的个数</td></tr>
 <tr><td><code>ln dir/src.txt other/dest.txt</code></td><td>创建硬链接 (第一个参数是源，第二个参数是目的)</td></tr>
 <tr><td><code>which cmd</code></td><td>查看cmd命令所在的位置</td></tr>
 </tbody></table>
+</div>
 <h3 id="工具"><a class="header" href="#工具">工具</a></h3>
-<table><thead><tr><th>名称</th><th>示例</th><th>作用</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>名称</th><th>示例</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>serve</code></td><td>serve -l 80 -s build</td><td>在80端口上启动一个简单的httpsvr，加载build目录</td></tr>
 <tr><td><code>scp</code></td><td>scp /home/a.zip root@129.20.0.2:/work/a.zip</td><td>拷贝本地相应目录的a.zip文件，至远程服务器的相应目录下</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
