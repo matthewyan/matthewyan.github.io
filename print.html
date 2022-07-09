@@ -2537,7 +2537,7 @@ d.data  // 变为&quot;Hello World&quot;
 <li><a href="https://kangzubin.com/nullability-and-objective-c/">Objective-C 中 nullable、__nullable、_Nullable 的区别</a></li>
 <li><a href="https://blog.sunnyxx.com/2014/10/15/behind-autorelease/">黑幕背后的Autorelease</a></li>
 <li><a href="https://nshipster.cn/__attribute__/">NSHipster <strong>attribute</strong></a></li>
-<li><a href="https://juejin.cn/post/6844904101839372295">iOS底层原理：weak的实现原理</a></li>
+<li><a href="https://juejin.cn/post/6844904101839372295">iOS底层原理：weak的实现原理</a>、<a href="https://mp.weixin.qq.com/s/OxePl6fBKYFOeL_tHN8UAA">探秘Weak实现原理</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">OC中参数类型定义</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/81449078">ARC 实现的原理</a></li>
 <li><a href="https://zesming.com/oc-super/">简谈 OC 中陌生而又熟悉的 super</a>： <code>super</code> 是一个关键字，给 <code>super</code> 发消息实际上是一种调用继承链上父类实现的方法的方式</li>
@@ -10056,12 +10056,23 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <blockquote>
 <p>breaking up frontend monoliths into many smaller, more manageable pieces, and how this architecture can increase the effectiveness and efficiency of teams working on frontend code.</p>
 </blockquote>
-<p>即微服务的思路，将大项目拆成多个较小的模块</p>
+<p>即微服务的思路，将大项目拆成多个较小的模块。微前端的特点如下：</p>
+<ul>
+<li>子应用可以独立开发、部署，以及子应用仓库独立。</li>
+<li>子应用之间状态是隔离的。</li>
+<li>子应用可以随意采用自己的开发框架等。</li>
+</ul>
+<blockquote>
+<p>微前端看起来可以直接用iframe来解决，但iframe存在一些问题，具体可参考：<a href="https://mp.weixin.qq.com/s/-AZCw8tA-tA2Rg0_3PFi0w">微前端究竟是什么？微前端核心技术揭秘！</a>中的说明。</p>
+</blockquote>
 <h3 id="低代码"><a class="header" href="#低代码">低代码</a></h3>
 <p>通过GUI进行应用开发的环境，可以不需要代码或少量特定代码。</p>
 <p>这个思路并不新鲜，DreamWaver、Storyboard都是使用界面拖拽开发的方式。为什么这两年开始火起来呢？其主要是随着云计算的兴起而活起来的，有资本推动的很大原因。</p>
 <p>目前很多公司都有自己的低代码开发平台，如<a href="https://cloud.tencent.com/product/weda">腾讯微搭</a>、<a href="https://www.alibabacloud.com/zh/product/yida">阿里宜搭</a>、<a href="https://suda.baidu.com/">百度爱速搭</a>等。</p>
 <p>要体验下如何使用，可以尝试 <a href="https://aisuda.github.io/amis-editor-demo/#/hello-world">AIMS Demo</a></p>
+<blockquote>
+<p>与LowCode对应的，是ProCode，即我们平常进行的开发工作。</p>
+</blockquote>
 <h3 id="mob编程"><a class="header" href="#mob编程">Mob编程</a></h3>
 <p><a href="https://www.jdon.com/48512">什么是Mob编程？</a></p>
 <p>Mob编程是一种软件开发方式，是结对编程的扩展，整个团队从事同一段代码编程。这类似于两个人坐在同一台计算机上，同时对一个任务或一个问题上进行结对编程。</p>
