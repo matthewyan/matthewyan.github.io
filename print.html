@@ -2138,8 +2138,11 @@ Value: Light
 <h4 id="资源压缩"><a class="header" href="#资源压缩">资源压缩</a></h4>
 <p>ImageOptim</p>
 <h3 id="启动过程"><a class="header" href="#启动过程">启动过程</a></h3>
-<p><a href="https://time.geekbang.org/column/article/85331">App 启动速度怎么做优化与监控？</a></p>
-<p><a href="https://www.jianshu.com/p/108bd061771e">iOS MetricsKit 收集电量和性能数据</a></p>
+<ul>
+<li><a href="https://time.geekbang.org/column/article/85331">App 启动速度怎么做优化与监控？</a></li>
+<li><a href="https://www.zhihu.com/question/265861930/answer/1289213090">如何提高程序性能？或者优化的经验？ - 阿里巴巴大淘宝技术的回答</a></li>
+<li><a href="https://www.jianshu.com/p/108bd061771e">iOS MetricsKit 收集电量和性能数据</a></li>
+</ul>
 <p>从大的过程上来说，分为三个阶段：<code>main前</code>、<code>main后</code>、<code>首屏渲染完成</code></p>
 <h4 id="main前"><a class="header" href="#main前">main前</a></h4>
 <ul>
@@ -10103,6 +10106,10 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p><a href="https://developer.aliyun.com/article/903428">建设下一代 Web 开放技术——WebContainer</a></p>
 <p>阿里的WebContainer，可以理解为在浏览器中，再提供一个安全、可控的执行环境。其实现需要在Host引擎中再执行一个VM JS Engine，并且可以自定义开放的接口，来进行API的管控。</p>
 <p>其重要的目的就是当前App中执行第三方服务时，可以进行安全约束。</p>
+<p>目前阿里的WebContainer实现，是WASM + QuickJS来实现的。</p>
+<h3 id="无锁编程"><a class="header" href="#无锁编程">无锁编程</a></h3>
+<p><a href="https://zhuanlan.zhihu.com/p/472861479">无锁编程简介</a></p>
+<p>简单理解，其是“没有互斥锁的编程方式，它是一种编程方式”。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="技术文章概要"><a class="header" href="#技术文章概要">技术文章概要</a></h1>
 <h3 id="待读"><a class="header" href="#待读">待读</a></h3>
 <ul>
