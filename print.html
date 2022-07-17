@@ -755,7 +755,7 @@ driver.get('http://www.baidu.com/')
 <p>原因是为了防止链接复用时，收到了老的包。三次握手是在确定<code>ISN</code>，即初始序列号。</p>
 <h3 id="udp"><a class="header" href="#udp">UDP</a></h3>
 <p><a href="https://zhuanlan.zhihu.com/p/64154915">udp协议-看这篇就够了</a></p>
-<h3 id="http"><a class="header" href="#http">Http</a></h3>
+<h3 id="http"><a class="header" href="#http">HTTP</a></h3>
 <ul>
 <li>
 <p><a href="https://blog.fundebug.com/2019/03/07/understand-http2-and-http3/">一文读懂 HTTP/2 及 HTTP/3 特性</a></p>
@@ -771,7 +771,7 @@ driver.get('http://www.baidu.com/')
 300~399	300~305	重定向
 400~499	400~415	客户端错误
 500~599	500~505	服务器错误</p>
-<h4 id="http1x"><a class="header" href="#http1x">Http/1.x</a></h4>
+<h4 id="http1x"><a class="header" href="#http1x">HTTP/1.x</a></h4>
 <ul>
 <li>链接复用问题
 <ul>
@@ -789,8 +789,8 @@ driver.get('http://www.baidu.com/')
 <li>安全问题</li>
 <li>有做并发限制，如果需要同时下载超过限制数的资源，就需要使用<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Domain_sharding">域名分片</a></li>
 </ul>
-<h4 id="http2"><a class="header" href="#http2">Http/2</a></h4>
-<p>Http2的基础是Google开发的SPDY协议</p>
+<h4 id="http2"><a class="header" href="#http2">HTTP/2</a></h4>
+<p>HTTP2的基础是Google开发的SPDY协议</p>
 <ul>
 <li>二进制传输</li>
 <li>同域名通信，都是单链接完成 （单链接也给Header优化提供了支持）</li>
@@ -799,13 +799,20 @@ driver.get('http://www.baidu.com/')
 </ul>
 <p>问题：</p>
 <ul>
-<li>Http2的长链接，一旦丢包，就会导致所有包重传</li>
+<li>HTTP2的长链接，一旦丢包，就会导致所有包重传</li>
 </ul>
-<h4 id="http3"><a class="header" href="#http3">Http/3</a></h4>
+<h4 id="http3"><a class="header" href="#http3">HTTP/3</a></h4>
 <p>基于Google开发的QUIC协议</p>
 <ul>
 <li>基于UDP (可以实现真正的多路复用)</li>
 <li>向前纠错机制</li>
+<li>0-RTT (双方通信的第一个数据包就可以携带有效的业务数据)</li>
+</ul>
+<p>HTTP/3使用情况：</p>
+<ul>
+<li>占有率查看：<a href="https://w3techs.com/technologies/details/ce-http3">w3techs</a></li>
+<li>单个网站使用情况：<a href="https://http3check.net/">HTTP/3 Check</a></li>
+<li>浏览器支持情况：<a href="https://caniuse.com/http3">CanIUseHttp3</a></li>
 </ul>
 <h4 id="https"><a class="header" href="#https">Https</a></h4>
 <blockquote>
