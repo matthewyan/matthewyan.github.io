@@ -135,16 +135,20 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
-<p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
-<p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/100059901">WebAssembly 入门课</a></li>
+<li><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></li>
+<li><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></li>
+</ul>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>计算模型是堆栈机模型 (Stack Machine，很多VM指令集都是基于该模型)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
 <li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
-<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>为了保证JS与WASM的互操作性，基本JS引擎都直接支持了WASM的执行(如V8内可以执行WASM)。JS引擎要支持WASM，需要实现相应规范。</li>
 <li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 <li>可以利用LLVM对中间码进行优化。(即会先生成LLVM IR，进行相应优化，再转为WASM) (<a href="https://zhuanlan.zhihu.com/p/339950505">C++场景下LLVM IR与WebAssembly的关系</a>)</li>
 <li>LLVM后端，可以生成WebAssembly目标。(<a href="https://llvm.org/docs/GettingStarted.html">LLVM GettingStarted</a>)</li>
@@ -198,7 +202,7 @@ int hello() {
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>
 <li><a href="https://www.rust-lang.org/zh-CN/">Rust</a></li>
 <li><a href="https://github.com/golang/go/wiki/WebAssembly">go</a></li>
-<li><a href="https://swiftwasm.org/">Swift</a> (fork后还未合入swift工程)</li>
+<li><a href="https://swiftwasm.org/">Swift</a></li>
 </ul>
 <p>语言列表：<a href="https://github.com/appcypher/awesome-wasm-langs">awesome-wasm-langs</a></p>
 <h4 id="emscripten"><a class="header" href="#emscripten">Emscripten</a></h4>

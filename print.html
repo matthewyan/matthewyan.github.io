@@ -4354,16 +4354,20 @@ NaN
 <p><a href="https://cloud.tencent.com/developer/article/1520009">一文掌握React 渲染原理及性能优化</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vue"><a class="header" href="#vue">Vue</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
-<p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
-<p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/100059901">WebAssembly 入门课</a></li>
+<li><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></li>
+<li><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></li>
+</ul>
 <h3 id="特性-4"><a class="header" href="#特性-4">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>计算模型是堆栈机模型 (Stack Machine，很多VM指令集都是基于该模型)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
 <li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
-<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>为了保证JS与WASM的互操作性，基本JS引擎都直接支持了WASM的执行(如V8内可以执行WASM)。JS引擎要支持WASM，需要实现相应规范。</li>
 <li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 <li>可以利用LLVM对中间码进行优化。(即会先生成LLVM IR，进行相应优化，再转为WASM) (<a href="https://zhuanlan.zhihu.com/p/339950505">C++场景下LLVM IR与WebAssembly的关系</a>)</li>
 <li>LLVM后端，可以生成WebAssembly目标。(<a href="https://llvm.org/docs/GettingStarted.html">LLVM GettingStarted</a>)</li>
@@ -4417,7 +4421,7 @@ int hello() {
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>
 <li><a href="https://www.rust-lang.org/zh-CN/">Rust</a></li>
 <li><a href="https://github.com/golang/go/wiki/WebAssembly">go</a></li>
-<li><a href="https://swiftwasm.org/">Swift</a> (fork后还未合入swift工程)</li>
+<li><a href="https://swiftwasm.org/">Swift</a></li>
 </ul>
 <p>语言列表：<a href="https://github.com/appcypher/awesome-wasm-langs">awesome-wasm-langs</a></p>
 <h4 id="emscripten"><a class="header" href="#emscripten">Emscripten</a></h4>
@@ -4537,10 +4541,13 @@ cookies.forEach { cookie in
 <div style="break-before: page; page-break-before: always;"></div><h1 id="js引擎"><a class="header" href="#js引擎">JS引擎</a></h1>
 <h3 id="v8"><a class="header" href="#v8">V8</a></h3>
 <p><code>Node.js</code>、<code>deno</code>也是基于V8开发的</p>
-<p><a href="https://zhuanlan.zhihu.com/p/27628685">认识 V8 引擎</a></p>
-<p><a href="https://github.com/poetries/browser-working-principle/blob/master/docs/guide/part3/lesson14.md">编译器和解析器：V8如何执行一段JavaScript代码的</a></p>
-<p><a href="http://newhtml.net/category/v8%e4%b8%93%e9%a2%98/">V8 之旅</a></p>
-<p><a href="https://github.com/bluezhan/v8">初探V8 JavaScript引擎</a></p>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/100048001">图解 Google V8</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27628685">认识 V8 引擎</a></li>
+<li><a href="https://github.com/poetries/browser-working-principle/blob/master/docs/guide/part3/lesson14.md">编译器和解析器：V8如何执行一段JavaScript代码的</a></li>
+<li><a href="http://newhtml.net/category/v8%e4%b8%93%e9%a2%98/">V8 之旅</a></li>
+<li><a href="https://github.com/bluezhan/v8">初探V8 JavaScript引擎</a></li>
+</ul>
 <h5 id="v8高效的原因"><a class="header" href="#v8高效的原因">V8高效的原因</a></h5>
 <ul>
 <li>JIT编译</li>
@@ -4680,13 +4687,25 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <li>为了提供更好的交互体验，避免了单个 WebView 的任务过于繁重。</li>
 </ul>
 <h4 id="双线程渲染"><a class="header" href="#双线程渲染">双线程渲染</a></h4>
-<p>页面渲染使用Webview直接渲染，逻辑代码使用JSCore / Hermes执行。</p>
+<p><a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0006a2289c8bb0bb0086ee8c056c0a">小程序双线程模型技术选型</a></p>
+<blockquote>
+<p>小程序框架最初技术选型时，考虑了 Web / Native / Hybird 的方式，也重点考虑了基于RN框架改造，但后面还是决定自研了。</p>
+</blockquote>
+<p>页面渲染使用Webview直接渲染，逻辑代码使用JSCore / Hermes执行。 这两块的通信，是通过Native进行中转的。</p>
+<p><img src="Web/./images/mp_thread_communication.png" alt="" /></p>
 <blockquote>
 <p>在iOS上，JSCore没有JIT，效率要比WKWebview执行JS要慢很多</p>
 </blockquote>
 <ul>
 <li>能避免UI页面被耗时操作阻塞。</li>
 <li>为了安全性，防止开发者直接使用浏览器提供的能力。如操作DOM等。</li>
+</ul>
+<h4 id="同层渲染"><a class="header" href="#同层渲染">同层渲染</a></h4>
+<p><a href="https://developers.weixin.qq.com/community/develop/article/doc/000c4e433707c072c1793e56f5c813">小程序同层渲染原理剖析</a></p>
+<p>小程序利用了浏览器的<code>同层渲染</code>，即可将Native组件，插入到DOM树里，进行统一布局。其很方便的将Native的<code>Map</code>、<code>输入框</code>等在Webview中引入。</p>
+<ul>
+<li>在iOS上，直接利用了WKWebview来实现同层渲染</li>
+<li>在Android上，使用了自定义Chromium内核来实现</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="flutter"><a class="header" href="#flutter">Flutter</a></h1>
 <h3 id="资料-24"><a class="header" href="#资料-24">资料</a></h3>
@@ -7050,16 +7069,20 @@ NaN
 <li>支持<a href="https://www.tslang.cn/docs/handbook/advanced-types.html">交叉类型</a>和联合类型 (交叉类型合并所有成员)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
-<p><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></p>
-<p><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></p>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/100059901">WebAssembly 入门课</a></li>
+<li><a href="http://webassembly.org.cn/docs/high-level-goals/">WebAssembly的长久目标</a></li>
+<li><a href="http://webassembly.org.cn/docs/use-cases/">WebAssembly使用场景</a></li>
+</ul>
 <h3 id="特性-9"><a class="header" href="#特性-9">特性</a></h3>
 <ul>
 <li>本质是中间字节码。 (<a href="https://www.infoq.cn/article/l4eqydd4gsegbdyx_pz9">WebAssembly 到底处于编译阶段的哪个环节？</a>)</li>
+<li>计算模型是堆栈机模型 (Stack Machine，很多VM指令集都是基于该模型)</li>
 <li>一次编译到处运行，具有跨平台特性。 (可以类比为Java字节码与JVM)</li>
 <li>相比JS能够运行更快。(省略编译步骤，运行时也不需要再实时编译。)</li>
 <li>JS与WebAssembly可以互操作。(C++中调用JS: <a href="https://ihsavru.medium.com/calling-javascript-code-from-c-c-using-webassembly-a9445c11bc6d">Calling JavaScript code from C/C++ using WebAssembly</a>)</li>
 <li>代码安全性高，需要通过逆向来分析代码逻辑</li>
-<li>其本身也是被JS引擎所执行。JS要支持WASM，需要实现相应规范。</li>
+<li>为了保证JS与WASM的互操作性，基本JS引擎都直接支持了WASM的执行(如V8内可以执行WASM)。JS引擎要支持WASM，需要实现相应规范。</li>
 <li>WASM是字节码二进制形式，WAT是字节码可读形式。两者是等价的。(<a href="https://github.com/WebAssembly/wabt">wabt</a>，转换工具集)</li>
 <li>可以利用LLVM对中间码进行优化。(即会先生成LLVM IR，进行相应优化，再转为WASM) (<a href="https://zhuanlan.zhihu.com/p/339950505">C++场景下LLVM IR与WebAssembly的关系</a>)</li>
 <li>LLVM后端，可以生成WebAssembly目标。(<a href="https://llvm.org/docs/GettingStarted.html">LLVM GettingStarted</a>)</li>
@@ -7113,7 +7136,7 @@ int hello() {
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>
 <li><a href="https://www.rust-lang.org/zh-CN/">Rust</a></li>
 <li><a href="https://github.com/golang/go/wiki/WebAssembly">go</a></li>
-<li><a href="https://swiftwasm.org/">Swift</a> (fork后还未合入swift工程)</li>
+<li><a href="https://swiftwasm.org/">Swift</a></li>
 </ul>
 <p>语言列表：<a href="https://github.com/appcypher/awesome-wasm-langs">awesome-wasm-langs</a></p>
 <h4 id="emscripten-1"><a class="header" href="#emscripten-1">Emscripten</a></h4>
@@ -7220,9 +7243,27 @@ int hello() {
 <p><a href="https://zh.wikipedia.org/wiki/LR%E5%89%96%E6%9E%90%E5%99%A8">LR分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LL%E5%89%96%E6%9E%90%E5%99%A8">LL分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LALR%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8">LALR语法</a></p>
+<h3 id="计算模型"><a class="header" href="#计算模型">计算模型</a></h3>
+<p>现在常用的计算模型有两种：<code>堆栈机模型</code>、<code>寄存器模型</code> （除此之外，还有一种现在用的不多的<code>累加器</code>模型）</p>
+<ul>
+<li>堆栈模型：就是把所有的操作数据通过出/入栈来实现，简单、易于实现、指令精简，但效率稍差。</li>
+<li>寄存器模型： 通过增加操作指令长度，可以灵活的指定数据存储的寄存器。采用这种方式，会有更大的代码优化空间。</li>
+</ul>
+<p>这两种模型的工作方式的，在：<a href="https://time.geekbang.org/column/article/283436">WebAssembly 是一门新的编程语言吗？</a> 中有详细的描述。</p>
+<p>根据其是否跑在物理架构上，可以分为如下两种类型：</p>
+<ul>
+<li>ISA: 即 Instruction Set Architecture，指令集架构，跑在物理系统上的指令集</li>
+<li>V-ISA: 即 Virtual-ISA，是跑在虚拟架构体系中的指令集 (很多V-ISA是基于<code>堆栈模型</code>设计的)</li>
+</ul>
+<p><code>WASM</code>本质来说，是一种<code>I-ISA</code>。WASM采用这种架构的原因如下：</p>
+<ul>
+<li>可以让包大小更小 (因为指令长度更短)</li>
+<li>设计简单，可以快速的原型实现</li>
+<li>指令代码验证更简单</li>
+</ul>
 <h3 id="虚拟机-2"><a class="header" href="#虚拟机-2">虚拟机</a></h3>
 <p>资料：<a href="https://www.yuque.com/sukha/rf1pdg/vf52fk">虚拟机随谈</a></p>
-<p>VM根据指令集架构分为<code>基于栈</code>和<code>寄存器</code>类型。vm的指令集如果只有零地址指令, 那么就只需要栈+PC寄存器就可以实现语义; 而如果还是有多地址指令, 那么就还要模拟寄存器.  这就是基于栈的虚拟机和基于寄存器的虚拟机的区别.</p>
+<p>VM根据指令集架构也分为<code>基于栈</code>和<code>寄存器</code>类型。vm的指令集如果只有零地址指令, 那么就只需要栈+PC寄存器就可以实现语义; 而如果还是有多地址指令, 那么就还要模拟寄存器.  这就是基于栈的虚拟机和基于寄存器的虚拟机的区别.</p>
 <h3 id="ast"><a class="header" href="#ast">AST</a></h3>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s/-pvoF4vd9jaUEdj0w2zOzA">一文助你搞懂 AST</a></li>
@@ -7573,6 +7614,18 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU1MzE2NzIzMg==&amp;mid=2247489426&amp;idx=1&amp;sn=4f25b920de46f2492dab381c8d1fecab&amp;scene=21">京东App MCube动态化实践</a></li>
 </ul>
 <h3 id="tangram"><a class="header" href="#tangram">Tangram</a></h3>
+<ul>
+<li><a href="http://tangram.pingguohe.net/docs/basic-concept/history">了解Tangram</a></li>
+<li><a href="http://pingguohe.net/2017/04/24/tangram-ios-structure.html">Tangram iOS版本框架结构解析</a></li>
+</ul>
+<h3 id="阿里跨端技术演进"><a class="header" href="#阿里跨端技术演进">阿里跨端技术演进</a></h3>
+<p><a href="https://mp.weixin.qq.com/s/NMsZWEzP3oE-KexRQMesmQ">跨全端SDK技术演进</a></p>
+<ul>
+<li>自研了C++ Lite跨平台库 (考虑包大小、性能等)</li>
+<li>开发了一套自己的C++脚手架 (Eyas，没开源)</li>
+</ul>
+<p><a href="https://mp.weixin.qq.com/s/cAPAHzlChV-TjbAIj4YQ_Q">跨桌面端Web容器演进</a></p>
+<p><a href="https://mp.weixin.qq.com/s/t7apHNc9ZHF__dab1KKwIQ">跨桌面端之组件化实践</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="笔记-1"><a class="header" href="#笔记-1">笔记</a></h1>
 <ul>
 <li><a href="Note/./10xWork.html">10倍程序员工作法</a></li>

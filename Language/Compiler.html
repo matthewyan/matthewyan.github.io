@@ -147,9 +147,27 @@
 <p><a href="https://zh.wikipedia.org/wiki/LR%E5%89%96%E6%9E%90%E5%99%A8">LR分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LL%E5%89%96%E6%9E%90%E5%99%A8">LL分析器</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/LALR%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8">LALR语法</a></p>
+<h3 id="计算模型"><a class="header" href="#计算模型">计算模型</a></h3>
+<p>现在常用的计算模型有两种：<code>堆栈机模型</code>、<code>寄存器模型</code> （除此之外，还有一种现在用的不多的<code>累加器</code>模型）</p>
+<ul>
+<li>堆栈模型：就是把所有的操作数据通过出/入栈来实现，简单、易于实现、指令精简，但效率稍差。</li>
+<li>寄存器模型： 通过增加操作指令长度，可以灵活的指定数据存储的寄存器。采用这种方式，会有更大的代码优化空间。</li>
+</ul>
+<p>这两种模型的工作方式的，在：<a href="https://time.geekbang.org/column/article/283436">WebAssembly 是一门新的编程语言吗？</a> 中有详细的描述。</p>
+<p>根据其是否跑在物理架构上，可以分为如下两种类型：</p>
+<ul>
+<li>ISA: 即 Instruction Set Architecture，指令集架构，跑在物理系统上的指令集</li>
+<li>V-ISA: 即 Virtual-ISA，是跑在虚拟架构体系中的指令集 (很多V-ISA是基于<code>堆栈模型</code>设计的)</li>
+</ul>
+<p><code>WASM</code>本质来说，是一种<code>I-ISA</code>。WASM采用这种架构的原因如下：</p>
+<ul>
+<li>可以让包大小更小 (因为指令长度更短)</li>
+<li>设计简单，可以快速的原型实现</li>
+<li>指令代码验证更简单</li>
+</ul>
 <h3 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h3>
 <p>资料：<a href="https://www.yuque.com/sukha/rf1pdg/vf52fk">虚拟机随谈</a></p>
-<p>VM根据指令集架构分为<code>基于栈</code>和<code>寄存器</code>类型。vm的指令集如果只有零地址指令, 那么就只需要栈+PC寄存器就可以实现语义; 而如果还是有多地址指令, 那么就还要模拟寄存器.  这就是基于栈的虚拟机和基于寄存器的虚拟机的区别.</p>
+<p>VM根据指令集架构也分为<code>基于栈</code>和<code>寄存器</code>类型。vm的指令集如果只有零地址指令, 那么就只需要栈+PC寄存器就可以实现语义; 而如果还是有多地址指令, 那么就还要模拟寄存器.  这就是基于栈的虚拟机和基于寄存器的虚拟机的区别.</p>
 <h3 id="ast"><a class="header" href="#ast">AST</a></h3>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s/-pvoF4vd9jaUEdj0w2zOzA">一文助你搞懂 AST</a></li>

@@ -145,13 +145,25 @@
 <li>为了提供更好的交互体验，避免了单个 WebView 的任务过于繁重。</li>
 </ul>
 <h4 id="双线程渲染"><a class="header" href="#双线程渲染">双线程渲染</a></h4>
-<p>页面渲染使用Webview直接渲染，逻辑代码使用JSCore / Hermes执行。</p>
+<p><a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0006a2289c8bb0bb0086ee8c056c0a">小程序双线程模型技术选型</a></p>
+<blockquote>
+<p>小程序框架最初技术选型时，考虑了 Web / Native / Hybird 的方式，也重点考虑了基于RN框架改造，但后面还是决定自研了。</p>
+</blockquote>
+<p>页面渲染使用Webview直接渲染，逻辑代码使用JSCore / Hermes执行。 这两块的通信，是通过Native进行中转的。</p>
+<p><img src="./images/mp_thread_communication.png" alt="" /></p>
 <blockquote>
 <p>在iOS上，JSCore没有JIT，效率要比WKWebview执行JS要慢很多</p>
 </blockquote>
 <ul>
 <li>能避免UI页面被耗时操作阻塞。</li>
 <li>为了安全性，防止开发者直接使用浏览器提供的能力。如操作DOM等。</li>
+</ul>
+<h4 id="同层渲染"><a class="header" href="#同层渲染">同层渲染</a></h4>
+<p><a href="https://developers.weixin.qq.com/community/develop/article/doc/000c4e433707c072c1793e56f5c813">小程序同层渲染原理剖析</a></p>
+<p>小程序利用了浏览器的<code>同层渲染</code>，即可将Native组件，插入到DOM树里，进行统一布局。其很方便的将Native的<code>Map</code>、<code>输入框</code>等在Webview中引入。</p>
+<ul>
+<li>在iOS上，直接利用了WKWebview来实现同层渲染</li>
+<li>在Android上，使用了自定义Chromium内核来实现</li>
 </ul>
 
                     </main>
