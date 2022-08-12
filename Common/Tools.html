@@ -135,6 +135,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="常用工具"><a class="header" href="#常用工具">常用工具</a></h1>
+<h4 id="brew"><a class="header" href="#brew">brew</a></h4>
+<p>在M1电脑上使用Brew，请参考：<a href="https://www.igeeksblog.com/how-to-install-homebrew-on-mac/">How to install Homebrew in macOS Catalina or M1 Mac</a></p>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td><code>brew unlink lib</code></td><td>解除某个库的引用链接</td></tr>
+<tr><td><code>brew link lib</code></td><td>建立某个库的引用链接</td></tr>
+</tbody></table>
+</div>
 <h4 id="统计代码行数"><a class="header" href="#统计代码行数">统计代码行数</a></h4>
 <p>安装：</p>
 <pre><code class="language-sh">gem install git_stats
@@ -162,8 +169,9 @@
 <h4 id="gem"><a class="header" href="#gem">Gem</a></h4>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>gem sources</code></td><td>查看所有的gem源</td></tr>
-<tr><td>gem sources -r url</td><td>删除指定的url源 (url要以/结尾)</td></tr>
+<tr><td><code>gem sources -r url</code></td><td>删除指定的url源 (url要以/结尾)</td></tr>
 <tr><td><code>gem sources -a url</code></td><td>添加源</td></tr>
+<tr><td><code>gem install lib -v &quot;~&gt; 1.1&quot;</code></td><td>安装指定版本的库</td></tr>
 </tbody></table>
 </div>
 <h4 id="bundler"><a class="header" href="#bundler"><a href="https://www.bundler.cn/">Bundler</a></a></h4>
