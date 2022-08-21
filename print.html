@@ -1982,6 +1982,10 @@ Events</p>
 <h4 id="address-sanitizer"><a class="header" href="#address-sanitizer">Address Sanitizer</a></h4>
 <p><a href="https://easeapi.com/blog/blog/84-address-sanitizer.html">Address Sanitizer的原理和使用</a></p>
 <p>简单来说，其是通过替换malloc和free的实现，并将释放的内存进行特殊标记(后续<code>malloc</code>不会再申请已释放的内存)，当这些内存再被访问时，ASan工具就会报告异常。</p>
+<h4 id="zombie-objects"><a class="header" href="#zombie-objects">Zombie Objects</a></h4>
+<p><a href="https://blog.csdn.net/u014600626/article/details/119506854">Xcode特性Address Sanitizer,对比僵尸对象</a></p>
+<p>Zombie Objects检测，本质是在对象释放时，将对象指向僵尸对象，再给该对象发消息，就会引发异常，并打印相关信息。（详细原理参见：<a href="https://www.jianshu.com/p/493f581d336b">iOS Zombie Objects(僵尸对象)原理探索</a>）</p>
+<p>其相比Address Sanitizer来说，功能上会稍弱一些。</p>
 <h4 id="xcode-cloud"><a class="header" href="#xcode-cloud">Xcode Cloud</a></h4>
 <ul>
 <li><a href="https://juejin.cn/post/7088123584514228254">窥探 Xcode Cloud</a></li>
@@ -3805,6 +3809,17 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li>适合在后台做密集计算的任务</li>
 <li>与主线程不在同一个上下文环境，只能通过<code>postMessage</code>接口进行通信</li>
 <li>调试同其它JS代码类似，只要在Worker加载的JS中设置断点，运行时即可中断</li>
+</ul>
+<h4 id="web-components"><a class="header" href="#web-components">Web Components</a></h4>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000039269731">Web Components 上手指南</a></li>
+<li><a href="https://www.ruanyifeng.com/blog/2019/08/web_components.html">Web Components 入门实例教程</a></li>
+</ul>
+<p>简介：</p>
+<ul>
+<li>Web Components目的就是为了组件的复用 (在复用的目的上与Vue / React类似)</li>
+<li>与React差异，React本身也提供了声明式的开发方式。</li>
+<li>浏览器原生就支持这种Web Components组件的渲染。而不需要再经过编译。 (其是W3C标准规范)</li>
 </ul>
 <h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
 <ul>
@@ -7229,6 +7244,7 @@ int hello() {
 <p>删除Stack：删除这两个目录即可，<code>~/.stack</code>和<code>/usr/local/bin/stack</code></p>
 <h3 id="资料-39"><a class="header" href="#资料-39">资料</a></h3>
 <ul>
+<li><a href="https://lhbg-book.link/01-about.html">Learn Haskell by building a blog generator</a></li>
 <li><a href="https://aducode.github.io/posts/2015-07-02/learn_haskell_lession1.html">haskell学习总结(一)::初级篇</a></li>
 <li><a href="https://learnyouahaskell.mno2.org/zh-cn">HASKELL 趣学指南</a></li>
 <li><a href="http://cnhaskell.com/">Real World Haskell 中文版</a></li>

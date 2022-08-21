@@ -263,6 +263,10 @@
 <h4 id="address-sanitizer"><a class="header" href="#address-sanitizer">Address Sanitizer</a></h4>
 <p><a href="https://easeapi.com/blog/blog/84-address-sanitizer.html">Address Sanitizer的原理和使用</a></p>
 <p>简单来说，其是通过替换malloc和free的实现，并将释放的内存进行特殊标记(后续<code>malloc</code>不会再申请已释放的内存)，当这些内存再被访问时，ASan工具就会报告异常。</p>
+<h4 id="zombie-objects"><a class="header" href="#zombie-objects">Zombie Objects</a></h4>
+<p><a href="https://blog.csdn.net/u014600626/article/details/119506854">Xcode特性Address Sanitizer,对比僵尸对象</a></p>
+<p>Zombie Objects检测，本质是在对象释放时，将对象指向僵尸对象，再给该对象发消息，就会引发异常，并打印相关信息。（详细原理参见：<a href="https://www.jianshu.com/p/493f581d336b">iOS Zombie Objects(僵尸对象)原理探索</a>）</p>
+<p>其相比Address Sanitizer来说，功能上会稍弱一些。</p>
 <h4 id="xcode-cloud"><a class="header" href="#xcode-cloud">Xcode Cloud</a></h4>
 <ul>
 <li><a href="https://juejin.cn/post/7088123584514228254">窥探 Xcode Cloud</a></li>
