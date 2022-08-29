@@ -4364,7 +4364,8 @@ NaN
 <li>支持默认参数</li>
 <li>支持<a href="https://www.tslang.cn/docs/handbook/advanced-types.html">交叉类型</a>和联合类型 (交叉类型合并所有成员)</li>
 </ul>
-<h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
+<h3 id="类型相关"><a class="header" href="#类型相关">类型相关</a></h3>
+<p>从大的类型上来分，有<code>原始类型</code>、<code>对象类型</code>两大类。</p>
 <h4 id="类型检查"><a class="header" href="#类型检查">类型检查</a></h4>
 <p>TS支持严格类型检查、非严格类型检查。通过在tsconfig.json中做如下配置即可打开严格检查模式:</p>
 <pre><code class="language-json">{
@@ -4434,6 +4435,158 @@ type UnionDirectionType =
 <p>当枚举类型中的所有成员都是字面量枚举成员时，该枚举类型成了联合枚举类型。</p>
 </blockquote>
 <p>枚举在定义时，也会经常使用<code>const</code>来修饰，表示不需要相应对象信息，生成js代码时直接用枚举值进行替换即可（有点像C里的宏）</p>
+<h4 id="字面量类型"><a class="header" href="#字面量类型">字面量类型</a></h4>
+<p>在TS中，字面量可以作为类型使用，被称为字面量类型，每一个字面量类型都只有一个可能的值，即字面量本身。</p>
+<pre><code class="language-typescript">// 定义true类型的a，其可以赋值给另外的boolean类型的变量
+const a: true = true;
+let b: boolean = a;
+
+// 定义hello类型的c
+const c: 'hello' = 'hello';
+let d: string = c;
+
+// 其它字面量也类似
+</code></pre>
+<h4 id="单元类型-unit-type"><a class="header" href="#单元类型-unit-type">单元类型 (Unit Type)</a></h4>
+<p>叫作单例类型（Singleton Type），指的是仅包含一个可能值的类型。</p>
+<p>如下类型都是单元类型：</p>
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>unique symbol</li>
+<li>void</li>
+<li>字面量类型</li>
+<li>联合枚举成员类型</li>
+</ul>
+<h4 id="顶端类型-top-type"><a class="header" href="#顶端类型-top-type">顶端类型 (Top Type)</a></h4>
+<p>是一种通用类型，所有其它类型都是顶端类型的子类型，TS中的顶端类型：</p>
+<ul>
+<li>any</li>
+<li>unknown</li>
+</ul>
+<pre><code class="language-typescript">let x: any;
+
+// 可以将任意类型的值赋值给x
+x = true;
+x = 3;
+x = 'hello';
+
+// 使用上类似any，但相比any更安全。
+let y: unknown;
+
+// 与any一样
+let y = true;
+let y = 3;
+</code></pre>
+<p><code>any</code>类型可以用来跳过编译器的检查，也即调用不存在的接口也没问题。 （但尽量少用）</p>
+<p>如果没有显示声明类型，且编译器无法推断时，编译器就会将其处理为any。如：<code>function f1(x) { console.log(x); }</code> （不过<code>noImplicitAny</code>编译选项可以禁用掉该特性，即必须将类型明确出来）</p>
+<p><code>unknown</code>类型比any更安全，体现在如下：</p>
+<ul>
+<li><code>unknown</code>类型只能赋值给另外的unknown或any类型</li>
+<li>在使用<code>unknown</code>前，需要将其细化为具体类型才可使用 (如果直接使用，则会编译出错)</li>
+</ul>
+<pre><code class="language-typescript">function f2(message: unknown) {
+    // 直接使用会编译错误
+    // return message.length;
+
+    // 在使用前需要先判断其类型
+    if (typeof message === 'string') {
+        return message.length;
+    }
+}
+</code></pre>
+<h4 id="尾端类型-bottom-type"><a class="header" href="#尾端类型-bottom-type">尾端类型 (Bottom Type)</a></h4>
+<p>是所有其它类型的子类型。尾端类型仅有一种，即<code>never</code>。也被称为0类型，或空类型。其含义表示不可能有值。</p>
+<pre><code class="language-typescript">let x: never;
+
+// 可以将x赋值给任意其它类型
+let a: boolean = x;
+let b: string = x;
+let c: void = x;
+let d: null = x;
+
+// 反过来赋值是禁止的
+x = true;   // 错误
+x = 3;      // 错误
+</code></pre>
+<p>如下使用场景上可以使用到never:</p>
+<ul>
+<li>确定某个函数不可能返回值</li>
+<li>可以用来帮助做类型运算 (如<code>Exclude&lt;T, U&gt;</code>的实现)</li>
+</ul>
+<pre><code class="language-typescript">// 如果一个普通函数，不调用return返回数据时，其实是会返回一个`undefined`的值。
+function f(): never {
+    throw new Error();
+}
+
+// Exclude实现
+type Exclude&lt;T, U&gt; = T extends U ? never : T; 
+
+// 即可这样来使用，最终从联合类型中去除string，而变成boolean类型
+type T = Exclude&lt;boolean | string, string&gt;; // boolean
+</code></pre>
+<h4 id="复合类型"><a class="header" href="#复合类型">复合类型</a></h4>
+<p>即可以组合多种类型在一起。在数组中使用时，该数组元素就可以存放多种类型。</p>
+<p><code>const red: (string | number)[] = ['f', f, 0, 0, 0, 0];</code></p>
+<h4 id="数组"><a class="header" href="#数组">数组</a></h4>
+<pre><code class="language-typescript">// T[]、Array&lt;T&gt;，都可以用来表示数组类型
+const a: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const b: Array&lt;number&gt; = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const red: readonly Array&lt;string | number&gt; = ['f', f, 0, 0, 0, 0];
+</code></pre>
+<ul>
+<li>数组越界的情况下，会返回undefined值，并不会出错</li>
+<li>支持readonly修饰符，表示只读数组 (也可以用<code>ReadonlyArray&lt;T&gt;</code>、<code>Readonly&lt;T&gt;</code>来实现只读数组)</li>
+</ul>
+<h4 id="元组-tuple"><a class="header" href="#元组-tuple">元组 (Tuple)</a></h4>
+<p>在TS中，元组是数组的子类型，可以理解为是长度固定的数组。（每个元素也都有确定的类型，并且类型可以不同）</p>
+<ul>
+<li>元组定义方式：<code>[T0, T1, ..., Tn]</code></li>
+<li>元组也可以通过<code>readonly</code>或<code>Readonly&lt;T&gt;</code>将其声明为只读的</li>
+<li>通过下标来访问元素</li>
+<li>支持可选元组，在类型后添加<code>?</code>即可。可选元素必须放在后面</li>
+<li>支持剩余元素，即:<code>[...T[]]</code>。表示剩余的元素都是某种类型的，且不限制个数(也可以为0个)</li>
+</ul>
+<pre><code class="language-typescript">const score: [string, number] = ['math', 100];
+const course = score[0];   // string
+const grade = score[1];    // number
+
+// 可选元素
+const tuple: [boolean, string?, number?] = [true, 'yes', 1];
+tuple = [true]; // 后面两个值默认为yes和1
+
+// 剩余元素，后面可以填任意多个字符串元素
+const tuple: [number, ...string[]] = [0, 'a', 'b'];
+
+// 可以将单一类型的元组赋值给数组的
+const point: [number, number] = [0, 0];
+const nums: number[] = point;   // 正确的
+</code></pre>
+<h4 id="对象"><a class="header" href="#对象">对象</a></h4>
+<h5 id="自动封箱"><a class="header" href="#自动封箱">自动封箱</a></h5>
+<p>在JS中充斥着对象，并且有时会存在<code>自动封箱</code>操作，即将原始值自动自动转为对象。</p>
+<pre><code class="language-typescript">// 自动封箱，将'hi'转换为String对象类型
+'hi'.toUpperCase();
+
+// 自动封箱，将3转换为Number对象类型
+// 注意：这里使用了两个点符号
+3..toString()
+</code></pre>
+<h5 id="object"><a class="header" href="#object">Object</a></h5>
+<p>除了<code>undefined</code>和<code>null</code>外，其它任何值都可以赋值给Object类型。</p>
+<p>包括原始值也可以赋值给Object，原因是<code>自动封箱</code>操作的原因。</p>
+<p>这个对象更多是用来描述所有对象共享的属性和方法，自己写代码时，不要使用该类型定义对象。</p>
+<h5 id="object-1"><a class="header" href="#object-1">object</a></h5>
+<p>它用来强调某个对象表示<code>非原始类型</code>，即对象类型。不能读写该类型中的自定义属性。</p>
+<pre><code class="language-typescript">const obj: object = { foo: 0 };
+
+// 编译错误！属性'foo'不存在于类型'object'上
+obj.foo;
+
+// 但可以调用基础接口
+obj.toString();
+</code></pre>
+<h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
 <pre><code class="language-javascript">// 对象解构
@@ -4445,6 +4598,9 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <p>除了支持属性访问，也支持函数/方法调用。方法调用的方式为：<code>fn?.()</code></p>
 <h4 id="空值合并"><a class="header" href="#空值合并">空值合并</a></h4>
 <p>即<code>a ?? b</code>，当a为空时，返回b，否则返回a （与Swift中的??一样）</p>
+<blockquote>
+<p>a为空，即a为undefined或null时</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="react"><a class="header" href="#react">React</a></h1>
 <h3 id="概念-5"><a class="header" href="#概念-5">概念</a></h3>
 <h4 id="jsx"><a class="header" href="#jsx">JSX</a></h4>
@@ -7213,7 +7369,8 @@ NaN
 <li>支持默认参数</li>
 <li>支持<a href="https://www.tslang.cn/docs/handbook/advanced-types.html">交叉类型</a>和联合类型 (交叉类型合并所有成员)</li>
 </ul>
-<h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
+<h3 id="类型相关-1"><a class="header" href="#类型相关-1">类型相关</a></h3>
+<p>从大的类型上来分，有<code>原始类型</code>、<code>对象类型</code>两大类。</p>
 <h4 id="类型检查-1"><a class="header" href="#类型检查-1">类型检查</a></h4>
 <p>TS支持严格类型检查、非严格类型检查。通过在tsconfig.json中做如下配置即可打开严格检查模式:</p>
 <pre><code class="language-json">{
@@ -7283,6 +7440,158 @@ type UnionDirectionType =
 <p>当枚举类型中的所有成员都是字面量枚举成员时，该枚举类型成了联合枚举类型。</p>
 </blockquote>
 <p>枚举在定义时，也会经常使用<code>const</code>来修饰，表示不需要相应对象信息，生成js代码时直接用枚举值进行替换即可（有点像C里的宏）</p>
+<h4 id="字面量类型-1"><a class="header" href="#字面量类型-1">字面量类型</a></h4>
+<p>在TS中，字面量可以作为类型使用，被称为字面量类型，每一个字面量类型都只有一个可能的值，即字面量本身。</p>
+<pre><code class="language-typescript">// 定义true类型的a，其可以赋值给另外的boolean类型的变量
+const a: true = true;
+let b: boolean = a;
+
+// 定义hello类型的c
+const c: 'hello' = 'hello';
+let d: string = c;
+
+// 其它字面量也类似
+</code></pre>
+<h4 id="单元类型-unit-type-1"><a class="header" href="#单元类型-unit-type-1">单元类型 (Unit Type)</a></h4>
+<p>叫作单例类型（Singleton Type），指的是仅包含一个可能值的类型。</p>
+<p>如下类型都是单元类型：</p>
+<ul>
+<li>undefined</li>
+<li>null</li>
+<li>unique symbol</li>
+<li>void</li>
+<li>字面量类型</li>
+<li>联合枚举成员类型</li>
+</ul>
+<h4 id="顶端类型-top-type-1"><a class="header" href="#顶端类型-top-type-1">顶端类型 (Top Type)</a></h4>
+<p>是一种通用类型，所有其它类型都是顶端类型的子类型，TS中的顶端类型：</p>
+<ul>
+<li>any</li>
+<li>unknown</li>
+</ul>
+<pre><code class="language-typescript">let x: any;
+
+// 可以将任意类型的值赋值给x
+x = true;
+x = 3;
+x = 'hello';
+
+// 使用上类似any，但相比any更安全。
+let y: unknown;
+
+// 与any一样
+let y = true;
+let y = 3;
+</code></pre>
+<p><code>any</code>类型可以用来跳过编译器的检查，也即调用不存在的接口也没问题。 （但尽量少用）</p>
+<p>如果没有显示声明类型，且编译器无法推断时，编译器就会将其处理为any。如：<code>function f1(x) { console.log(x); }</code> （不过<code>noImplicitAny</code>编译选项可以禁用掉该特性，即必须将类型明确出来）</p>
+<p><code>unknown</code>类型比any更安全，体现在如下：</p>
+<ul>
+<li><code>unknown</code>类型只能赋值给另外的unknown或any类型</li>
+<li>在使用<code>unknown</code>前，需要将其细化为具体类型才可使用 (如果直接使用，则会编译出错)</li>
+</ul>
+<pre><code class="language-typescript">function f2(message: unknown) {
+    // 直接使用会编译错误
+    // return message.length;
+
+    // 在使用前需要先判断其类型
+    if (typeof message === 'string') {
+        return message.length;
+    }
+}
+</code></pre>
+<h4 id="尾端类型-bottom-type-1"><a class="header" href="#尾端类型-bottom-type-1">尾端类型 (Bottom Type)</a></h4>
+<p>是所有其它类型的子类型。尾端类型仅有一种，即<code>never</code>。也被称为0类型，或空类型。其含义表示不可能有值。</p>
+<pre><code class="language-typescript">let x: never;
+
+// 可以将x赋值给任意其它类型
+let a: boolean = x;
+let b: string = x;
+let c: void = x;
+let d: null = x;
+
+// 反过来赋值是禁止的
+x = true;   // 错误
+x = 3;      // 错误
+</code></pre>
+<p>如下使用场景上可以使用到never:</p>
+<ul>
+<li>确定某个函数不可能返回值</li>
+<li>可以用来帮助做类型运算 (如<code>Exclude&lt;T, U&gt;</code>的实现)</li>
+</ul>
+<pre><code class="language-typescript">// 如果一个普通函数，不调用return返回数据时，其实是会返回一个`undefined`的值。
+function f(): never {
+    throw new Error();
+}
+
+// Exclude实现
+type Exclude&lt;T, U&gt; = T extends U ? never : T; 
+
+// 即可这样来使用，最终从联合类型中去除string，而变成boolean类型
+type T = Exclude&lt;boolean | string, string&gt;; // boolean
+</code></pre>
+<h4 id="复合类型-1"><a class="header" href="#复合类型-1">复合类型</a></h4>
+<p>即可以组合多种类型在一起。在数组中使用时，该数组元素就可以存放多种类型。</p>
+<p><code>const red: (string | number)[] = ['f', f, 0, 0, 0, 0];</code></p>
+<h4 id="数组-1"><a class="header" href="#数组-1">数组</a></h4>
+<pre><code class="language-typescript">// T[]、Array&lt;T&gt;，都可以用来表示数组类型
+const a: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const b: Array&lt;number&gt; = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const red: readonly Array&lt;string | number&gt; = ['f', f, 0, 0, 0, 0];
+</code></pre>
+<ul>
+<li>数组越界的情况下，会返回undefined值，并不会出错</li>
+<li>支持readonly修饰符，表示只读数组 (也可以用<code>ReadonlyArray&lt;T&gt;</code>、<code>Readonly&lt;T&gt;</code>来实现只读数组)</li>
+</ul>
+<h4 id="元组-tuple-1"><a class="header" href="#元组-tuple-1">元组 (Tuple)</a></h4>
+<p>在TS中，元组是数组的子类型，可以理解为是长度固定的数组。（每个元素也都有确定的类型，并且类型可以不同）</p>
+<ul>
+<li>元组定义方式：<code>[T0, T1, ..., Tn]</code></li>
+<li>元组也可以通过<code>readonly</code>或<code>Readonly&lt;T&gt;</code>将其声明为只读的</li>
+<li>通过下标来访问元素</li>
+<li>支持可选元组，在类型后添加<code>?</code>即可。可选元素必须放在后面</li>
+<li>支持剩余元素，即:<code>[...T[]]</code>。表示剩余的元素都是某种类型的，且不限制个数(也可以为0个)</li>
+</ul>
+<pre><code class="language-typescript">const score: [string, number] = ['math', 100];
+const course = score[0];   // string
+const grade = score[1];    // number
+
+// 可选元素
+const tuple: [boolean, string?, number?] = [true, 'yes', 1];
+tuple = [true]; // 后面两个值默认为yes和1
+
+// 剩余元素，后面可以填任意多个字符串元素
+const tuple: [number, ...string[]] = [0, 'a', 'b'];
+
+// 可以将单一类型的元组赋值给数组的
+const point: [number, number] = [0, 0];
+const nums: number[] = point;   // 正确的
+</code></pre>
+<h4 id="对象-1"><a class="header" href="#对象-1">对象</a></h4>
+<h5 id="自动封箱-1"><a class="header" href="#自动封箱-1">自动封箱</a></h5>
+<p>在JS中充斥着对象，并且有时会存在<code>自动封箱</code>操作，即将原始值自动自动转为对象。</p>
+<pre><code class="language-typescript">// 自动封箱，将'hi'转换为String对象类型
+'hi'.toUpperCase();
+
+// 自动封箱，将3转换为Number对象类型
+// 注意：这里使用了两个点符号
+3..toString()
+</code></pre>
+<h5 id="object-2"><a class="header" href="#object-2">Object</a></h5>
+<p>除了<code>undefined</code>和<code>null</code>外，其它任何值都可以赋值给Object类型。</p>
+<p>包括原始值也可以赋值给Object，原因是<code>自动封箱</code>操作的原因。</p>
+<p>这个对象更多是用来描述所有对象共享的属性和方法，自己写代码时，不要使用该类型定义对象。</p>
+<h5 id="object-3"><a class="header" href="#object-3">object</a></h5>
+<p>它用来强调某个对象表示<code>非原始类型</code>，即对象类型。不能读写该类型中的自定义属性。</p>
+<pre><code class="language-typescript">const obj: object = { foo: 0 };
+
+// 编译错误！属性'foo'不存在于类型'object'上
+obj.foo;
+
+// 但可以调用基础接口
+obj.toString();
+</code></pre>
+<h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
 <h4 id="解构-1"><a class="header" href="#解构-1">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
 <pre><code class="language-javascript">// 对象解构
@@ -7294,6 +7603,9 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <p>除了支持属性访问，也支持函数/方法调用。方法调用的方式为：<code>fn?.()</code></p>
 <h4 id="空值合并-1"><a class="header" href="#空值合并-1">空值合并</a></h4>
 <p>即<code>a ?? b</code>，当a为空时，返回b，否则返回a （与Swift中的??一样）</p>
+<blockquote>
+<p>a为空，即a为undefined或null时</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <ul>
 <li><a href="https://time.geekbang.org/column/intro/100059901">WebAssembly 入门课</a></li>
@@ -8126,7 +8438,7 @@ document.head.appendChild(script);
 <blockquote>
 <p>在实际使用中，要<code>const</code>优先，其次<code>let</code>，不使用<code>var</code></p>
 </blockquote>
-<h3 id="类型相关"><a class="header" href="#类型相关">类型相关</a></h3>
+<h3 id="类型相关-2"><a class="header" href="#类型相关-2">类型相关</a></h3>
 <ul>
 <li><code>Undefined</code>类型只有一个值，就是<code>undefined</code>。声明的变量没有初始化，就是给的这个值</li>
 <li><code>typeof</code>未声明的变量，也会返回&quot;undefined&quot;</li>
@@ -8298,7 +8610,7 @@ g.next('bar');	// 仍然输出：foo，原因是首次调用next()只是用来�
 g.next('baz');	// 输出：baz
 </code></pre>
 <h2 id="对象继承与类"><a class="header" href="#对象继承与类">对象、继承与类</a></h2>
-<h3 id="对象"><a class="header" href="#对象">对象</a></h3>
+<h3 id="对象-2"><a class="header" href="#对象-2">对象</a></h3>
 <h4 id="属性"><a class="header" href="#属性">属性</a></h4>
 <p>对象的属性分为两种：<code>数据属性</code>和<code>访问器属性</code></p>
 <p><strong>数据属性</strong>的类型有如下几种：</p>
