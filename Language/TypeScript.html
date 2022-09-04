@@ -137,10 +137,10 @@
                         <h1 id="typescript"><a class="header" href="#typescript">TypeScript</a></h1>
 <h3 id="资料"><a class="header" href="#资料">资料</a></h3>
 <ul>
+<li><a href="https://weread.qq.com/web/bookDetail/a2c321c0721cac5ea2c585f">《TypeScript入门与实战》</a></li>
 <li><a href="https://cloud.tencent.com/developer/article/1499075">VSCode使用ts-node 调试TypeScript代码</a></li>
 <li><a href="https://jkchao.github.io/typescript-book-chinese/">深入理解 TypeScript</a></li>
 <li><a href="https://blog.rexskz.info/typescript-type-system-and-functional-programming.html">TypeScript 类型系统与函数式编程</a></li>
-<li><a href="https://weread.qq.com/web/bookDetail/a2c321c0721cac5ea2c585f">TypeScript入门与实战</a></li>
 </ul>
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <ul>
@@ -374,10 +374,52 @@ obj.foo;
 // 但可以调用基础接口
 obj.toString();
 </code></pre>
+<blockquote>
+<p>很多类型(非原始类型)都能赋值给<code>object</code>类型，但<code>object</code>类型仅能赋值给<code>顶端类型</code>、<code>Object类型</code>、<code>空对象类型字面量{}</code></p>
+<p>可以理解为遵循一种原则：子类型可以赋值给父类型，反过来不行</p>
+</blockquote>
+<h5 id="对象类型字面量"><a class="header" href="#对象类型字面量">对象类型字面量</a></h5>
+<p>内部成员类型有：</p>
+<ul>
+<li>属性签名</li>
+<li>调用签名</li>
+<li>构造签名</li>
+<li>方法签名</li>
+<li>索引签名</li>
+</ul>
+<p>定义方式：</p>
+<pre><code class="language-typescript">{
+    TypeMember;
+    TypeMember;     // 这儿也可以使用`,`来进行分割
+    ...
+
+    // 属性
+    propertyName: Type; // 如果不写`Type`的话，表示该属性的类型是`any`的（不推荐）
+    readonly propertyName: Type;    // 只读
+
+    // 可计算属性名，需类型为字面量`string`、`number`等
+    const a: 'a' = 'a';
+    [a]: boolean;   // 可计算属性名，需类型为字面量`string`、`number`等
+
+    // 可选属性，初始化时可以忽略
+    b?: number;
+}
+</code></pre>
+<h4 id="函数参数类型"><a class="header" href="#函数参数类型">函数参数类型</a></h4>
+<ul>
+<li>函数参数也支持<code>可选参数</code>、<code>默认参数</code>。</li>
+<li>参数不能即为可选参数，又为默认参数。</li>
+<li>在默认参数情况下，参数类型也支持自动推断，如果填了默认参数，并且可以被推断出来，则是可以不写类型的。</li>
+<li>支持剩余参数，用来接受0个或多个参数。</li>
+</ul>
+<pre><code class="language-typescript">function add(x: number = 0, y = 0) {
+    return x + y;
+}
+</code></pre>
 <h3 id="语法"><a class="header" href="#语法">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
-<pre><code class="language-javascript">// 对象解构
+<pre><code class="language-typescript">// 对象解构
 const point = { x: 0, y: 1 };
 const { x, y } = point; // 即可给x和y分别赋值为0和1
 </code></pre>
