@@ -4620,14 +4620,27 @@ obj.toString();
 <h4 id="函数参数类型"><a class="header" href="#函数参数类型">函数参数类型</a></h4>
 <ul>
 <li>函数参数也支持<code>可选参数</code>、<code>默认参数</code>。</li>
-<li>参数不能即为可选参数，又为默认参数。</li>
+<li>参数不能既为可选参数，又为默认参数。</li>
 <li>在默认参数情况下，参数类型也支持自动推断，如果填了默认参数，并且可以被推断出来，则是可以不写类型的。</li>
 <li>支持剩余参数，用来接受0个或多个参数。</li>
+<li>函数返回类型，也支持编译器自动推断 (<code>void</code>类型也仅用于函数返回上)</li>
 </ul>
 <pre><code class="language-typescript">function add(x: number = 0, y = 0) {
     return x + y;
 }
+
+// 可选参数
+function add2(x: number = 0, y?: number) {
+    return x + y;
+}
+
+// 剩余参数，本质是不限个数的可选参数，其类型是数组
+function f0(first, ...last: string[]) {
+    // ...
+}
+f0('a', 'b', 'c');  // 'b'和'c'即是last
 </code></pre>
+<h5 id="函数类型字面量"><a class="header" href="#函数类型字面量">函数类型字面量</a></h5>
 <h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
@@ -7667,14 +7680,27 @@ obj.toString();
 <h4 id="函数参数类型-1"><a class="header" href="#函数参数类型-1">函数参数类型</a></h4>
 <ul>
 <li>函数参数也支持<code>可选参数</code>、<code>默认参数</code>。</li>
-<li>参数不能即为可选参数，又为默认参数。</li>
+<li>参数不能既为可选参数，又为默认参数。</li>
 <li>在默认参数情况下，参数类型也支持自动推断，如果填了默认参数，并且可以被推断出来，则是可以不写类型的。</li>
 <li>支持剩余参数，用来接受0个或多个参数。</li>
+<li>函数返回类型，也支持编译器自动推断 (<code>void</code>类型也仅用于函数返回上)</li>
 </ul>
 <pre><code class="language-typescript">function add(x: number = 0, y = 0) {
     return x + y;
 }
+
+// 可选参数
+function add2(x: number = 0, y?: number) {
+    return x + y;
+}
+
+// 剩余参数，本质是不限个数的可选参数，其类型是数组
+function f0(first, ...last: string[]) {
+    // ...
+}
+f0('a', 'b', 'c');  // 'b'和'c'即是last
 </code></pre>
+<h5 id="函数类型字面量-1"><a class="header" href="#函数类型字面量-1">函数类型字面量</a></h5>
 <h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
 <h4 id="解构-1"><a class="header" href="#解构-1">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
