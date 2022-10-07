@@ -429,6 +429,35 @@ function f0(first, ...last: string[]) {
 f0('a', 'b', 'c');  // 'b'和'c'即是last
 </code></pre>
 <h5 id="函数类型字面量"><a class="header" href="#函数类型字面量">函数类型字面量</a></h5>
+<pre><code class="language-typescript">// (params) =&gt; Type
+let f: () =&gt; void;  // 即定义函数类型
+let f2: (x: number) =&gt; number;  // 参数名x必须要有，返回类型也必须要有
+</code></pre>
+<p>函数本质也是对象，因为函数中也可以定义其它属性。</p>
+<pre><code class="language-typescript">function f(x: number) {
+    console.log(x);
+}
+f.version = '1.0';
+
+let foo: { (x: number): void; version: string } = f;
+foo(10);    // 调用函数
+console.log(foo.version);   // 调用属性
+</code></pre>
+<h5 id="构造签名--调用签名"><a class="header" href="#构造签名--调用签名">构造签名 &amp; 调用签名</a></h5>
+<p>同其它语言一样，可以通过构造函数来创建对象</p>
+<pre><code class="language-typescript">const date = new Date();    // new是必须的
+
+declare const F: {
+    new (x: number): Number;  // &lt;- 构造签名
+    (x: number): number;      // &lt;- 调用签名
+};
+
+// 作为普通函数调用
+const a: number = F(1);
+
+// 作为构造函数调用
+const b: Number = new F(1);
+</code></pre>
 <h3 id="语法"><a class="header" href="#语法">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
