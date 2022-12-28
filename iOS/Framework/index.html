@@ -223,6 +223,13 @@ void MyLog(NSString *format, ...){
 <li>AutoPurgeCache：继承自NSCache，支持内存紧张时释放缓存能力 （因为NSCache在iOS7上，收到警告存在没有释放缓存的问题）</li>
 </ul>
 <p>NSCache缓存淘汰策略，是使用了LRU，即最早没有使用的缓存被淘汰。</p>
+<h3 id="firebase"><a class="header" href="#firebase">Firebase</a></h3>
+<h4 id="firebase启动时间统计原理"><a class="header" href="#firebase启动时间统计原理">Firebase启动时间统计原理</a></h4>
+<p>相关代码位置：<a href="https://github.com/firebase/firebase-ios-sdk/blob/master/FirebasePerformance/Sources/AppActivity/FPRAppActivityTracker.m">link</a></p>
+<ul>
+<li><code>appStartTrace</code>即是用来统计启动时间的</li>
+<li>有考虑<code>preWarm</code>的情况</li>
+</ul>
 
                     </main>
 
