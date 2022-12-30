@@ -251,6 +251,13 @@
 <li>Crash Sdk是通过注册异常信号来捕获异常的。</li>
 <li>捕捉到异常再用<code>backtrace</code>接口来获取当前堆栈信息</li>
 </ul>
+<p>崩溃捕捉常见流程：</p>
+<ul>
+<li>使用<code>NSGetUncaughtExceptionHandler()</code>保存现有的Crash异常处理方法</li>
+<li>使用<code>signal</code>来捕获指定信号，有些信号代表异常。并设置处理方法 (如<code>signal(SIGILL, signalHandler)</code>)</li>
+<li>使用<code>NSSetUncaughtExceptionHandler</code>获取OC异常，设置异常捕获处理方法</li>
+<li>处理完之后，需要调用一下开始保存的处理方法</li>
+</ul>
 <h3 id="日志"><a class="header" href="#日志">日志</a></h3>
 <h4 id="nslog"><a class="header" href="#nslog">NSLog</a></h4>
 <p>本质也是<code>ASL</code>(Apple System Logger)</p>
