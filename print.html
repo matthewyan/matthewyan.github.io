@@ -2129,6 +2129,17 @@ Value: Light
 <h4 id="cycript"><a class="header" href="#cycript">Cycript</a></h4>
 <p>主要用于在iOS上进行逆向工作。</p>
 <p><a href="https://juejin.cn/post/6844903821253017614">iOS 逆向之 Cycript 高级玩法（非越狱） &amp; .cy文件的封装</a></p>
+<h4 id="防止下载的资源被篡改"><a class="header" href="#防止下载的资源被篡改">防止下载的资源被篡改</a></h4>
+<ul>
+<li><a href="https://www.jianshu.com/p/b9fb0fc4084f">iOS如何保证下载资源的可靠性</a></li>
+<li><a href="https://www.jianshu.com/p/ee4cbeb954e5">iOS保证下载资源的可靠性（二）</a></li>
+</ul>
+<p>简单来说，步骤如下：</p>
+<ul>
+<li>生成一对公私钥，私钥保存在配置平台（后台），公钥放到客户端。</li>
+<li>文件在服务端Hash，然后拿md5用私钥签名，得到signStr，并与资源一起下发给客户端</li>
+<li>客户端拿到文件和signStr，用公钥还原md5，并自己用文件计算md5'，对比这两个值</li>
+</ul>
 <h3 id="截屏录屏相关"><a class="header" href="#截屏录屏相关">截屏、录屏相关</a></h3>
 <h4 id="截屏录屏检测"><a class="header" href="#截屏录屏检测">截屏、录屏检测</a></h4>
 <p><a href="https://www.jianshu.com/p/06a8fb3aabab">iOS 录屏和截屏监听</a></p>
@@ -2962,6 +2973,13 @@ struct category_t {
 <li><a href="https://juejin.cn/post/6975765788355461133">Tagged Pointer对象安全气垫为何会失效</a></li>
 </ul>
 <p>Apple为了优化<code>NSNumber</code>、<code>NSString</code>等小对象所占用的空间，提供了该技术。在该技术实现中也考虑到缓冲区溢出等保护。</p>
+<h4 id="nsinvocation使用"><a class="header" href="#nsinvocation使用">NSInvocation使用</a></h4>
+<p><a href="https://www.jianshu.com/p/6e8ae95adf83">iOS NSInvocation使用理解</a></p>
+<p>关于NSInvocation，有如下特点：</p>
+<ul>
+<li>如果方法有2个参数，但调用时，只传一个参数，则第2个参数会给赋值默认值，并不会出异常 (比如NSString类型，拿到的就是nil，Int类型就是0)</li>
+<li>如果方法有2个参数，但调用时传了3个参数，则会产生<code>NSInvalidArgumentException</code>的异常</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swiftui"><a class="header" href="#swiftui">SwiftUI</a></h1>
 <h3 id="特性-1"><a class="header" href="#特性-1">特性</a></h3>
 <ul>

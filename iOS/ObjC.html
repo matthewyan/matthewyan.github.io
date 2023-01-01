@@ -504,6 +504,13 @@ struct category_t {
 <li><a href="https://juejin.cn/post/6975765788355461133">Tagged Pointer对象安全气垫为何会失效</a></li>
 </ul>
 <p>Apple为了优化<code>NSNumber</code>、<code>NSString</code>等小对象所占用的空间，提供了该技术。在该技术实现中也考虑到缓冲区溢出等保护。</p>
+<h4 id="nsinvocation使用"><a class="header" href="#nsinvocation使用">NSInvocation使用</a></h4>
+<p><a href="https://www.jianshu.com/p/6e8ae95adf83">iOS NSInvocation使用理解</a></p>
+<p>关于NSInvocation，有如下特点：</p>
+<ul>
+<li>如果方法有2个参数，但调用时，只传一个参数，则第2个参数会给赋值默认值，并不会出异常 (比如NSString类型，拿到的就是nil，Int类型就是0)</li>
+<li>如果方法有2个参数，但调用时传了3个参数，则会产生<code>NSInvalidArgumentException</code>的异常</li>
+</ul>
 
                     </main>
 
