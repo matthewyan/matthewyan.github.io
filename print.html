@@ -3822,6 +3822,8 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <ul>
 <li><a href="https://developer.android.com/studio/releases/platforms?hl=zh-cn">系统与API对应关系</a></li>
 <li><a href="https://developer.android.com/studio/intro/keyboard-shortcuts?hl=zh-cn">Android Studio快捷键</a></li>
+<li><a href="https://developer.android.com/training/multiscreen/screendensities">不同设备使用的资源策略</a></li>
+<li><a href="https://material.io/blog/device-metrics">How to Find Device Metrics for Any Screen</a></li>
 </ul>
 <h3 id="基础能力"><a class="header" href="#基础能力">基础能力</a></h3>
 <ul>
@@ -4797,7 +4799,25 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <p>所有的钩子都是为函数引入外部功能，所以 React 约定，钩子一律使用<code>use</code>前缀命名，便于识别。你要使用 xxx 功能，钩子就命名为 usexxx。</p>
 </blockquote>
 <p>参考：<a href="https://www.ruanyifeng.com/blog/2019/09/react-hooks.html">React Hooks 入门教程</a></p>
-<h2 id="使用-1"><a class="header" href="#使用-1">使用</a></h2>
+<h5 id="usestate"><a class="header" href="#usestate">useState</a></h5>
+<p><a href="https://zhuanlan.zhihu.com/p/210550496">React Hooks 详解之 useState</a></p>
+<p>简单来说，useState，就是为了让函数式组件中，也可以有State，即可以控制自己的状态。在类组件中，可以通过定义属性的方式来维持自己的状态，而函数式组件，则需要使用<code>useState</code></p>
+<blockquote>
+<p>类组件有一个大的state对象，一个函数this.setState一次改变整个state对象。
+但函数组件没有状态，所以React第一次渲染函数组件时，它同时会创建一个对象与之共存，该对象是该组件实例的定制对象，而不是全局对象。只要组件存在于DOM中，这个组件的对象就会一直存在。</p>
+</blockquote>
+<h5 id="useeffect"><a class="header" href="#useeffect">useEffect</a></h5>
+<p>其是用来在函数组件中，执行需产生副作用的操作。如修改外部变量、发送请求等。</p>
+<p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行相应函数。</p>
+<h5 id="usememo"><a class="header" href="#usememo">useMemo</a></h5>
+<p><a href="https://cloud.tencent.com/developer/article/1967299">【译】你真的应该使用useMemo吗? 让我们一起来看看</a></p>
+<p>useMemo 其实创建了一种数据缓存机制。允许开发人员缓存变量的值和依赖列表。 如果此依赖项列表中的任何变量发生更改，React 将重新运行此函数去处理并重新缓存它。</p>
+<h5 id="usecallback"><a class="header" href="#usecallback">useCallback</a></h5>
+<p><a href="https://www.cnblogs.com/xiatianweidao/p/16728506.html">详细解读 React useCallback &amp; useMemo</a></p>
+<p>其也是为了缓存函数而引入的。具体为什么要有<code>useCallback</code>，可以参考这篇文章：<a href="https://www.knowledgehut.com/blog/web-development/all-about-react-usecallback">All About React useCallback()</a></p>
+<ul>
+<li>如果useCallback的第二个参数不填的话，则只会调用一次，后面就不会再更新了</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vue"><a class="header" href="#vue">Vue</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <ul>
@@ -7963,7 +7983,7 @@ int hello() {
 </code></pre>
 <p>重启VSCode就可以了</p>
 <p>参考：<a href="https://dev.to/egregors/vscode-for-haskell-in-2020-5dn8">VS Code for Haskell in 2020</a></p>
-<h3 id="使用-2"><a class="header" href="#使用-2">使用</a></h3>
+<h3 id="使用-1"><a class="header" href="#使用-1">使用</a></h3>
 <p>创建新工程：<code>stack new my-project</code></p>
 <p>配置工程：<code>stack setup</code></p>
 <p>编译：<code>stack build</code></p>
