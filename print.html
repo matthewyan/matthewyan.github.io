@@ -823,21 +823,18 @@ driver.get('http://www.baidu.com/')
 </ul>
 <h4 id="https"><a class="header" href="#https">Https</a></h4>
 <blockquote>
-<p><a href="https://segmentfault.com/a/1190000019976390">HTTPS加密过程详解</a></p>
+<p><a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">图解SSL/TLS协议</a></p>
 </blockquote>
 <p>Https是在HTTP下加入<code>SSL</code>层</p>
 <p>TLS目前使用较多的是TLS 1.1、TLS 1.2。</p>
 <p>步骤：</p>
 <ul>
-<li>客户端请求服务器获取证书公钥</li>
-<li>客户端(SSL/TLS)解析证书（无效会弹出警告）</li>
-<li>生成随机值</li>
-<li>用公钥加密随机值生成密钥</li>
-<li>客户端将秘钥发送给服务器</li>
-<li>服务端用私钥解密秘钥得到随机值</li>
-<li>将信息和随机值混合在一起进行对称加密</li>
-<li>将加密的内容发送给客户端</li>
-<li>客户端用秘钥解密信息</li>
+<li>客户端给服务器一个随机数、支持的加密方式、协议版本号等信息</li>
+<li>服务器返回服务端证书(内部包含服务端公钥)及一个随机数</li>
+<li>客户端使用CA公钥解析证书（无效会弹出警告）</li>
+<li>客户端确认服务端证书有效后，使用服务端公钥加密一个新的随机数给服务端</li>
+<li>服务端使用自己的私钥解密随机数</li>
+<li>根据中间传递的三个随机数，生成对话密钥，用来加密后续对话</li>
 </ul>
 <blockquote>
 <p><a href="https://www.zhihu.com/question/36767829">什么是DES加密？</a></p>
