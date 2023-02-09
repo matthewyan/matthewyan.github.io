@@ -33,6 +33,7 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -3493,6 +3494,14 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <h3 id="命令-2"><a class="header" href="#命令-2">命令</a></h3>
 <ul>
 <li>解压ipa之后，进入.app目录：<code>codesign -d --entitlements :- AppName</code>，可以查看当前包的签名信息</li>
+</ul>
+<h3 id="ios证书相关"><a class="header" href="#ios证书相关">iOS证书相关</a></h3>
+<p><a href="https://juejin.cn/post/6844903981387350023">iOS签名机制</a></p>
+<ul>
+<li>iOS企业帐号发布的证书的有效期是3年 (即cer，使用Apple私钥加密开发者公钥生成的)</li>
+<li>描述文件(mobileprovision)的有效期是1年 (开发、企业、发布都是)</li>
+<li>开发证书有效期为1年</li>
+<li>App安装验证流程: <a href="https://juejin.cn/post/6844903981387350023#heading-4">link</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="测试-1"><a class="header" href="#测试-1">测试</a></h1>
 <h2 id="单元测试-1"><a class="header" href="#单元测试-1">单元测试</a></h2>
@@ -11307,5 +11316,6 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
         });
         </script>
 
+    </div>
     </body>
 </html>
