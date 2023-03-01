@@ -1151,6 +1151,15 @@ rm -rf ~/.cocoapods/
 <p>口令生成：算法{密钥(也称为种子或seed), 动态因子(时间，事件，冲击响应...)}＝OTP口令</p>
 <p>参考：<a href="https://blog.csdn.net/terrychinaz/article/details/112976265">OTP动态令牌的原理</a></p>
 <p><img src="Common/./images/token_progress.png" alt="" /></p>
+<h3 id="jwt"><a class="header" href="#jwt">JWT</a></h3>
+<p><a href="https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程</a></p>
+<p>JWT的核心原理：</p>
+<ul>
+<li>客户端与服务端认证完成后，服务端生成JWT数据</li>
+<li>JWT中包含基本信息，并且为了防止被窜改，会做签名</li>
+<li>服务端会将JWT传给客户端，客户端以此作为自己可信的证据</li>
+<li>每次请求时，都将JWT带在Header中，交给服务端，以证明客户端的有效性</li>
+</ul>
 <h3 id="ssh"><a class="header" href="#ssh">SSH</a></h3>
 <p><a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH原理与运用（一）：远程登录</a></p>
 <p><a href="https://wangdoc.com/ssh/index.html">SSH教程</a></p>
@@ -4757,6 +4766,15 @@ const a: number = F(1);
 // 作为构造函数调用
 const b: Number = new F(1);
 </code></pre>
+<h4 id="类型的高级使用"><a class="header" href="#类型的高级使用">类型的高级使用</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
+<ul>
+<li>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</li>
+<li>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</li>
+<li>NonNullable<T> - 用于从类型T中去除undefined和null类型</li>
+<li>ReturnType<T> - 获取函数类型的返回类型</li>
+<li>InstanceType<T> - 获取构造函数的实例类型</li>
+</ul>
 <h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
@@ -4772,6 +4790,30 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <blockquote>
 <p>a为空，即a为undefined或null时</p>
 </blockquote>
+<h4 id="关键字"><a class="header" href="#关键字">关键字</a></h4>
+<ul>
+<li>extends: 继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</li>
+<li>keyof: </li>
+</ul>
+<h3 id="其它语法"><a class="header" href="#其它语法">其它语法</a></h3>
+<h4 id="interface"><a class="header" href="#interface">interface</a></h4>
+<p>与其它语言中的interface一样，是为了对<code>行为</code>进行定义的，在swift中即称为<code>协议</code></p>
+<p><a href="https://juejin.cn/post/6844904114925600776">TypeScript 中 interface 和 type 使用区别介绍</a></p>
+<p>特性如下：</p>
+<ul>
+<li>支持可选属性、只读属性、函数类型等</li>
+<li>某个接口支持继承多个接口</li>
+</ul>
+<pre><code class="language-typescript">interface Config {
+  color?: string;   // 可选属性
+  readonly x: number;   // 只读属性
+}
+
+// 函数类型
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="react"><a class="header" href="#react">React</a></h1>
 <h2 id="基础"><a class="header" href="#基础">基础</a></h2>
 <h3 id="资料-21"><a class="header" href="#资料-21">资料</a></h3>
@@ -4814,7 +4856,13 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 </blockquote>
 <h5 id="useeffect"><a class="header" href="#useeffect">useEffect</a></h5>
 <p>其是用来在函数组件中，执行需产生副作用的操作。如修改外部变量、发送请求等。</p>
-<p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行相应函数。</p>
+<p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行block。</p>
+<p>依赖项的特点： (<a href="https://www.jianshu.com/p/ab6d84f92dab">useEffect 的第二个参数</a>)</p>
+<ul>
+<li>当依赖多个参数时，任何一个参数变化时，都会触发block调用</li>
+<li>不传第二个参数，则会在每次render时执行block</li>
+<li>依赖项为空数组时，只会在初次render时调用一次block (等同<code>componentDidMount</code>)</li>
+</ul>
 <h5 id="usememo"><a class="header" href="#usememo">useMemo</a></h5>
 <p><a href="https://cloud.tencent.com/developer/article/1967299">【译】你真的应该使用useMemo吗? 让我们一起来看看</a></p>
 <p>useMemo 其实创建了一种数据缓存机制。允许开发人员缓存变量的值和依赖列表。 如果此依赖项列表中的任何变量发生更改，React 将重新运行此函数去处理并重新缓存它。</p>
@@ -4824,6 +4872,20 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <ul>
 <li>如果useCallback的第二个参数不填的话，则只会调用一次，后面就不会再更新了</li>
 </ul>
+<h3 id="使用-1"><a class="header" href="#使用-1">使用</a></h3>
+<h4 id="reactfc"><a class="header" href="#reactfc">React.FC</a></h4>
+<p>函数组件，基本使用如下： (FC，即：FunctionComponent)</p>
+<pre><code class="language-typescript">interface IProps {
+  name: string;
+}
+
+// FC后的泛型，是用来指定参数的
+const Icon: React.FC&lt;IProps&gt; = ({ name }) =&gt; {
+  return (
+    &lt;div&gt;{name}&lt;/div&gt;
+  );
+};
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vue"><a class="header" href="#vue">Vue</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly"><a class="header" href="#webassembly">WebAssembly</a></h1>
 <ul>
@@ -7855,6 +7917,15 @@ const a: number = F(1);
 // 作为构造函数调用
 const b: Number = new F(1);
 </code></pre>
+<h4 id="类型的高级使用-1"><a class="header" href="#类型的高级使用-1">类型的高级使用</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
+<ul>
+<li>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</li>
+<li>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</li>
+<li>NonNullable<T> - 用于从类型T中去除undefined和null类型</li>
+<li>ReturnType<T> - 获取函数类型的返回类型</li>
+<li>InstanceType<T> - 获取构造函数的实例类型</li>
+</ul>
 <h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
 <h4 id="解构-1"><a class="header" href="#解构-1">解构</a></h4>
 <p>支持数组和对象解构，在很多其它语言也支持类似操作。示例如下：</p>
@@ -7870,6 +7941,30 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <blockquote>
 <p>a为空，即a为undefined或null时</p>
 </blockquote>
+<h4 id="关键字-1"><a class="header" href="#关键字-1">关键字</a></h4>
+<ul>
+<li>extends: 继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</li>
+<li>keyof: </li>
+</ul>
+<h3 id="其它语法-1"><a class="header" href="#其它语法-1">其它语法</a></h3>
+<h4 id="interface-1"><a class="header" href="#interface-1">interface</a></h4>
+<p>与其它语言中的interface一样，是为了对<code>行为</code>进行定义的，在swift中即称为<code>协议</code></p>
+<p><a href="https://juejin.cn/post/6844904114925600776">TypeScript 中 interface 和 type 使用区别介绍</a></p>
+<p>特性如下：</p>
+<ul>
+<li>支持可选属性、只读属性、函数类型等</li>
+<li>某个接口支持继承多个接口</li>
+</ul>
+<pre><code class="language-typescript">interface Config {
+  color?: string;   // 可选属性
+  readonly x: number;   // 只读属性
+}
+
+// 函数类型
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
 <ul>
 <li><a href="https://time.geekbang.org/column/intro/100059901">WebAssembly 入门课</a></li>
@@ -7989,7 +8084,7 @@ int hello() {
 </code></pre>
 <p>重启VSCode就可以了</p>
 <p>参考：<a href="https://dev.to/egregors/vscode-for-haskell-in-2020-5dn8">VS Code for Haskell in 2020</a></p>
-<h3 id="使用-1"><a class="header" href="#使用-1">使用</a></h3>
+<h3 id="使用-2"><a class="header" href="#使用-2">使用</a></h3>
 <p>创建新工程：<code>stack new my-project</code></p>
 <p>配置工程：<code>stack setup</code></p>
 <p>编译：<code>stack build</code></p>

@@ -184,7 +184,13 @@
 </blockquote>
 <h5 id="useeffect"><a class="header" href="#useeffect">useEffect</a></h5>
 <p>其是用来在函数组件中，执行需产生副作用的操作。如修改外部变量、发送请求等。</p>
-<p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行相应函数。</p>
+<p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行block。</p>
+<p>依赖项的特点： (<a href="https://www.jianshu.com/p/ab6d84f92dab">useEffect 的第二个参数</a>)</p>
+<ul>
+<li>当依赖多个参数时，任何一个参数变化时，都会触发block调用</li>
+<li>不传第二个参数，则会在每次render时执行block</li>
+<li>依赖项为空数组时，只会在初次render时调用一次block (等同<code>componentDidMount</code>)</li>
+</ul>
 <h5 id="usememo"><a class="header" href="#usememo">useMemo</a></h5>
 <p><a href="https://cloud.tencent.com/developer/article/1967299">【译】你真的应该使用useMemo吗? 让我们一起来看看</a></p>
 <p>useMemo 其实创建了一种数据缓存机制。允许开发人员缓存变量的值和依赖列表。 如果此依赖项列表中的任何变量发生更改，React 将重新运行此函数去处理并重新缓存它。</p>
@@ -194,6 +200,20 @@
 <ul>
 <li>如果useCallback的第二个参数不填的话，则只会调用一次，后面就不会再更新了</li>
 </ul>
+<h3 id="使用"><a class="header" href="#使用">使用</a></h3>
+<h4 id="reactfc"><a class="header" href="#reactfc">React.FC</a></h4>
+<p>函数组件，基本使用如下： (FC，即：FunctionComponent)</p>
+<pre><code class="language-typescript">interface IProps {
+  name: string;
+}
+
+// FC后的泛型，是用来指定参数的
+const Icon: React.FC&lt;IProps&gt; = ({ name }) =&gt; {
+  return (
+    &lt;div&gt;{name}&lt;/div&gt;
+  );
+};
+</code></pre>
 
                     </main>
 

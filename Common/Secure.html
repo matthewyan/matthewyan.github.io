@@ -165,6 +165,15 @@
 <p>口令生成：算法{密钥(也称为种子或seed), 动态因子(时间，事件，冲击响应...)}＝OTP口令</p>
 <p>参考：<a href="https://blog.csdn.net/terrychinaz/article/details/112976265">OTP动态令牌的原理</a></p>
 <p><img src="./images/token_progress.png" alt="" /></p>
+<h3 id="jwt"><a class="header" href="#jwt">JWT</a></h3>
+<p><a href="https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程</a></p>
+<p>JWT的核心原理：</p>
+<ul>
+<li>客户端与服务端认证完成后，服务端生成JWT数据</li>
+<li>JWT中包含基本信息，并且为了防止被窜改，会做签名</li>
+<li>服务端会将JWT传给客户端，客户端以此作为自己可信的证据</li>
+<li>每次请求时，都将JWT带在Header中，交给服务端，以证明客户端的有效性</li>
+</ul>
 <h3 id="ssh"><a class="header" href="#ssh">SSH</a></h3>
 <p><a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH原理与运用（一）：远程登录</a></p>
 <p><a href="https://wangdoc.com/ssh/index.html">SSH教程</a></p>
