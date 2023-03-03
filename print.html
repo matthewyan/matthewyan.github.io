@@ -4767,13 +4767,33 @@ const a: number = F(1);
 const b: Number = new F(1);
 </code></pre>
 <h4 id="类型的高级使用"><a class="header" href="#类型的高级使用">类型的高级使用</a></h4>
-<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
 <ul>
-<li>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</li>
-<li>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</li>
-<li>NonNullable<T> - 用于从类型T中去除undefined和null类型</li>
-<li>ReturnType<T> - 获取函数类型的返回类型</li>
-<li>InstanceType<T> - 获取构造函数的实例类型</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
+</li>
+<li>
+<p><a href="https://www.tslang.cn/docs/handbook/advanced-types.html">高级类型</a></p>
+</li>
+<li>
+<p>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</p>
+</li>
+<li>
+<p>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</p>
+</li>
+<li>
+<p>NonNullable<T> - 用于从类型T中去除undefined和null类型</p>
+</li>
+<li>
+<p>ReturnType<T> - 获取函数类型的返回类型</p>
+</li>
+<li>
+<p>InstanceType<T> - 获取构造函数的实例类型</p>
+</li>
+</ul>
+<p>类型的理解：</p>
+<ul>
+<li>交叉类型：在mixins的场景，应该使用交叉类型 （交叉类型，让ts的类型系统变得非常灵活和强大）</li>
+<li>联合类型：</li>
 </ul>
 <h3 id="语法-1"><a class="header" href="#语法-1">语法</a></h3>
 <h4 id="解构"><a class="header" href="#解构">解构</a></h4>
@@ -4791,10 +4811,14 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <p>a为空，即a为undefined或null时</p>
 </blockquote>
 <h4 id="关键字"><a class="header" href="#关键字">关键字</a></h4>
-<ul>
-<li>extends: 继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</li>
-<li>keyof: </li>
-</ul>
+<h5 id="extends"><a class="header" href="#extends">extends</a></h5>
+<p>继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</p>
+<h5 id="keyof"><a class="header" href="#keyof">keyof</a></h5>
+<p>返回对象属性名组成的<code>字面量联合类型</code></p>
+<pre><code class="language-typescript">type Dog = { name: string; age: number;  };
+type D = keyof Dog; //type D = &quot;name&quot; | &quot;age&quot;
+</code></pre>
+<h5 id="in"><a class="header" href="#in">in</a></h5>
 <h3 id="其它语法"><a class="header" href="#其它语法">其它语法</a></h3>
 <h4 id="interface"><a class="header" href="#interface">interface</a></h4>
 <p>与其它语言中的interface一样，是为了对<code>行为</code>进行定义的，在swift中即称为<code>协议</code></p>
@@ -7918,13 +7942,33 @@ const a: number = F(1);
 const b: Number = new F(1);
 </code></pre>
 <h4 id="类型的高级使用-1"><a class="header" href="#类型的高级使用-1">类型的高级使用</a></h4>
-<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
 <ul>
-<li>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</li>
-<li>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</li>
-<li>NonNullable<T> - 用于从类型T中去除undefined和null类型</li>
-<li>ReturnType<T> - 获取函数类型的返回类型</li>
-<li>InstanceType<T> - 获取构造函数的实例类型</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/52662645">TypeScript的一些小用法</a></p>
+</li>
+<li>
+<p><a href="https://www.tslang.cn/docs/handbook/advanced-types.html">高级类型</a></p>
+</li>
+<li>
+<p>Exclude&lt;T, U&gt; - 用于从类型T中去除不在U类型中的成员</p>
+</li>
+<li>
+<p>Extract&lt;T, U&gt; - 用于从类型T中取出可分配给U类型的成员 （取并集）</p>
+</li>
+<li>
+<p>NonNullable<T> - 用于从类型T中去除undefined和null类型</p>
+</li>
+<li>
+<p>ReturnType<T> - 获取函数类型的返回类型</p>
+</li>
+<li>
+<p>InstanceType<T> - 获取构造函数的实例类型</p>
+</li>
+</ul>
+<p>类型的理解：</p>
+<ul>
+<li>交叉类型：在mixins的场景，应该使用交叉类型 （交叉类型，让ts的类型系统变得非常灵活和强大）</li>
+<li>联合类型：</li>
 </ul>
 <h3 id="语法-3"><a class="header" href="#语法-3">语法</a></h3>
 <h4 id="解构-1"><a class="header" href="#解构-1">解构</a></h4>
@@ -7942,10 +7986,14 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <p>a为空，即a为undefined或null时</p>
 </blockquote>
 <h4 id="关键字-1"><a class="header" href="#关键字-1">关键字</a></h4>
-<ul>
-<li>extends: 继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</li>
-<li>keyof: </li>
-</ul>
+<h5 id="extends-1"><a class="header" href="#extends-1">extends</a></h5>
+<p>继承、类型扩展、泛型约束 （参考：<a href="https://cloud.tencent.com/developer/article/1884330">Typescript中的extends关键字</a>）</p>
+<h5 id="keyof-1"><a class="header" href="#keyof-1">keyof</a></h5>
+<p>返回对象属性名组成的<code>字面量联合类型</code></p>
+<pre><code class="language-typescript">type Dog = { name: string; age: number;  };
+type D = keyof Dog; //type D = &quot;name&quot; | &quot;age&quot;
+</code></pre>
+<h5 id="in-1"><a class="header" href="#in-1">in</a></h5>
 <h3 id="其它语法-1"><a class="header" href="#其它语法-1">其它语法</a></h3>
 <h4 id="interface-1"><a class="header" href="#interface-1">interface</a></h4>
 <p>与其它语言中的interface一样，是为了对<code>行为</code>进行定义的，在swift中即称为<code>协议</code></p>
@@ -8372,7 +8420,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 </ul>
 <h3 id="资料-46"><a class="header" href="#资料-46">资料</a></h3>
 <ul>
-<li><a href="https://reactnative.cn/docs/environment-setup">ReactNative环境搭建</a></li>
+<li><a href="https://reactnative.dev/docs/next/environment-setup">ReactNative环境搭建</a></li>
 <li><a href="https://github.com/reactnativecn/react-native-guide">React-Native学习指南</a></li>
 <li><a href="https://insights.thoughtworks.cn/the-react-native-mystery/">React Native性能之谜</a></li>
 <li><a href="https://mrgaogang.github.io/react/">ReactNative源码解析</a>：基于iOS来分析</li>
@@ -8390,6 +8438,13 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
 <li>打包jsbundle：<code>react-native bundle [参数]</code>   (具体参数使用参考：<a href="https://www.jianshu.com/p/2e053b2fcf97">react native 如何打包生成Js Bundle文件</a>)</li>
 </ul>
+<p>如果安装依赖过程失败了，需要分别执行如下命令：</p>
+<ul>
+<li><code>cd ios</code></li>
+<li><code>bundle install</code></li>
+<li><code>bundle exec pod install</code></li>
+</ul>
+<p>启动应用：根目录执行 <code>npx react-native start</code></p>
 <h3 id="开发"><a class="header" href="#开发">开发</a></h3>
 <h4 id="使用native-ui"><a class="header" href="#使用native-ui">使用Native UI</a></h4>
 <ul>
