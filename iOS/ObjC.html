@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -511,6 +513,10 @@ struct category_t {
 <ul>
 <li>如果方法有2个参数，但调用时，只传一个参数，则第2个参数会给赋值默认值，并不会出异常 (比如NSString类型，拿到的就是nil，Int类型就是0)</li>
 <li>如果方法有2个参数，但调用时传了3个参数，则会产生<code>NSInvalidArgumentException</code>的异常</li>
+</ul>
+<h4 id="swizzing特点"><a class="header" href="#swizzing特点">Swizzing特点</a></h4>
+<ul>
+<li>一个普通的OC方法，可以与可变参数的OC方法进行交换的。(但交换完，处理逻辑不好处理)</li>
 </ul>
 
                     </main>

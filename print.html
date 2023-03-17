@@ -71,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -2079,6 +2081,7 @@ Value: Light
 <li><code>apple-app-site-association</code>可以放在<code>https://domain/apple-app-site-association</code>也可以放在<code>https://domain/.well-known/apple-app-site-association</code>，建议放在.well-known路径下，而且苹果会优先下载这个位置的配置文件</li>
 <li><code>apple-app-site-association</code>中<code>details</code>字典搜索顺序是从上至下，把希望优先匹配的内容放在前面</li>
 <li>path匹配是支持*和?的，*表示匹配任意字符，?表示匹配一个字符，?*表示匹配至少一个字符。</li>
+<li>iOS14之后，App不会直接从应用服务器上去下载<code>apple-app-site-association</code>文件，而是从Apple CDN上去更新 (详情：<a href="https://developer.apple.com/documentation/xcode/supporting-associated-domains#Add-the-associated-domains-entitlement-to-your-app">link</a>)</li>
 </ul>
 <h3 id="scheme"><a class="header" href="#scheme">Scheme</a></h3>
 <h4 id="canopenurl接口"><a class="header" href="#canopenurl接口">canOpenURL接口</a></h4>
@@ -2986,6 +2989,10 @@ struct category_t {
 <ul>
 <li>如果方法有2个参数，但调用时，只传一个参数，则第2个参数会给赋值默认值，并不会出异常 (比如NSString类型，拿到的就是nil，Int类型就是0)</li>
 <li>如果方法有2个参数，但调用时传了3个参数，则会产生<code>NSInvalidArgumentException</code>的异常</li>
+</ul>
+<h4 id="swizzing特点"><a class="header" href="#swizzing特点">Swizzing特点</a></h4>
+<ul>
+<li>一个普通的OC方法，可以与可变参数的OC方法进行交换的。(但交换完，处理逻辑不好处理)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swiftui"><a class="header" href="#swiftui">SwiftUI</a></h1>
 <h3 id="特性-1"><a class="header" href="#特性-1">特性</a></h3>

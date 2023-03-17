@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -345,6 +347,7 @@ Value: Light
 <li><code>apple-app-site-association</code>可以放在<code>https://domain/apple-app-site-association</code>也可以放在<code>https://domain/.well-known/apple-app-site-association</code>，建议放在.well-known路径下，而且苹果会优先下载这个位置的配置文件</li>
 <li><code>apple-app-site-association</code>中<code>details</code>字典搜索顺序是从上至下，把希望优先匹配的内容放在前面</li>
 <li>path匹配是支持*和?的，*表示匹配任意字符，?表示匹配一个字符，?*表示匹配至少一个字符。</li>
+<li>iOS14之后，App不会直接从应用服务器上去下载<code>apple-app-site-association</code>文件，而是从Apple CDN上去更新 (详情：<a href="https://developer.apple.com/documentation/xcode/supporting-associated-domains#Add-the-associated-domains-entitlement-to-your-app">link</a>)</li>
 </ul>
 <h3 id="scheme"><a class="header" href="#scheme">Scheme</a></h3>
 <h4 id="canopenurl接口"><a class="header" href="#canopenurl接口">canOpenURL接口</a></h4>
