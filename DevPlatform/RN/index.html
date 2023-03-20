@@ -172,6 +172,7 @@
 <ul>
 <li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
 <li>打包jsbundle：<code>react-native bundle [参数]</code>   (具体参数使用参考：<a href="https://www.jianshu.com/p/2e053b2fcf97">react native 如何打包生成Js Bundle文件</a>)</li>
+<li>添加涉及Native的库：<code>npm i ***</code>，然后到iOS目录执行：<code>bundle exec pod install</code></li>
 </ul>
 <p>如果安装依赖过程失败了，需要分别执行如下命令：</p>
 <ul>
@@ -296,6 +297,11 @@
 <p><a href="https://www.jianshu.com/p/1f322b841c31">ReactNative源码分析 - 通信机制</a></p>
 <p>RN &amp; JS 交互的核心类。</p>
 <p>数据共享的核心原理：Native及JS端，都是操作<code>JSContext</code>的<code>global</code>对象，通过设置其属性，来供两端使用。</p>
+<h3 id="新架构"><a class="header" href="#新架构">新架构</a></h3>
+<ul>
+<li><a href="https://juejin.cn/post/7063738658913779743">2022 年 React Native 的全新架构更新</a></li>
+<li><a href="https://juejin.cn/post/7064754359225024525">RN新架构-Turbo原理</a></li>
+</ul>
 
                     </main>
 

@@ -8444,6 +8444,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <ul>
 <li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
 <li>打包jsbundle：<code>react-native bundle [参数]</code>   (具体参数使用参考：<a href="https://www.jianshu.com/p/2e053b2fcf97">react native 如何打包生成Js Bundle文件</a>)</li>
+<li>添加涉及Native的库：<code>npm i ***</code>，然后到iOS目录执行：<code>bundle exec pod install</code></li>
 </ul>
 <p>如果安装依赖过程失败了，需要分别执行如下命令：</p>
 <ul>
@@ -8568,11 +8569,19 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p><a href="https://www.jianshu.com/p/1f322b841c31">ReactNative源码分析 - 通信机制</a></p>
 <p>RN &amp; JS 交互的核心类。</p>
 <p>数据共享的核心原理：Native及JS端，都是操作<code>JSContext</code>的<code>global</code>对象，通过设置其属性，来供两端使用。</p>
+<h3 id="新架构"><a class="header" href="#新架构">新架构</a></h3>
+<ul>
+<li><a href="https://juejin.cn/post/7063738658913779743">2022 年 React Native 的全新架构更新</a></li>
+<li><a href="https://juejin.cn/post/7064754359225024525">RN新架构-Turbo原理</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rn开发"><a class="header" href="#rn开发">RN开发</a></h1>
 <h3 id="手册"><a class="header" href="#手册">手册</a></h3>
 <h4 id="reactfunctioncomponent"><a class="header" href="#reactfunctioncomponent"><code>React.FunctionComponent</code></a></h4>
 <p>即函数组件，目前也是RN推荐的组件定义方式。一般可以简写为<code>React.FC</code></p>
 <p>与之对应的就是类组件，即<code>React.Component</code></p>
+<h4 id="jsxelement"><a class="header" href="#jsxelement">JSX.Element</a></h4>
+<p><a href="https://www.jianshu.com/p/95ce2266450a">ReactElement、ReactNode以及JSX.Element</a></p>
+<p>JSX.Element是ReactElement的子类型，并且没有增加属性，二者是兼容的。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hippy"><a class="header" href="#hippy">Hippy</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="动态化"><a class="header" href="#动态化">动态化</a></h1>
 <h3 id="资料-47"><a class="header" href="#资料-47">资料</a></h3>
