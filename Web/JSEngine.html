@@ -199,10 +199,10 @@ JSContext *context = [webView valueForKeyPath:@&quot;documentView.webView.mainFr
 </code></pre>
 <p>但此方法仅对UIWebview适用。在WKWebview上，已经不再使用JavaScriptCore引擎，而是换成了Nitro。</p>
 <p>JS Core最简单的使用： (<a href="https://segmentfault.com/a/1190000017983911">JavaScriptCore全面解析</a>)</p>
-<pre><code class="language-objc">//创建虚拟机
+<pre><code class="language-objc">// 创建虚拟机  (其实也可以直接通过`JSGlobalContextCreate`来隐式创建一个JS Core引擎)
 JSVirtualMachine *vm = [[JSVirtualMachine alloc] init];
 
-//创建上下文
+// 创建上下文
 JSContext *context = [[JSContext alloc] initWithVirtualMachine:vm];
 
 //执行JavaScript代码并获取返回值
@@ -211,6 +211,11 @@ JSValue *value = [context evaluateScript:@&quot;1+2*3&quot;];
 //转换成OC数据并打印
 NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 </code></pre>
+<p>JSCore的启动成本：（来源ChatGPT）</p>
+<ul>
+<li>启动耗时：几百毫秒到一秒之间</li>
+<li>内存占用：几十至一百兆</li>
+</ul>
 <h5 id="小程序设计"><a class="header" href="#小程序设计">小程序设计</a></h5>
 <p>目前小程序采用了WebView + JSCore的设计，渲染使用WebView，JS逻辑使用JSCore。这样做的目的，是为了安全性，即控制小程序逻辑直接操作DOM树等。参考：<a href="https://zhaomenghuan.js.org/blog/wechat-miniprogram-principle-analysis.html">微信小程序技术原理分析</a></p>
 <h3 id="其它开源js引擎"><a class="header" href="#其它开源js引擎">其它开源JS引擎</a></h3>

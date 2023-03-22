@@ -5158,10 +5158,10 @@ JSContext *context = [webView valueForKeyPath:@&quot;documentView.webView.mainFr
 </code></pre>
 <p>但此方法仅对UIWebview适用。在WKWebview上，已经不再使用JavaScriptCore引擎，而是换成了Nitro。</p>
 <p>JS Core最简单的使用： (<a href="https://segmentfault.com/a/1190000017983911">JavaScriptCore全面解析</a>)</p>
-<pre><code class="language-objc">//创建虚拟机
+<pre><code class="language-objc">// 创建虚拟机  (其实也可以直接通过`JSGlobalContextCreate`来隐式创建一个JS Core引擎)
 JSVirtualMachine *vm = [[JSVirtualMachine alloc] init];
 
-//创建上下文
+// 创建上下文
 JSContext *context = [[JSContext alloc] initWithVirtualMachine:vm];
 
 //执行JavaScript代码并获取返回值
@@ -5170,6 +5170,11 @@ JSValue *value = [context evaluateScript:@&quot;1+2*3&quot;];
 //转换成OC数据并打印
 NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 </code></pre>
+<p>JSCore的启动成本：（来源ChatGPT）</p>
+<ul>
+<li>启动耗时：几百毫秒到一秒之间</li>
+<li>内存占用：几十至一百兆</li>
+</ul>
 <h5 id="小程序设计"><a class="header" href="#小程序设计">小程序设计</a></h5>
 <p>目前小程序采用了WebView + JSCore的设计，渲染使用WebView，JS逻辑使用JSCore。这样做的目的，是为了安全性，即控制小程序逻辑直接操作DOM树等。参考：<a href="https://zhaomenghuan.js.org/blog/wechat-miniprogram-principle-analysis.html">微信小程序技术原理分析</a></p>
 <h3 id="其它开源js引擎"><a class="header" href="#其它开源js引擎">其它开源JS引擎</a></h3>
@@ -8440,6 +8445,11 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li><a href="https://zhuanlan.zhihu.com/p/356940165">React Native 0.64 新变化 &amp; 再聊跨端技术</a></li>
 <li><a href="https://www.jianshu.com/p/c5ae43678626">详解React Native初始化和通信机制</a></li>
 </ul>
+<h4 id="rn升级助手"><a class="header" href="#rn升级助手">RN升级助手</a></h4>
+<ul>
+<li><a href="https://react-native-community.github.io/upgrade-helper/">React Native Upgrade Helper</a></li>
+<li><a href="https://github.com/react-native-community/upgrade-support">升级过程请求帮助</a></li>
+</ul>
 <h3 id="命令-5"><a class="header" href="#命令-5">命令</a></h3>
 <ul>
 <li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
@@ -8573,6 +8583,33 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <ul>
 <li><a href="https://juejin.cn/post/7063738658913779743">2022 年 React Native 的全新架构更新</a></li>
 <li><a href="https://juejin.cn/post/7064754359225024525">RN新架构-Turbo原理</a></li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>Fabric架构，直接生成的C++版本的渲染树，无须从JS再到Native转换</li>
+<li>JSI不保证线程安全，多个线程访问同个HostObject时，就可能会出现数据竞争的情况</li>
+</ul>
+<h4 id="turbomodules"><a class="header" href="#turbomodules">TurboModules</a></h4>
+<p>TurboModule的使用：</p>
+<ul>
+<li>按照教程<a href="https://reactnative.dev/docs/next/the-new-architecture/pillars-turbomodules">Turbo Native Modules</a>来创建好目录和文件</li>
+<li>在RTNCalculator目录下执行：<code>node ../project/node_modules/react-native/scripts/generate-codegen-artifacts.js --path ./ --outputPath ./</code> (project即RN工程)</li>
+<li>跑完之后，在RTNCalculator目录下会生成build目录，所有的生成物都存放在这下面了</li>
+<li>到RN工程目录执行：<code>yarn add RTNCalculator</code></li>
+<li>到RN工程iOS目录执行：<code>RCT_NEW_ARCH_ENABLED=1 bundle exec pod install</code></li>
+</ul>
+<p>此时就可以正常将Demo跑起来了</p>
+<h4 id="fabric工作流程"><a class="header" href="#fabric工作流程">Fabric工作流程</a></h4>
+<p>（来源于ChatGPT，待确认）</p>
+<ul>
+<li>初始化：App 启动后，React Native Fabric 会初始化一个 Fabric 队列，并从此队列中获取任务。</li>
+<li>根节点渲染：React Native Fabric 会在 Fabric 队列中找到根节点任务，然后使用 Flexbox 布局算法计算每个子节点的位置。</li>
+<li>生成布局树：React Native Fabric 会根据计算出的位置信息生成布局树，这个树包含了所有子节点的位置和布局信息。</li>
+<li>生成渲染树：React Native Fabric 将布局树转换成渲染树，渲染树包含了所有需要被渲染的节点信息，如文、图片等。</li>
+<li>绘制：React Native Fabric 会使用 Skia 图形引擎将渲染树转换成屏幕上的像素，然后再将像素渲染到屏幕上。</li>
+<li>布局更新：当组件的状态发生变化时，React Native Fabric 会重新计算布局，并生成新的布局树和渲染树。</li>
+<li>安排渲染：React Native Fabric 会将需要重新渲染的节点添加到 Fabric 队列中，并在下一次渲染周期中重新渲染这些节点。</li>
+<li>垃圾回收：当一个节点不再需要被渲染时，React Native Fabric 会将它从渲染树中删除，并释放它占用的内存。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rn开发"><a class="header" href="#rn开发">RN开发</a></h1>
 <h3 id="手册"><a class="header" href="#手册">手册</a></h3>
