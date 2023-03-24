@@ -184,8 +184,20 @@
 <p>类组件有一个大的state对象，一个函数this.setState一次改变整个state对象。
 但函数组件没有状态，所以React第一次渲染函数组件时，它同时会创建一个对象与之共存，该对象是该组件实例的定制对象，而不是全局对象。只要组件存在于DOM中，这个组件的对象就会一直存在。</p>
 </blockquote>
+<p>示例：</p>
+<pre><code class="language-js">function Counter() {
+  // 可以理解为Class中的属性，作用是一样的
+  let [count, setCount] = useState(0);
+  return (
+    &lt;&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
 <h5 id="useeffect"><a class="header" href="#useeffect">useEffect</a></h5>
-<p>其是用来在函数组件中，执行需产生副作用的操作。如修改外部变量、发送请求等。</p>
+<p>其是用来在函数组件中，执行需产生副作用的操作。如修改外部变量(组件之外)、发送网络请求、操作DOM等。</p>
 <p>也是有两个参数，一个是block，一个是依赖项。当依赖项变化时，执行block。</p>
 <p>依赖项的特点： (<a href="https://www.jianshu.com/p/ab6d84f92dab">useEffect 的第二个参数</a>)</p>
 <ul>
@@ -193,15 +205,96 @@
 <li>不传第二个参数，则会在每次render时执行block</li>
 <li>依赖项为空数组时，只会在初次render时调用一次block (等同<code>componentDidMount</code>)</li>
 </ul>
+<pre><code class="language-js">function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+    // 修改了DOM，即引入了副作用
+    document.title = `You clicked ${count} times`;
+  }, [count]);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
 <h5 id="usememo"><a class="header" href="#usememo">useMemo</a></h5>
 <p><a href="https://cloud.tencent.com/developer/article/1967299">【译】你真的应该使用useMemo吗? 让我们一起来看看</a></p>
 <p>useMemo 其实创建了一种数据缓存机制。允许开发人员缓存变量的值和依赖列表。 如果此依赖项列表中的任何变量发生更改，React 将重新运行此函数去处理并重新缓存它。</p>
+<p>使用场景：需要计算拿到结果，并且依赖的项不变化时，则不需要重新计算，依赖的项变化时，则重新计算。</p>
+<p>示例：</p>
+<pre><code class="language-js">// 通过依赖项`status`得到计算结果，存储在mval中，当status不变化，则无须重新计算mval
+const mval = useMemo(() =&gt; status === 0, [status]);
+</code></pre>
 <h5 id="usecallback"><a class="header" href="#usecallback">useCallback</a></h5>
 <p><a href="https://www.cnblogs.com/xiatianweidao/p/16728506.html">详细解读 React useCallback &amp; useMemo</a></p>
 <p>其也是为了缓存函数而引入的。具体为什么要有<code>useCallback</code>，可以参考这篇文章：<a href="https://www.knowledgehut.com/blog/web-development/all-about-react-usecallback">All About React useCallback()</a></p>
+<p>简而言之，就是<code>useCallback</code>可以防止相关Callback被频繁调用，可以控制只在依赖项变化时才调用。</p>
 <ul>
 <li>如果useCallback的第二个参数不填的话，则只会调用一次，后面就不会再更新了</li>
 </ul>
+<pre><code class="language-js">function Example() {
+  const [count, setCount] = useState(0);
+
+  // 它的实现原理即，count变化，则生成一个新的callback，其内部是 新值+1
+  // 与arr.filter(***)类似，其会返回新的arr，不会修改原来的arr
+  // 原因是函数式思想中的“不变性”，将函数也看成“值”了，即用新`值`替换旧`值`
+  const increment = useCallback(() =&gt; {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={increment}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h5 id="useref"><a class="header" href="#useref">UseRef</a></h5>
+<p><a href="https://juejin.cn/post/6894963612687958024">你知道useRef可以实现哪些功能吗？</a></p>
+<p>简单说，其作用：</p>
+<ul>
+<li>获取DOM元素</li>
+<li>获取组件实例</li>
+<li>保存不会变化的值 (组件生命周期)</li>
+</ul>
+<pre><code class="language-js">function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () =&gt; {
+    // `current` 指向已挂载到 DOM 上的文本输入元素
+    inputEl.current.focus();
+  };
+  return (
+    &lt;&gt;
+      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;button onClick={onButtonClick}&gt;Focus the input&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h5 id="自定义hook"><a class="header" href="#自定义hook">自定义Hook</a></h5>
+<p>目的：在函数组件中，复用状态逻辑的方式</p>
+<p>示例：</p>
+<pre><code class="language-js">function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() =&gt; {
+    // some code
+  }, [friendID]);
+
+  // some code
+  
+  return isOnline;
+}
+</code></pre>
 <h3 id="使用"><a class="header" href="#使用">使用</a></h3>
 <h4 id="reactfc"><a class="header" href="#reactfc">React.FC</a></h4>
 <p>函数组件，基本使用如下： (FC，即：FunctionComponent)</p>
