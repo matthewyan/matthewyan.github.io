@@ -1878,6 +1878,11 @@ Events</p>
 <h3 id="业界框架"><a class="header" href="#业界框架">业界框架</a></h3>
 <h4 id="dinamicx"><a class="header" href="#dinamicx">DinamicX</a></h4>
 <p>淘宝的Native动态化框架。</p>
+<h4 id="xstate"><a class="header" href="#xstate">XState</a></h4>
+<ul>
+<li><a href="https://xstate.js.org/docs/zh/">官方文档</a></li>
+<li><a href="https://stately.ai/">Stately</a>: 可视化的状态机管理</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ios"><a class="header" href="#ios">iOS</a></h1>
 <h3 id="资料-12"><a class="header" href="#资料-12">资料</a></h3>
 <ul>
@@ -3927,10 +3932,6 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li>与React差异，React本身也提供了声明式的开发方式。</li>
 <li>浏览器原生就支持这种Web Components组件的渲染。而不需要再经过编译。 (其是W3C标准规范)</li>
 </ul>
-<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
-</ul>
 <h3 id="解决方案"><a class="header" href="#解决方案">解决方案</a></h3>
 <ul>
 <li><a href="https://juejin.im/post/5c90eb366fb9a070d4199cc9">小程序多端框架全面测评</a></li>
@@ -4030,6 +4031,18 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <p>函数式的js语言，可以转为js，也可以转为其它语言，如go语言。也很适合配合nodejs写后端代码</p>
 <h3 id="elm"><a class="header" href="#elm">Elm</a></h3>
 <h3 id="reasonml"><a class="header" href="#reasonml">ReasonML</a></h3>
+<h2 id="工具"><a class="header" href="#工具">工具</a></h2>
+<h3 id="webpack"><a class="header" href="#webpack">Webpack</a></h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/58151131">理解webpack原理，手写一个100行的webpack</a></li>
+<li><a href="https://github.com/ruanyf/webpack-demos">阮一峰的Demos</a></li>
+<li><a href="https://segmentfault.com/a/1190000039877943">当面试官问Webpack的时候他想知道什么</a></li>
+</ul>
+<p>Webpack作用：</p>
+<ul>
+<li>将JS和依赖的模块，打包为一个包，方便使用 （要指定入口js，webpack会以此作为出发点，来作代码分析）</li>
+<li>能力扩展 (即Loader机制，可以处理<code>TypeScript</code>、<code>Scss</code>等语言。也可以做<code>代码压缩</code>、<code>代码混淆</code>等能力)</li>
+</ul>
 <h2 id="evernote待整理"><a class="header" href="#evernote待整理">Evernote，待整理</a></h2>
 <p>https://github.com/wx-chevalier/Web-Series</p>
 <p>浏览器工作原理与实践
@@ -4219,8 +4232,6 @@ https://github.com/weilanwl/ColorUI</p>
 <p>//////////////////////////////////////////////////////////////////////// </p>
 <p>[React技术内幕] key带来了什么
 https://juejin.im/post/59abb01c518825243f1b6dad</p>
-<p>阮一峰Webpack教程
-https://github.com/ruanyf/webpack-demos</p>
 <p>深入浅出webpack
 http://webpack.wuhaolin.cn/</p>
 <p>https://docschina.org/</p>
@@ -4368,7 +4379,7 @@ https://github.com/mrdoob/three.js/</p>
 <li>布局支持<code>绝对布局</code>、<code>flex布局</code>(flex即flexible，弹性)、<code>网格布局</code>、<code>流式布局</code>等</li>
 <li>支持将精灵图拆解为小图（精灵图可以减少Http请求数）</li>
 </ul>
-<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
+<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
 <ul>
 <li>可以使用<code>Sass</code>、<code>Less</code>优化CSS书写，以及提升工程可维护性</li>
 <li>可以使用<code>[PostCSS](https://www.postcss.com.cn/)</code>，来使用新的CSS特性，提升可读性等。</li>
@@ -4432,7 +4443,7 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
+<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
 <h4 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
 <p>除此之外，还有其它的虚拟机：</p>
@@ -5179,7 +5190,7 @@ cookies.forEach { cookie in
 <h3 id="chrome"><a class="header" href="#chrome">Chrome</a></h3>
 <p>在Chrome中查看Cookie的方式：</p>
 <img src="Web/./images/chrome_cookie_store.jpg" style="zoom:67%;" />
-<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
+<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
 <p>服务端设置Cookie，是通过在响应头里加<code>Set-Cookie</code>字段
 参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">Set Cookie</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom"><a class="header" href="#dom">DOM</a></h1>
@@ -6205,7 +6216,7 @@ return Consumer&lt;CartModel&gt;(
 <p>最简单的理解，BloC就是利用了 <code>StreamBuilder</code> + <code>Stream</code> 来管理状态的。具体可以参看该Demo:<a href="https://github.com/OpenFlutter/Flutter-Notebook/tree/master/mecury_project/example/bloc_demo">block_demo</a>,   Demo对应的文章：<a href="https://juejin.im/post/5bb6f344f265da0aa664d68a">状态管理探索篇——BLoC(三)</a></p>
 <p>但被广泛使用的<a href="https://pub.dev/packages/flutter_bloc">flutter_bloc</a>，没有直接使用StreamBuilder，而是自己实现了类似StreamBuilder的<code>BlocBuilder</code>。在实现上，<code>flutter_bloc</code>也有类似<code>Redux</code>的状态转换的<code>纯方法</code>。</p>
 <h3 id="redux"><a class="header" href="#redux">Redux</a></h3>
-<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
+<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
 <ul>
 <li><a href="https://www.reddit.com/r/FlutterDev/comments/brz0nu/scoped_model_vs_provider/">Scoped model vs Provider</a>: Scoped model与Provider的区别</li>
 </ul>
@@ -6663,7 +6674,7 @@ func main() {
 <tr><td><code>which cmd</code></td><td>查看cmd命令所在的位置</td></tr>
 </tbody></table>
 </div>
-<h3 id="工具"><a class="header" href="#工具">工具</a></h3>
+<h3 id="工具-1"><a class="header" href="#工具-1">工具</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>名称</th><th>示例</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>serve</code></td><td>serve -l 80 -s build</td><td>在80端口上启动一个简单的httpsvr，加载build目录</td></tr>
 <tr><td><code>scp</code></td><td>scp /home/a.zip root@129.20.0.2:/work/a.zip</td><td>拷贝本地相应目录的a.zip文件，至远程服务器的相应目录下</td></tr>
@@ -7592,7 +7603,7 @@ main() {
 <ul>
 <li><a href="https://learnku.com/articles/31161">Rust模块和文件</a>：对模块说的非常清晰的文章</li>
 </ul>
-<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
+<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
@@ -7705,7 +7716,7 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
-<h3 id="其它-12"><a class="header" href="#其它-12">其它</a></h3>
+<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
 <h4 id="虚拟机-1"><a class="header" href="#虚拟机-1">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
 <p>除此之外，还有其它的虚拟机：</p>
@@ -8475,7 +8486,7 @@ Functor即定义了统一的协议和语言，可以对容器数据进行转换�
 单位元在维基百科上的定义：在半群S的集合S上存在一元素e，使得任意与集合S中的元素a都符合 a·e = e·a = a</p>
 </blockquote>
 <p>Swiftz实现：https://github.com/typelift/Swiftz/blob/master/Sources/Swiftz/Monoid.swift</p>
-<h3 id="其它-13"><a class="header" href="#其它-13">其它</a></h3>
+<h3 id="其它-12"><a class="header" href="#其它-12">其它</a></h3>
 <h4 id="pointfree"><a class="header" href="#pointfree">Pointfree</a></h4>
 <p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">pointfree</a>，函数无须提及将要操作的数据是什么样的。</p>
 <pre><code class="language-js">// 非 pointfree，因为提到了数据：word
@@ -8846,7 +8857,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="精益创业"><a class="header" href="#精益创业">精益创业</a></h3>
 <p>精益创业，是要解决的是面向不确定性创造新事物。精益创业的思路就是“试”，通过尝试<code>MVP</code>(最小可行产品)来降低尝试成本。</p>
 <p>精益创业的方法论就是“开发”-&gt;“测量”-&gt;“认知”这样一个反馈循环。其中收获的<strong>认知</strong>是最重要的，它是经过验证的。</p>
-<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
+<h3 id="其它-13"><a class="header" href="#其它-13">其它</a></h3>
 <p>在所有迭代前可以添加一个<strong>迭代 0</strong>，所谓迭代 0，就是在迭代 1 之前的一个迭代，我们可以把它理解成开发的准备阶段。</p>
 <p>扩大自己的上下文，跨越自己的位置思考，甚至跨越两三级的角度上来看问题，让自己更有全局视野。</p>
 <p>IT 行业中大多数人的专业程度是不够的。</p>
@@ -8886,7 +8897,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
 <p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
-<h4 id="其它-15"><a class="header" href="#其它-15">其它</a></h4>
+<h4 id="其它-14"><a class="header" href="#其它-14">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
 <p>一定要尽早暴露问题，出现了问题，主动拋出来，越晚拋，隐患就越大。但在工作中暴露自己的问题，是很大的挑战，因为这里还面临着一个心理问题：会不会让别人觉得自己不行。</p>
@@ -9439,7 +9450,7 @@ console.log(typeof Person);	// function
 <p><code>建模</code> 是<code>DDD</code>的基础概念</p>
 <h2 id="ddd对我而言"><a class="header" href="#ddd对我而言">DDD对我而言</a></h2>
 <h3 id="优秀设计糟糕设计和有效设计"><a class="header" href="#优秀设计糟糕设计和有效设计">优秀设计、糟糕设计和有效设计</a></h3>
-<h2 id="其它-16"><a class="header" href="#其它-16">其它</a></h2>
+<h2 id="其它-15"><a class="header" href="#其它-15">其它</a></h2>
 <p>目前</p>
 <p><code>DDD</code>的核心就是将业务架构映射到系统架构上，在业务变化调整时，对应的系统架构也做调整。</p>
 <p>领域驱动设计包括战略建模和战术建模: 战略设计侧重于高层次、宏观上去划分和集成限界上下文，而战术设计则关注更具体使用建模工具来细化上下文。</p>
@@ -9880,7 +9891,7 @@ console.log(typeof Person);	// function
 <li>面向表达式的语言。（除了<code>use</code>这种声明语句，其它基本都是表达式）</li>
 <li>没有 <code>三元操作符</code></li>
 </ul>
-<h3 id="其它-17"><a class="header" href="#其它-17">其它</a></h3>
+<h3 id="其它-16"><a class="header" href="#其它-16">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
