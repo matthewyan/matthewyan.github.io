@@ -147,12 +147,6 @@
                         <h1 id="react-native"><a class="header" href="#react-native">React Native</a></h1>
 <p>最简单的理解，React Native类似NodeJS，都是通过扩展JS引擎，使JS代码有了调用Native接口的能力。</p>
 <p>RN目前依赖的JS引擎是<code>JavaScriptCore</code>，是Webkit中的JS引擎。在iOS上是自带的，但在安卓上，需要打包进应用，所以RN的安卓版本要更大。不过在新的RN版本后，有支持<a href="https://github.com/facebook/hermes">Hermes引擎</a>，<code>Hermes</code>是FaceBook专门针对RN安卓平台优化的引擎。</p>
-<h3 id="待确认"><a class="header" href="#待确认">待确认</a></h3>
-<ul>
-<li>Virtual DOM之后，通过哪个类区分调用Native或操作真实DOM的</li>
-<li>具体JS和Native交互时的效率如何？</li>
-<li>JSI如何在V8等上面实现</li>
-</ul>
 <h3 id="资料"><a class="header" href="#资料">资料</a></h3>
 <ul>
 <li><a href="https://reactnative.dev/docs/next/environment-setup">ReactNative环境搭建</a></li>
@@ -173,6 +167,10 @@
 <li><a href="https://react-native-community.github.io/upgrade-helper/">React Native Upgrade Helper</a></li>
 <li><a href="https://github.com/react-native-community/upgrade-support">升级过程请求帮助</a></li>
 </ul>
+<h4 id="优化"><a class="header" href="#优化">优化</a></h4>
+<ul>
+<li><a href="https://cloud.tencent.com/developer/article/1818101">React Native 启动速度优化——JS 篇</a></li>
+</ul>
 <h3 id="命令"><a class="header" href="#命令">命令</a></h3>
 <ul>
 <li>创建RN工程： <code>npx react-native init AwesomeProject</code></li>
@@ -186,20 +184,6 @@
 <li><code>bundle exec pod install</code></li>
 </ul>
 <p>启动应用：根目录执行 <code>npx react-native start</code></p>
-<h3 id="开发"><a class="header" href="#开发">开发</a></h3>
-<h4 id="使用native-ui"><a class="header" href="#使用native-ui">使用Native UI</a></h4>
-<ul>
-<li>继承RCTViewManager</li>
-<li>导出：RCT_EXPORT_MODULE(ViewName)</li>
-</ul>
-<p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeComponent</p>
-<h4 id="使用native-module"><a class="header" href="#使用native-module">使用Native Module</a></h4>
-<ul>
-<li>实现RCTBridgeModule协议</li>
-<li>导出模块：RCT_EXPORT_MODULE()</li>
-<li>添加接口：RCT_EXPORT_METHOD</li>
-</ul>
-<p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeModule</p>
 <h3 id="执行顺序"><a class="header" href="#执行顺序">执行顺序</a></h3>
 <p><a href="https://www.jianshu.com/p/b02c58c6e11e">RN iOS端启动过程解析</a></p>
 <ul>
@@ -207,6 +191,14 @@
 <li>创建JS线程，并绑定Runloop</li>
 <li>注册Module (包括实现<code>RCTBridgeModule</code>协议的Module和通过<code>RCT_EXTERN</code>包装的Module)</li>
 </ul>
+<h3 id="metro"><a class="header" href="#metro">Metro</a></h3>
+<p>是类似Webpack的打包工具，是facebook自研的.</p>
+<p>为什么Facebook要开发Metro，而不使用Webpack，根据网上的资料来看，是提升了构建速度。详情参考：<a href="https://medium.com/airbnb-engineering/faster-javascript-builds-with-metro-cfc46d617a1f">Faster JavaScript Builds with Metro</a></p>
+<h3 id="工具"><a class="header" href="#工具">工具</a></h3>
+<h4 id="react-native-web"><a class="header" href="#react-native-web">React Native Web</a></h4>
+<p><a href="https://necolas.github.io/react-native-web/">官网</a></p>
+<p>其原理不复杂：将RN的组件，alias为react-native-web的库</p>
+<p>使用 <code>npx create-react-app</code> 创建的工程，其就使用了react-scripts，其内默认就做了该映射，所以使用该命令创建的工程，不需要做额外的配置</p>
 <h3 id="核心概念"><a class="header" href="#核心概念">核心概念</a></h3>
 <h4 id="rn-bundle"><a class="header" href="#rn-bundle">RN Bundle</a></h4>
 <p><a href="https://juejin.cn/post/6844904003696853000">简述 ReactNative Bundle</a></p>
