@@ -203,6 +203,49 @@ NaN
 <p>从<code>值</code>到<code>引用</code>，使用<code>Object(x)</code>，这个方法是安全无副作用的。从<code>引用</code>到<code>值</code>，使用<code>x.valueOf()</code></p>
 <p>“任何东西都是可以转换为字符串的”，这个在理论上是行的通，但实际是存在一些无法完成转换的情况。这种情况下，转换为字符串，只会得到一个“简单的描述”，仅能表示“这是一个对象”，而没有其它意义。</p>
 <p>JavaScript 约定，所有“对象 -&gt; 值”的转换结果要尽量地趋近于 string、number 和 boolean 三者之一。</p>
+<h4 id="export--export-default"><a class="header" href="#export--export-default">export / export default</a></h4>
+<ul>
+<li><a href="https://www.cnblogs.com/songForU/p/10496165.html">JavaScript ES6中，export与export default</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/144475026">彻底理解JavaScript ES6中的import和export</a></li>
+</ul>
+<h5 id="export"><a class="header" href="#export">export</a></h5>
+<pre><code class="language-js">// 需要注意，node默认使用commonjs规范，要在开启es6规范，需在package.json中配置： `&quot;type&quot;: &quot;module&quot;`
+// a.js
+export var str = &quot;export的内容&quot;;
+export var year = 2019;
+export function message() {
+  console.log('hello');
+}
+// 也可在声明时不导出，文件最后统一导出：`export {str,year,message};`
+// 也可以在导出时，进行重命名：`export {str as newname,year,message};`
+
+// b.js
+// import时，也需要根据a.js中导出的名称来导入
+// 在导入的时候，也可以进行重命名，如：`import { message, str as newname } from './a.js'`
+// 也可以写为：`import * as m from './a.js'`，但调用时，需要带上m前缀，如`m.***`
+import { message, str } from './a.js';  // 在node中运行该代码时，需要明确写上`js`后缀，原因参考：https://stackoverflow.com/a/64242299
+message();
+console.log(str);
+</code></pre>
+<h5 id="export-default"><a class="header" href="#export-default">export default</a></h5>
+<p>export default命令用于指定模块的默认输出，一个模块只能有一个默认输出。本质上，export default是用来输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。</p>
+<pre><code class="language-js">// c.js
+const str = &quot;export default的内容&quot;;
+export default str;
+// 也可以写为：export { str as default };
+// 也可以同时导出多个对象，如：export default {a, b, c}
+
+// d.js
+// 导出时，不要写花括号，导入的时候的名字可以随意取
+import StrFile from './c.js';   // 该导入，等同于：import { default as StrFile } from 'a'
+</code></pre>
+<h5 id="高级用法"><a class="header" href="#高级用法">高级用法</a></h5>
+<p>动态导入:</p>
+<pre><code class="language-js">import(&quot;./m1.js&quot;).then(m=&gt;{
+  console.log('then:', m)   // m就是导入的整个模块
+  m.message();  // m.就可以调用模块内部导出的对象
+})
+</code></pre>
 <h3 id="其它"><a class="header" href="#其它">其它</a></h3>
 <h4 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
