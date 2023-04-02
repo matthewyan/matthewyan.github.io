@@ -4898,7 +4898,10 @@ interface SearchFunc {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="react"><a class="header" href="#react">React</a></h1>
 <h2 id="基础"><a class="header" href="#基础">基础</a></h2>
 <h3 id="资料-21"><a class="header" href="#资料-21">资料</a></h3>
-<p><a href="https://cloud.tencent.com/developer/article/1520009">一文掌握React 渲染原理及性能优化</a></p>
+<ul>
+<li><a href="https://cloud.tencent.com/developer/article/1520009">一文掌握React 渲染原理及性能优化</a></li>
+<li><a href="https://github.com/7kms/react-illustration-series">图解 React 源码系列</a></li>
+</ul>
 <h3 id="工程相关"><a class="header" href="#工程相关">工程相关</a></h3>
 <h4 id="命令-3"><a class="header" href="#命令-3">命令</a></h4>
 <ul>
@@ -4931,7 +4934,21 @@ interface SearchFunc {
 <p>但在React中，跨层级的DOM操作非常少，这是Diff算法优化的前提</p>
 </blockquote>
 <p>一个简单的Virtual DOM的实现，包含了简单的diff：<a href="https://github.com/livoras/blog/issues/13">深度剖析：如何实现一个 Virtual DOM 算法</a></p>
-<h4 id="react-hooks"><a class="header" href="#react-hooks">React Hooks</a></h4>
+<h4 id="react-fragments"><a class="header" href="#react-fragments">React Fragments</a></h4>
+<p><a href="https://refine.dev/blog/how-react-fragments-is-works/">How to use React Fragments?</a></p>
+<p>其就是用来对标签进行分组的，不会影响原有的DOM结构。 如：</p>
+<pre><code class="language-js">return  (
+    // 函数组件返回的数据，只能是单一元素，所以需要包装起来
+    // React.Fragment可以替换为&lt;&gt;&lt;/&gt;
+    &lt;React.Fragment&gt;
+      &lt;td&gt;Eat&lt;/td&gt;
+      &lt;td&gt;Learn&lt;/td&gt;
+      &lt;td&gt;Code&lt;/td&gt;
+    &lt;/React.Fragment&gt;
+  );
+</code></pre>
+<p>React Fragments的简写即：<code>&lt;&gt;&lt;/&gt;</code>。其在很多情况下，可以与<code>&lt;div&gt;&lt;/div&gt;</code>互换，但有些情况下是不行的。上面的文章中有举例，因为<div>可能会影响原有的DOM结构。</p>
+<h3 id="react-hooks"><a class="header" href="#react-hooks">React Hooks</a></h3>
 <p>简单来说，<code>React Hooks</code>是一组新的API，目的是为了解决React类层级太深太复杂的问题。React团队希望组件变为纯粹的数据管道，而非组件类。因为提供了<code>React Hooks</code>，可以理解为可以用函数的方式来提供组件，并且函数也可以维护自己的内部状态。</p>
 <blockquote>
 <p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码&quot;钩&quot;进来。</strong> React Hooks 就是那些钩子。</p>
