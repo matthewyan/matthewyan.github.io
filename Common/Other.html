@@ -153,6 +153,15 @@
 <li>UTF32使用4个字节的定长编码，是码点的直接映射</li>
 <li>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示</li>
 </ul>
+<p>Unicode编码：<a href="https://zh.wikipedia.org/zh-hk/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84">link</a></p>
+<h3 id="emoji"><a class="header" href="#emoji">Emoji</a></h3>
+<ul>
+<li><a href="https://unicode.org/emoji/charts/full-emoji-list.html">Emoji列表</a></li>
+<li><a href="https://www.unicode.org/emoji/charts/emoji-zwj-sequences.html">组合Emoji列表</a></li>
+<li><a href="https://www.unicode.org/emoji/principles.html">Emoji编码规范</a></li>
+<li><a href="https://betterprogramming.pub/understanding-swift-strings-characters-and-scalars-a4b82f2d8fde">Swift Emoji使用</a></li>
+</ul>
+<p>Emoji是可以组合多个Emoji形成新的Emoji，在组合时，中间需要使用<code>U+200D</code>来联结  (U+200D被称为<code>Zero Width Joiner</code>，零宽连接符)</p>
 
                     </main>
 

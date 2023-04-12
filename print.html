@@ -1369,6 +1369,15 @@ rm -rf ~/.cocoapods/
 <li>UTF32使用4个字节的定长编码，是码点的直接映射</li>
 <li>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示</li>
 </ul>
+<p>Unicode编码：<a href="https://zh.wikipedia.org/zh-hk/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84">link</a></p>
+<h3 id="emoji"><a class="header" href="#emoji">Emoji</a></h3>
+<ul>
+<li><a href="https://unicode.org/emoji/charts/full-emoji-list.html">Emoji列表</a></li>
+<li><a href="https://www.unicode.org/emoji/charts/emoji-zwj-sequences.html">组合Emoji列表</a></li>
+<li><a href="https://www.unicode.org/emoji/principles.html">Emoji编码规范</a></li>
+<li><a href="https://betterprogramming.pub/understanding-swift-strings-characters-and-scalars-a4b82f2d8fde">Swift Emoji使用</a></li>
+</ul>
+<p>Emoji是可以组合多个Emoji形成新的Emoji，在组合时，中间需要使用<code>U+200D</code>来联结  (U+200D被称为<code>Zero Width Joiner</code>，零宽连接符)</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="软件工程"><a class="header" href="#软件工程">软件工程</a></h1>
 <h2 id="资料-8"><a class="header" href="#资料-8">资料</a></h2>
 <ul>
@@ -7628,6 +7637,38 @@ main() {
 <li><code>std::once_flag</code>、<code>std::call_once</code>：<a href="https://zhuanlan.zhihu.com/p/71900518">C++中once_flag、call_once使用</a></li>
 <li>支持纳秒级精度的<code>std::chrono</code></li>
 </ul>
+<h3 id="字符串编码"><a class="header" href="#字符串编码">字符串编码</a></h3>
+<ul>
+<li>
+<p><a href="https://learn.microsoft.com/zh-cn/cpp/cpp/string-and-character-literals-cpp">字符串和字符文本 (C++)</a></p>
+</li>
+<li>
+<p>当初始化一个字符串，不显示指定编码格式时，会跟源代码文件存储格式有关 (或编译器有关，参考:<a href="https://www.zhihu.com/question/20451870/answer/401452117">link</a>)</p>
+</li>
+<li>
+<p><code>u8&quot;***&quot;</code> 表示使用utf8编码的字符串</p>
+</li>
+<li>
+<p><code>L&quot;***&quot;</code> 表示使用utf16 (或ucs-2，其是utf16子集) 编码</p>
+</li>
+<li>
+<p><code>U&quot;***&quot;</code> 表示使用utf32编码</p>
+</li>
+<li>
+<p><code>u&quot;***&quot;</code> 表示使用utf16编码</p>
+</li>
+</ul>
+<p>不同的编码和存储结构，内存结构如下：</p>
+<ul>
+<li><code>u8&quot;1汉1&quot;</code>  =&gt; <code>31 E6 B1 89 31</code>   (短字段串，在Apple平台上会优化，其在指针地址里直接存储数据)</li>
+<li><code>L&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF16编码)</li>
+<li><code>U&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF32编码)</li>
+<li><code>u&quot;1汉1&quot;</code>  =&gt;  <code>31 00 49 6C 31 00</code> (UTF16编码)</li>
+</ul>
+<h4 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h4>
+<p>wchar_t是2或4个字节 (在Mac上使用<code>Apple Clang</code>编译验证是4字节)</p>
+<p>wstring的存储格式是基于wchar_t的，所以其存储数据是使用wchar_t来存储的，存储两个ascii字符串的话，就会占用8个字节。(Mac上)</p>
+<p>除了wstring，还有string、u16string、u32string等类型，明确使用的编码及占用的存储空间</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">Rust</a></h1>
 <h3 id="资料-38"><a class="header" href="#资料-38">资料</a></h3>
 <ul>
