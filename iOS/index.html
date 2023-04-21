@@ -163,7 +163,7 @@
 </ul>
 <h3 id="lldb"><a class="header" href="#lldb">LLDB</a></h3>
 <p><a href="https://www.jianshu.com/p/29c9aee9cbf4">LLDB常用命令</a></p>
-<p><a href="%5Bchisel%5D(https://github.com/facebook/chisel)">chisel</a>：facebook开源lldb插件</p>
+<p><a href="https://github.com/facebook/chisel">chisel</a>：facebook开源lldb插件</p>
 <p>LLDB支持插件开发：<a href="https://www.jianshu.com/p/b3854a648dad">LLDB插件(三)</a></p>
 <p>Debugger原理：<a href="https://zhuanlan.zhihu.com/p/372135871">Debugger 原理揭秘</a>、<a href="https://zhuanlan.zhihu.com/p/34003929">调试程序时，设置断点的原理是什么？</a></p>
 <blockquote>
@@ -179,34 +179,96 @@
 </ul>
 <h4 id="命令"><a class="header" href="#命令">命令</a></h4>
 <ul>
-<li><code>expression somesth</code>：执行某个表达式</li>
-<li><code>call somesth</code>：调用某个方法</li>
-<li><code>bt 5</code>：打印当前堆栈，且只打印5帧</li>
-<li><code>thread list</code>：查看线程列表</li>
-<li><code>thread return 10</code>：直接从当前方法中返回，且返回值为10</li>
-<li><code>c</code>：继续</li>
-<li><code>n</code>：下一步</li>
-<li><code>s</code>：进入</li>
-<li><code>f</code>：跳出</li>
-<li><code>frame select N</code>：当前堆栈中，跳至第N帧</li>
-<li><code>frame variable ***</code>：查看帧变量（不指定具体变量，查看所有本地变量）</li>
-<li><code>target variable ***</code>：查看全局变量（不指定具体变量名，即可查看所有）</li>
-<li><code>image lookup -address 0x***</code>：查看指定地址的信息</li>
-<li><code>image lookup -name</code>：查找方法来源，可以查看所有库中指定名称的方法</li>
-<li><code>image lookup -type</code>：查看某个类的所有成员</li>
-<li><code>breakpoint set -f ViewController.m -l 30</code>：在指定文件中指定行打断点</li>
-<li><code>breakpoint set -n viewDidLoad</code>：会在所有viewDidLoad上打断点</li>
-<li><code>breakpoint set -n &quot;-[MobShareViewController viewDidLoad]&quot;</code>：在指定类的指定方法上打断点</li>
-<li><code>breakpoint delete 编号</code>：删除指定断点（不指定编号即清除所有）</li>
-<li><code>breakpoint set -f MOBQQViewController.m -l 50 -c &quot;parameters != nil&quot;</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</li>
-<li><code>breakpoint list</code>：查看断点列表</li>
-<li><code>breakpoint disable/enable 2</code>：禁用/启用指定断点</li>
-<li><code>watchpoint set variable b</code>：设置观察点，监听b变量，当其有改变时，会断下来</li>
-<li><code>watchpoint set expression 0x7ffee1c1f0fc</code>：直接对指定内存地址进行监听</li>
-<li><code>watchpoint list</code>：查看观察点</li>
-<li><code>watchpoint delete 编号</code>：删除观察点（不指定编号即清除所有）</li>
-<li><code>target stop-hook command</code>：可以在断点断下来之后，就自动执行指定的command</li>
-<li><code>target stop-hook list</code>：列出所有的hook指令</li>
+<li>
+<p><code>expression somesth</code>：执行某个表达式</p>
+</li>
+<li>
+<p><code>call somesth</code>：调用某个方法</p>
+</li>
+<li>
+<p><code>bt 5</code>：打印当前堆栈，且只打印5帧</p>
+</li>
+<li>
+<p><code>thread list</code>：查看线程列表</p>
+</li>
+<li>
+<p><code>thread return 10</code>：直接从当前方法中返回，且返回值为10</p>
+</li>
+<li>
+<p><code>c</code>：继续</p>
+</li>
+<li>
+<p><code>n</code>：下一步</p>
+</li>
+<li>
+<p><code>s</code>：进入</p>
+</li>
+<li>
+<p><code>f</code>：跳出</p>
+</li>
+<li>
+<p><code>frame select N</code>：当前堆栈中，跳至第N帧</p>
+</li>
+<li>
+<p><code>frame variable ***</code>：查看帧变量（不指定具体变量，查看所有本地变量）</p>
+</li>
+<li>
+<p><code>target variable ***</code>：查看全局变量（不指定具体变量名，即可查看所有）</p>
+</li>
+<li>
+<p><code>image lookup -address 0x***</code>：查看指定地址的信息</p>
+</li>
+<li>
+<p><code>image lookup -name</code>：查找方法来源，可以查看所有库中指定名称的方法</p>
+</li>
+<li>
+<p><code>image lookup -type</code>：查看某个类的所有成员</p>
+</li>
+<li>
+<p><code>breakpoint set -f ViewController.m -l 30</code>：在指定文件中指定行打断点</p>
+</li>
+<li>
+<p><code>breakpoint set -n viewDidLoad</code>：会在所有viewDidLoad上打断点</p>
+</li>
+<li>
+<p><code>breakpoint set -n &quot;-[MobShareViewController viewDidLoad]&quot;</code>：在指定类的指定方法上打断点</p>
+</li>
+<li>
+<p><code>breakpoint delete 编号</code>：删除指定断点（不指定编号即清除所有）</p>
+</li>
+<li>
+<p><code>breakpoint set -f MOBQQViewController.m -l 50 -c &quot;parameters != nil&quot;</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</p>
+</li>
+<li>
+<p><code>breakpoint list</code>：查看断点列表</p>
+</li>
+<li>
+<p><code>breakpoint disable/enable 2</code>：禁用/启用指定断点</p>
+</li>
+<li>
+<p><code>watchpoint set variable b</code>：设置观察点，监听b变量，当其有改变时，会断下来</p>
+</li>
+<li>
+<p><code>watchpoint set expression 0x7ffee1c1f0fc</code>：直接对指定内存地址进行监听</p>
+</li>
+<li>
+<p><code>watchpoint list</code>：查看观察点</p>
+</li>
+<li>
+<p><code>watchpoint delete 编号</code>：删除观察点（不指定编号即清除所有）</p>
+</li>
+<li>
+<p><code>target stop-hook command</code>：可以在断点断下来之后，就自动执行指定的command</p>
+</li>
+<li>
+<p><code>target stop-hook list</code>：列出所有的hook指令</p>
+</li>
+<li>
+<p><code>memory find -s &quot;str&quot; addr1 addr2</code>: 从指定的内存地址区间之中，搜索指定的字符串</p>
+</li>
+<li>
+<p><code>image list</code>: 查看所有库的列表以及加载的内存地址</p>
+</li>
 </ul>
 <blockquote>
 <p>观察点，有软件/硬件实现之分。软件实现的话，执行速度比正常执行要慢非常多（上百倍）。硬件观察点，速度基本不受影响。目前Xcode调试也支持了硬件观察点，设置观察点时就可以看到相关信息：</p>
