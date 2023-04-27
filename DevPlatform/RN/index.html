@@ -304,6 +304,12 @@
 <li>Fabric架构，直接生成的C++版本的渲染树，无须从JS再到Native转换</li>
 <li>JSI不保证线程安全，多个线程访问同个HostObject时，就可能会出现数据竞争的情况</li>
 </ul>
+<h4 id="原理"><a class="header" href="#原理">原理</a></h4>
+<ul>
+<li><a href="https://blog.csdn.net/m0_49508485/article/details/122621827">RN通信原理 -- JavaScriptCore的应用</a></li>
+</ul>
+<p>TurboModule之所以能工作，在于JSC(或Hermes)提供了<code>JSObjectMake</code>接口。这个接口的声明：<code>JSObjectRef JSObjectMake(JSContextRef ctx, JSClassRef jsClass, void* data);</code></p>
+<p>也即可以将一个JSClass绑定到C++对象。但JSClassRef需要提前声明，并明确告知JSEngine，具体的接口实现都可以放在C++侧。</p>
 <h4 id="turbomodules"><a class="header" href="#turbomodules">TurboModules</a></h4>
 <p>TurboModule的使用：</p>
 <ul>

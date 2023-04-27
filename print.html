@@ -3068,9 +3068,14 @@ struct category_t {
 <h4 id="tagged-pointer"><a class="header" href="#tagged-pointer">Tagged Pointer</a></h4>
 <ul>
 <li><a href="https://swift.gg/2018/10/08/tagged-pointer-strings/">Tagged Pointer 字符串</a></li>
+<li><a href="https://www.jianshu.com/p/df630e78df32">NSString存储管理--NSTaggedPointerString</a></li>
 <li><a href="https://juejin.cn/post/6975765788355461133">Tagged Pointer对象安全气垫为何会失效</a></li>
 </ul>
 <p>Apple为了优化<code>NSNumber</code>、<code>NSString</code>等小对象所占用的空间，提供了该技术。在该技术实现中也考虑到缓冲区溢出等保护。</p>
+<blockquote>
+<p>在苹果的64位OC实现中，若对象指针的二进制第一位是1，则该指针为Tagged Pointer。
+例如0xa000000000000311其中a的2进制为1010,第一位1表示这是Tagged Pointer，010表示这是一个NSTaggedPointerString类；这个地址最后一位表示字符串的数目，这里是0001表示有1位字符串；其中真正用来存储的位数只有中间的14位16进制。这个地址本身其实就存储了字符串的值，可以说是存储在&amp;strS内存中值，只是伪装成了地址，它不需要存储在数据区，也不需要申请堆空间。</p>
+</blockquote>
 <h4 id="nsinvocation使用"><a class="header" href="#nsinvocation使用">NSInvocation使用</a></h4>
 <p><a href="https://www.jianshu.com/p/6e8ae95adf83">iOS NSInvocation使用理解</a></p>
 <p>关于NSInvocation，有如下特点：</p>
@@ -9028,6 +9033,12 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li>Fabric架构，直接生成的C++版本的渲染树，无须从JS再到Native转换</li>
 <li>JSI不保证线程安全，多个线程访问同个HostObject时，就可能会出现数据竞争的情况</li>
 </ul>
+<h4 id="原理-4"><a class="header" href="#原理-4">原理</a></h4>
+<ul>
+<li><a href="https://blog.csdn.net/m0_49508485/article/details/122621827">RN通信原理 -- JavaScriptCore的应用</a></li>
+</ul>
+<p>TurboModule之所以能工作，在于JSC(或Hermes)提供了<code>JSObjectMake</code>接口。这个接口的声明：<code>JSObjectRef JSObjectMake(JSContextRef ctx, JSClassRef jsClass, void* data);</code></p>
+<p>也即可以将一个JSClass绑定到C++对象。但JSClassRef需要提前声明，并明确告知JSEngine，具体的接口实现都可以放在C++侧。</p>
 <h4 id="turbomodules"><a class="header" href="#turbomodules">TurboModules</a></h4>
 <p>TurboModule的使用：</p>
 <ul>
