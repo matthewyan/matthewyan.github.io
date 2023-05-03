@@ -1374,12 +1374,31 @@ rm -rf ~/.cocoapods/
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="其它通用技术"><a class="header" href="#其它通用技术">其它通用技术</a></h1>
 <h3 id="unicode--utfx"><a class="header" href="#unicode--utfx">Unicode &amp; UTFx</a></h3>
-<p><a href="https://zhuanlan.zhihu.com/p/268884340">Unicode 和 UTF-8是什么关系？</a></p>
 <ul>
-<li>Unicode是一种字符集，它为每个字符分配了一个唯一的编号，称为码点（code point），例如U+0041表示字符A。 （Unicode码点，最大使用3个字节即可表示）</li>
-<li>UTF8是一种编码方式，它根据不同的码点范围，将Unicode字符编码成1到6个字节的二进制序列，以便在存储或传输时节省空间。例如，U+0041被编码成一个字节0x41，而U+6C38被编码成三个字节0xE6 0xB0 0xB8。</li>
-<li>UTF32使用4个字节的定长编码，是码点的直接映射</li>
-<li>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/268884340">Unicode 和 UTF-8是什么关系？</a></p>
+</li>
+<li>
+<p><a href="https://objccn.io/issue-9-1/">NSString 与 Unicode</a></p>
+</li>
+<li>
+<p>Unicode是一种字符集，它为每个字符分配了一个唯一的编号，称为码点（code point），例如U+0041表示字符A。 （Unicode码点，最大使用3个字节即可表示，其是21位编码方案，即可编的码点为2的21次方）</p>
+</li>
+<li>
+<p>Unicode目前的编码定义范围为：U+0000 ~ U+10FFFF。其中共分了17组，每组两个字节范围表示。(即<code>U+[00]XXXX</code>到<code>U+[10]XXXX</code>)</p>
+</li>
+<li>
+<p><code>U+[00]XXXX</code>被称为<code>基本多文种平面</code>，后面16个被称为<code>辅助平面</code>。</p>
+</li>
+<li>
+<p>UTF8是一种编码方式，它根据不同的码点范围，将Unicode字符编码成1到6个字节的二进制序列，以便在存储或传输时节省空间。例如，U+0041被编码成一个字节0x41，而U+6C38被编码成三个字节0xE6 0xB0 0xB8。 (1字节编码前缀为0、2字节编码前缀为110、3字节编码前缀为1110、4字节编码前缀为11110，如果非首字节，则前缀使用10来表示)</p>
+</li>
+<li>
+<p>UTF32使用4个字节的定长编码，是码点的直接映射</p>
+</li>
+<li>
+<p>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示。（但用4字节表示时，会有比较复杂的转换规则）</p>
+</li>
 </ul>
 <p>Unicode编码：<a href="https://zh.wikipedia.org/zh-hk/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84">link</a></p>
 <h3 id="emoji"><a class="header" href="#emoji">Emoji</a></h3>
@@ -4170,6 +4189,18 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li>能力扩展 (即Loader机制，可以处理<code>TypeScript</code>、<code>Scss</code>等语言。也可以做<code>代码压缩</code>、<code>代码混淆</code>等能力)</li>
 </ul>
 <p>webpack-dev-server: 用来启动本地服务，处理打包资源与静态文件的请求。它的live-reloading功能可以监听文件变化，自动刷新页面来提升开发效率。（参考<a href="https://segmentfault.com/a/1190000006670084">link</a>）</p>
+<h2 id="其它-6"><a class="header" href="#其它-6">其它</a></h2>
+<h3 id="跨页面通信"><a class="header" href="#跨页面通信">跨页面通信</a></h3>
+<p><a href="https://juejin.cn/post/6844903811232825357">前端跨页面通信，你知道哪些方法？</a></p>
+<p>前端跨页面通信的方式：(同源页面)</p>
+<ul>
+<li>BroadCast Channel： 允许同源的不同浏览器窗口，Tab 页，frame 或者 iframe 下的不同文档之间相互通信。 (在safari上，15.4才支持)</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API">Service Worker</a>: 多页面共享间的 Service Worker 可以共享，将 Service Worker 作为消息的处理中心。但目前看起来这个在<code>WKWebview</code>中是无法使用的(<a href="https://webkit.org/blog/8090/workers-at-your-service/">link</a>)</li>
+<li>LocalStorage (<a href="https://developer.mozilla.org/en-US/docs/Web/API/StorageEvent">StorageEvent</a>)</li>
+<li>Shared Worker</li>
+<li>IndexedDB</li>
+<li>……</li>
+</ul>
 <h2 id="evernote待整理"><a class="header" href="#evernote待整理">Evernote，待整理</a></h2>
 <p>https://github.com/wx-chevalier/Web-Series</p>
 <p>浏览器工作原理与实践
@@ -4498,7 +4529,7 @@ https://github.com/mrdoob/three.js/</p>
 <li>布局支持<code>绝对布局</code>、<code>flex布局</code>(flex即flexible，弹性)、<code>网格布局</code>、<code>流式布局</code>等</li>
 <li>支持将精灵图拆解为小图（精灵图可以减少Http请求数）</li>
 </ul>
-<h3 id="其它-6"><a class="header" href="#其它-6">其它</a></h3>
+<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
 <ul>
 <li>可以使用<code>Sass</code>、<code>Less</code>优化CSS书写，以及提升工程可维护性</li>
 <li>可以使用<code>[PostCSS](https://www.postcss.com.cn/)</code>，来使用新的CSS特性，提升可读性等。</li>
@@ -4605,7 +4636,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
   m.message();  // m.就可以调用模块内部导出的对象
 })
 </code></pre>
-<h3 id="其它-7"><a class="header" href="#其它-7">其它</a></h3>
+<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
 <h4 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
 <p>除此之外，还有其它的虚拟机：</p>
@@ -5468,7 +5499,7 @@ cookies.forEach { cookie in
 <h3 id="chrome"><a class="header" href="#chrome">Chrome</a></h3>
 <p>在Chrome中查看Cookie的方式：</p>
 <img src="Web/./images/chrome_cookie_store.jpg" style="zoom:67%;" />
-<h3 id="其它-8"><a class="header" href="#其它-8">其它</a></h3>
+<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
 <p>服务端设置Cookie，是通过在响应头里加<code>Set-Cookie</code>字段
 参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie">Set Cookie</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dom"><a class="header" href="#dom">DOM</a></h1>
@@ -6498,7 +6529,7 @@ return Consumer&lt;CartModel&gt;(
 <p>最简单的理解，BloC就是利用了 <code>StreamBuilder</code> + <code>Stream</code> 来管理状态的。具体可以参看该Demo:<a href="https://github.com/OpenFlutter/Flutter-Notebook/tree/master/mecury_project/example/bloc_demo">block_demo</a>,   Demo对应的文章：<a href="https://juejin.im/post/5bb6f344f265da0aa664d68a">状态管理探索篇——BLoC(三)</a></p>
 <p>但被广泛使用的<a href="https://pub.dev/packages/flutter_bloc">flutter_bloc</a>，没有直接使用StreamBuilder，而是自己实现了类似StreamBuilder的<code>BlocBuilder</code>。在实现上，<code>flutter_bloc</code>也有类似<code>Redux</code>的状态转换的<code>纯方法</code>。</p>
 <h3 id="redux"><a class="header" href="#redux">Redux</a></h3>
-<h3 id="其它-9"><a class="header" href="#其它-9">其它</a></h3>
+<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
 <ul>
 <li><a href="https://www.reddit.com/r/FlutterDev/comments/brz0nu/scoped_model_vs_provider/">Scoped model vs Provider</a>: Scoped model与Provider的区别</li>
 </ul>
@@ -7917,7 +7948,7 @@ main() {
 <ul>
 <li><a href="https://learnku.com/articles/31161">Rust模块和文件</a>：对模块说的非常清晰的文章</li>
 </ul>
-<h3 id="其它-10"><a class="header" href="#其它-10">其它</a></h3>
+<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>
@@ -8073,7 +8104,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
   m.message();  // m.就可以调用模块内部导出的对象
 })
 </code></pre>
-<h3 id="其它-11"><a class="header" href="#其它-11">其它</a></h3>
+<h3 id="其它-12"><a class="header" href="#其它-12">其它</a></h3>
 <h4 id="虚拟机-1"><a class="header" href="#虚拟机-1">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
 <p>除此之外，还有其它的虚拟机：</p>
@@ -8867,7 +8898,7 @@ Functor即定义了统一的协议和语言，可以对容器数据进行转换�
 单位元在维基百科上的定义：在半群S的集合S上存在一元素e，使得任意与集合S中的元素a都符合 a·e = e·a = a</p>
 </blockquote>
 <p>Swiftz实现：https://github.com/typelift/Swiftz/blob/master/Sources/Swiftz/Monoid.swift</p>
-<h3 id="其它-12"><a class="header" href="#其它-12">其它</a></h3>
+<h3 id="其它-13"><a class="header" href="#其它-13">其它</a></h3>
 <h4 id="pointfree"><a class="header" href="#pointfree">Pointfree</a></h4>
 <p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">pointfree</a>，函数无须提及将要操作的数据是什么样的。</p>
 <pre><code class="language-js">// 非 pointfree，因为提到了数据：word
@@ -8969,6 +9000,10 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p><a href="https://necolas.github.io/react-native-web/">官网</a></p>
 <p>其原理不复杂：将RN的组件，alias为react-native-web的库</p>
 <p>使用 <code>npx create-react-app</code> 创建的工程，其就使用了react-scripts，其内默认就做了该映射，所以使用该命令创建的工程，不需要做额外的配置</p>
+<blockquote>
+<p>关于RN的样式转为CSS的样式，在react-native-web中已经提供了支持。即在其内部也实现了<code>StyleSheet</code>的类，提供了与RN中一致的接口，但其最终是转CSS对象。
+源码：<a href="https://github.com/necolas/react-native-web/blob/1aa84d54479fb64e77c86d064263144370195f86/packages/react-native-web/src/exports/StyleSheet/index.js">link</a></p>
+</blockquote>
 <h3 id="核心概念-4"><a class="header" href="#核心概念-4">核心概念</a></h3>
 <h4 id="rn-bundle"><a class="header" href="#rn-bundle">RN Bundle</a></h4>
 <p><a href="https://juejin.cn/post/6844904003696853000">简述 ReactNative Bundle</a></p>
@@ -9249,7 +9284,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="精益创业"><a class="header" href="#精益创业">精益创业</a></h3>
 <p>精益创业，是要解决的是面向不确定性创造新事物。精益创业的思路就是“试”，通过尝试<code>MVP</code>(最小可行产品)来降低尝试成本。</p>
 <p>精益创业的方法论就是“开发”-&gt;“测量”-&gt;“认知”这样一个反馈循环。其中收获的<strong>认知</strong>是最重要的，它是经过验证的。</p>
-<h3 id="其它-13"><a class="header" href="#其它-13">其它</a></h3>
+<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
 <p>在所有迭代前可以添加一个<strong>迭代 0</strong>，所谓迭代 0，就是在迭代 1 之前的一个迭代，我们可以把它理解成开发的准备阶段。</p>
 <p>扩大自己的上下文，跨越自己的位置思考，甚至跨越两三级的角度上来看问题，让自己更有全局视野。</p>
 <p>IT 行业中大多数人的专业程度是不够的。</p>
@@ -9289,7 +9324,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
 <p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
-<h4 id="其它-14"><a class="header" href="#其它-14">其它</a></h4>
+<h4 id="其它-15"><a class="header" href="#其它-15">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
 <p>一定要尽早暴露问题，出现了问题，主动拋出来，越晚拋，隐患就越大。但在工作中暴露自己的问题，是很大的挑战，因为这里还面临着一个心理问题：会不会让别人觉得自己不行。</p>
@@ -9842,7 +9877,7 @@ console.log(typeof Person);	// function
 <p><code>建模</code> 是<code>DDD</code>的基础概念</p>
 <h2 id="ddd对我而言"><a class="header" href="#ddd对我而言">DDD对我而言</a></h2>
 <h3 id="优秀设计糟糕设计和有效设计"><a class="header" href="#优秀设计糟糕设计和有效设计">优秀设计、糟糕设计和有效设计</a></h3>
-<h2 id="其它-15"><a class="header" href="#其它-15">其它</a></h2>
+<h2 id="其它-16"><a class="header" href="#其它-16">其它</a></h2>
 <p>目前</p>
 <p><code>DDD</code>的核心就是将业务架构映射到系统架构上，在业务变化调整时，对应的系统架构也做调整。</p>
 <p>领域驱动设计包括战略建模和战术建模: 战略设计侧重于高层次、宏观上去划分和集成限界上下文，而战术设计则关注更具体使用建模工具来细化上下文。</p>
@@ -10283,7 +10318,7 @@ console.log(typeof Person);	// function
 <li>面向表达式的语言。（除了<code>use</code>这种声明语句，其它基本都是表达式）</li>
 <li>没有 <code>三元操作符</code></li>
 </ul>
-<h3 id="其它-16"><a class="header" href="#其它-16">其它</a></h3>
+<h3 id="其它-17"><a class="header" href="#其它-17">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>

@@ -199,6 +199,10 @@
 <p><a href="https://necolas.github.io/react-native-web/">官网</a></p>
 <p>其原理不复杂：将RN的组件，alias为react-native-web的库</p>
 <p>使用 <code>npx create-react-app</code> 创建的工程，其就使用了react-scripts，其内默认就做了该映射，所以使用该命令创建的工程，不需要做额外的配置</p>
+<blockquote>
+<p>关于RN的样式转为CSS的样式，在react-native-web中已经提供了支持。即在其内部也实现了<code>StyleSheet</code>的类，提供了与RN中一致的接口，但其最终是转CSS对象。
+源码：<a href="https://github.com/necolas/react-native-web/blob/1aa84d54479fb64e77c86d064263144370195f86/packages/react-native-web/src/exports/StyleSheet/index.js">link</a></p>
+</blockquote>
 <h3 id="核心概念"><a class="header" href="#核心概念">核心概念</a></h3>
 <h4 id="rn-bundle"><a class="header" href="#rn-bundle">RN Bundle</a></h4>
 <p><a href="https://juejin.cn/post/6844904003696853000">简述 ReactNative Bundle</a></p>

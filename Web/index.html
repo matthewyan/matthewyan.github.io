@@ -292,6 +292,18 @@
 <li>能力扩展 (即Loader机制，可以处理<code>TypeScript</code>、<code>Scss</code>等语言。也可以做<code>代码压缩</code>、<code>代码混淆</code>等能力)</li>
 </ul>
 <p>webpack-dev-server: 用来启动本地服务，处理打包资源与静态文件的请求。它的live-reloading功能可以监听文件变化，自动刷新页面来提升开发效率。（参考<a href="https://segmentfault.com/a/1190000006670084">link</a>）</p>
+<h2 id="其它"><a class="header" href="#其它">其它</a></h2>
+<h3 id="跨页面通信"><a class="header" href="#跨页面通信">跨页面通信</a></h3>
+<p><a href="https://juejin.cn/post/6844903811232825357">前端跨页面通信，你知道哪些方法？</a></p>
+<p>前端跨页面通信的方式：(同源页面)</p>
+<ul>
+<li>BroadCast Channel： 允许同源的不同浏览器窗口，Tab 页，frame 或者 iframe 下的不同文档之间相互通信。 (在safari上，15.4才支持)</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API">Service Worker</a>: 多页面共享间的 Service Worker 可以共享，将 Service Worker 作为消息的处理中心。但目前看起来这个在<code>WKWebview</code>中是无法使用的(<a href="https://webkit.org/blog/8090/workers-at-your-service/">link</a>)</li>
+<li>LocalStorage (<a href="https://developer.mozilla.org/en-US/docs/Web/API/StorageEvent">StorageEvent</a>)</li>
+<li>Shared Worker</li>
+<li>IndexedDB</li>
+<li>……</li>
+</ul>
 <h2 id="evernote待整理"><a class="header" href="#evernote待整理">Evernote，待整理</a></h2>
 <p>https://github.com/wx-chevalier/Web-Series</p>
 <p>浏览器工作原理与实践

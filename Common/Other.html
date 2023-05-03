@@ -146,12 +146,31 @@
                     <main>
                         <h1 id="其它通用技术"><a class="header" href="#其它通用技术">其它通用技术</a></h1>
 <h3 id="unicode--utfx"><a class="header" href="#unicode--utfx">Unicode &amp; UTFx</a></h3>
-<p><a href="https://zhuanlan.zhihu.com/p/268884340">Unicode 和 UTF-8是什么关系？</a></p>
 <ul>
-<li>Unicode是一种字符集，它为每个字符分配了一个唯一的编号，称为码点（code point），例如U+0041表示字符A。 （Unicode码点，最大使用3个字节即可表示）</li>
-<li>UTF8是一种编码方式，它根据不同的码点范围，将Unicode字符编码成1到6个字节的二进制序列，以便在存储或传输时节省空间。例如，U+0041被编码成一个字节0x41，而U+6C38被编码成三个字节0xE6 0xB0 0xB8。</li>
-<li>UTF32使用4个字节的定长编码，是码点的直接映射</li>
-<li>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/268884340">Unicode 和 UTF-8是什么关系？</a></p>
+</li>
+<li>
+<p><a href="https://objccn.io/issue-9-1/">NSString 与 Unicode</a></p>
+</li>
+<li>
+<p>Unicode是一种字符集，它为每个字符分配了一个唯一的编号，称为码点（code point），例如U+0041表示字符A。 （Unicode码点，最大使用3个字节即可表示，其是21位编码方案，即可编的码点为2的21次方）</p>
+</li>
+<li>
+<p>Unicode目前的编码定义范围为：U+0000 ~ U+10FFFF。其中共分了17组，每组两个字节范围表示。(即<code>U+[00]XXXX</code>到<code>U+[10]XXXX</code>)</p>
+</li>
+<li>
+<p><code>U+[00]XXXX</code>被称为<code>基本多文种平面</code>，后面16个被称为<code>辅助平面</code>。</p>
+</li>
+<li>
+<p>UTF8是一种编码方式，它根据不同的码点范围，将Unicode字符编码成1到6个字节的二进制序列，以便在存储或传输时节省空间。例如，U+0041被编码成一个字节0x41，而U+6C38被编码成三个字节0xE6 0xB0 0xB8。 (1字节编码前缀为0、2字节编码前缀为110、3字节编码前缀为1110、4字节编码前缀为11110，如果非首字节，则前缀使用10来表示)</p>
+</li>
+<li>
+<p>UTF32使用4个字节的定长编码，是码点的直接映射</p>
+</li>
+<li>
+<p>UTF16，采用2字节或4字节变长编码，编号范围在U+0000 ~ U+FFFF的码点使用两字节表示，U+10000 ~ U+10FFFF的码点使用4个字节表示。（但用4字节表示时，会有比较复杂的转换规则）</p>
+</li>
 </ul>
 <p>Unicode编码：<a href="https://zh.wikipedia.org/zh-hk/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84">link</a></p>
 <h3 id="emoji"><a class="header" href="#emoji">Emoji</a></h3>
