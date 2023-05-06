@@ -167,7 +167,7 @@
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
 <p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段。</p>
 <h3 id="示例"><a class="header" href="#示例">示例</a></h3>
-<p>C++代码：</p>
+<h4 id="c代码转wasm"><a class="header" href="#c代码转wasm">C++代码转WASM</a></h4>
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
@@ -207,6 +207,8 @@ int hello() {
  )
 )
 </code></pre>
+<h4 id="js-与-wasm互通"><a class="header" href="#js-与-wasm互通">JS 与 WASM互通</a></h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly/Using_the_JavaScript_API">使用 WebAssembly JavaScript API</a></p>
 <h3 id="支持的语言"><a class="header" href="#支持的语言">支持的语言</a></h3>
 <ul>
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>

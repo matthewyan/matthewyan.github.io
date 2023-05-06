@@ -5366,7 +5366,7 @@ const Icon: React.FC&lt;IProps&gt; = ({ name }) =&gt; {
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
 <p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段。</p>
 <h3 id="示例"><a class="header" href="#示例">示例</a></h3>
-<p>C++代码：</p>
+<h4 id="c代码转wasm"><a class="header" href="#c代码转wasm">C++代码转WASM</a></h4>
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
@@ -5406,6 +5406,8 @@ int hello() {
  )
 )
 </code></pre>
+<h4 id="js-与-wasm互通"><a class="header" href="#js-与-wasm互通">JS 与 WASM互通</a></h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly/Using_the_JavaScript_API">使用 WebAssembly JavaScript API</a></p>
 <h3 id="支持的语言"><a class="header" href="#支持的语言">支持的语言</a></h3>
 <ul>
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>
@@ -5609,6 +5611,11 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <h3 id="其它开源js引擎"><a class="header" href="#其它开源js引擎">其它开源JS引擎</a></h3>
 <h4 id="quickjs"><a class="header" href="#quickjs">QuickJS</a></h4>
 <p><a href="https://ming1016.github.io/2021/02/21/deeply-analyse-quickjs/">深入剖析 JavaScript 编译器/解释器引擎 QuickJS</a></p>
+<p>QuickJS特点：</p>
+<ul>
+<li>性能与引擎大小有比较好的折中，官方的性能数据：<a href="https://bellard.org/quickjs/bench.html">link</a></li>
+<li>支持导出字节码，以及直接执行字节码。 Ali的团队测试，直接使用字节码，JS加载有了58%的提升。(参考：<a href="https://openkraken.com/guide/advanced/use-quickjs-bytecode">link</a>)</li>
+</ul>
 <h4 id="goja"><a class="header" href="#goja"><a href="https://github.com/dop251/goja">goja</a></a></h4>
 <p>使用Go语言实现的JS引擎</p>
 <h4 id="sablejs-1"><a class="header" href="#sablejs-1"><a href="https://github.com/sablejs/sablejs/issues/19">sablejs</a></a></h4>
@@ -8585,7 +8592,7 @@ const value3 = unionValue; // 作为值使用
 <p>JavaScript是边解释边执行，即使支持JIT，也只针对部分代码进行优化。具体JS执行过程可以查看：<a href="https://segmentfault.com/a/1190000039380905">JS执行过程详解</a></p>
 <p>WASM，最简单的理解就是跑在JVM上的中间字节码，本身不需要于走语法分析、词法分析等阶段。</p>
 <h3 id="示例-2"><a class="header" href="#示例-2">示例</a></h3>
-<p>C++代码：</p>
+<h4 id="c代码转wasm-1"><a class="header" href="#c代码转wasm-1">C++代码转WASM</a></h4>
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
@@ -8625,6 +8632,8 @@ int hello() {
  )
 )
 </code></pre>
+<h4 id="js-与-wasm互通-1"><a class="header" href="#js-与-wasm互通-1">JS 与 WASM互通</a></h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly/Using_the_JavaScript_API">使用 WebAssembly JavaScript API</a></p>
 <h3 id="支持的语言-1"><a class="header" href="#支持的语言-1">支持的语言</a></h3>
 <ul>
 <li><a href="http://webassembly.org.cn/docs/c-and-c++/">C/C++</a></li>
@@ -9063,7 +9072,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>JS和Native的交互非常频繁，但效率不高，这儿也是RN效率较低的根本原因</p>
 </li>
 <li>
-<p>在新版本的RN(0.59之后)中，提供了JSI来提升JS和Native的交互效率</p>
+<p>在新版本的RN(0.59之后)中，提供了JSI来提升JS和Native的交互效率 （在0.64之后引入了Farbic架构）</p>
 </li>
 <li>
 <p>Native调用JS，是通过JSC提供的<code>JSObjectCallAsFunction</code>等接口实现的</p>
@@ -9126,6 +9135,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <ul>
 <li>Fabric架构，直接生成的C++版本的渲染树，无须从JS再到Native转换</li>
 <li>JSI不保证线程安全，多个线程访问同个HostObject时，就可能会出现数据竞争的情况</li>
+<li>JSI本身是在RN的0.59版本引入的，但Fabric架构，是在0.64架构引入 (<a href="https://zhuanlan.zhihu.com/p/81988101">link</a>)</li>
 </ul>
 <h4 id="原理-4"><a class="header" href="#原理-4">原理</a></h4>
 <ul>
