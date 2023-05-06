@@ -4649,6 +4649,15 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <blockquote>
 <p><a href="https://www.jianshu.com/p/6acdfd60b014">虚拟机 v.s. 沙盒（区别）</a></p>
 </blockquote>
+<h4 id="sablejs"><a class="header" href="#sablejs">SableJS</a></h4>
+<p><a href="https://mp.weixin.qq.com/s/sYIAB0S3UKL4SU5Wg0IhIg">不用 WebAssembly 也能实现 Web 虚拟机保护</a></p>
+<p>按官方的说法，Sable的速度是要快于其它JS实现的JSVM的。原因是Sable做了不少性能优化的点，比如：</p>
+<ul>
+<li>函数调用开销的消除。（通过将指令解析函数显示的使用JIT优化，以减少解释执行的成本）</li>
+<li>编译期的优化（计算操作与作用域）</li>
+<li>对象属性的访问优化</li>
+<li>……</li>
+</ul>
 <h4 id="jsaot"><a class="header" href="#jsaot">JSAOT</a></h4>
 <p>JS/TS转C语言：</p>
 <ul>
@@ -5602,7 +5611,7 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 <p><a href="https://ming1016.github.io/2021/02/21/deeply-analyse-quickjs/">深入剖析 JavaScript 编译器/解释器引擎 QuickJS</a></p>
 <h4 id="goja"><a class="header" href="#goja"><a href="https://github.com/dop251/goja">goja</a></a></h4>
 <p>使用Go语言实现的JS引擎</p>
-<h4 id="sablejs"><a class="header" href="#sablejs"><a href="https://github.com/sablejs/sablejs/issues/19">sablejs</a></a></h4>
+<h4 id="sablejs-1"><a class="header" href="#sablejs-1"><a href="https://github.com/sablejs/sablejs/issues/19">sablejs</a></a></h4>
 <p>使用JS写的JS引擎。是为了去除WASM / JS的交互导致的安全风险。</p>
 <h3 id="其它技术"><a class="header" href="#其它技术">其它技术</a></h3>
 <h4 id="jit"><a class="header" href="#jit">JIT</a></h4>
@@ -8117,6 +8126,15 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <blockquote>
 <p><a href="https://www.jianshu.com/p/6acdfd60b014">虚拟机 v.s. 沙盒（区别）</a></p>
 </blockquote>
+<h4 id="sablejs-2"><a class="header" href="#sablejs-2">SableJS</a></h4>
+<p><a href="https://mp.weixin.qq.com/s/sYIAB0S3UKL4SU5Wg0IhIg">不用 WebAssembly 也能实现 Web 虚拟机保护</a></p>
+<p>按官方的说法，Sable的速度是要快于其它JS实现的JSVM的。原因是Sable做了不少性能优化的点，比如：</p>
+<ul>
+<li>函数调用开销的消除。（通过将指令解析函数显示的使用JIT优化，以减少解释执行的成本）</li>
+<li>编译期的优化（计算操作与作用域）</li>
+<li>对象属性的访问优化</li>
+<li>……</li>
+</ul>
 <h4 id="jsaot-1"><a class="header" href="#jsaot-1">JSAOT</a></h4>
 <p>JS/TS转C语言：</p>
 <ul>
@@ -9158,6 +9176,16 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li>添加接口：RCT_EXPORT_METHOD</li>
 </ul>
 <p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeModule</p>
+<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
+<h4 id="同步接口"><a class="header" href="#同步接口">同步接口</a></h4>
+<p>从RN 0.59开始，就提供了JSI的接口，JS与Native就可以同步通信了。</p>
+<p>在iOS上提供了<code>RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD</code>宏来声明同步接口。在Android上使用<code>@ReactMethod(isBlockingSynchronousMethod = true)</code>装饰。</p>
+<p>但官方并不推荐使用同步接口，原因：</p>
+<ul>
+<li>线程问题 （JS调Native时，是在JS线程中调过来的，可能存在数据互斥问题）</li>
+<li>性能问题 （如果有耗时操作，则会卡住JS线程，导致JS逻辑执行受影响）</li>
+</ul>
+<p>关于同步调用相关的源码，在<code>JSIExecutor::initializeRuntime</code>中。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hippy"><a class="header" href="#hippy">Hippy</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="动态化"><a class="header" href="#动态化">动态化</a></h1>
 <h3 id="资料-48"><a class="header" href="#资料-48">资料</a></h3>
@@ -9284,7 +9312,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <h3 id="精益创业"><a class="header" href="#精益创业">精益创业</a></h3>
 <p>精益创业，是要解决的是面向不确定性创造新事物。精益创业的思路就是“试”，通过尝试<code>MVP</code>(最小可行产品)来降低尝试成本。</p>
 <p>精益创业的方法论就是“开发”-&gt;“测量”-&gt;“认知”这样一个反馈循环。其中收获的<strong>认知</strong>是最重要的，它是经过验证的。</p>
-<h3 id="其它-14"><a class="header" href="#其它-14">其它</a></h3>
+<h3 id="其它-15"><a class="header" href="#其它-15">其它</a></h3>
 <p>在所有迭代前可以添加一个<strong>迭代 0</strong>，所谓迭代 0，就是在迭代 1 之前的一个迭代，我们可以把它理解成开发的准备阶段。</p>
 <p>扩大自己的上下文，跨越自己的位置思考，甚至跨越两三级的角度上来看问题，让自己更有全局视野。</p>
 <p>IT 行业中大多数人的专业程度是不够的。</p>
@@ -9324,7 +9352,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
 <p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
-<h4 id="其它-15"><a class="header" href="#其它-15">其它</a></h4>
+<h4 id="其它-16"><a class="header" href="#其它-16">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
 <p>一定要尽早暴露问题，出现了问题，主动拋出来，越晚拋，隐患就越大。但在工作中暴露自己的问题，是很大的挑战，因为这里还面临着一个心理问题：会不会让别人觉得自己不行。</p>
@@ -9877,7 +9905,7 @@ console.log(typeof Person);	// function
 <p><code>建模</code> 是<code>DDD</code>的基础概念</p>
 <h2 id="ddd对我而言"><a class="header" href="#ddd对我而言">DDD对我而言</a></h2>
 <h3 id="优秀设计糟糕设计和有效设计"><a class="header" href="#优秀设计糟糕设计和有效设计">优秀设计、糟糕设计和有效设计</a></h3>
-<h2 id="其它-16"><a class="header" href="#其它-16">其它</a></h2>
+<h2 id="其它-17"><a class="header" href="#其它-17">其它</a></h2>
 <p>目前</p>
 <p><code>DDD</code>的核心就是将业务架构映射到系统架构上，在业务变化调整时，对应的系统架构也做调整。</p>
 <p>领域驱动设计包括战略建模和战术建模: 战略设计侧重于高层次、宏观上去划分和集成限界上下文，而战术设计则关注更具体使用建模工具来细化上下文。</p>
@@ -10318,7 +10346,7 @@ console.log(typeof Person);	// function
 <li>面向表达式的语言。（除了<code>use</code>这种声明语句，其它基本都是表达式）</li>
 <li>没有 <code>三元操作符</code></li>
 </ul>
-<h3 id="其它-17"><a class="header" href="#其它-17">其它</a></h3>
+<h3 id="其它-18"><a class="header" href="#其它-18">其它</a></h3>
 <ul>
 <li>Rust后端也是LLVM</li>
 </ul>

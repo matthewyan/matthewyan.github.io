@@ -165,6 +165,16 @@
 <li>添加接口：RCT_EXPORT_METHOD</li>
 </ul>
 <p>参考：https://github.com/matthewyan/RNLearn/tree/master/NativeModule</p>
+<h3 id="其它"><a class="header" href="#其它">其它</a></h3>
+<h4 id="同步接口"><a class="header" href="#同步接口">同步接口</a></h4>
+<p>从RN 0.59开始，就提供了JSI的接口，JS与Native就可以同步通信了。</p>
+<p>在iOS上提供了<code>RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD</code>宏来声明同步接口。在Android上使用<code>@ReactMethod(isBlockingSynchronousMethod = true)</code>装饰。</p>
+<p>但官方并不推荐使用同步接口，原因：</p>
+<ul>
+<li>线程问题 （JS调Native时，是在JS线程中调过来的，可能存在数据互斥问题）</li>
+<li>性能问题 （如果有耗时操作，则会卡住JS线程，导致JS逻辑执行受影响）</li>
+</ul>
+<p>关于同步调用相关的源码，在<code>JSIExecutor::initializeRuntime</code>中。</p>
 
                     </main>
 

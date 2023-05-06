@@ -259,6 +259,15 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <blockquote>
 <p><a href="https://www.jianshu.com/p/6acdfd60b014">虚拟机 v.s. 沙盒（区别）</a></p>
 </blockquote>
+<h4 id="sablejs"><a class="header" href="#sablejs">SableJS</a></h4>
+<p><a href="https://mp.weixin.qq.com/s/sYIAB0S3UKL4SU5Wg0IhIg">不用 WebAssembly 也能实现 Web 虚拟机保护</a></p>
+<p>按官方的说法，Sable的速度是要快于其它JS实现的JSVM的。原因是Sable做了不少性能优化的点，比如：</p>
+<ul>
+<li>函数调用开销的消除。（通过将指令解析函数显示的使用JIT优化，以减少解释执行的成本）</li>
+<li>编译期的优化（计算操作与作用域）</li>
+<li>对象属性的访问优化</li>
+<li>……</li>
+</ul>
 <h4 id="jsaot"><a class="header" href="#jsaot">JSAOT</a></h4>
 <p>JS/TS转C语言：</p>
 <ul>
