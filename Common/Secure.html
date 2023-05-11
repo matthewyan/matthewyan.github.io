@@ -198,6 +198,11 @@
 <li>警报协议。</li>
 </ul>
 <p>SSL支持双向认证：<a href="https://www.jianshu.com/p/fb5fe0165ef2">SSL双向认证和SSL单向认证的区别</a></p>
+<h4 id="ssl-pinning"><a class="header" href="#ssl-pinning">SSL Pinning</a></h4>
+<p><a href="https://zhuanlan.zhihu.com/p/58204817">证书锁定SSL Pinning简介及用途</a></p>
+<p>一般做SSL Pining有两种方式：证书锁定、公钥锁定。</p>
+<p>证书锁定，相当于校验证书本身是否是符合预期的。公钥锁定，相当于是从证书中提取公钥来进行验证。</p>
+<p>公钥锁定有一个好处，就是更换证书时，公私钥可以不变。 这样在证书过后后，App内置的证书公钥可以不变。 但证书锁定在证书过期后就必须得修改了。</p>
 <h3 id="x509"><a class="header" href="#x509">X.509</a></h3>
 <p>X.509是密码学里公钥证书的格式标准, SSL协议里默认也是使用该格式的证书。</p>
 <h3 id="openssl"><a class="header" href="#openssl">OpenSSL</a></h3>
