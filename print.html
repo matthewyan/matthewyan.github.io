@@ -2260,6 +2260,12 @@ Value: Light
 <h4 id="cycript"><a class="header" href="#cycript">Cycript</a></h4>
 <p>主要用于在iOS上进行逆向工作。</p>
 <p><a href="https://juejin.cn/post/6844903821253017614">iOS 逆向之 Cycript 高级玩法（非越狱） &amp; .cy文件的封装</a></p>
+<h4 id="dump-内存"><a class="header" href="#dump-内存">Dump 内存</a></h4>
+<p>要想在iOS上dump内存，需要对设备进行越狱，并且在手机上安装frida工具。</p>
+<blockquote>
+<p>如果dump的应用是Debug的包，则无须越狱，可以直接使用Mac版本的Frida即可Dump</p>
+<p>在Android上，同样也需要Root设备并使用frida dump</p>
+</blockquote>
 <h4 id="防止下载的资源被篡改"><a class="header" href="#防止下载的资源被篡改">防止下载的资源被篡改</a></h4>
 <ul>
 <li><a href="https://www.jianshu.com/p/b9fb0fc4084f">iOS如何保证下载资源的可靠性</a></li>
@@ -3131,10 +3137,12 @@ struct category_t {
 <li><a href="https://juejin.cn/post/6975765788355461133">Tagged Pointer对象安全气垫为何会失效</a></li>
 </ul>
 <p>Apple为了优化<code>NSNumber</code>、<code>NSString</code>等小对象所占用的空间，提供了该技术。在该技术实现中也考虑到缓冲区溢出等保护。</p>
+<p>Tagged Pointer在存储时，也会对数据进行混淆。混淆的方式，即是通过生成的随机数作为因子。具体可参考：<a href="https://fangshufeng.github.io/2019/01/13/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84TaggedPointer/">你不知道的TaggedPointer</a></p>
 <blockquote>
 <p>在苹果的64位OC实现中，若对象指针的二进制第一位是1，则该指针为Tagged Pointer。
 例如0xa000000000000311其中a的2进制为1010,第一位1表示这是Tagged Pointer，010表示这是一个NSTaggedPointerString类；这个地址最后一位表示字符串的数目，这里是0001表示有1位字符串；其中真正用来存储的位数只有中间的14位16进制。这个地址本身其实就存储了字符串的值，可以说是存储在&amp;strS内存中值，只是伪装成了地址，它不需要存储在数据区，也不需要申请堆空间。</p>
 </blockquote>
+<p>Tagged Pointer的实现也经过了多次修改，目前最新的实现中，那个标识放在了最低位。</p>
 <h4 id="nsinvocation使用"><a class="header" href="#nsinvocation使用">NSInvocation使用</a></h4>
 <p><a href="https://www.jianshu.com/p/6e8ae95adf83">iOS NSInvocation使用理解</a></p>
 <p>关于NSInvocation，有如下特点：</p>
