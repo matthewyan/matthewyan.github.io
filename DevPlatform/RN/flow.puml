@@ -1,1 +1,23 @@
-# 时序图
+' 基于的RN版本，0.71.4
+
+@startuml Bundle加载时序
+
+participant App
+participant RCTBridge
+participant RCTCxxBridge
+
+note over RCTBridge: 与JS通信用对象
+note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来
+
+App -> RCTBridge: createBridge
+RCTBridge -> RCTBridge: setUp
+RCTBridge -> App: request bundle URL
+note right: sourceURLForBridge:
+App -> RCTBridge: bundle URL
+note left: RCTBundleURLProvider中获取
+
+RCTBridge -> RCTCxxBridge: create
+RCTCxxBridge -> RCTCxxBridge: start
+note right: 创建工作线程\n初始化Module等
+
+@enduml

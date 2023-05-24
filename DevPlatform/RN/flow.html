@@ -144,7 +144,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="时序图"><a class="header" href="#时序图">时序图</a></h1>
+                        <p>' 基于的RN版本，0.71.4</p>
+<p>@startuml Bundle加载时序</p>
+<p>participant App
+participant RCTBridge
+participant RCTCxxBridge</p>
+<p>note over RCTBridge: 与JS通信用对象
+note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来</p>
+<p>App -&gt; RCTBridge: createBridge
+RCTBridge -&gt; RCTBridge: setUp
+RCTBridge -&gt; App: request bundle URL
+note right: sourceURLForBridge:
+App -&gt; RCTBridge: bundle URL
+note left: RCTBundleURLProvider中获取</p>
+<p>RCTBridge -&gt; RCTCxxBridge: create
+RCTCxxBridge -&gt; RCTCxxBridge: start
+note right: 创建工作线程\n初始化Module等</p>
+<p>@enduml</p>
 
                     </main>
 

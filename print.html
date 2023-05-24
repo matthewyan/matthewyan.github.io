@@ -9202,7 +9202,23 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li>性能问题 （如果有耗时操作，则会卡住JS线程，导致JS逻辑执行受影响）</li>
 </ul>
 <p>关于同步调用相关的源码，在<code>JSIExecutor::initializeRuntime</code>中。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="时序图-1"><a class="header" href="#时序图-1">时序图</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><p>' 基于的RN版本，0.71.4</p>
+<p>@startuml Bundle加载时序</p>
+<p>participant App
+participant RCTBridge
+participant RCTCxxBridge</p>
+<p>note over RCTBridge: 与JS通信用对象
+note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来</p>
+<p>App -&gt; RCTBridge: createBridge
+RCTBridge -&gt; RCTBridge: setUp
+RCTBridge -&gt; App: request bundle URL
+note right: sourceURLForBridge:
+App -&gt; RCTBridge: bundle URL
+note left: RCTBundleURLProvider中获取</p>
+<p>RCTBridge -&gt; RCTCxxBridge: create
+RCTCxxBridge -&gt; RCTCxxBridge: start
+note right: 创建工作线程\n初始化Module等</p>
+<p>@enduml</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hippy"><a class="header" href="#hippy">Hippy</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="动态化"><a class="header" href="#动态化">动态化</a></h1>
 <h3 id="资料-48"><a class="header" href="#资料-48">资料</a></h3>
