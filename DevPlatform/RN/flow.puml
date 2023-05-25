@@ -9,6 +9,8 @@ participant RCTCxxBridge
 note over RCTBridge: 与JS通信用对象
 note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来
 
+RCTBridge -> RCTBridge: 注册Modules
+
 App -> RCTBridge: createBridge
 RCTBridge -> RCTBridge: setUp
 RCTBridge -> App: request bundle URL
@@ -17,7 +19,17 @@ App -> RCTBridge: bundle URL
 note left: RCTBundleURLProvider中获取
 
 RCTBridge -> RCTCxxBridge: create
-RCTCxxBridge -> RCTCxxBridge: start
-note right: 创建工作线程\n初始化Module等
+
+group start
+RCTCxxBridge -> RCTCxxBridge: 创建工作线程
+RCTCxxBridge -> RCTCxxBridge: 初始化Module/moduleData等
+note left: 仅非TurboModule\n才有moduleData
+RCTCxxBridge -> RCTCxxBridge: 创建ExecutorFactory
+note left: Hermes或JSC
+
+RCTCxxBridge -> RCTCxxBridge: loadSource
+RCTCxxBridge -> RCTCxxBridge: executeSourceCode
+
+end
 
 @enduml

@@ -9209,15 +9209,23 @@ participant RCTBridge
 participant RCTCxxBridge</p>
 <p>note over RCTBridge: 与JS通信用对象
 note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来</p>
+<p>RCTBridge -&gt; RCTBridge: 注册Modules</p>
 <p>App -&gt; RCTBridge: createBridge
 RCTBridge -&gt; RCTBridge: setUp
 RCTBridge -&gt; App: request bundle URL
 note right: sourceURLForBridge:
 App -&gt; RCTBridge: bundle URL
 note left: RCTBundleURLProvider中获取</p>
-<p>RCTBridge -&gt; RCTCxxBridge: create
-RCTCxxBridge -&gt; RCTCxxBridge: start
-note right: 创建工作线程\n初始化Module等</p>
+<p>RCTBridge -&gt; RCTCxxBridge: create</p>
+<p>group start
+RCTCxxBridge -&gt; RCTCxxBridge: 创建工作线程
+RCTCxxBridge -&gt; RCTCxxBridge: 初始化Module/moduleData等
+note left: 仅非TurboModule\n才有moduleData
+RCTCxxBridge -&gt; RCTCxxBridge: 创建ExecutorFactory
+note left: Hermes或JSC</p>
+<p>RCTCxxBridge -&gt; RCTCxxBridge: loadSource
+RCTCxxBridge -&gt; RCTCxxBridge: executeSourceCode</p>
+<p>end</p>
 <p>@enduml</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hippy"><a class="header" href="#hippy">Hippy</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="动态化"><a class="header" href="#动态化">动态化</a></h1>
