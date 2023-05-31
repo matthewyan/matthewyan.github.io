@@ -3,20 +3,28 @@
 @startuml Bundle加载时序
 
 participant App
+participant NativeModule
 participant RCTBridge
 participant RCTCxxBridge
+participant Instance
+participant NativeToJsBridge
+participant JSExecutor
 
 note over RCTBridge: 与JS通信用对象
 note over RCTCxxBridge: 很多真实操作会从\nRCTBridge代理过来
 
-RCTBridge -> RCTBridge: 注册Modules
+NativeModule -> NativeModule: RCT_EXPORT_MODULE()导出
+note right: 如果实现了RCTTurboModule协议\n则就适配了TurboModule
+NativeModule -> RCTBridge: RCTRegisterModule(self)
+note right: 在+load()中调用
+RCTBridge -> RCTBridge: 存储至RCTModuleClasses中
 
 App -> RCTBridge: createBridge
 RCTBridge -> RCTBridge: setUp
 RCTBridge -> App: request bundle URL
 note right: sourceURLForBridge:
 App -> RCTBridge: bundle URL
-note left: RCTBundleURLProvider中获取
+note right: RCTBundleURLProvider中获取
 
 RCTBridge -> RCTCxxBridge: create
 
@@ -28,8 +36,43 @@ RCTCxxBridge -> RCTCxxBridge: 创建ExecutorFactory
 note left: Hermes或JSC
 
 RCTCxxBridge -> RCTCxxBridge: loadSource
-RCTCxxBridge -> RCTCxxBridge: executeSourceCode
+
+    group executeSourceCode
+    RCTCxxBridge -> RCTCxxBridge: executeApplicationScript
+    RCTCxxBridge -> Instance: loadScript
+    Instance -> NativeToJsBridge: loadBundle
+    NativeToJsBridge -> NativeToJsBridge: switch ExecutorQueue
+    NativeToJsBridge -> JSExecutor: loadBundle
+    end
 
 end
+
+@enduml
+
+
+
+@startuml 通信交互
+
+participant App
+participant NativeModule
+participant RCTBridge
+participant RCTCxxBridge
+
+' NativeModule -> NativeModule: RCT_EXPORT_MODULE()导出
+' note left: 如果实现了RCTTurboModule协议\n则就适配了TurboModule
+' NativeModule -> RCTBridge: RCTRegisterModule(self)
+' note left: 在+load()中调用
+' RCTBridge -> RCTBridge: 存储至RCTModuleClasses中
+
+' group start
+
+' RCTCxxBridge -> RCTCxxBridge: registerExtraModules
+' note left: 一般没有
+
+'     group initializeModules
+'     RCTCxxBridge -> RCTCxxBridge: 根据moduleClasses\n生成RCTModuleData
+'     end
+
+' end
 
 @enduml
