@@ -1,0 +1,68 @@
+@startuml 类图
+
+' https://plantuml.com/zh/class-diagram
+
+class RCTBridge {
+    提供通信接口，包括
+    enqueueJSCall等调用JS方法接口
+    保存所有的moduleClasses类名
+    url、batchedBridge等属性
+    // 但其真正的操作是代理到RCTCxxBridge进行
+}
+
+class RCTCxxBridge {
+    真实的通信类
+}
+
+RCTBridge --> RCTCxxBridge
+
+interface RCTBridgeModule {
+    代表NativeModule的协议
+    以及提供了一些工具宏，方便导出NativeModule
+}
+
+class RCTModuleRegistry {
+    查找NativeModule的封装类
+    其中也包括对TurboModule的查找
+}
+
+class Instance {
+
+}
+
+class NativeToJsBridge {
+    管理Native到JS的调用
+}
+
+class RCTModuleData {
+    NativeModule的数据，包含methods、
+    moduleClass、moduleRegistry、
+    bridge、moduleProvider、callableJSModules等
+}
+
+class NativeModule {
+    vector getMethods
+}
+class CxxNativeModule {
+
+}
+class RCTNativeModule {
+    RCTModuleData m_moduleData
+}
+NativeModule <|-- CxxNativeModule
+NativeModule <|-- RCTNativeModule
+
+
+class JSExecutor {
+    代表一个JS引擎
+}
+
+class JSIExecutor {
+
+}
+
+JSExecutor <|-- JSIExecutor
+JSIExecutor <|-- HermesExecutor
+JSIExecutor <|-- JSCExecutor
+
+@enduml

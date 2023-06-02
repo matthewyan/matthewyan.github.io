@@ -48,31 +48,3 @@ RCTCxxBridge -> RCTCxxBridge: loadSource
 end
 
 @enduml
-
-
-
-@startuml 通信交互
-
-participant App
-participant NativeModule
-participant RCTBridge
-participant RCTCxxBridge
-
-' NativeModule -> NativeModule: RCT_EXPORT_MODULE()导出
-' note left: 如果实现了RCTTurboModule协议\n则就适配了TurboModule
-' NativeModule -> RCTBridge: RCTRegisterModule(self)
-' note left: 在+load()中调用
-' RCTBridge -> RCTBridge: 存储至RCTModuleClasses中
-
-' group start
-
-' RCTCxxBridge -> RCTCxxBridge: registerExtraModules
-' note left: 一般没有
-
-'     group initializeModules
-'     RCTCxxBridge -> RCTCxxBridge: 根据moduleClasses\n生成RCTModuleData
-'     end
-
-' end
-
-@enduml
