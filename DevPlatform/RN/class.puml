@@ -66,3 +66,34 @@ JSIExecutor <|-- HermesExecutor
 JSIExecutor <|-- JSCExecutor
 
 @enduml
+
+
+' 新类图
+
+@startuml Fabric类图
+
+class ShadowNode {
+    Shadow Tree的结点
+}
+
+class ShadowTree {
+    用来管理View布局等
+}
+
+class ShadowTreeRegistry {
+    Shadow Tree的集合，\n维护多个Shadow Tree
+}
+
+ShadowTreeRegistry "1" ..> "n" ShadowTree 
+
+class UIManager {
+    Fabric UI管理类
+}
+
+UIManager ..> ShadowTreeRegistry
+
+class UIManagerBinding {
+    将UIManager导出给JS使用
+}
+
+@enduml
