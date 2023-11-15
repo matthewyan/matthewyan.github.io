@@ -175,13 +175,37 @@
 <h3 id="相关链接"><a class="header" href="#相关链接">相关链接</a></h3>
 <p><a href="https://github.com/donnemartin/system-design-primer/blob/master/README-zh-Hans.md">系统设计入门</a></p>
 <h3 id="基础概念"><a class="header" href="#基础概念">基础概念</a></h3>
+<h4 id="kafka"><a class="header" href="#kafka">Kafka</a></h4>
+<p>简单说，也是一种MessageQueue，其提供了消息的订阅与发布的消息队列。用作系统间解耦、异步通信、削峰填谷。</p>
+<p>有如下特点：</p>
+<ul>
+<li>请求可以被缓存到内存和磁盘中，并且支持事务性，可以通过消息还原相关操作。</li>
+<li>支持多个队列</li>
+<li>会定期的检查日志文件，然后将过期的数据从 log 中移除。</li>
+</ul>
+<h4 id="zookeeper"><a class="header" href="#zookeeper">ZooKeeper</a></h4>
+<p>是一个分布式存储系统，能保证多个ZooKeeper之间是强一致的。</p>
+<p>其使用场景，可以用来做服务的关联和负载均衡。（其它服务在ZooKeeper中注册自己的ip，另外的服务调用时，可以获取到ip列表，然后随机调用）</p>
+<h4 id="flink"><a class="header" href="#flink">Flink</a></h4>
+<p>简单说，就是实时计算框架。支持在数据上报过程中，实时的将数据处理出来。 比如双十一，实时查看产品销量、整体收入、用户画像等信息。</p>
 <h4 id="rpc"><a class="header" href="#rpc">RPC</a></h4>
 <p><a href="https://www.zhihu.com/question/25536695">谁能用通俗的语言解释一下什么是 RPC 框架？</a></p>
 <p>目的就是为了像调用本地函数一样调用远端的函数，在分布式系统中使用非常广泛。</p>
+<h4 id="pod"><a class="header" href="#pod">POD</a></h4>
+<p>就是容器，类似Docker的概念（与Docker并列的）</p>
+<h4 id="ddl--dml"><a class="header" href="#ddl--dml">DDL &amp; DML</a></h4>
+<ul>
+<li>DDL是表示对数据库表的操作 （如创建表）</li>
+<li>DML是表示对数据库内容的操作 （如插入数据、删除数据）</li>
+</ul>
 <h4 id="k8s"><a class="header" href="#k8s">K8S</a></h4>
 <p>即 <code>Kubernetes</code>，一句括概括：K8S是一个集群管理的工具。</p>
 <p><a href="https://www.redhat.com/zh/topics/containers/what-is-kubernetes">Kubernetes是什么?</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/87186261">Kubernetes和Docker到底有啥关系？</a></p>
+<h4 id="hdfs"><a class="header" href="#hdfs">HDFS</a></h4>
+<p>是一种分布式的文件系统，主要用来存储大数据量</p>
+<h4 id="hbase"><a class="header" href="#hbase">HBase</a></h4>
+<p>是一个分布式、可伸缩的大数据存储，基于HDFS实现的</p>
 <h4 id="nginx"><a class="header" href="#nginx">NGINX</a></h4>
 <p>作用：</p>
 <ul>
