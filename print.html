@@ -4104,6 +4104,8 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <li>settings.gradle: 用于指定项目中所有引入的模块</li>
 </ul>
 <h3 id="其它-5"><a class="header" href="#其它-5">其它</a></h3>
+<h4 id="art虚拟机"><a class="header" href="#art虚拟机">ART虚拟机</a></h4>
+<p>会在应用程序安装时将字节码预先编译成本地机器码(AOT)，以提升执行速度和降低内存占用。</p>
 <h4 id="android-studio"><a class="header" href="#android-studio">Android Studio</a></h4>
 <p><a href="https://www.jianshu.com/p/f146c6f22d04">android studio mac快捷键</a></p>
 <div class="table-wrapper"><table><thead><tr><th>快捷键</th><th>含义</th></tr></thead><tbody>
@@ -7397,6 +7399,11 @@ fun main() = runBlocking {
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="java"><a class="header" href="#java">Java</a></h1>
 <h2 id="能力-6"><a class="header" href="#能力-6">能力</a></h2>
+<h3 id="概览-1"><a class="header" href="#概览-1">概览</a></h3>
+<ul>
+<li>支持<code>枚举</code></li>
+<li>支持<code>泛型</code></li>
+</ul>
 <h3 id="注解"><a class="header" href="#注解">注解</a></h3>
 <p>注解可以在编译期、运行期或开发工具中使用，以提供额外的信息。其在使用场景上有：</p>
 <ul>
@@ -7538,6 +7545,108 @@ public class Main {
         proxy.sayHi();
     }
 }
+</code></pre>
+<h3 id="类方法"><a class="header" href="#类方法">类/方法</a></h3>
+<h4 id="内部匿名类"><a class="header" href="#内部匿名类">内部匿名类</a></h4>
+<pre><code class="language-java">// 要提前定义接口，表示创建的对象的类型
+interface MyInterface {
+    void doSomething();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyInterface myInterface = new MyInterface() {
+            public void doSomething() {
+                System.out.println(&quot;Doing something...&quot;);
+            }
+        };
+        myInterface.doSomething();
+    }
+}
+</code></pre>
+<h4 id="函数式接口"><a class="header" href="#函数式接口">函数式接口</a></h4>
+<p>只包含一个抽象方法的接口，就是函数式接口。其被视为一个函数的签名，可以用在Lambda表达式中。</p>
+<p>可以用<code>@FunctionalInterface</code>来显示指定接口是函数式接口</p>
+<pre><code class="language-java">@FunctionalInterface    // 显示指定函数式接口
+interface MyInterface {
+    void doSomething();
+
+    // void doOther();  // 如果指定了@FunctionalInterface，定义两个抽象接口就会失败
+
+    default void doOther() { ... }  // 如果指定默认实现，就可以定义多个接口
+}
+</code></pre>
+<h4 id="lambda表达式"><a class="header" href="#lambda表达式">Lambda表达式</a></h4>
+<p>从Java 8开始引入的Lambda表达式。其可以用来代替单个抽象方法的接口(函数式接口)。</p>
+<pre><code class="language-java">// 也被称为 函数式接口, 被视为一个函数的签名
+interface MyInterface {
+    void doSomething();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyInterface myInterface = () -&gt; {
+            System.out.println(&quot;Doing something...&quot;);
+        };
+        // 调用时仍然要指定调用的是doSomething()
+        myInterface.doSomething();
+    }
+}
+</code></pre>
+<h3 id="泛型"><a class="header" href="#泛型">泛型</a></h3>
+<p>Java中的泛型，可以使用在类、接口、方法、参数等场景</p>
+<pre><code class="language-java">// 泛型类
+public class Box&lt;T&gt; {
+    private T item;
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+    public T getItem() {
+        return item;
+    }
+}
+
+// 使用泛型类
+Box&lt;Integer&gt; integerBox = new Box&lt;&gt;();
+integerBox.setItem(10);
+
+// 泛型方法
+public &lt;T&gt; void printArray(T[] array) {
+    for (T item : array) {
+        System.out.println(item);
+    }
+}
+
+// 使用泛型方法
+Integer[] intArray = { 1, 2, 3, 4, 5 };
+printArray(intArray);   // 支持自动推断
+</code></pre>
+<h4 id="通配符泛型"><a class="header" href="#通配符泛型">通配符泛型</a></h4>
+<p>用于处理类型不确定的情况。用在泛型类、泛型方法和泛型接口中。(它并不是泛型定义场景使用，而是在泛型使用的场景使用)</p>
+<pre><code class="language-java">// 表示processList可以接收各种类型的list数据 (无界通配符)
+public void processList(List&lt;?&gt; list) {
+    for (Object item : list) {
+        System.out.println(item);
+    }
+}
+
+// 表示接收的数据，必须是Number及其子类类型 (上界通配符)
+public void processList2(List&lt;? extends Number&gt; list) {
+    for (Object item : list) {
+        System.out.println(item);
+    }
+}
+
+// 使用通配符泛型
+List&lt;Integer&gt; intList = Arrays.asList(1, 2, 3);
+processList(intList);
+processList2(intList);
+
+List&lt;String&gt; stringList = Arrays.asList(&quot;Hello&quot;, &quot;World&quot;);
+processList(stringList);
+// processList2(stringList);    // 这行代码会出错，因为参数是String列表
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dart-1"><a class="header" href="#dart-1">Dart</a></h1>
 <p>在安装了Flutter的情况下，要直接使用dart，只需要将dart sdk配置到环境变量中即可。</p>
