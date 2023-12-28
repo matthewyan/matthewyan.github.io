@@ -4138,6 +4138,44 @@ startActivity(intent);
 </code></pre>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>是java中用来支持<code>反射</code>能力的一个类。</p>
+<h3 id="线程"><a class="header" href="#线程">线程</a></h3>
+<h4 id="looper"><a class="header" href="#looper">Looper</a></h4>
+<p>用于管理线程的消息循环的关键类。每个线程都有一个关联的 <code>Looper</code> 对象。</p>
+<p>Looper 的主要作用是创建一个消息队列，并在一个无限循环中不断检查队列中是否有待处理的消息。当消息队列中有消息时，Looper 将消息分发给对应的 Handler 进行处理。</p>
+<h4 id="handlerthread"><a class="header" href="#handlerthread">HandlerThread</a></h4>
+<p>HandlerThread是Android中的线程辅助类(继承自Thread类)，其创建一个带有消息循环的后台线程，使得我们可以在该线程上执行任务并处理消息。（一般用来处理耗时操作，以避免阻塞UI线程）</p>
+<pre><code class="language-java">public class HandlerThreadExample {
+    private HandlerThread handlerThread;
+    private Handler handler;
+
+    public void startBackgroundThread() {
+        handlerThread = new HandlerThread(&quot;MyHandlerThread&quot;);
+        handlerThread.start();
+
+        Looper looper = handlerThread.getLooper();
+        handler = new Handler(looper);
+
+        handler.post(() -&gt; {
+            // 在后台线程执行的任务
+            // ...
+        });
+    }
+
+    public void stopBackgroundThread() {
+        if (handlerThread != null) {
+            handlerThread.quitSafely();
+            try {
+                handlerThread.join();
+                handlerThread = null;
+                handler = null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="web"><a class="header" href="#web">Web</a></h1>
 <h2 id="资料-18"><a class="header" href="#资料-18">资料</a></h2>
 <ul>
@@ -7403,6 +7441,7 @@ fun main() = runBlocking {
 <ul>
 <li>支持<code>枚举</code></li>
 <li>支持<code>泛型</code></li>
+<li>支持反射</li>
 </ul>
 <h3 id="注解"><a class="header" href="#注解">注解</a></h3>
 <p>注解可以在编译期、运行期或开发工具中使用，以提供额外的信息。其在使用场景上有：</p>
@@ -7648,6 +7687,34 @@ List&lt;String&gt; stringList = Arrays.asList(&quot;Hello&quot;, &quot;World&quo
 processList(stringList);
 // processList2(stringList);    // 这行代码会出错，因为参数是String列表
 </code></pre>
+<h3 id="类型-1"><a class="header" href="#类型-1">类型</a></h3>
+<h4 id="基本类型--引用类型"><a class="header" href="#基本类型--引用类型">基本类型 / 引用类型</a></h4>
+<p>Java中的基本类型就是int、boolean、char、byte、short、long、float 和 double。 除基本类型之外的，都是引用类型。</p>
+<p>引用类型是通过<code>new</code>创建的对象，并且变量存储的实际上是对象地址。</p>
+<h4 id="包装类型"><a class="header" href="#包装类型">包装类型</a></h4>
+<p>包装类型（Wrapper Types）是 Java 中用于包装基本类型的类。包装类型是引用类型，提供了一些额外的方法和属性，以方便开发。</p>
+<p>其对应关系如下：</p>
+<ul>
+<li>boolean：Boolean</li>
+<li>byte：Byte</li>
+<li>short：Short</li>
+<li>int：Integer</li>
+<li>long：Long</li>
+<li>float：Float</li>
+<li>double：Double</li>
+<li>char：Character</li>
+</ul>
+<h5 id="自动装箱--自动拆箱"><a class="header" href="#自动装箱--自动拆箱">自动装箱 / 自动拆箱</a></h5>
+<ul>
+<li>自动装箱: 将基本类型自动转换为对应的包装类型。</li>
+<li>自动拆箱: 将包装类型自动转换为对应的基本类型。</li>
+</ul>
+<pre><code class="language-java">int num = 10; // 基本类型
+Integer wrappedNum = num; // 自动装箱，将 int 转换为 Integer
+
+Integer wrappedNum1 = 20; // 包装类型
+int num1 = wrappedNum1; // 自动拆箱，将 Integer 转换为 int
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dart-1"><a class="header" href="#dart-1">Dart</a></h1>
 <p>在安装了Flutter的情况下，要直接使用dart，只需要将dart sdk配置到环境变量中即可。</p>
 <p>dart sdk的位置在<code>$FlutterPATH/cache/dart-sdk/bin</code>，具体使用参考：<a href="https://blog.csdn.net/qq_26287435/article/details/87917289">Dart配置环境变量</a></p>
@@ -7677,7 +7744,7 @@ processList(stringList);
 <li>支持空安全 (Dart 2.12版本之后)</li>
 </ul>
 <h3 id="常用语法-1"><a class="header" href="#常用语法-1">常用语法</a></h3>
-<h4 id="类型-1"><a class="header" href="#类型-1">类型</a></h4>
+<h4 id="类型-2"><a class="header" href="#类型-2">类型</a></h4>
 <pre><code class="language-dart">// 类似Swift，所有的类型都是类对象，包括int
 int i = 10;
 i.toString();
@@ -8309,7 +8376,7 @@ main() {
 <h4 id="宏"><a class="header" href="#宏">宏</a></h4>
 <p><code>#[macro_use]</code> 将其它模块中的宏加载到本模块中使用</p>
 <p><code>#[macro_export]</code> 支持将包中的宏导出，给外部使用</p>
-<h4 id="类型-2"><a class="header" href="#类型-2">类型</a></h4>
+<h4 id="类型-3"><a class="header" href="#类型-3">类型</a></h4>
 <p>DST：动态大小类型</p>
 <p>ZST：0大小类型</p>
 <p>存在<code>Sized</code>的trait，用来表示是否可以在编译期确定大小。</p>

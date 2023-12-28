@@ -195,6 +195,44 @@ startActivity(intent);
 </code></pre>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>是java中用来支持<code>反射</code>能力的一个类。</p>
+<h3 id="线程"><a class="header" href="#线程">线程</a></h3>
+<h4 id="looper"><a class="header" href="#looper">Looper</a></h4>
+<p>用于管理线程的消息循环的关键类。每个线程都有一个关联的 <code>Looper</code> 对象。</p>
+<p>Looper 的主要作用是创建一个消息队列，并在一个无限循环中不断检查队列中是否有待处理的消息。当消息队列中有消息时，Looper 将消息分发给对应的 Handler 进行处理。</p>
+<h4 id="handlerthread"><a class="header" href="#handlerthread">HandlerThread</a></h4>
+<p>HandlerThread是Android中的线程辅助类(继承自Thread类)，其创建一个带有消息循环的后台线程，使得我们可以在该线程上执行任务并处理消息。（一般用来处理耗时操作，以避免阻塞UI线程）</p>
+<pre><code class="language-java">public class HandlerThreadExample {
+    private HandlerThread handlerThread;
+    private Handler handler;
+
+    public void startBackgroundThread() {
+        handlerThread = new HandlerThread(&quot;MyHandlerThread&quot;);
+        handlerThread.start();
+
+        Looper looper = handlerThread.getLooper();
+        handler = new Handler(looper);
+
+        handler.post(() -&gt; {
+            // 在后台线程执行的任务
+            // ...
+        });
+    }
+
+    public void stopBackgroundThread() {
+        if (handlerThread != null) {
+            handlerThread.quitSafely();
+            try {
+                handlerThread.join();
+                handlerThread = null;
+                handler = null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+</code></pre>
 
                     </main>
 
