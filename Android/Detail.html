@@ -184,23 +184,47 @@ intent.putExtra(&quot;key&quot;, value);
 startActivity(intent);
 </code></pre>
 <h3 id="基础类"><a class="header" href="#基础类">基础类</a></h3>
-<h4 id="bundle"><a class="header" href="#bundle">Bundle</a></h4>
-<p>Bundle 类是一个用于传递数据的容器。 Bundle存储的是KV类型的数据，key是string，而value是支持int/String/boolean/Parcelable等多种类型。</p>
-<p>使用示例：</p>
-<pre><code class="language-java">Intent intent = new Intent(this, NewActivity.class);
-Bundle bundle = new Bundle();
-bundle.putString(&quot;key&quot;, &quot;value&quot;);
-intent.putExtras(bundle);
-startActivity(intent);
-</code></pre>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>是java中用来支持<code>反射</code>能力的一个类。</p>
 <h3 id="线程"><a class="header" href="#线程">线程</a></h3>
-<h4 id="looper"><a class="header" href="#looper">Looper</a></h4>
-<p>用于管理线程的消息循环的关键类。每个线程都有一个关联的 <code>Looper</code> 对象。</p>
-<p>Looper 的主要作用是创建一个消息队列，并在一个无限循环中不断检查队列中是否有待处理的消息。当消息队列中有消息时，Looper 将消息分发给对应的 Handler 进行处理。</p>
+<h4 id="looper--handler"><a class="header" href="#looper--handler">Looper &amp; Handler</a></h4>
+<p>Looper是用于管理线程的消息循环的关键类。每个线程都有一个关联的 <code>Looper</code> 对象。</p>
+<p>Looper 的主要作用是创建一个消息队列，并在一个无限循环中不断检查队列中是否有待处理的消息。当消息队列中有消息时，Looper 将消息分发给对应的 <code>Handler</code> 进行处理。</p>
+<p>Handler可以用于在不同线程之间进行通信和处理消息。(也支持消息的延迟发送)</p>
+<pre><code class="language-java">class LooperExample {
+    private static final int MESSAGE_PRINT = 1;
+
+    public static void test() {
+        // 在主线程中创建消息循环
+        // Looper.prepare();    // 如果是在主线程，则无需创建，直接调用Looper.myLooper()获取当前的即可
+        // 获取当前线程的Looper对象
+        Looper looper = Looper.myLooper();
+        // 创建Handler对象，关联到当前线程的Looper
+        Handler handler = new Handler(looper) {
+            @Override
+            public void handleMessage(Message msg) {    // 还有一个dispatchMessage()方法，时机早于handleMessage()
+                switch (msg.what) {
+                    case MESSAGE_PRINT:
+                        String text = (String) msg.obj;
+                        System.out.println(text);
+                        break;
+                    default:
+                        super.handleMessage(msg);   // 没有被处理的消息，转给系统继续处理
+                }
+            }
+        };
+
+        // 发送消息到消息队列
+        Message message = handler.obtainMessage(MESSAGE_PRINT, &quot;Hello, Android!&quot;);
+        handler.sendMessage(message);
+
+        // 启动消息循环
+        // Looper.loop();
+    }
+}
+</code></pre>
 <h4 id="handlerthread"><a class="header" href="#handlerthread">HandlerThread</a></h4>
-<p>HandlerThread是Android中的线程辅助类(继承自Thread类)，其创建一个带有消息循环的后台线程，使得我们可以在该线程上执行任务并处理消息。（一般用来处理耗时操作，以避免阻塞UI线程）</p>
+<p>HandlerThread用来创建一个带有消息循环的后台线程，使得我们可以在该线程上执行任务并处理消息。（一般用来处理耗时操作，以避免阻塞UI线程）</p>
 <pre><code class="language-java">public class HandlerThreadExample {
     private HandlerThread handlerThread;
     private Handler handler;
@@ -231,7 +255,64 @@ startActivity(intent);
         }
     }
 }
+</code></pre>
+<h4 id="runnable"><a class="header" href="#runnable">Runnable</a></h4>
+<p>Runnable是一个接口，用于定义可以在单独线程中执行的任务。其仅有一个<code>run()</code>方法需要实现。</p>
+<pre><code class="language-java">public class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        // 线程要执行的任务逻辑
+        System.out.println(&quot;Hello from MyRunnable!&quot;);
+    }
+}
 
+// 使用
+// 创建一个Runnable对象
+Runnable myRunnable = new MyRunnable();
+
+// 创建一个线程，并将Runnable对象作为参数传递给Thread构造函数
+Thread myThread = new Thread(myRunnable);
+
+// 启动线程
+myThread.start();
+</code></pre>
+<h3 id="数据--存储"><a class="header" href="#数据--存储">数据 / 存储</a></h3>
+<h4 id="bundle"><a class="header" href="#bundle">Bundle</a></h4>
+<p>Bundle 类是一个用于传递数据的容器。 Bundle存储的是KV类型的数据，key是string，而value是支持int/String/boolean/Parcelable等多种类型。</p>
+<blockquote>
+<p>Bundle对象常用于在Activity之间传递数据，例如通过Intent.putExtra()方法将Bundle对象添加到Intent中.</p>
+</blockquote>
+<p>使用示例：</p>
+<pre><code class="language-java">Bundle bundle = new Bundle();   // 创建Bundle对象
+bundle.putString(&quot;name&quot;, &quot;John&quot;);
+bundle.putInt(&quot;age&quot;, 25);   // 可以设置多组数据
+</code></pre>
+<h4 id="contentprovider"><a class="header" href="#contentprovider">ContentProvider</a></h4>
+<p>用于实现应用程序之间的数据共享和访问。它提供了一种标准化的接口，允许应用程序在不同的进程之间安全地共享数据。其特点如下：</p>
+<ul>
+<li>可以在多个应用程序之间进行数据共享</li>
+<li>通过<code>URI</code>来进行数据定位</li>
+<li>支持CRUD操作</li>
+<li>可以进行权限控制，允许指定的应用程序访问</li>
+<li>线程安全</li>
+<li>支持与<code>ContentObserver</code>观察者一起使用，以实现数据的实时更新和通知机制。</li>
+</ul>
+<h3 id="实践"><a class="header" href="#实践">实践</a></h3>
+<h4 id="单例"><a class="header" href="#单例">单例</a></h4>
+<pre><code class="language-java">public class MySingleton {
+    private MySingleton() {
+        // 私有构造函数
+    }
+
+    // 可以保证线程安全
+    private static class SingletonHolder {
+        private static final MySingleton INSTANCE = new MySingleton();
+    }
+
+    public static MySingleton getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+}
 </code></pre>
 
                     </main>
