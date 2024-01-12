@@ -332,6 +332,7 @@ interface MyInterface {
 
 public class Main {
     public static void main(String[] args) {
+        // 直接创建接口实例，即内部匿名类
         MyInterface myInterface = new MyInterface() {
             public void doSomething() {
                 System.out.println(&quot;Doing something...&quot;);
