@@ -178,15 +178,15 @@
 <h2 id="cookie设置方式"><a class="header" href="#cookie设置方式">Cookie设置方式</a></h2>
 <h3 id="一通过header中的cookies字段来设置"><a class="header" href="#一通过header中的cookies字段来设置">一、通过Header中的Cookies字段来设置</a></h3>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <h3 id="二通过js注入的方式来设置"><a class="header" href="#二通过js注入的方式来设置">二、通过JS注入的方式来设置</a></h3>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>
@@ -244,7 +244,7 @@ app.listen(port, () =&gt; {
 let store = WKWebsiteDataStore.default()
 store.fetchDataRecords(ofTypes: types) { cookies in
     store.removeData(ofTypes: types, for: cookies) {
-        print(&quot;cookies clear result:\(records.count &gt; 0)&quot;)
+        print("cookies clear result:\(records.count &gt; 0)")
     }
 }
 </code></pre>
@@ -253,7 +253,7 @@ store.fetchDataRecords(ofTypes: types) { cookies in
 wkStore.getAllCookies { cookies in
     cookies.forEach { cookie in
         wkStore.delete(cookie) {
-            print(&quot;cookie:\(cookie.name) clear ok&quot;)
+            print("cookie:\(cookie.name) clear ok")
         }
     }
 }

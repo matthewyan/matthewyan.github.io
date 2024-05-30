@@ -266,7 +266,7 @@
 <li>JS和Native的交互非常频繁，但效率不高，这儿也是RN效率较低的根本原因</li>
 <li>在新版本的RN(0.59之后)中，提供了JSI来提升JS和Native的交互效率 （在0.64之后引入了Farbic架构）</li>
 <li>Native调用JS，是通过JSC提供的<code>JSObjectCallAsFunction</code>等接口实现的</li>
-<li>JS调用Native，是通过JSC提供的<code>JSContext</code>的<code>block</code>能力。使用示例：<code>jsContext[@&quot;funcname&quot;] = ^() {}</code></li>
+<li>JS调用Native，是通过JSC提供的<code>JSContext</code>的<code>block</code>能力。使用示例：<code>jsContext[@"funcname"] = ^() {}</code></li>
 <li>JS代码执行在线程名为<code>com.facebook.react.JavaScript</code>的线程中。</li>
 </ul>
 <blockquote>

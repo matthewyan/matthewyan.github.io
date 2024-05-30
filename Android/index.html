@@ -253,6 +253,15 @@
 <tr><td><code>fn</code> + <code>F8</code> + <code>shift</code></td><td>单步跳出调试</td></tr>
 </tbody></table>
 </div>
+<h4 id="模拟器"><a class="header" href="#模拟器">模拟器</a></h4>
+<p>如果要查看某个模拟器的沙盒目录，可以通过如下方式来查看：</p>
+<ul>
+<li>菜单：View -&gt; Tool Windows -&gt; Device File Explorer</li>
+<li>展开文件目录：data -&gt; data -&gt; <code>bundle id</code> (bundle id即是包名，如com.example.xxx)</li>
+<li>通过<code>Context</code>提供的<code>getDataDir()</code>获取沙盒根目录</li>
+<li>通过<code>getFilesDir()</code>可以获取沙盒下的Files目录等</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

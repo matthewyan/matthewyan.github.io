@@ -327,8 +327,8 @@ for i in [1, 2, 3, 4] {
 <pre><code class="language-swift">extension User: Decodable {
   static func decode(_ json: JSON) -&gt; Decoded&lt;User&gt; {
     return curry(User.init)
-      &lt;^&gt; json &lt;| &quot;id&quot;
-      &lt;*&gt; json &lt;| &quot;name&quot;
+      &lt;^&gt; json &lt;| "id"
+      &lt;*&gt; json &lt;| "name"
   }
 }
 </code></pre>
@@ -338,8 +338,8 @@ for i in [1, 2, 3, 4] {
 <p>简单解释下这段代码的执行流程：</p>
 <ul>
 <li><code>curry(User.init)</code>即将构造函数从 <code>(Int, String) -&gt; User</code> 转为 <code>(Int) -&gt; (String) -&gt; User</code> 这种签名</li>
-<li><code>josn &lt;| &quot;id&quot; </code> 可以生成 <code>Decoded&lt;Int&gt;</code></li>
-<li>构造函数使用&lt;^&gt;与<code>json &lt;| &quot;id&quot;</code>结合，即调用map，得到的结果为：<code>Decoded&lt;(String) -&gt; User&gt;</code></li>
+<li><code>josn &lt;| "id" </code> 可以生成 <code>Decoded&lt;Int&gt;</code></li>
+<li>构造函数使用&lt;^&gt;与<code>json &lt;| "id"</code>结合，即调用map，得到的结果为：<code>Decoded&lt;(String) -&gt; User&gt;</code></li>
 <li>此时就会发现有转换函数已经被包装到容器之中了。这就是<code>ap</code>函数的使用场景</li>
 </ul>
 <blockquote>

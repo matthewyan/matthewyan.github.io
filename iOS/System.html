@@ -248,7 +248,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   intptr_t base_addr = _dyld_get_image_vmaddr_slide(i);
   // mach_header是真正的内存基址
   const struct mach_header *m_addr = _dyld_get_image_header(i);
-  NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
+  NSLog(@"name:%s addr: 0x%x m_addr: 0x%x", name, base_addr, m_addr);
 }
 </code></pre>
 <p>通过某个函数，获取所在模块的信息： (<a href="https://segmentfault.com/q/1010000000183909">ios中怎么获得模块基址和模块长度？</a>)</p>
@@ -262,7 +262,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   IMP imp = class_getClassMethod(objc_getClass(cls), sel_registerName(sel));
   // 该方法只对动态链接库生效，静态链接的，都属于主应用的地址空间
   if (dladdr(imp, &amp;info)) {
-      printf(&quot;name: %s, fbase: %s\n&quot;, info.dli_fname, info.dli_fbase);
+      printf("name: %s, fbase: %s\n", info.dli_fname, info.dli_fbase);
   }
 }
 </code></pre>

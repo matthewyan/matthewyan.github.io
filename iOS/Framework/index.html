@@ -230,7 +230,7 @@
 <pre><code class="language-objc">- (void)hook
 {
     struct rebinding logRebind;
-    logRebind.name = &quot;NSLog&quot;;
+    logRebind.name = "NSLog";
     logRebind.replacement = MyLog;
     logRebind.replaced = (void *)&amp;originalNSLog;
     

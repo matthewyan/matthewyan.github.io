@@ -278,15 +278,15 @@
 <p>WKWebView有三种在终端设置Cookie的方式</p>
 <p>一、通过Header中的Cookies字段来设置</p>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <p>二、通过JS注入的方式来设置</p>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>
@@ -318,14 +318,14 @@ app.get('/', (req, res) =&gt; {
   res.send('Hello World!!!')
 })
 </code></pre>
-<p>​	</p>
+<p>​</p>
 <h3 id="cookie删除"><a class="header" href="#cookie删除">Cookie删除</a></h3>
 <p>一、通过<code>WKWebsiteDataStore</code>的<code>removeData</code>接口来删除</p>
 <pre><code class="language-swift">let types = Set(arrayLiteral: WKWebsiteDataTypeCookies)
 let store = WKWebsiteDataStore.default()
 store.fetchDataRecords(ofTypes: types) { cookies in
     store.removeData(ofTypes: types, for: cookies) {
-        print(&quot;cookies clear result:\(records.count &gt; 0)&quot;)
+        print("cookies clear result:\(records.count &gt; 0)")
     }
 }
 </code></pre>
@@ -334,7 +334,7 @@ store.fetchDataRecords(ofTypes: types) { cookies in
 wkStore.getAllCookies { cookies in
     cookies.forEach { cookie in
         wkStore.delete(cookie) {
-            print(&quot;cookie:\(cookie.name) clear ok&quot;)
+            print("cookie:\(cookie.name) clear ok")
         }
     }
 }
@@ -364,7 +364,7 @@ app.get('/', (req, res) =&gt; {
 <blockquote>
 <p>需要注意的是，在清楚cookie时，<code>max-Age</code>就不要再设置了，如果<code>max-Age</code>也设置了的话，会以<code>max-Age</code>为准了</p>
 </blockquote>
-<p>​	</p>
+<p>​</p>
 <h3 id="wkwebview-302过程"><a class="header" href="#wkwebview-302过程">WKWebview 302过程</a></h3>
 <pre><code class="language-swift">// 1. 是否允许首个链接打开
 func webView(WKWebView, decidePolicyFor: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -&gt; Void)
@@ -402,7 +402,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 </ul>
 <h4 id="获取js方法及实现"><a class="header" href="#获取js方法及实现">获取JS方法及实现</a></h4>
 <ul>
-<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code> </li>
+<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code></li>
 <li>获取某方法实现，执行JS: <code>somefunc.toString()</code> (<a href="https://www.quora.com/Is-there-a-way-to-get-the-source-code-of-a-function-in-JavaScript">Is there a way to get the source code of a function in JavaScript?</a>)</li>
 </ul>
 

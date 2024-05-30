@@ -223,24 +223,24 @@
 <p>当初始化一个字符串，不显示指定编码格式时，会跟源代码文件存储格式有关 (或编译器有关，参考:<a href="https://www.zhihu.com/question/20451870/answer/401452117">link</a>)</p>
 </li>
 <li>
-<p><code>u8&quot;***&quot;</code> 表示使用utf8编码的字符串</p>
+<p><code>u8"***"</code> 表示使用utf8编码的字符串</p>
 </li>
 <li>
-<p><code>L&quot;***&quot;</code> 表示使用utf16 (或ucs-2，其是utf16子集) 编码</p>
+<p><code>L"***"</code> 表示使用utf16 (或ucs-2，其是utf16子集) 编码</p>
 </li>
 <li>
-<p><code>U&quot;***&quot;</code> 表示使用utf32编码</p>
+<p><code>U"***"</code> 表示使用utf32编码</p>
 </li>
 <li>
-<p><code>u&quot;***&quot;</code> 表示使用utf16编码</p>
+<p><code>u"***"</code> 表示使用utf16编码</p>
 </li>
 </ul>
 <p>不同的编码和存储结构，内存结构如下：</p>
 <ul>
-<li><code>u8&quot;1汉1&quot;</code>  =&gt; <code>31 E6 B1 89 31</code>   (短字段串，在Apple平台上会优化，其在指针地址里直接存储数据)</li>
-<li><code>L&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF16编码)</li>
-<li><code>U&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF32编码)</li>
-<li><code>u&quot;1汉1&quot;</code>  =&gt;  <code>31 00 49 6C 31 00</code> (UTF16编码)</li>
+<li><code>u8"1汉1"</code>  =&gt; <code>31 E6 B1 89 31</code>   (短字段串，在Apple平台上会优化，其在指针地址里直接存储数据)</li>
+<li><code>L"1汉1"</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF16编码)</li>
+<li><code>U"1汉1"</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF32编码)</li>
+<li><code>u"1汉1"</code>  =&gt;  <code>31 00 49 6C 31 00</code> (UTF16编码)</li>
 </ul>
 <h4 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h4>
 <p>wchar_t是2或4个字节 (在Mac上使用<code>Apple Clang</code>编译验证是4字节)</p>

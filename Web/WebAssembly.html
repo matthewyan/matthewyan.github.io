@@ -200,7 +200,7 @@
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
-  printf(&quot;Good&quot;);
+  printf("Good");
 }
 </code></pre>
 <p>编译为WASM，就为如下二进制内容：</p>
@@ -219,12 +219,12 @@ int hello() {
 <pre><code>(module
  (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
- (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (import "env" "printf" (func $printf (param i32 i32) (result i32)))
  (table 0 anyfunc)
  (memory $0 1)
- (data (i32.const 16) &quot;Good\00&quot;)
- (export &quot;memory&quot; (memory $0))
- (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (data (i32.const 16) "Good\00")
+ (export "memory" (memory $0))
+ (export "_Z5hellov" (func $_Z5hellov))
  (func $_Z5hellov (; 1 ;) (result i32)
   (drop
    (call $printf

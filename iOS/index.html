@@ -260,13 +260,13 @@
 <p><code>breakpoint set -n viewDidLoad</code>：会在所有viewDidLoad上打断点</p>
 </li>
 <li>
-<p><code>breakpoint set -n &quot;-[MobShareViewController viewDidLoad]&quot;</code>：在指定类的指定方法上打断点</p>
+<p><code>breakpoint set -n "-[MobShareViewController viewDidLoad]"</code>：在指定类的指定方法上打断点</p>
 </li>
 <li>
 <p><code>breakpoint delete 编号</code>：删除指定断点（不指定编号即清除所有）</p>
 </li>
 <li>
-<p><code>breakpoint set -f MOBQQViewController.m -l 50 -c &quot;parameters != nil&quot;</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</p>
+<p><code>breakpoint set -f MOBQQViewController.m -l 50 -c "parameters != nil"</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</p>
 </li>
 <li>
 <p><code>breakpoint list</code>：查看断点列表</p>
@@ -293,7 +293,7 @@
 <p><code>target stop-hook list</code>：列出所有的hook指令</p>
 </li>
 <li>
-<p><code>memory find -s &quot;str&quot; addr1 addr2</code>: 从指定的内存地址区间之中，搜索指定的字符串</p>
+<p><code>memory find -s "str" addr1 addr2</code>: 从指定的内存地址区间之中，搜索指定的字符串</p>
 </li>
 <li>
 <p><code>image list</code>: 查看所有库的列表以及加载的内存地址</p>

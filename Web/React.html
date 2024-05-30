@@ -235,7 +235,7 @@
 
 // 因为HelloMessage中有使用name属性，因此这儿可以直接使用
 // 但在ts项目中，往往会提前声明props，以便于使用者明确知道有哪些属性
-const element = &lt;HelloMessage name=&quot;World&quot;/&gt;;
+const element = &lt;HelloMessage name="World"/&gt;;
 
 // 可以通过该方式，可以定义默认属性，此时不传name就会被设置为默认值
 HelloMessage.defaultProps = {
@@ -294,7 +294,7 @@ function App() {
 <p>简单来说，<code>React Hooks</code>是一组新的API，目的是为了解决React类层级太深太复杂的问题。React团队希望组件变为纯粹的数据管道，而非组件类。因为提供了<code>React Hooks</code>，可以理解为可以用函数的方式来提供组件，并且函数也可以维护自己的内部状态。</p>
 <p>Hooks产生的目的：<a href="https://zh-hant.legacy.reactjs.org/docs/hooks-intro.html">介紹 Hook</a></p>
 <blockquote>
-<p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码&quot;钩&quot;进来。</strong> React Hooks 就是那些钩子。</p>
+<p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码"钩"进来。</strong> React Hooks 就是那些钩子。</p>
 <p>你需要什么功能，就使用什么钩子。React 默认提供了一些常用钩子，你也可以封装自己的钩子。</p>
 <p>所有的钩子都是为函数引入外部功能，所以 React 约定，钩子一律使用<code>use</code>前缀命名，便于识别。你要使用 xxx 功能，钩子就命名为 usexxx。</p>
 </blockquote>
@@ -397,7 +397,7 @@ const mval = useMemo(() =&gt; status === 0, [status]);
   };
   return (
     &lt;&gt;
-      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;input ref={inputEl} type="text" /&gt;
       &lt;button onClick={onButtonClick}&gt;Focus the input&lt;/button&gt;
     &lt;/&gt;
   );

@@ -194,8 +194,8 @@
     #include &lt;stdio.h&gt;
 %}
 %%
-[0-9]+ printf(&quot;Number received!&quot;);
-[a-zA-Z]+ printf(&quot;Word received!&quot;);
+[0-9]+ printf("Number received!");
+[a-zA-Z]+ printf("Word received!");
 %%
 </code></pre>
 <p>执行如下几步操作：</p>
@@ -228,14 +228,14 @@
 #include &lt;stdio.h&gt;
 int yywrap();
 void yyerror(char *);
-#include &quot;a.tab.h&quot;	// 这个是yacc(bison)工具生成的代码文件
+#include "a.tab.h"	// 这个是yacc(bison)工具生成的代码文件
 %}
 
 %%
 
 [0-9]+ { yylval = atoi(yytext); return INTEGER; }	// yytext、yylval都是工具内置的变量，比如yytext表示匹配到的字符串
 [\+\n] { return *yytext; }		// 这儿有匹配换行，是用来换行后用来计算程序结果的
-. { yyerror(&quot;invalid char.&quot;); } // 这个是表示匹配剩余的场景
+. { yyerror("invalid char."); } // 这个是表示匹配剩余的场景
 
 %%
 
@@ -259,14 +259,14 @@ void yyerror();
 
 // 入口
 program:
-    program expr '\n' { printf(&quot;result: %d\n&quot;, $2); }
+    program expr '\n' { printf("result: %d\n", $2); }
     |		// 这儿是用来匹配空的，作为结束的出口
     ;
 
 expr:
     INTEGER { $$ = $1; }
     | expr '+' expr { $$ = $1 + $3; }	// 这儿有个递归处理的逻辑，1+2+3，第2个expr首次会匹配到2+3，然后再递归使用这个表达式
-    | { yyerror(&quot;invalid input.\n&quot;); }
+    | { yyerror("invalid input.\n"); }
     ;
 
 %%
@@ -274,7 +274,7 @@ expr:
 // 语法分析错误时，会调用该函数
 void yyerror(char *s)
 {
-    printf(&quot;YACC erro: %s\n&quot;, s);
+    printf("YACC erro: %s\n", s);
 }
 
 int main()
@@ -289,7 +289,7 @@ int main()
 <h3 id="antlr4"><a class="header" href="#antlr4">ANTLR4</a></h3>
 <p><a href="https://github.com/antlr/antlr4">ANTLR4</a>是现在使用比较多的工具，并且能力也非常强。支持非常多语言代码的生成，比如JS、OC、Python等</p>
 <p>要使用ANTLR4，主要的工作是g4文件中定义规则，用<code>antrl4</code>生成相应源码后，再实现自己的<code>listener</code>或<code>visitor</code></p>
-<p>简单示例代码如下：(示例来源：<a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现&quot;圈4&quot;</a>)</p>
+<p>简单示例代码如下：(示例来源：<a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现"圈4"</a>)</p>
 <p>hello.g4</p>
 <pre><code class="language-javascript">grammar hello;
 
@@ -315,7 +315,7 @@ MyListener.prototype.constructor = MyListener;
 // exit***和enter***是标准的接口，表示匹配到某个规则之后，进入和进出的处理时机
 MyListener.prototype.exit求约数 = function(ctx) {
   var num = parseInt(ctx.getChild(1).getText());
-  console.log(num + &quot;的约数: &quot; + 求约数(num));
+  console.log(num + "的约数: " + 求约数(num));
 };
 
 function 求约数(num) {

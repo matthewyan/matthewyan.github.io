@@ -248,7 +248,7 @@ String getValue() {
 <ul>
 <li><code>Command + Shift + P</code></li>
 <li>输入：<code>Flutter: Change SDK</code></li>
-<li>没有目标SDK时，可以先选择一个，会在工程目录下自动生成<code>settings.json</code>，修改<code>&quot;dart.flutterSdkPath&quot;</code>的value即可。</li>
+<li>没有目标SDK时，可以先选择一个，会在工程目录下自动生成<code>settings.json</code>，修改<code>"dart.flutterSdkPath"</code>的value即可。</li>
 </ul>
 <h3 id="注释能力"><a class="header" href="#注释能力">注释能力</a></h3>
 <p><code>dartdoc</code> 对注释的能力支持还是挺丰富的，其对 <code>markdown</code> 的语法做了挺多基本的支持。如：</p>
@@ -285,7 +285,7 @@ String getValue() {
 ///
 /// 通过html标签支持下划线：&lt;u&gt;Underlined Text&lt;/u&gt;
 ///
-/// 通过html标签修改字体及颜色：&lt;font face=&quot;黑体&quot; color=green size=5&gt;我是绿色5号黑体字&lt;/font&gt;
+/// 通过html标签修改字体及颜色：&lt;font face="黑体" color=green size=5&gt;我是绿色5号黑体字&lt;/font&gt;
 ///
 /// ----
 ///
@@ -308,7 +308,7 @@ String getValue() {
 ///
 ///
 /// 通过html标签嵌入表格：
-/// &lt;table border=&quot;1&quot;&gt;
+/// &lt;table border="1"&gt;
 ///   &lt;tr&gt;
 ///     &lt;td&gt;row 1, cell 1&lt;/td&gt;
 ///     &lt;td&gt;row 1, cell 2&lt;/td&gt;
@@ -322,11 +322,11 @@ String getValue() {
 /// ----
 /// 通过iFrame内嵌网页
 ///
-/// &lt;iframe id=&quot;inlineFrameExample&quot;
-///    title=&quot;Inline Frame Example&quot;
-///    width=&quot;300&quot;
-///    height=&quot;200&quot;
-///    src=&quot;https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik&quot;&gt;
+/// &lt;iframe id="inlineFrameExample"
+///    title="Inline Frame Example"
+///    width="300"
+///    height="200"
+///    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik"&gt;
 /// &lt;/iframe&gt;
 ///
 </code></pre>
@@ -361,8 +361,8 @@ void main() {}
 </li>
 </ol>
 <pre><code class="language-dart">var cat = MockCat();
-when(cat.sound()).thenReturn(&quot;Purr&quot;);
-expect(cat.sound(), &quot;Purr&quot;);
+when(cat.sound()).thenReturn("Purr");
+expect(cat.sound(), "Purr");
 </code></pre>
 <blockquote>
 <p>接口的使用跟其它的Mock框架比较类似</p>

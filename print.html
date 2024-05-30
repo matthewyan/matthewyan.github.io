@@ -230,7 +230,7 @@
 <p><a href="https://github.com/k88hudson/git-flight-rules">Git飞行规则</a></p>
 </li>
 </ul>
-<p>​	</p>
+<p>​</p>
 <h3 id="clone"><a class="header" href="#clone">Clone</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git clone --depth=1 url</code></td><td>clone仓库，但git记录仅拉取深度为1的信息</td></tr>
@@ -268,7 +268,7 @@
 </div>
 <p>还有一种不安全的方式：<code>git reset --hard commitID</code> 然后 <code>git push -f</code>。 表示先在本地重置到某次提交，然后强制将远端的记录用本地替换。</p>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="分支相关"><a class="header" href="#分支相关">分支相关</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git checkout master</code></td><td>切换到本地已有的分支</td></tr>
@@ -309,7 +309,7 @@
 <p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E8%B4%AE%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86">Git 工具 - 贮藏与清理</a></p>
 </blockquote>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="冲突相关"><a class="header" href="#冲突相关">冲突相关</a></h3>
 <p>在merge冲突后，修复完冲突，需要执行如下指令：</p>
 <pre><code class="language-shell"># 2和3只需要执行一个就好，git merge --continue会填上默认的merge信息
@@ -332,7 +332,7 @@ git rebase --abort	# 中止rebase
 </blockquote>
 <p>参考：<a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/">化解冲突：git merge 与 git rebase 中的 ours 和 theirs</a></p>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="submodule"><a class="header" href="#submodule">SubModule</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git submodule init</code></td><td>初始化工程 (新clone的代码，要更新submodule，也需要调用这个命令)</td></tr>
@@ -344,7 +344,7 @@ git rebase --abort	# 中止rebase
 <p>submodule相关信息，存储在了<code>.gitmodules</code>文件中</p>
 <p>要删除某个submodule，参考：<a href="https://gist.github.com/myusuf3/7f645819ded92bda6677">delete_git_submodule.md</a></p>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="subtree"><a class="header" href="#subtree">SubTree</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git subtree add --prefix=Path http://gitrepo.git master --squash</code></td><td>添加subtree</td></tr>
@@ -353,14 +353,14 @@ git rebase --abort	# 中止rebase
 </tbody></table>
 </div>
 <p>要查看subtree仓库有哪些，可以使用：</p>
-<pre><code class="language-shell">git log | grep git-subtree-dir | tr -d ' ' | cut -d &quot;:&quot; -f2 | sort | uniq
+<pre><code class="language-shell">git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq
 </code></pre>
 <blockquote>
 <p>如果在推送时，不使用<code>--rejoin</code>选项，可能会耗时很久</p>
 </blockquote>
 <p>SubTree设置为一个仓库和分支之后，仍然可以随时修改为另一个仓库或分支</p>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="其它命令"><a class="header" href="#其它命令">其它命令</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
 <tr><td><code>git reflog</code></td><td>查看有执行的记录</td></tr>
@@ -370,7 +370,7 @@ git rebase --abort	# 中止rebase
 <tr><td><code>git fetch --all &amp;&amp; git reset --hard origin/master</code></td><td>重置本地所有修改，并更新到远端仓库的最新代码</td></tr>
 <tr><td><code>git config --global https.proxy http://127.0.0.1</code></td><td>配置git全局代理</td></tr>
 <tr><td><code>git config --global --unset http.proxy</code></td><td>清理掉git全局代理</td></tr>
-<tr><td><code>git config [--global] user.email &quot;email@example.com&quot;</code></td><td>配置本地或全局仓库的用户邮箱</td></tr>
+<tr><td><code>git config [--global] user.email "email@example.com"</code></td><td>配置本地或全局仓库的用户邮箱</td></tr>
 </tbody></table>
 </div>
 <hr />
@@ -384,7 +384,7 @@ git rebase --abort	# 中止rebase
 <li>git pull与git pull -r的区别，也是merge/rebase的区别。当用git pull时，如果本地和远端都有修改，则会生成一条新的merge记录</li>
 </ul>
 <hr />
-<p>​	</p>
+<p>​</p>
 <h3 id="alias配置"><a class="header" href="#alias配置">alias配置</a></h3>
 <p>打开或新建.gitconfig文件：<code>vi ~/.gitconfig</code>  (<a href="https://www.liaoxuefeng.com/wiki/896043488029600/898732837407424">配置别名</a>)</p>
 <p>加上如下内容:</p>
@@ -395,9 +395,9 @@ git rebase --abort	# 中止rebase
         br = branch
         pr = pull -r
         lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit
-        ls-subtrees = !&quot;git log | grep git-subtree-dir | tr -d ' ' | cut -d &quot;:&quot; -f2 | sort | uniq&quot;
+        ls-subtrees = !"git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq"
 </code></pre>
-<p>此时就可以使用 git ci -m &quot;msg&quot; 来提交代码了</p>
+<p>此时就可以使用 git ci -m "msg" 来提交代码了</p>
 <hr />
 <h3 id="高阶使用"><a class="header" href="#高阶使用">高阶使用</a></h3>
 <h4 id="修改已提交代码的日志"><a class="header" href="#修改已提交代码的日志">修改已提交代码的日志</a></h4>
@@ -448,7 +448,7 @@ s ae2e0fa Message2
 <p>参考：<a href="http://jartto.wang/2018/12/11/git-rebase/">彻底搞懂 Git-Rebase</a>，文章里有一点错误，p和s操作顺序写反了，要注意下这儿。</p>
 <h4 id="统计指定日期之后的提交次数"><a class="header" href="#统计指定日期之后的提交次数">统计指定日期之后的提交次数</a></h4>
 <p>这种方法可以查看指定版本或灰度版本之后，进行的修改次数，以评估风险 (该命令过滤掉了merge的记录)</p>
-<p><code> git log --since=&quot;2020-06-25&quot; --no-merges | grep -e 'commit [a-zA-Z0-9]*' | wc -l</code></p>
+<p><code> git log --since="2020-06-25" --no-merges | grep -e 'commit [a-zA-Z0-9]*' | wc -l</code></p>
 <h3 id="有趣的使用"><a class="header" href="#有趣的使用">有趣的使用</a></h3>
 <h4 id="本地仓库使用"><a class="header" href="#本地仓库使用">本地仓库使用</a></h4>
 <ul>
@@ -467,12 +467,12 @@ s ae2e0fa Message2
 <h4 id="git-commitizen"><a class="header" href="#git-commitizen">git commitizen</a></h4>
 <ul>
 <li><code>npm install -g git-cz</code></li>
-<li><code>echo '{ &quot;path&quot;: &quot;git-cz&quot; }' &gt; ~/.czrc</code></li>
+<li><code>echo '{ "path": "git-cz" }' &gt; ~/.czrc</code></li>
 </ul>
 <p>或者：(下面这种不带emoji)</p>
 <ul>
 <li><code>npm i -g commitizen &amp;&amp; npm i -g cz-conventional-changelog</code></li>
-<li><code>echo '{ &quot;path&quot;: &quot;cz-conventional-changelog&quot; }' &gt; ~/.czrc</code></li>
+<li><code>echo '{ "path": "cz-conventional-changelog" }' &gt; ~/.czrc</code></li>
 </ul>
 <p>即可使用<code>git cz</code>提交代码，使用更规范的提交日志。</p>
 <h3 id="原理"><a class="header" href="#原理">原理</a></h3>
@@ -529,8 +529,8 @@ s ae2e0fa Message2
 <tr><td><code>c$</code></td><td>删除光标至行尾，并进入编辑模式</td></tr>
 <tr><td><code>ctrl-r</code></td><td>可以将撤销的操作重新执行</td></tr>
 <tr><td><code>J</code></td><td>将当前行与下一行合并</td></tr>
-<tr><td><code>&quot;+y</code></td><td>可以将内容复制到系统剪切板里。(如：<code>&quot;+yw</code>复制当前单词到系统剪切板)</td></tr>
-<tr><td><code>&quot;+p</code></td><td>将系统剪切板内容粘贴在光标后面</td></tr>
+<tr><td><code>"+y</code></td><td>可以将内容复制到系统剪切板里。(如：<code>"+yw</code>复制当前单词到系统剪切板)</td></tr>
+<tr><td><code>"+p</code></td><td>将系统剪切板内容粘贴在光标后面</td></tr>
 </tbody></table>
 </div>
 <hr />
@@ -729,7 +729,7 @@ driver.get('http://www.baidu.com/')
 <li>持久性：一旦事务成功提交后，就不会丢失。</li>
 </ul>
 <h4 id="orm"><a class="header" href="#orm">ORM</a></h4>
-<p>ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术，是&quot;对象-关系映射&quot;（Object/Relational Mapping） 的缩写。</p>
+<p>ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术，是"对象-关系映射"（Object/Relational Mapping） 的缩写。</p>
 <h4 id="索引"><a class="header" href="#索引">索引</a></h4>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODEzNDA4OA==&amp;mid=2650317286&amp;idx=1&amp;sn=10273b8b2d75583ee75355bc4f30f3cf&amp;chksm=bec369c189b4e0d71fbe466cfe6319cbcabf87c506352e2c03eefa7f2560c0e2ff1c6bb80014&amp;mpshare=1&amp;scene=1&amp;srcid=07275NaWbWibeXaMQhvuIGhR&amp;sharer_sharetime=1627353559190&amp;sharer_shareid=46db0b7b20a25a2d43b9732f9afbb07d&amp;version=3.1.10.90255&amp;platform=mac#rd">微信大牛教你深入了解数据库索引</a></p>
 <p>索引的本质，是在数据表之外，建立一个新的数据结构，提升查询效率。</p>
@@ -938,7 +938,7 @@ driver.get('http://www.baidu.com/')
 <tr><td><code>gem sources</code></td><td>查看所有的gem源</td></tr>
 <tr><td><code>gem sources -r url</code></td><td>删除指定的url源 (url要以/结尾)</td></tr>
 <tr><td><code>gem sources -a url</code></td><td>添加源</td></tr>
-<tr><td><code>gem install lib -v &quot;~&gt; 1.1&quot;</code></td><td>安装指定版本的库</td></tr>
+<tr><td><code>gem install lib -v "~&gt; 1.1"</code></td><td>安装指定版本的库</td></tr>
 </tbody></table>
 </div>
 <h4 id="bundler"><a class="header" href="#bundler"><a href="https://www.bundler.cn/">Bundler</a></a></h4>
@@ -1174,7 +1174,7 @@ rm -rf ~/.cocoapods/
 <p>就是将用户的敏感数据进行隐藏。按类型分又有<code>静态数据脱敏</code>、<code>动态数据脱敏</code>。</p>
 <h3 id="oauth-20"><a class="header" href="#oauth-20">OAuth 2.0</a></h3>
 <p><a href="https://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html">理解OAuth 2.0</a></p>
-<p>OAuth的作用：就是让第三方服务安全可控地获取&quot;用户&quot;的授权，与&quot;服务商提供商&quot;进行互动。</p>
+<p>OAuth的作用：就是让第三方服务安全可控地获取"用户"的授权，与"服务商提供商"进行互动。</p>
 <p>方案</p>
 <ul>
 <li>设置授权层，区分普通用户与第三方服务 (授权层可以做灵活的控制)</li>
@@ -1956,7 +1956,7 @@ Events</p>
 <h3 id="容器化"><a class="header" href="#容器化">容器化</a></h3>
 <p><a href="https://www.redhat.com/zh/topics/cloud-native-apps/what-is-containerization">什么是容器化？</a></p>
 <p>容器化的目的是屏蔽系统差异，让业务代码变得无成本可迁移。通常是通过将相关的软件代码、所依赖的组件等打包在一起，让它们隔离在自己的容器中，以此来实现该目的。</p>
-<p>如<code>Docker</code>等，就是容器化的方案。 </p>
+<p>如<code>Docker</code>等，就是容器化的方案。</p>
 <blockquote>
 <p><code>RN</code>也可以理解为容器化方案。(<a href="https://blog.51cto.com/u_15166492/2714294">什么是客户端容器化？</a>)</p>
 <p>将平台环境进行抽象和标准化，业务无须再关注平台差异。</p>
@@ -2056,13 +2056,13 @@ Events</p>
 <p><code>breakpoint set -n viewDidLoad</code>：会在所有viewDidLoad上打断点</p>
 </li>
 <li>
-<p><code>breakpoint set -n &quot;-[MobShareViewController viewDidLoad]&quot;</code>：在指定类的指定方法上打断点</p>
+<p><code>breakpoint set -n "-[MobShareViewController viewDidLoad]"</code>：在指定类的指定方法上打断点</p>
 </li>
 <li>
 <p><code>breakpoint delete 编号</code>：删除指定断点（不指定编号即清除所有）</p>
 </li>
 <li>
-<p><code>breakpoint set -f MOBQQViewController.m -l 50 -c &quot;parameters != nil&quot;</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</p>
+<p><code>breakpoint set -f MOBQQViewController.m -l 50 -c "parameters != nil"</code>：在指定位置添加符号断点，判断条件是c参数之后的字符串</p>
 </li>
 <li>
 <p><code>breakpoint list</code>：查看断点列表</p>
@@ -2089,7 +2089,7 @@ Events</p>
 <p><code>target stop-hook list</code>：列出所有的hook指令</p>
 </li>
 <li>
-<p><code>memory find -s &quot;str&quot; addr1 addr2</code>: 从指定的内存地址区间之中，搜索指定的字符串</p>
+<p><code>memory find -s "str" addr1 addr2</code>: 从指定的内存地址区间之中，搜索指定的字符串</p>
 </li>
 <li>
 <p><code>image list</code>: 查看所有库的列表以及加载的内存地址</p>
@@ -2556,7 +2556,7 @@ webView.takeSnapshot(with: snapshotConfig) { image, error in
             XCTCPUMetric.new
         ]
         block:^{
-            [app.buttons[@&quot;reSize&quot;] tap];
+            [app.buttons[@"reSize"] tap];
         }];
 }
 </code></pre>
@@ -2670,8 +2670,8 @@ UIView.animate(withDuration: 5, delay: 1, options: .curveEaseInOut) {	// .repeat
 </code></pre>
 <h5 id="imageview动画示例代码"><a class="header" href="#imageview动画示例代码">ImageView动画示例代码：</a></h5>
 <pre><code class="language-swift">var imgArr = Array&lt;UIImage&gt;()
-imgArr.append(UIImage(named: &quot;aaa&quot;)!)
-imgArr.append(UIImage(named: &quot;bbb&quot;)!)
+imgArr.append(UIImage(named: "aaa")!)
+imgArr.append(UIImage(named: "bbb")!)
 imgView.animationImages = imgArr
 imgView.animationRepeatCount = 0
 imgView.animationDuration = 0.5
@@ -2725,18 +2725,18 @@ imgView.startAnimating()
 <li>允许带有<code>Self</code>或者 <code>associatedtype</code> 的 <code>protocol</code> 作为不透明返回类型</li>
 </ul>
 <h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
-<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 "Method Swizzling"？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
 class Test {
     dynamic func foo() {
-        print(&quot;bar&quot;)
+        print("bar")
     }
 }
     
 extension Test {
     @_dynamicReplacement(for: foo())
     func foo_new() {
-        print(&quot;bar new&quot;)
+        print("bar new")
     }
 }
     
@@ -2773,7 +2773,7 @@ let r = myadd {	// r的结果是3
 <p><a href="https://medium.com/jeremy-xue-s-blog/swift-%E8%A3%BD%E4%BD%9C%E4%B8%80%E5%80%8B-userdefault-%E5%B0%88%E5%B1%AC%E7%9A%84%E5%B1%AC%E6%80%A7%E5%8C%85%E8%A3%9D%E5%99%A8%E5%90%A7-6457b2f0d886">Swift — 製作一個 UserDefault 專屬的屬性包裝器吧！</a></p>
 <p>简单理解，@propertyWrapper就是用来hook属性，可以加一些自己的操作，让属性变为自己预期中的那样</p>
 <pre><code class="language-swift">@propertyWrapper struct Beatiful {
-    private var value: String = &quot;&quot;
+    private var value: String = ""
     // 计算属性
     var wrappedValue: String {
         get { value }
@@ -2790,8 +2790,8 @@ struct MyData {
     @Beatiful var data: String
 }
 
-var d = MyData(data: &quot;  Hello World  &quot;)
-d.data  // 变为&quot;Hello World&quot;
+var d = MyData(data: "  Hello World  ")
+d.data  // 变为"Hello World"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="objective-c"><a class="header" href="#objective-c">Objective-C</a></h1>
 <h3 id="资料-15"><a class="header" href="#资料-15">资料</a></h3>
@@ -2950,7 +2950,7 @@ struct class_rw_t {
     Class firstSubclass;
     Class nextSiblingClass;
   
-    using ro_or_rw_ext_t = objc::PointerUnion&lt;const class_ro_t, class_rw_ext_t, PTRAUTH_STR(&quot;class_ro_t&quot;), PTRAUTH_STR(&quot;class_rw_ext_t&quot;)&gt;;
+    using ro_or_rw_ext_t = objc::PointerUnion&lt;const class_ro_t, class_rw_ext_t, PTRAUTH_STR("class_ro_t"), PTRAUTH_STR("class_rw_ext_t")&gt;;
 
     const ro_or_rw_ext_t get_ro_or_rwe() const {
         return ro_or_rw_ext_t{ro_or_rw_ext};
@@ -3189,7 +3189,7 @@ struct category_t {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="swiftui"><a class="header" href="#swiftui">SwiftUI</a></h1>
 <h3 id="特性-1"><a class="header" href="#特性-1">特性</a></h3>
 <ul>
-<li>支持UI测试 (获取元素：<code>app.staticTexts[&quot;some text&quot;]</code>)</li>
+<li>支持UI测试 (获取元素：<code>app.staticTexts["some text"]</code>)</li>
 <li>从UIKit桥接过来的UI，在视图树上仍然可以获取到</li>
 </ul>
 <h3 id="swiftui-demo"><a class="header" href="#swiftui-demo">SwiftUI Demo</a></h3>
@@ -3254,7 +3254,7 @@ struct category_t {
 <p><a href="https://www.appcoda.com/ui-testing-swiftui-xctest/">Introduction to UI Testing in SwiftUI Using XCTest Framework</a></p>
 <p>SwiftUI也支持UI测试，要获取元素可以通过：</p>
 <pre><code class="language-swift">// XCUIApplication中也包含了其它各种获取元素的接口，如textFields、images等
-let txt = app.staticTexts[&quot;some text&quot;]
+let txt = app.staticTexts["some text"]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="底层相关-1"><a class="header" href="#底层相关-1">底层相关</a></h1>
 <h3 id="内存-1"><a class="header" href="#内存-1">内存</a></h3>
@@ -3331,7 +3331,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   intptr_t base_addr = _dyld_get_image_vmaddr_slide(i);
   // mach_header是真正的内存基址
   const struct mach_header *m_addr = _dyld_get_image_header(i);
-  NSLog(@&quot;name:%s addr: 0x%x m_addr: 0x%x&quot;, name, base_addr, m_addr);
+  NSLog(@"name:%s addr: 0x%x m_addr: 0x%x", name, base_addr, m_addr);
 }
 </code></pre>
 <p>通过某个函数，获取所在模块的信息： (<a href="https://segmentfault.com/q/1010000000183909">ios中怎么获得模块基址和模块长度？</a>)</p>
@@ -3345,7 +3345,7 @@ for (uint32_t i = 0; i &lt; c; i++) {
   IMP imp = class_getClassMethod(objc_getClass(cls), sel_registerName(sel));
   // 该方法只对动态链接库生效，静态链接的，都属于主应用的地址空间
   if (dladdr(imp, &amp;info)) {
-      printf(&quot;name: %s, fbase: %s\n&quot;, info.dli_fname, info.dli_fbase);
+      printf("name: %s, fbase: %s\n", info.dli_fname, info.dli_fbase);
   }
 }
 </code></pre>
@@ -3553,15 +3553,15 @@ for (uint32_t i = 0; i &lt; c; i++) {
 <p>WKWebView有三种在终端设置Cookie的方式</p>
 <p>一、通过Header中的Cookies字段来设置</p>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <p>二、通过JS注入的方式来设置</p>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>
@@ -3593,14 +3593,14 @@ app.get('/', (req, res) =&gt; {
   res.send('Hello World!!!')
 })
 </code></pre>
-<p>​	</p>
+<p>​</p>
 <h3 id="cookie删除"><a class="header" href="#cookie删除">Cookie删除</a></h3>
 <p>一、通过<code>WKWebsiteDataStore</code>的<code>removeData</code>接口来删除</p>
 <pre><code class="language-swift">let types = Set(arrayLiteral: WKWebsiteDataTypeCookies)
 let store = WKWebsiteDataStore.default()
 store.fetchDataRecords(ofTypes: types) { cookies in
     store.removeData(ofTypes: types, for: cookies) {
-        print(&quot;cookies clear result:\(records.count &gt; 0)&quot;)
+        print("cookies clear result:\(records.count &gt; 0)")
     }
 }
 </code></pre>
@@ -3609,7 +3609,7 @@ store.fetchDataRecords(ofTypes: types) { cookies in
 wkStore.getAllCookies { cookies in
     cookies.forEach { cookie in
         wkStore.delete(cookie) {
-            print(&quot;cookie:\(cookie.name) clear ok&quot;)
+            print("cookie:\(cookie.name) clear ok")
         }
     }
 }
@@ -3639,7 +3639,7 @@ app.get('/', (req, res) =&gt; {
 <blockquote>
 <p>需要注意的是，在清楚cookie时，<code>max-Age</code>就不要再设置了，如果<code>max-Age</code>也设置了的话，会以<code>max-Age</code>为准了</p>
 </blockquote>
-<p>​	</p>
+<p>​</p>
 <h3 id="wkwebview-302过程"><a class="header" href="#wkwebview-302过程">WKWebview 302过程</a></h3>
 <pre><code class="language-swift">// 1. 是否允许首个链接打开
 func webView(WKWebView, decidePolicyFor: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -&gt; Void)
@@ -3677,7 +3677,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 </ul>
 <h4 id="获取js方法及实现"><a class="header" href="#获取js方法及实现">获取JS方法及实现</a></h4>
 <ul>
-<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code> </li>
+<li>获取所有属性及方法，执行JS：<code>Object.keys(window);</code></li>
 <li>获取某方法实现，执行JS: <code>somefunc.toString()</code> (<a href="https://www.quora.com/Is-there-a-way-to-get-the-source-code-of-a-function-in-JavaScript">Is there a way to get the source code of a function in JavaScript?</a>)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="签名相关"><a class="header" href="#签名相关">签名相关</a></h1>
@@ -3751,9 +3751,9 @@ XCTAssertThrows
 </code></pre>
 <h5 id="异步测试"><a class="header" href="#异步测试">异步测试</a></h5>
 <pre><code class="language-objective-c">- (void)testAsync {
-    XCTestExpectation *expectation = [self expectationWithDescription:@&quot;xx&quot;];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"xx"];
     
-    dispatch_queue_t queue = dispatch_queue_create(&quot;group.queue&quot;, DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = dispatch_queue_create("group.queue", DISPATCH_QUEUE_SERIAL);
     dispatch_block_t block = dispatch_block_create(0, ^{
         [NSThread sleepForTimeInterval:1.0f];
         XCTFail();   // 表示验证失败
@@ -3815,7 +3815,7 @@ OCMStub([mockClass someMethod:[OCMArg checkWithBlock:^BOOL(id obj) {
 <pre><code class="language-objective-c">id mockManager = OCMClassMock([OKDataManager class]);
 OCMStub([mockManager shareManager]).andReturn(mockManager);	// 重点是这句，需要将自身返回
 OKUserInfoModel *userModel = [[OKUserInfoModel alloc] init];
-userModel.userId = @&quot;123456&quot;; //在测试调用的地方userId返回的就是123456
+userModel.userId = @"123456"; //在测试调用的地方userId返回的就是123456
 OKDataManager *manager = [OKDataManager shareManager];
 OCMStub([manager userInfoModel]).andReturn(userModel);
 </code></pre>
@@ -3829,7 +3829,7 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
     void (^checkUpdateBlock)(BOOL hasNewVersion, NSString *newBundleVersion);
     // 这儿index需要注意，如果第一个参数是block，就需要填2，因为前面默认有类实例作为第1个参数
     [invocation getArgument:&amp;checkUpdateBlock atIndex:2];	
-    checkUpdateBlock(TRUE, @&quot;10.10.10&quot;);
+    checkUpdateBlock(TRUE, @"10.10.10");
   });
 </code></pre>
 <h2 id="自动化测试-1"><a class="header" href="#自动化测试-1">自动化测试</a></h2>
@@ -3932,7 +3932,7 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
 <pre><code class="language-objc">- (void)hook
 {
     struct rebinding logRebind;
-    logRebind.name = &quot;NSLog&quot;;
+    logRebind.name = "NSLog";
     logRebind.replacement = MyLog;
     logRebind.replaced = (void *)&amp;originalNSLog;
     
@@ -4026,13 +4026,13 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
     [subscriber sendNext:@3];
     [subscriber sendCompleted];
     return [RACDisposable disposableWithBlock:^{
-        NSLog(@&quot;signal dispose&quot;);
+        NSLog(@"signal dispose");
     }];
 }];
 </code></pre>
 <p>RACSubject发送信号</p>
 <pre><code class="language-objc">RACSubject&lt;NSString *&gt; *loginMsg;
-[loginMsg sendNext:@&quot;login ok&quot;];
+[loginMsg sendNext:@"login ok"];
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="问题集合"><a class="header" href="#问题集合">问题集合</a></h1>
 <h3 id="storyboard"><a class="header" href="#storyboard">Storyboard</a></h3>
@@ -4116,16 +4116,30 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
 <tr><td><code>fn</code> + <code>F7</code></td><td>单步进入调试</td></tr>
 <tr><td><code>fn</code> + <code>F8</code> + <code>shift</code></td><td>单步跳出调试</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="详细介绍"><a class="header" href="#详细介绍">详细介绍</a></h1>
+</div>
+<h4 id="模拟器-1"><a class="header" href="#模拟器-1">模拟器</a></h4>
+<p>如果要查看某个模拟器的沙盒目录，可以通过如下方式来查看：</p>
+<ul>
+<li>菜单：View -&gt; Tool Windows -&gt; Device File Explorer</li>
+<li>展开文件目录：data -&gt; data -&gt; <code>bundle id</code> (bundle id即是包名，如com.example.xxx)</li>
+<li>通过<code>Context</code>提供的<code>getDataDir()</code>获取沙盒根目录</li>
+<li>通过<code>getFilesDir()</code>可以获取沙盒下的Files目录等</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="详细介绍"><a class="header" href="#详细介绍">详细介绍</a></h1>
 <h3 id="基础类"><a class="header" href="#基础类">基础类</a></h3>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>是java中用来支持<code>反射</code>能力的一个类。</p>
+<h4 id="context"><a class="header" href="#context">Context</a></h4>
+<p>表示应用程序环境的抽象概念，提供了访问相应上下文信息的能力。</p>
+<p><code>Application</code>, <code>Activity</code>, <code>Service</code>等，都是从<code>Context</code>中继承的。</p>
+<h4 id="application"><a class="header" href="#application">Application</a></h4>
+<p>是代表整个应用程序的类，并且是具有全局生命周期的单例对象。</p>
 <h4 id="intent"><a class="header" href="#intent">Intent</a></h4>
 <p>Intent可以用来呼起各种组件，包括Service/Activity/Broadcast等，如：</p>
 <pre><code class="language-java">// 创建一个Intent对象，指定要启动的目标Activity
 Intent intent = new Intent(context, TargetActivity.class);  // 参数也可以传Service
 // 可选：传递额外的数据给目标Activity
-intent.putExtra(&quot;key&quot;, value);
+intent.putExtra("key", value);
 // 启动目标Activity
 startActivity(intent);
 </code></pre>
@@ -4134,20 +4148,20 @@ startActivity(intent);
     @Override
     public void onReceive(Context context, Intent intent) {
         // 在接收到广播时执行的操作逻辑
-        String message = intent.getStringExtra(&quot;message&quot;);
-        Toast.makeText(context, &quot;Received broadcast: &quot; + message, Toast.LENGTH_SHORT).show();
+        String message = intent.getStringExtra("message");
+        Toast.makeText(context, "Received broadcast: " + message, Toast.LENGTH_SHORT).show();
     }
 }
 
 // 创建Broadcast
 receiver = new MyBroadcast();
-IntentFilter filter = new IntentFilter(&quot;com.example.myapp.MY_CUSTOM_ACTION&quot;);
+IntentFilter filter = new IntentFilter("com.example.myapp.MY_CUSTOM_ACTION");
 // filter.addAction(Intent.ACTION_TIME_CHANGED);    // 可以继续添加支持的其它Action
 registerReceiver(receiver, homeFilter); // 关联receiver与filter
 
 // 发送消息
-Intent intent = new Intent(&quot;com.example.myapp.MY_CUSTOM_ACTION&quot;);
-intent.putExtra(&quot;message&quot;, &quot;Hello, BroadcastReceiver!&quot;);
+Intent intent = new Intent("com.example.myapp.MY_CUSTOM_ACTION");
+intent.putExtra("message", "Hello, BroadcastReceiver!");
 sendBroadcast(intent);
 </code></pre>
 <h3 id="线程"><a class="header" href="#线程">线程</a></h3>
@@ -4179,7 +4193,7 @@ sendBroadcast(intent);
         };
 
         // 发送消息到消息队列
-        Message message = handler.obtainMessage(MESSAGE_PRINT, &quot;Hello, Android!&quot;);
+        Message message = handler.obtainMessage(MESSAGE_PRINT, "Hello, Android!");
         handler.sendMessage(message);
 
         // 启动消息循环
@@ -4194,7 +4208,7 @@ sendBroadcast(intent);
     private Handler handler;
 
     public void startBackgroundThread() {
-        handlerThread = new HandlerThread(&quot;MyHandlerThread&quot;);
+        handlerThread = new HandlerThread("MyHandlerThread");
         handlerThread.start();
 
         Looper looper = handlerThread.getLooper();
@@ -4226,7 +4240,7 @@ sendBroadcast(intent);
     @Override
     public void run() {
         // 线程要执行的任务逻辑
-        System.out.println(&quot;Hello from MyRunnable!&quot;);
+        System.out.println("Hello from MyRunnable!");
     }
 }
 
@@ -4260,8 +4274,8 @@ myThread.start();
 </blockquote>
 <p>使用示例：</p>
 <pre><code class="language-java">Bundle bundle = new Bundle();   // 创建Bundle对象
-bundle.putString(&quot;name&quot;, &quot;John&quot;);
-bundle.putInt(&quot;age&quot;, 25);   // 可以设置多组数据
+bundle.putString("name", "John");
+bundle.putInt("age", 25);   // 可以设置多组数据
 </code></pre>
 <h4 id="shared-preferences"><a class="header" href="#shared-preferences">Shared Preferences</a></h4>
 <p>简称SP，是Android中提供的一种轻量级的数据存储方式，用以存储简单的键值对数据。</p>
@@ -4471,12 +4485,12 @@ https://www.redux.org.cn/</p>
 <p>JSX转JS代码
 https://babeljs.io/repl/#?presets=react&amp;code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8AEhlogO5xnr0AhLQD0jVgG4iAXyJA</p>
 <p>npm安装失败，可以尝试配置代理：
-npm config set proxy &quot;http://web-proxy.tencent.com:8080”
+npm config set proxy "http://web-proxy.tencent.com:8080”
 或者尝试删除代理：
 npm config delete https-proxy
 npm config delete proxy</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// </p>
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</p>
 <p>多端开发框架比较</p>
 <p>小程序多端框架全面测评
 https://juejin.im/post/5c90eb366fb9a070d4199cc9</p>
@@ -4485,8 +4499,8 @@ https://mp.weixin.qq.com/s/jIDEHfuMnED6HTfNgjsW4w</p>
 <p>Taro资料：
 https://nervjs.github.io/taro/docs/tutorial.html
 https://juejin.im/book/5b73a131f265da28065fb1cd?referrer=5ba228f16fb9a05d3251492d</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// </p>
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</p>
 <p>JS code
 https://github.com/30-seconds/30-seconds-of-code</p>
 <p>CDN使用
@@ -4515,8 +4529,8 @@ https://prepack.io/</p>
 https://developers.google.com/closure/library/</p>
 <p>TypeScript
 https://github.com/semlinker/awesome-typescript</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Html相关</p>
 <p>CSS布局：
 https://zh.learnlayout.com/</p>
@@ -4541,8 +4555,8 @@ https://www.cnblogs.com/ddyq/archive/2012/03/06/2382816.html</p>
 https://www.jianshu.com/p/c6673f8a6a5a</p>
 <p>node中包含一个叫global的全局对象
 http://www.runoob.com/nodejs/nodejs-global-object.html</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 JS相关</p>
 <p>标签函数
 https://zhuanlan.zhihu.com/p/31687266</p>
@@ -4588,8 +4602,8 @@ https://legacy.gitbook.com/book/llh911001/mostly-adequate-guide-chinese</p>
 http://www.bootcss.com/p/underscore/</p>
 <p>http://asmjs.org/</p>
 <p>https://github.com/jashkenas/coffeescript/wiki/List-of-languages-that-compile-to-JS</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CSS相关</p>
 <p>Display: http://www.w3school.com.cn/cssref/pr_class_display.asp
 Margin: http://www.w3school.com.cn/cssref/pr_margin.asp
@@ -4628,8 +4642,8 @@ http://www.runoob.com/css/css-float.html
 <p>BFC介绍:
 https://juejin.im/post/5909db2fda2f60005d2093db</p>
 <p>https://github.com/chokcoco/CSS-Inspiration</p>
-<p>//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// </p>
+<p>////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</p>
 <p>前端周报
 https://github.com/Tnfe/TNFE-Weekly</p>
 <p>https://github.com/Microsoft/frontend-bootcamp</p>
@@ -4637,7 +4651,7 @@ https://github.com/Tnfe/TNFE-Weekly</p>
 https://github.com/ashnkumar/sketch-code</p>
 <p>小程序UI库
 https://github.com/weilanwl/ColorUI</p>
-<p>//////////////////////////////////////////////////////////////////////// </p>
+<p>////////////////////////////////////////////////////////////////////////</p>
 <p>[React技术内幕] key带来了什么
 https://juejin.im/post/59abb01c518825243f1b6dad</p>
 <p>https://docschina.org/</p>
@@ -4759,7 +4773,7 @@ https://github.com/mrdoob/three.js/</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
     &lt;html&gt;
     &lt;head&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta charset="UTF-8"&gt;
         &lt;script&gt;
             // add script code here
         &lt;/script&gt;
@@ -4768,7 +4782,7 @@ https://github.com/mrdoob/three.js/</p>
 
     &lt;body&gt;
         &lt;p&gt;Hello HTML5&lt;/p&gt;
-        &lt;!-- &lt;button type=&quot;button&quot;&gt;Click Me!&lt;/button&gt; --&gt;
+        &lt;!-- &lt;button type="button"&gt;Click Me!&lt;/button&gt; --&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -4801,7 +4815,7 @@ https://github.com/mrdoob/three.js/</p>
 <li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
 <li>通过<code>func.toString()</code>，可以获取函数的代码实现 (代码中的注释等也都可以获取到)</li>
 <li><code>document.documentElement.outerHTML</code>可以获取较完整的HTML内容。但类似<code>DOCTYPE</code>是无法获取到的。 (<a href="https://segmentfault.com/q/1010000000513457">javascript如何获取当前网页的源码？</a>)</li>
-<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容 </li>
+<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容</li>
 <li>JS没有函数重载的功能 (<a href="https://zhuanlan.zhihu.com/p/64876386">js 函数的重载</a>)</li>
 <li>JS可以在函数内部嵌套函数</li>
 </ul>
@@ -4838,7 +4852,7 @@ NaN
 </ul>
 <h5 id="类型转换"><a class="header" href="#类型转换">类型转换</a></h5>
 <ul>
-<li>在算术函数和表达式中，会自动进行 number 类型转换。(如<code>&quot;6&quot; / &quot;2&quot;</code>，结果为3)</li>
+<li>在算术函数和表达式中，会自动进行 number 类型转换。(如<code>"6" / "2"</code>，结果为3)</li>
 <li>任何对象转为boolean类型时，都为true</li>
 </ul>
 <p>JS中存在两种大的类型，<code>引用类型</code>和<code>值类型</code>。<code>引用类型</code>细分为<code>对象</code>和<code>函数</code>，其它的类型为<code>值类型</code>。</p>
@@ -4851,9 +4865,9 @@ NaN
 <li><a href="https://zhuanlan.zhihu.com/p/144475026">彻底理解JavaScript ES6中的import和export</a></li>
 </ul>
 <h5 id="export"><a class="header" href="#export">export</a></h5>
-<pre><code class="language-js">// 需要注意，node默认使用commonjs规范，要在开启es6规范，需在package.json中配置： `&quot;type&quot;: &quot;module&quot;`
+<pre><code class="language-js">// 需要注意，node默认使用commonjs规范，要在开启es6规范，需在package.json中配置： `"type": "module"`
 // a.js
-export var str = &quot;export的内容&quot;;
+export var str = "export的内容";
 export var year = 2019;
 export function message() {
   console.log('hello');
@@ -4872,7 +4886,7 @@ console.log(str);
 <h5 id="export-default"><a class="header" href="#export-default">export default</a></h5>
 <p>export default命令用于指定模块的默认输出，一个模块只能有一个默认输出。本质上，export default是用来输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。</p>
 <pre><code class="language-js">// c.js
-const str = &quot;export default的内容&quot;;
+const str = "export default的内容";
 export default str;
 // 也可以写为：export { str as default };
 // 也可以同时导出多个对象，如：export default {a, b, c}
@@ -4883,7 +4897,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 </code></pre>
 <h5 id="高级用法"><a class="header" href="#高级用法">高级用法</a></h5>
 <p>动态导入:</p>
-<pre><code class="language-js">import(&quot;./m1.js&quot;).then(m=&gt;{
+<pre><code class="language-js">import("./m1.js").then(m=&gt;{
   console.log('then:', m)   // m就是导入的整个模块
   m.message();  // m.就可以调用模块内部导出的对象
 })
@@ -4928,7 +4942,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <h3 id="特性-3"><a class="header" href="#特性-3">特性</a></h3>
 <ul>
 <li>是静态、弱类型语言</li>
-<li>函数也是一等公民，支持函数式编程 </li>
+<li>函数也是一等公民，支持函数式编程</li>
 <li>支持泛型</li>
 <li>支持可选参数，通过在参数类型后加<code>?</code>。可选参数需要放在参数列表的后面</li>
 <li>接口中也支持可选属性，也是通过在属性后添加<code>?</code>来表示是否</li>
@@ -4940,8 +4954,8 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <h4 id="类型检查"><a class="header" href="#类型检查">类型检查</a></h4>
 <p>TS支持严格类型检查、非严格类型检查。通过在tsconfig.json中做如下配置即可打开严格检查模式:</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strict&quot;: true,
+    "compilerOptions": {
+        "strict": true,
     }
 }
 </code></pre>
@@ -4950,8 +4964,8 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 </blockquote>
 <p>TS中也提供了<code>strictNullChecks</code>编译选项，来检查null和undefined是否进行了无效的赋值。</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strictNullChecks&quot;: true,
+    "compilerOptions": {
+        "strictNullChecks": true,
     }
 }
 </code></pre>
@@ -5291,7 +5305,7 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <h5 id="keyof"><a class="header" href="#keyof">keyof</a></h5>
 <p>返回对象属性名组成的<code>字面量联合类型</code></p>
 <pre><code class="language-typescript">type Dog = { name: string; age: number;  };
-type D = keyof Dog; //type D = &quot;name&quot; | &quot;age&quot;
+type D = keyof Dog; //type D = "name" | "age"
 </code></pre>
 <h5 id="in"><a class="header" href="#in">in</a></h5>
 <h3 id="其它语法"><a class="header" href="#其它语法">其它语法</a></h3>
@@ -5334,7 +5348,7 @@ import type { UnionType, unionValue } from './type';
 
 const value1: UnionType = 'value1'; // 作为类型使用
 const value2: typeof unionValue = 'value2'; // 获取类型
-// Error: &quot;unionValue&quot; 是使用 &quot;import type&quot; 导入的，因此不能用作值
+// Error: "unionValue" 是使用 "import type" 导入的，因此不能用作值
 const value3 = unionValue; // 作为值使用
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="react"><a class="header" href="#react">React</a></h1>
@@ -5399,7 +5413,7 @@ const value3 = unionValue; // 作为值使用
 
 // 因为HelloMessage中有使用name属性，因此这儿可以直接使用
 // 但在ts项目中，往往会提前声明props，以便于使用者明确知道有哪些属性
-const element = &lt;HelloMessage name=&quot;World&quot;/&gt;;
+const element = &lt;HelloMessage name="World"/&gt;;
 
 // 可以通过该方式，可以定义默认属性，此时不传name就会被设置为默认值
 HelloMessage.defaultProps = {
@@ -5458,7 +5472,7 @@ function App() {
 <p>简单来说，<code>React Hooks</code>是一组新的API，目的是为了解决React类层级太深太复杂的问题。React团队希望组件变为纯粹的数据管道，而非组件类。因为提供了<code>React Hooks</code>，可以理解为可以用函数的方式来提供组件，并且函数也可以维护自己的内部状态。</p>
 <p>Hooks产生的目的：<a href="https://zh-hant.legacy.reactjs.org/docs/hooks-intro.html">介紹 Hook</a></p>
 <blockquote>
-<p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码&quot;钩&quot;进来。</strong> React Hooks 就是那些钩子。</p>
+<p><strong>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码"钩"进来。</strong> React Hooks 就是那些钩子。</p>
 <p>你需要什么功能，就使用什么钩子。React 默认提供了一些常用钩子，你也可以封装自己的钩子。</p>
 <p>所有的钩子都是为函数引入外部功能，所以 React 约定，钩子一律使用<code>use</code>前缀命名，便于识别。你要使用 xxx 功能，钩子就命名为 usexxx。</p>
 </blockquote>
@@ -5561,7 +5575,7 @@ const mval = useMemo(() =&gt; status === 0, [status]);
   };
   return (
     &lt;&gt;
-      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;input ref={inputEl} type="text" /&gt;
       &lt;button onClick={onButtonClick}&gt;Focus the input&lt;/button&gt;
     &lt;/&gt;
   );
@@ -5624,7 +5638,7 @@ const Icon: React.FC&lt;IProps&gt; = ({ name }) =&gt; {
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
-  printf(&quot;Good&quot;);
+  printf("Good");
 }
 </code></pre>
 <p>编译为WASM，就为如下二进制内容：</p>
@@ -5643,12 +5657,12 @@ int hello() {
 <pre><code>(module
  (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
- (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (import "env" "printf" (func $printf (param i32 i32) (result i32)))
  (table 0 anyfunc)
  (memory $0 1)
- (data (i32.const 16) &quot;Good\00&quot;)
- (export &quot;memory&quot; (memory $0))
- (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (data (i32.const 16) "Good\00")
+ (export "memory" (memory $0))
+ (export "_Z5hellov" (func $_Z5hellov))
  (func $_Z5hellov (; 1 ;) (result i32)
   (drop
    (call $printf
@@ -5735,15 +5749,15 @@ int hello() {
 <p>WKWebView有三种设置Cookie的方式</p>
 <p>一、通过Header中的Cookies字段来设置</p>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <p>二、通过JS注入的方式来设置</p>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>
@@ -5841,7 +5855,7 @@ cookies.forEach { cookie in
 <p>在iOS上JavaScriptCore是作为单独的Framework提供的，并且UIWebview默认没有提供JavaScriptCore的接口。</p>
 <p>不过还有办法可以从UIWebview中获取到JSContext：</p>
 <pre><code class="language-oc">// 获取JSContext
-JSContext *context = [webView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];
+JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 </code></pre>
 <p>但此方法仅对UIWebview适用。在WKWebview上，已经不再使用JavaScriptCore引擎，而是换成了Nitro。</p>
 <p>JS Core最简单的使用： (<a href="https://segmentfault.com/a/1190000017983911">JavaScriptCore全面解析</a>)</p>
@@ -5852,10 +5866,10 @@ JSVirtualMachine *vm = [[JSVirtualMachine alloc] init];
 JSContext *context = [[JSContext alloc] initWithVirtualMachine:vm];
 
 //执行JavaScript代码并获取返回值
-JSValue *value = [context evaluateScript:@&quot;1+2*3&quot;];
+JSValue *value = [context evaluateScript:@"1+2*3"];
 
 //转换成OC数据并打印
-NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
+NSLog(@"value = %d", [value toInt32]);  // value = 7
 </code></pre>
 <p>JSCore的启动成本：（来源ChatGPT）</p>
 <ul>
@@ -6023,7 +6037,7 @@ NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
 </tbody></table>
 </div>
 <p>flutter的所有可用依赖包，以及依赖包的更新日志，可以在<a href="https://pub.dev/">pub.dev</a>上搜索查看</p>
-<p>​	</p>
+<p>​</p>
 <h3 id="vscode-1"><a class="header" href="#vscode-1">VSCode</a></h3>
 <p>使用VSCode调试时，要选择不同的设备进行调试：</p>
 <ul>
@@ -6384,11 +6398,11 @@ class MyPoint {
 <pre><code class="language-dart">class AClass {
   // 非构造函数的方法，以及所有实例成员，都有生成默认的接口
   void sayHello() {
-    print(&quot;Hello&quot;);
+    print("Hello");
   }
 
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -6397,12 +6411,12 @@ class MyPoint {
 class BClass implements AClass {
   @override
   void sayHello() {
-    print(&quot;BClass: Hello&quot;);
+    print("BClass: Hello");
   }
 
   @override
   void sayWorld() {
-    print(&quot;BClass: World&quot;);
+    print("BClass: World");
   }
 }
 
@@ -6422,7 +6436,7 @@ void runCode() {
 // 即可以这样来定义： mixin MixinCls {}
 class MixinCls {
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -6439,7 +6453,7 @@ class Son1 extends Father {
 class Son2 extends Father with MixinCls {
   // 子类跟Mixin中的方法签名相同时，子类的实现有更高的优先级
   // void sayWorld() {
-  //   print(&quot;Son2: World&quot;);
+  //   print("Son2: World");
   // }
 }
 
@@ -6790,7 +6804,7 @@ void main() {
 // 内层使用
 return Consumer&lt;CartModel&gt;(
   builder: (context, cart, child) {
-    return Text(&quot;Total price: ${cart.totalPrice}&quot;);
+    return Text("Total price: ${cart.totalPrice}");
   },
 );
 </code></pre>
@@ -6818,8 +6832,8 @@ return Consumer&lt;CartModel&gt;(
 <tr><td>兼容性好：如MaterialApp跳转的子页面，appbar可以使用<code>CupertinoNavigationBar</code></td><td>兼容性差：如CupertinoApp跳转的子页面，appbar只能使用<code>CupertinoNavigationBar</code></td></tr>
 </tbody></table>
 </div>
-<p>​	</p>
-<p>Flutter中Material风格，与&quot;Material&quot;设计原则强烈相关。</p>
+<p>​</p>
+<p>Flutter中Material风格，与"Material"设计原则强烈相关。</p>
 <p>比如，<a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>中的<code>primaryColor</code>和<code>accentColor</code>，就是Material风格中的主要颜色和辅助颜色的使用。这儿在Material官网中对这两种颜色的使用说的非常清楚：<a href="https://material.io/design/color/#">The Color System</a></p>
 <p>简单来说就是：主色及其变种色，用来定下基调，会在大量元素上使用。辅助色，一般用来表示强调，比如选中文本、进度条的进度、打开的开关等。</p>
 <p>Material风格的简单介绍：<a href="https://zhuanlan.zhihu.com/p/34410688">Material Design的前世今生</a></p>
@@ -6852,7 +6866,7 @@ return Consumer&lt;CartModel&gt;(
 <p>但黑暗模式和普通模式主色、辅色等设置，并不是一样的。比如黑暗模式的主色会固定为黑色，但普通模式就是色盘的主色。</p>
 <p>这儿可以直接查看ThemeData的构造函数来看具体的使用及差异。</p>
 </blockquote>
-<p>​	</p>
+<p>​</p>
 <p>Theme也可以仅对某个Widget进行设置的，这样的话，当前Widget的样式会优先采用当前主题风格</p>
 <pre><code class="language-dart">// 这种情况下，Card组件是dark的，展示上Card就会展示为黑底白字
 Theme(
@@ -6888,12 +6902,12 @@ Theme(
 </ul>
 <pre><code class="language-json">solutions = [
   {
-    &quot;managed&quot;: False,
-    &quot;name&quot;: &quot;src/flutter&quot;,
-    &quot;url&quot;: &quot;https://github.com/flutter/engine.git&quot;,	# 这儿也可以换成自己fork的仓库
-    &quot;custom_deps&quot;: {},
-    &quot;deps_file&quot;: &quot;DEPS&quot;,
-    &quot;safesync_url&quot;: &quot;&quot;,
+    "managed": False,
+    "name": "src/flutter",
+    "url": "https://github.com/flutter/engine.git",	# 这儿也可以换成自己fork的仓库
+    "custom_deps": {},
+    "deps_file": "DEPS",
+    "safesync_url": "",
   },
 ]
 </code></pre>
@@ -7055,7 +7069,7 @@ test('Stream.fromIterable() emits the values in the iterable', () {
         startsWith('Loading took'),
 
         // Stream matchers can be nested. This asserts that one of two events are
-        // emitted after the &quot;Loading took&quot; line.
+        // emitted after the "Loading took" line.
         emitsAnyOf(['Succeeded!', 'Failed!']),
 
         // By default, more events are allowed after the matcher finishes
@@ -7180,7 +7194,7 @@ flutter build web	# 在工程的build/web目录下，就会生成可以发布的
 <p>https://flutter.dev/desktop</p>
 <h4 id="go-flutter方案"><a class="header" href="#go-flutter方案">go-flutter方案</a></h4>
 <p>https://github.com/go-flutter-desktop/go-flutter</p>
-<p>两种方案对比: 
+<p>两种方案对比:
 <a href="https://juejin.im/post/5cfd1ad86fb9a07ebf4b625b">Flutter 开发桌面应用——迁移已有App应用到桌面版</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="后台"><a class="header" href="#后台">后台</a></h1>
 <h3 id="相关链接"><a class="header" href="#相关链接">相关链接</a></h3>
@@ -7228,30 +7242,30 @@ flutter build web	# 在工程的build/web目录下，就会生成可以发布的
 </ul>
 <h3 id="最简单的httpsvr"><a class="header" href="#最简单的httpsvr">最简单的HttpSvr</a></h3>
 <h4 id="js-1"><a class="header" href="#js-1">JS</a></h4>
-<pre><code class="language-js">let express = require(&quot;express&quot;);
+<pre><code class="language-js">let express = require("express");
 let app = express();
  
  // 加载指定目录作为静态页面目录
-app.use(express.static(&quot;../develop/_book&quot;));
+app.use(express.static("../develop/_book"));
  
 app.listen(8080, ()=&gt;{
-    console.log(&quot;listen 8080&quot;);
+    console.log("listen 8080");
 })
 </code></pre>
 <h4 id="go"><a class="header" href="#go">GO</a></h4>
 <pre><code class="language-go">package main
 
 import (
-	&quot;log&quot;
-	&quot;net/http&quot;
+	"log"
+	"net/http"
 )
 
 func main() {
     // 使用_book作为静态页面目录
-	h := http.FileServer(http.Dir(&quot;./_book&quot;))
-	err := http.ListenAndServe(&quot;:9090&quot;, h)
+	h := http.FileServer(http.Dir("./_book"))
+	err := http.ListenAndServe(":9090", h)
 	if err != nil {
-		log.Fatal(&quot;ListenAndServe: &quot;, err)
+		log.Fatal("ListenAndServe: ", err)
 	}
 }
 </code></pre>
@@ -7278,7 +7292,7 @@ func main() {
 </div>
 <h3 id="普通命令"><a class="header" href="#普通命令">普通命令</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
-<tr><td><code>ls -lR \| grep '.svg' \|wc -l</code></td><td>统计当前目录下，指定类型文件的个数</td></tr>
+<tr><td><code>ls -lR | grep '.svg' |wc -l</code></td><td>统计当前目录下，指定类型文件的个数</td></tr>
 <tr><td><code>ln dir/src.txt other/dest.txt</code></td><td>创建硬链接 (第一个参数是源，第二个参数是目的)</td></tr>
 <tr><td><code>which cmd</code></td><td>查看cmd命令所在的位置</td></tr>
 </tbody></table>
@@ -7300,7 +7314,7 @@ var arr = []string{1, 2, 3}
 </code></pre>
 <p>go中有多值返回，也有多值赋值，看起来像元组，但并没有元组类型</p>
 <pre><code class="language-go">// 多值赋值
-var a, b = true, &quot;sss&quot;  // 分别为 bool, string 类型
+var a, b = true, "sss"  // 分别为 bool, string 类型
 
 // 多值返回
 func myfunc() (int, int) {
@@ -7470,18 +7484,18 @@ app.get('/', function (req, res) {
 <li>允许带有<code>Self</code>或者 <code>associatedtype</code> 的 <code>protocol</code> 作为不透明返回类型</li>
 </ul>
 <h4 id="_dynamicreplacementfor--dynmaic-1"><a class="header" href="#_dynamicreplacementfor--dynmaic-1">@_dynamicReplacement(for:) / dynmaic</a></h4>
-<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 "Method Swizzling"？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
 class Test {
     dynamic func foo() {
-        print(&quot;bar&quot;)
+        print("bar")
     }
 }
     
 extension Test {
     @_dynamicReplacement(for: foo())
     func foo_new() {
-        print(&quot;bar new&quot;)
+        print("bar new")
     }
 }
     
@@ -7518,7 +7532,7 @@ let r = myadd {	// r的结果是3
 <p><a href="https://medium.com/jeremy-xue-s-blog/swift-%E8%A3%BD%E4%BD%9C%E4%B8%80%E5%80%8B-userdefault-%E5%B0%88%E5%B1%AC%E7%9A%84%E5%B1%AC%E6%80%A7%E5%8C%85%E8%A3%9D%E5%99%A8%E5%90%A7-6457b2f0d886">Swift — 製作一個 UserDefault 專屬的屬性包裝器吧！</a></p>
 <p>简单理解，@propertyWrapper就是用来hook属性，可以加一些自己的操作，让属性变为自己预期中的那样</p>
 <pre><code class="language-swift">@propertyWrapper struct Beatiful {
-    private var value: String = &quot;&quot;
+    private var value: String = ""
     // 计算属性
     var wrappedValue: String {
         get { value }
@@ -7535,21 +7549,21 @@ struct MyData {
     @Beatiful var data: String
 }
 
-var d = MyData(data: &quot;  Hello World  &quot;)
-d.data  // 变为&quot;Hello World&quot;
+var d = MyData(data: "  Hello World  ")
+d.data  // 变为"Hello World"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kotlin"><a class="header" href="#kotlin">Kotlin</a></h1>
 <h3 id="能力-5"><a class="header" href="#能力-5">能力</a></h3>
 <h4 id="挂起函数"><a class="header" href="#挂起函数">挂起函数</a></h4>
 <pre><code class="language-kotlin">suspend fun fetchData(): String {
     delay(1000) // 模拟耗时操作，暂停函数执行 1 秒钟
-    return &quot;Data fetched successfully&quot;
+    return "Data fetched successfully"
 }
 
 // runBlocking是 Kotlin 协程库中的一个顶层函数
 fun main() = runBlocking {
     val result = fetchData() // 在协程中调用挂起函数
-    println(&quot;After fetching data: $result&quot;)
+    println("After fetching data: $result")
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="java"><a class="header" href="#java">Java</a></h1>
@@ -7583,11 +7597,11 @@ fun main() = runBlocking {
 <p>注解是支持自定义的，如下就是一个示例：</p>
 <pre><code class="language-java">// 注解定义 (在interface前面有@符号)
 public @interface MyAnnotation {
-    String value() default &quot;&quot;;
+    String value() default "";
 }
 
 // 注解使用
-@MyAnnotation(value = &quot;Hello&quot;)
+@MyAnnotation(value = "Hello")
 public class MyClass {
     // 类的内容
 }
@@ -7619,7 +7633,7 @@ class MyClass {
     }
 
     public void sayHello() {
-        System.out.println(&quot;Hello, &quot; + name + &quot;!&quot;);
+        System.out.println("Hello, " + name + "!");
     }
 }
 
@@ -7630,17 +7644,17 @@ public class Main {
 
         // 创建 MyClass 对象
         Constructor&lt;?&gt; constructor = clazz.getConstructor(String.class);
-        Object myObject = constructor.newInstance(&quot;John&quot;);
+        Object myObject = constructor.newInstance("John");
 
         // 调用 sayHello 方法
-        Method method = clazz.getMethod(&quot;sayHello&quot;);
+        Method method = clazz.getMethod("sayHello");
         method.invoke(myObject);
 
         // 访问 name 字段
-        Field field = clazz.getDeclaredField(&quot;name&quot;);
+        Field field = clazz.getDeclaredField("name");
         field.setAccessible(true);
         String nameValue = (String) field.get(myObject);
-        System.out.println(&quot;Name: &quot; + nameValue);
+        System.out.println("Name: " + nameValue);
     }
 }
 </code></pre>
@@ -7664,13 +7678,13 @@ class MyInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 在方法调用前执行一些操作
-        System.out.println(&quot;Before method: &quot; + method.getName());
+        System.out.println("Before method: " + method.getName());
 
         // 调用目标对象的方法
         Object result = method.invoke(target, args);
 
         // 在方法调用后执行一些操作
-        System.out.println(&quot;After method: &quot; + method.getName());
+        System.out.println("After method: " + method.getName());
 
         // 返回方法调用结果
         return result;
@@ -7683,7 +7697,7 @@ interface MyHello {
 
 class MyHelloImpl implements MyHello {
     public void sayHi() {
-        System.out.println(&quot;Hi&quot;);
+        System.out.println("Hi");
     }
 }
 
@@ -7714,7 +7728,7 @@ public class Main {
         // 直接创建接口实例，即内部匿名类
         MyInterface myInterface = new MyInterface() {
             public void doSomething() {
-                System.out.println(&quot;Doing something...&quot;);
+                System.out.println("Doing something...");
             }
         };
         myInterface.doSomething();
@@ -7743,7 +7757,7 @@ interface MyInterface {
 public class Main {
     public static void main(String[] args) {
         MyInterface myInterface = () -&gt; {
-            System.out.println(&quot;Doing something...&quot;);
+            System.out.println("Doing something...");
         };
         // 调用时仍然要指定调用的是doSomething()
         myInterface.doSomething();
@@ -7801,7 +7815,7 @@ List&lt;Integer&gt; intList = Arrays.asList(1, 2, 3);
 processList(intList);
 processList2(intList);
 
-List&lt;String&gt; stringList = Arrays.asList(&quot;Hello&quot;, &quot;World&quot;);
+List&lt;String&gt; stringList = Arrays.asList("Hello", "World");
 processList(stringList);
 // processList2(stringList);    // 这行代码会出错，因为参数是String列表
 </code></pre>
@@ -8102,11 +8116,11 @@ class MyPoint {
 <pre><code class="language-dart">class AClass {
   // 非构造函数的方法，以及所有实例成员，都有生成默认的接口
   void sayHello() {
-    print(&quot;Hello&quot;);
+    print("Hello");
   }
 
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -8115,12 +8129,12 @@ class MyPoint {
 class BClass implements AClass {
   @override
   void sayHello() {
-    print(&quot;BClass: Hello&quot;);
+    print("BClass: Hello");
   }
 
   @override
   void sayWorld() {
-    print(&quot;BClass: World&quot;);
+    print("BClass: World");
   }
 }
 
@@ -8140,7 +8154,7 @@ void runCode() {
 // 即可以这样来定义： mixin MixinCls {}
 class MixinCls {
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -8157,7 +8171,7 @@ class Son1 extends Father {
 class Son2 extends Father with MixinCls {
   // 子类跟Mixin中的方法签名相同时，子类的实现有更高的优先级
   // void sayWorld() {
-  //   print(&quot;Son2: World&quot;);
+  //   print("Son2: World");
   // }
 }
 
@@ -8379,24 +8393,24 @@ main() {
 <p>当初始化一个字符串，不显示指定编码格式时，会跟源代码文件存储格式有关 (或编译器有关，参考:<a href="https://www.zhihu.com/question/20451870/answer/401452117">link</a>)</p>
 </li>
 <li>
-<p><code>u8&quot;***&quot;</code> 表示使用utf8编码的字符串</p>
+<p><code>u8"***"</code> 表示使用utf8编码的字符串</p>
 </li>
 <li>
-<p><code>L&quot;***&quot;</code> 表示使用utf16 (或ucs-2，其是utf16子集) 编码</p>
+<p><code>L"***"</code> 表示使用utf16 (或ucs-2，其是utf16子集) 编码</p>
 </li>
 <li>
-<p><code>U&quot;***&quot;</code> 表示使用utf32编码</p>
+<p><code>U"***"</code> 表示使用utf32编码</p>
 </li>
 <li>
-<p><code>u&quot;***&quot;</code> 表示使用utf16编码</p>
+<p><code>u"***"</code> 表示使用utf16编码</p>
 </li>
 </ul>
 <p>不同的编码和存储结构，内存结构如下：</p>
 <ul>
-<li><code>u8&quot;1汉1&quot;</code>  =&gt; <code>31 E6 B1 89 31</code>   (短字段串，在Apple平台上会优化，其在指针地址里直接存储数据)</li>
-<li><code>L&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF16编码)</li>
-<li><code>U&quot;1汉1&quot;</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF32编码)</li>
-<li><code>u&quot;1汉1&quot;</code>  =&gt;  <code>31 00 49 6C 31 00</code> (UTF16编码)</li>
+<li><code>u8"1汉1"</code>  =&gt; <code>31 E6 B1 89 31</code>   (短字段串，在Apple平台上会优化，其在指针地址里直接存储数据)</li>
+<li><code>L"1汉1"</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF16编码)</li>
+<li><code>U"1汉1"</code>  =&gt;  <code>31 00 00 00 49 6C 00 00 31 00 00 00</code>  (UTF32编码)</li>
+<li><code>u"1汉1"</code>  =&gt;  <code>31 00 49 6C 31 00</code> (UTF16编码)</li>
 </ul>
 <h4 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h4>
 <p>wchar_t是2或4个字节 (在Mac上使用<code>Apple Clang</code>编译验证是4字节)</p>
@@ -8519,13 +8533,13 @@ main() {
 <h4 id="move"><a class="header" href="#move">Move</a></h4>
 <p>在绑定数据时，当类型实现了拷贝时，默认会进行对象的拷贝。如果不希望其拷贝，则可以使用<code>move</code>来修饰</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
-    let mut x: String = String::from(&quot;abc&quot;);
+    let mut x: String = String::from("abc");
     {
         // 这儿使用括号括起来，是为了让x用完之后将所有权释放，以便后续继续使用x
         let mut some_closure = |c: char| x.push(c);
         some_closure('d');
     }
-    println!(&quot;x={:?}&quot;, x);  // 打印：x=&quot;abcd&quot;
+    println!("x={:?}", x);  // 打印：x="abcd"
 }</code></pre></pre>
 <h4 id="lifetime"><a class="header" href="#lifetime">Lifetime</a></h4>
 <p>借用：借用方的生命周期不能比出借方的生命周期还要长。</p>
@@ -8550,8 +8564,8 @@ main() {
 <ul>
 <li>支持问号操作符，简化Result处理</li>
 <li>不使用的变量，可以通过加<code>下划线</code>前缀，来关闭警告</li>
-<li>使用 <code>r&quot;&quot;</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
-<li>使用 <code>r#&quot;&quot;#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>&quot;</code> 而不需要转义</li>
+<li>使用 <code>r""</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
+<li>使用 <code>r#""#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>"</code> 而不需要转义</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
 <tr><td>不可变类型</td><td><code>let x = 5</code></td><td><code>let x = 5</code></td></tr>
@@ -8611,7 +8625,7 @@ impl Rectangle {
 <li>可以通过<code>Object.keys(window)</code>来获取window上的所有属性及函数</li>
 <li>通过<code>func.toString()</code>，可以获取函数的代码实现 (代码中的注释等也都可以获取到)</li>
 <li><code>document.documentElement.outerHTML</code>可以获取较完整的HTML内容。但类似<code>DOCTYPE</code>是无法获取到的。 (<a href="https://segmentfault.com/q/1010000000513457">javascript如何获取当前网页的源码？</a>)</li>
-<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容 </li>
+<li><code>window.location.href</code>可以获取html页面地址，然后再尝试读取内容，就可以获取最原始的HTML内容</li>
 <li>JS没有函数重载的功能 (<a href="https://zhuanlan.zhihu.com/p/64876386">js 函数的重载</a>)</li>
 <li>JS可以在函数内部嵌套函数</li>
 </ul>
@@ -8648,7 +8662,7 @@ NaN
 </ul>
 <h5 id="类型转换-1"><a class="header" href="#类型转换-1">类型转换</a></h5>
 <ul>
-<li>在算术函数和表达式中，会自动进行 number 类型转换。(如<code>&quot;6&quot; / &quot;2&quot;</code>，结果为3)</li>
+<li>在算术函数和表达式中，会自动进行 number 类型转换。(如<code>"6" / "2"</code>，结果为3)</li>
 <li>任何对象转为boolean类型时，都为true</li>
 </ul>
 <p>JS中存在两种大的类型，<code>引用类型</code>和<code>值类型</code>。<code>引用类型</code>细分为<code>对象</code>和<code>函数</code>，其它的类型为<code>值类型</code>。</p>
@@ -8661,9 +8675,9 @@ NaN
 <li><a href="https://zhuanlan.zhihu.com/p/144475026">彻底理解JavaScript ES6中的import和export</a></li>
 </ul>
 <h5 id="export-1"><a class="header" href="#export-1">export</a></h5>
-<pre><code class="language-js">// 需要注意，node默认使用commonjs规范，要在开启es6规范，需在package.json中配置： `&quot;type&quot;: &quot;module&quot;`
+<pre><code class="language-js">// 需要注意，node默认使用commonjs规范，要在开启es6规范，需在package.json中配置： `"type": "module"`
 // a.js
-export var str = &quot;export的内容&quot;;
+export var str = "export的内容";
 export var year = 2019;
 export function message() {
   console.log('hello');
@@ -8682,7 +8696,7 @@ console.log(str);
 <h5 id="export-default-1"><a class="header" href="#export-default-1">export default</a></h5>
 <p>export default命令用于指定模块的默认输出，一个模块只能有一个默认输出。本质上，export default是用来输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。</p>
 <pre><code class="language-js">// c.js
-const str = &quot;export default的内容&quot;;
+const str = "export default的内容";
 export default str;
 // 也可以写为：export { str as default };
 // 也可以同时导出多个对象，如：export default {a, b, c}
@@ -8693,7 +8707,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 </code></pre>
 <h5 id="高级用法-1"><a class="header" href="#高级用法-1">高级用法</a></h5>
 <p>动态导入:</p>
-<pre><code class="language-js">import(&quot;./m1.js&quot;).then(m=&gt;{
+<pre><code class="language-js">import("./m1.js").then(m=&gt;{
   console.log('then:', m)   // m就是导入的整个模块
   m.message();  // m.就可以调用模块内部导出的对象
 })
@@ -8738,7 +8752,7 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <h3 id="特性-8"><a class="header" href="#特性-8">特性</a></h3>
 <ul>
 <li>是静态、弱类型语言</li>
-<li>函数也是一等公民，支持函数式编程 </li>
+<li>函数也是一等公民，支持函数式编程</li>
 <li>支持泛型</li>
 <li>支持可选参数，通过在参数类型后加<code>?</code>。可选参数需要放在参数列表的后面</li>
 <li>接口中也支持可选属性，也是通过在属性后添加<code>?</code>来表示是否</li>
@@ -8750,8 +8764,8 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 <h4 id="类型检查-1"><a class="header" href="#类型检查-1">类型检查</a></h4>
 <p>TS支持严格类型检查、非严格类型检查。通过在tsconfig.json中做如下配置即可打开严格检查模式:</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strict&quot;: true,
+    "compilerOptions": {
+        "strict": true,
     }
 }
 </code></pre>
@@ -8760,8 +8774,8 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 </blockquote>
 <p>TS中也提供了<code>strictNullChecks</code>编译选项，来检查null和undefined是否进行了无效的赋值。</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strictNullChecks&quot;: true,
+    "compilerOptions": {
+        "strictNullChecks": true,
     }
 }
 </code></pre>
@@ -9101,7 +9115,7 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <h5 id="keyof-1"><a class="header" href="#keyof-1">keyof</a></h5>
 <p>返回对象属性名组成的<code>字面量联合类型</code></p>
 <pre><code class="language-typescript">type Dog = { name: string; age: number;  };
-type D = keyof Dog; //type D = &quot;name&quot; | &quot;age&quot;
+type D = keyof Dog; //type D = "name" | "age"
 </code></pre>
 <h5 id="in-1"><a class="header" href="#in-1">in</a></h5>
 <h3 id="其它语法-1"><a class="header" href="#其它语法-1">其它语法</a></h3>
@@ -9144,7 +9158,7 @@ import type { UnionType, unionValue } from './type';
 
 const value1: UnionType = 'value1'; // 作为类型使用
 const value2: typeof unionValue = 'value2'; // 获取类型
-// Error: &quot;unionValue&quot; 是使用 &quot;import type&quot; 导入的，因此不能用作值
+// Error: "unionValue" 是使用 "import type" 导入的，因此不能用作值
 const value3 = unionValue; // 作为值使用
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="webassembly-1"><a class="header" href="#webassembly-1">WebAssembly</a></h1>
@@ -9174,7 +9188,7 @@ const value3 = unionValue; // 作为值使用
 <pre><code class="language-c++">#include &lt;stdio.h&gt;
 
 int hello() {
-  printf(&quot;Good&quot;);
+  printf("Good");
 }
 </code></pre>
 <p>编译为WASM，就为如下二进制内容：</p>
@@ -9193,12 +9207,12 @@ int hello() {
 <pre><code>(module
  (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
- (import &quot;env&quot; &quot;printf&quot; (func $printf (param i32 i32) (result i32)))
+ (import "env" "printf" (func $printf (param i32 i32) (result i32)))
  (table 0 anyfunc)
  (memory $0 1)
- (data (i32.const 16) &quot;Good\00&quot;)
- (export &quot;memory&quot; (memory $0))
- (export &quot;_Z5hellov&quot; (func $_Z5hellov))
+ (data (i32.const 16) "Good\00")
+ (export "memory" (memory $0))
+ (export "_Z5hellov" (func $_Z5hellov))
  (func $_Z5hellov (; 1 ;) (result i32)
   (drop
    (call $printf
@@ -9372,13 +9386,13 @@ int hello() {
 <p><code>ANTRL</code>和<code>yacc</code>的主要区别，在于语法上，<code>yacc</code>是<code>LALR</code>语法，ANTRL是<code>LL(*)</code>语法。参考：<a href="https://cloud.tencent.com/developer/ask/67028">相对于Lex/yacc/bison，Antlr的优势？</a></p>
 <p><a href="http://icejoywoo.github.io/2019/01/16/intro-to-antlr4.html">Antlr4 简介</a>：实现了一个简单的计算器</p>
 <p><a href="https://www.scriptol.com/programming/antlr4-javascript.php">Making a compiler with the JavaScript runtime</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现&quot;圈4&quot;</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现"圈4"</a></p>
 <p><a href="https://abcdabcd987.com/notes-on-antlr4/">ANTLR4 笔记</a></p>
 <p><a href="https://www.antlr.org/">官网</a></p>
 <p>安装步骤如下：</p>
 <pre><code class="language-sh">$ cd /usr/local/lib
 $ sudo curl -O https://www.antlr.org/download/antlr-4.8-complete.jar
-$ export CLASSPATH=&quot;.:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH&quot;
+$ export CLASSPATH=".:/usr/local/lib/antlr-4.8-complete.jar:$CLASSPATH"
 $ alias antlr4='java -jar /usr/local/lib/antlr-4.8-complete.jar'
 $ alias grun='java org.antlr.v4.gui.TestRig'
 </code></pre>
@@ -9643,7 +9657,7 @@ var snakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 <li>JS和Native的交互非常频繁，但效率不高，这儿也是RN效率较低的根本原因</li>
 <li>在新版本的RN(0.59之后)中，提供了JSI来提升JS和Native的交互效率 （在0.64之后引入了Farbic架构）</li>
 <li>Native调用JS，是通过JSC提供的<code>JSObjectCallAsFunction</code>等接口实现的</li>
-<li>JS调用Native，是通过JSC提供的<code>JSContext</code>的<code>block</code>能力。使用示例：<code>jsContext[@&quot;funcname&quot;] = ^() {}</code></li>
+<li>JS调用Native，是通过JSC提供的<code>JSContext</code>的<code>block</code>能力。使用示例：<code>jsContext[@"funcname"] = ^() {}</code></li>
 <li>JS代码执行在线程名为<code>com.facebook.react.JavaScript</code>的线程中。</li>
 </ul>
 <blockquote>
@@ -9877,7 +9891,7 @@ Shadow Tree的结点
 <p>class ShadowTreeRegistry {
 Shadow Tree的集合，\n维护多个Shadow Tree
 }</p>
-<p>ShadowTreeRegistry &quot;1&quot; ..&gt; &quot;n&quot; ShadowTree </p>
+<p>ShadowTreeRegistry "1" ..&gt; "n" ShadowTree</p>
 <p>class UIManager {
 Fabric UI管理类
 }</p>
@@ -10051,7 +10065,7 @@ Fabric UI管理类
 <p>常用的复盘框架是回答三类问题：做的好的、做的欠佳的、问题或建议</p>
 <p>在复盘的过程中，要写<strong>事实</strong>，不要写感受。后续优化调整后，还可以反过来校验这些成果。</p>
 <h4 id="5个为什么"><a class="header" href="#5个为什么">5个为什么</a></h4>
-<p>当出现一个问题后，不断的重复问**&quot;为什么？&quot;<strong>，当问到最后彻底找到原因或无法再问出</strong>&quot;为什么？&quot;**时为止。</p>
+<p>当出现一个问题后，不断的重复问**"为什么？"<strong>，当问到最后彻底找到原因或无法再问出</strong>"为什么？"**时为止。</p>
 <h4 id="其它-16"><a class="header" href="#其它-16">其它</a></h4>
 <p>要吃自己的狗粮，即多用自己的产品。</p>
 <p>要和产品经理有共同语言，就需要说<strong>业务语言</strong>，这就是领域驱动设计中的通用语言。</p>
@@ -10179,11 +10193,11 @@ let script = document.createElement('script');
 script.src = 'demo.js';
 document.head.appendChild(script);
 </code></pre>
-<p>​	</p>
+<p>​</p>
 <h2 id="js基础"><a class="header" href="#js基础">JS基础</a></h2>
 <ul>
 <li>大小写敏感</li>
-<li>ES5中增加了严格模式，即在脚本开头添加<code>&quot;use strict&quot;</code>。严格模式是为了限制ES3中的一些不规范写法(<a href="https://www.runoob.com/js/js-strict.html">JavaScript 严格模式</a>)</li>
+<li>ES5中增加了严格模式，即在脚本开头添加<code>"use strict"</code>。严格模式是为了限制ES3中的一些不规范写法(<a href="https://www.runoob.com/js/js-strict.html">JavaScript 严格模式</a>)</li>
 <li>JS可以省略分号，但应优先使用分号</li>
 <li>支持<code>标签函数</code>，使用参考：<a href="https://zhuanlan.zhihu.com/p/31687266">ES6 - 标签函数</a></li>
 </ul>
@@ -10203,16 +10217,16 @@ document.head.appendChild(script);
 <h3 id="类型相关-2"><a class="header" href="#类型相关-2">类型相关</a></h3>
 <ul>
 <li><code>Undefined</code>类型只有一个值，就是<code>undefined</code>。声明的变量没有初始化，就是给的这个值</li>
-<li><code>typeof</code>未声明的变量，也会返回&quot;undefined&quot;</li>
+<li><code>typeof</code>未声明的变量，也会返回"undefined"</li>
 <li><code>Null</code>类型也只有一个值，即<code>null</code>。<code>null</code>表示一个空对象指针</li>
-<li><code>typeof null</code>，会返回&quot;object&quot;，原因是<code>null</code>被认为是一个对空对象的引用 (由于上面一点原因产生)</li>
+<li><code>typeof null</code>，会返回"object"，原因是<code>null</code>被认为是一个对空对象的引用 (由于上面一点原因产生)</li>
 <li><code>undefined</code>值由<code>null</code>值派生出来，所以<code>null == undefined</code>会返回true</li>
-<li>在if控制流语句中，会自动将其它类型的值转为Boolean类型。仅<code>&quot;&quot;</code>、<code>0</code>、<code>NaN</code>、<code>null</code>、<code>undefined</code>少数几种情况转换为<code>false</code>，其它情况都会转为<code>true</code></li>
+<li>在if控制流语句中，会自动将其它类型的值转为Boolean类型。仅<code>""</code>、<code>0</code>、<code>NaN</code>、<code>null</code>、<code>undefined</code>少数几种情况转换为<code>false</code>，其它情况都会转为<code>true</code></li>
 <li><code>console.log(0.1 + 0.2);</code>得出的结果是：<code>0.30000000000000004</code>，原因是浮点数计算中微小的舍入导致的（并非JS所独有，使用了<code>IEEE 754</code>数值表示就会存在这种问题）</li>
 <li>JS中用0除任意数不会导致错误，但结果需要注意：<code>0 / 0 == NaN</code>、<code>5 / 0 == Infinity</code></li>
 <li>任何涉及<code>NaN</code>的操作始终返回<code>NaN</code> （<code>NaN</code>表示<code>Not a Number</code>）</li>
-<li><code>一元加操作符</code>与<code>Number()</code>函数遵循相同的转换规则。<code>+&quot;&quot;</code>为0，<code>+&quot;a&quot;</code>为<code>NaN</code>、<code>+true</code>为1</li>
-<li><code>Number()</code>与<code>parseInt()</code>转换规则是不同的，<code>parseInt(&quot;10x&quot;)</code>得到的结果是<code>10</code>（<code>Number(&quot;10x&quot;)</code>返回的结果为<code>NaN</code>），原因是<code>parseInt()</code>识别字符串首字符是否是数值，如果是，则遍历到第一个不是字符串的地方，然后进行转换 (<code>paseInt()</code>专注于字符串转换)</li>
+<li><code>一元加操作符</code>与<code>Number()</code>函数遵循相同的转换规则。<code>+""</code>为0，<code>+"a"</code>为<code>NaN</code>、<code>+true</code>为1</li>
+<li><code>Number()</code>与<code>parseInt()</code>转换规则是不同的，<code>parseInt("10x")</code>得到的结果是<code>10</code>（<code>Number("10x")</code>返回的结果为<code>NaN</code>），原因是<code>parseInt()</code>识别字符串首字符是否是数值，如果是，则遍历到第一个不是字符串的地方，然后进行转换 (<code>paseInt()</code>专注于字符串转换)</li>
 </ul>
 <h4 id="symbol类型"><a class="header" href="#symbol类型"><code>Symbol</code>类型</a></h4>
 <p><code>Symbol</code>类型的作用，一句话概括就是生成<code>全局唯一值</code>。详情参考：<a href="https://zhuanlan.zhihu.com/p/22652486">JS 中的 Symbol 是什么？</a></p>
@@ -10248,12 +10262,12 @@ console.log(Bar[Symbol.hasInstance](b));	// true
 <h4 id="位操作符"><a class="header" href="#位操作符">位操作符</a></h4>
 <p><code>位操作符</code>即指二进制bit上的操作</p>
 <p><code>位操作符</code>使用时需要注意，特殊值<code>NaN</code>和<code>Infinity</code>在位操作中都会被当成0来处理：</p>
-<pre><code class="language-js">const a = Number(&quot;ff1&quot;);
+<pre><code class="language-js">const a = Number("ff1");
 const r = ~a;
 console.log(r);	// 会输出-1
 </code></pre>
 <p>在JS中，除了<code>有符号右移</code>，用<code>&gt;&gt;</code>来表示，还存在<code>无符号右移</code>，用<code>&gt;&gt;&gt;</code>来表示。<code>无符号右移</code>在移动时，会给空位补0</p>
-<p><code>逻辑非</code>操作符<code>!</code>可以应用在任意数据上，在对数据进行操作时，也是先转为布尔值，再取反。其中转为布尔值的过程，与在if控制流语句中的默认转换是一样的，即：仅<code>&quot;&quot;</code>、<code>0</code>、<code>NaN</code>、<code>null</code>、<code>undefined</code>少数几种情况转换为<code>false</code>，其它情况都会转为<code>true</code></p>
+<p><code>逻辑非</code>操作符<code>!</code>可以应用在任意数据上，在对数据进行操作时，也是先转为布尔值，再取反。其中转为布尔值的过程，与在if控制流语句中的默认转换是一样的，即：仅<code>""</code>、<code>0</code>、<code>NaN</code>、<code>null</code>、<code>undefined</code>少数几种情况转换为<code>false</code>，其它情况都会转为<code>true</code></p>
 <p><strong><code>逻辑与</code>操作符<code>&amp;&amp;</code>并不一定会返回布尔值</strong>，而是遵循如下规则：（<code>逻辑与</code>操作符与此类似）</p>
 <ul>
 <li>
@@ -10272,10 +10286,10 @@ console.log(r);	// 会输出-1
 let b = new Bar();
 let r = 0 &amp;&amp; NaN;
 
-// 此时按书上的结论，应该会输出&quot;NaN&quot;，其实结果是：0
+// 此时按书上的结论，应该会输出"NaN"，其实结果是：0
 console.log(r);	// 这儿理解上，应该用上面列三条规则来看，这样理解是最简单的，而且是正确的
 </code></pre>
-<p>​	</p>
+<p>​</p>
 <h4 id="乘性操作符"><a class="header" href="#乘性操作符">乘性操作符</a></h4>
 <p><code>乘性操作符</code>指的<code>乘</code>、<code>除</code>、<code>取模</code></p>
 <ul>
@@ -10309,7 +10323,7 @@ console.log(r);	// 这儿理解上，应该用上面列三条规则来看，这�
 <h3 id="原始值与引用值特性"><a class="header" href="#原始值与引用值特性">原始值与引用值特性</a></h3>
 <ul>
 <li><code>引用值</code>可以随时增、删、改其属性和方法，但<code>原始值</code>不行。给<code>原始值</code>添加属性虽然运行时不会报错，但尝试读取该属性值仍然为<code>undefined</code></li>
-<li>如果用new来初始化一个原始值，则实际上就是创建的一个对象。<code>let name = new String(&quot;Matt&quot;);</code>此时name的类型就会是<code>object</code></li>
+<li>如果用new来初始化一个原始值，则实际上就是创建的一个对象。<code>let name = new String("Matt");</code>此时name的类型就会是<code>object</code></li>
 <li>引用值再赋值时，是浅拷贝</li>
 </ul>
 <h3 id="作用域"><a class="header" href="#作用域">作用域</a></h3>
@@ -10346,7 +10360,7 @@ console.log(o.name);	// undefined
 <p>提前终止迭代器时，也可以通过添加<code>retrun()</code>方法指定迭代器提前关闭时的执行逻辑。</p>
 <h3 id="生成器-es6"><a class="header" href="#生成器-es6">生成器 (ES6)</a></h3>
 <p>生成器可以让一个函数块内拥有暂停和恢复代码执行的能力。简单来说，它是对<code>协程</code>的支持。（ES7又提供了<code>async</code>、<code>await</code>来进一步简化使用）</p>
-<p>生成器的声明方式为: </p>
+<p>生成器的声明方式为:</p>
 <pre><code class="language-js">fuction *generatorFn()
 
 class Foo {
@@ -10384,11 +10398,11 @@ g.next('baz');	// 输出：baz
 </ul>
 <p>如果要修改属性的默认特性，需要通过<code>Object.defineProperty()</code>来修改：</p>
 <pre><code class="language-js">let person = {};
-Object.defineProperty(person, &quot;name&quot;, {
+Object.defineProperty(person, "name", {
   writable: false,
-  value: &quot;Nicholas&quot;
+  value: "Nicholas"
 });
-person.name = &quot;Greg&quot;;	// 在非严格模式下不生效，严格模式下会出错
+person.name = "Greg";	// 在非严格模式下不生效，严格模式下会出错
 </code></pre>
 <p><strong>访问器属性</strong>类型有如下几种：</p>
 <ul>
@@ -10401,7 +10415,7 @@ person.name = &quot;Greg&quot;;	// 在非严格模式下不生效，严格模式
 <pre><code class="language-js">let person = {
   age_: 15	// 以 _ 结尾表示私有变量
 };
-Object.defineProperty(person, &quot;age&quot;, {
+Object.defineProperty(person, "age", {
   get() {
     return this.age_;
   }
@@ -10538,8 +10552,8 @@ console.log(person1.sayName == person2.sayName);	// true
 <p>所以如果在原型和实例中同时定义了属性，则会优先使用实例中的。</p>
 <p><code>in</code>操作符，有两种用途：</p>
 <ul>
-<li>判断某个属性是否可以访问到：<code>&quot;name&quot; in person</code> 即判断person中是否有name属性</li>
-<li>通过<code>for-in</code>枚举所有属性 </li>
+<li>判断某个属性是否可以访问到：<code>"name" in person</code> 即判断person中是否有name属性</li>
+<li>通过<code>for-in</code>枚举所有属性</li>
 </ul>
 <blockquote>
 <p>实例的<code>hasOwnProperty()</code>仅可以判断属性是否声明在类中，不会判断是否在原型中</p>
@@ -10663,7 +10677,7 @@ console.log(typeof Person);	// function
 <p>要分析一个软件的实现，最重要的是找到 <strong>软件结构和关键技术</strong></p>
 <h2 id="编程工具"><a class="header" href="#编程工具">编程工具</a></h2>
 <h3 id="编程语言"><a class="header" href="#编程语言">编程语言</a></h3>
-<p>&quot;每年至少学习一门新语言。&quot; --- 《程序员修炼之道》</p>
+<p>"每年至少学习一门新语言。" --- 《程序员修炼之道》</p>
 <blockquote>
 <p>学习程序设计语言其实就是要学习语言提供的编程模型。不提供新编程模型的语言是不值得刻意学习的。</p>
 </blockquote>
@@ -10758,7 +10772,7 @@ console.log(typeof Person);	// function
 <h3 id="如何改进旧系统"><a class="header" href="#如何改进旧系统">如何改进旧系统</a></h3>
 <p>找到一个目标，然后小步改进，逐步向这个目标接近。</p>
 <ul>
-<li>目标要全新思考，如果有机会<strong>从头设计这个系统</strong>，它应该是什么样子？ </li>
+<li>目标要全新思考，如果有机会<strong>从头设计这个系统</strong>，它应该是什么样子？</li>
 <li>有了目标之后，再拆分成<strong>足够小</strong>的步骤，每一步都不要带来太大的风险，而且每一步都能给我们一些正向的反馈。</li>
 <li>改进设计时，千万不要走回到老路上。该分离关注点就分离关注点，该重新组合就重新组合</li>
 </ul>
@@ -11223,7 +11237,7 @@ console.log(typeof Person);	// function
 <h4 id="尊重-1"><a class="header" href="#尊重-1">尊重</a></h4>
 <p>受软件开发影响的每个人，都有其作为人的价值观。不会有某个人本质上比其他人更有价值。所以要同时提高软件开发的人性和生产率，每个人对团队的贡献都应该得到尊重。我是重要的，你也是。</p>
 <h4 id="简单-1"><a class="header" href="#简单-1">简单</a></h4>
-<p>思考一个问题：什么是最简单而又有效的系统？ </p>
+<p>思考一个问题：什么是最简单而又有效的系统？</p>
 <p>构造一个优雅地解决今天问题同时又足够简单的系统是很难的。当随着系统发展，你需要让系统重新获得简单性时，你必须找到一条从你当前位置到目的地的路径。</p>
 <blockquote>
 <p>价值观之间是相互平衡和相互支持的。比如加强沟通能够去除那些不需要的或者可暂缓的需求，从而达到系统简单化的目的。</p>
@@ -11549,8 +11563,8 @@ for i in [1, 2, 3, 4] {
 <pre><code class="language-swift">extension User: Decodable {
   static func decode(_ json: JSON) -&gt; Decoded&lt;User&gt; {
     return curry(User.init)
-      &lt;^&gt; json &lt;| &quot;id&quot;
-      &lt;*&gt; json &lt;| &quot;name&quot;
+      &lt;^&gt; json &lt;| "id"
+      &lt;*&gt; json &lt;| "name"
   }
 }
 </code></pre>
@@ -11560,8 +11574,8 @@ for i in [1, 2, 3, 4] {
 <p>简单解释下这段代码的执行流程：</p>
 <ul>
 <li><code>curry(User.init)</code>即将构造函数从 <code>(Int, String) -&gt; User</code> 转为 <code>(Int) -&gt; (String) -&gt; User</code> 这种签名</li>
-<li><code>josn &lt;| &quot;id&quot; </code> 可以生成 <code>Decoded&lt;Int&gt;</code></li>
-<li>构造函数使用&lt;^&gt;与<code>json &lt;| &quot;id&quot;</code>结合，即调用map，得到的结果为：<code>Decoded&lt;(String) -&gt; User&gt;</code></li>
+<li><code>josn &lt;| "id" </code> 可以生成 <code>Decoded&lt;Int&gt;</code></li>
+<li>构造函数使用&lt;^&gt;与<code>json &lt;| "id"</code>结合，即调用map，得到的结果为：<code>Decoded&lt;(String) -&gt; User&gt;</code></li>
 <li>此时就会发现有转换函数已经被包装到容器之中了。这就是<code>ap</code>函数的使用场景</li>
 </ul>
 <blockquote>
@@ -11854,7 +11868,7 @@ String getValue() {
 <ul>
 <li><code>Command + Shift + P</code></li>
 <li>输入：<code>Flutter: Change SDK</code></li>
-<li>没有目标SDK时，可以先选择一个，会在工程目录下自动生成<code>settings.json</code>，修改<code>&quot;dart.flutterSdkPath&quot;</code>的value即可。</li>
+<li>没有目标SDK时，可以先选择一个，会在工程目录下自动生成<code>settings.json</code>，修改<code>"dart.flutterSdkPath"</code>的value即可。</li>
 </ul>
 <h3 id="注释能力"><a class="header" href="#注释能力">注释能力</a></h3>
 <p><code>dartdoc</code> 对注释的能力支持还是挺丰富的，其对 <code>markdown</code> 的语法做了挺多基本的支持。如：</p>
@@ -11891,7 +11905,7 @@ String getValue() {
 ///
 /// 通过html标签支持下划线：&lt;u&gt;Underlined Text&lt;/u&gt;
 ///
-/// 通过html标签修改字体及颜色：&lt;font face=&quot;黑体&quot; color=green size=5&gt;我是绿色5号黑体字&lt;/font&gt;
+/// 通过html标签修改字体及颜色：&lt;font face="黑体" color=green size=5&gt;我是绿色5号黑体字&lt;/font&gt;
 ///
 /// ----
 ///
@@ -11914,7 +11928,7 @@ String getValue() {
 ///
 ///
 /// 通过html标签嵌入表格：
-/// &lt;table border=&quot;1&quot;&gt;
+/// &lt;table border="1"&gt;
 ///   &lt;tr&gt;
 ///     &lt;td&gt;row 1, cell 1&lt;/td&gt;
 ///     &lt;td&gt;row 1, cell 2&lt;/td&gt;
@@ -11928,11 +11942,11 @@ String getValue() {
 /// ----
 /// 通过iFrame内嵌网页
 ///
-/// &lt;iframe id=&quot;inlineFrameExample&quot;
-///    title=&quot;Inline Frame Example&quot;
-///    width=&quot;300&quot;
-///    height=&quot;200&quot;
-///    src=&quot;https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik&quot;&gt;
+/// &lt;iframe id="inlineFrameExample"
+///    title="Inline Frame Example"
+///    width="300"
+///    height="200"
+///    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&amp;layer=mapnik"&gt;
 /// &lt;/iframe&gt;
 ///
 </code></pre>
@@ -11967,8 +11981,8 @@ void main() {}
 </li>
 </ol>
 <pre><code class="language-dart">var cat = MockCat();
-when(cat.sound()).thenReturn(&quot;Purr&quot;);
-expect(cat.sound(), &quot;Purr&quot;);
+when(cat.sound()).thenReturn("Purr");
+expect(cat.sound(), "Purr");
 </code></pre>
 <blockquote>
 <p>接口的使用跟其它的Mock框架比较类似</p>
@@ -12001,9 +12015,9 @@ expect(cat.sound(), &quot;Purr&quot;);
 <p>2、根目录新建<code>build.yaml</code>，并设置为如下内容：</p>
 <pre><code class="language-json">builders:
   build_version:
-    import: &quot;package:buildver/builder.dart&quot;
-    builder_factories: [&quot;buildVersion&quot;]
-    build_extensions: {&quot;$lib$&quot;: [&quot;version.dart&quot;]}
+    import: "package:buildver/builder.dart"
+    builder_factories: ["buildVersion"]
+    build_extensions: {"$lib$": ["version.dart"]}
     build_to: source
     auto_apply: dependents
 </code></pre>
@@ -12024,7 +12038,7 @@ class _VersionBuilder implements Builder {
 
     await buildStep.writeAsString(
         AssetId(buildStep.inputId.package, 'lib/version.dart'),
-        &quot;const packageVersion = '${pubspec.version}';&quot;);
+        "const packageVersion = '${pubspec.version}';");
   }
 
   @override
@@ -12047,7 +12061,7 @@ class _VersionBuilder implements Builder {
 <p>我们需要重点关注这两个配置项的作用：</p>
 <ul>
 <li><code>builder_factories</code>：指定了构建的入口函数，执行<code>pub run build_runner build</code>时会挨个执行这些函数。(函数签名是固定的，要返回<code>B</code>)</li>
-<li><code>build_extensions</code>：指定要处理的文件类型。示例中<code>$lib$</code>，是表示lib目录。 </li>
+<li><code>build_extensions</code>：指定要处理的文件类型。示例中<code>$lib$</code>，是表示lib目录。</li>
 </ul>
 <blockquote>
 <p>该配置文件的详细介绍可以参考：<a href="https://github.com/dart-lang/build/tree/master/build_config">build_config</a>的使用</p>
@@ -12070,7 +12084,7 @@ class _VersionBuilder implements Builder {
     // 通过BuildStep提供的writeAsString接口，就可以将指定的代码写入指定的文件
     await buildStep.writeAsString(
         AssetId(buildStep.inputId.package, 'lib/version.dart'),
-        &quot;const packageVersion = '${pubspec.version}';&quot;);
+        "const packageVersion = '${pubspec.version}';");
   }
 
   @override
@@ -12159,8 +12173,8 @@ void main() {
     #include &lt;stdio.h&gt;
 %}
 %%
-[0-9]+ printf(&quot;Number received!&quot;);
-[a-zA-Z]+ printf(&quot;Word received!&quot;);
+[0-9]+ printf("Number received!");
+[a-zA-Z]+ printf("Word received!");
 %%
 </code></pre>
 <p>执行如下几步操作：</p>
@@ -12193,14 +12207,14 @@ void main() {
 #include &lt;stdio.h&gt;
 int yywrap();
 void yyerror(char *);
-#include &quot;a.tab.h&quot;	// 这个是yacc(bison)工具生成的代码文件
+#include "a.tab.h"	// 这个是yacc(bison)工具生成的代码文件
 %}
 
 %%
 
 [0-9]+ { yylval = atoi(yytext); return INTEGER; }	// yytext、yylval都是工具内置的变量，比如yytext表示匹配到的字符串
 [\+\n] { return *yytext; }		// 这儿有匹配换行，是用来换行后用来计算程序结果的
-. { yyerror(&quot;invalid char.&quot;); } // 这个是表示匹配剩余的场景
+. { yyerror("invalid char."); } // 这个是表示匹配剩余的场景
 
 %%
 
@@ -12224,14 +12238,14 @@ void yyerror();
 
 // 入口
 program:
-    program expr '\n' { printf(&quot;result: %d\n&quot;, $2); }
+    program expr '\n' { printf("result: %d\n", $2); }
     |		// 这儿是用来匹配空的，作为结束的出口
     ;
 
 expr:
     INTEGER { $$ = $1; }
     | expr '+' expr { $$ = $1 + $3; }	// 这儿有个递归处理的逻辑，1+2+3，第2个expr首次会匹配到2+3，然后再递归使用这个表达式
-    | { yyerror(&quot;invalid input.\n&quot;); }
+    | { yyerror("invalid input.\n"); }
     ;
 
 %%
@@ -12239,7 +12253,7 @@ expr:
 // 语法分析错误时，会调用该函数
 void yyerror(char *s)
 {
-    printf(&quot;YACC erro: %s\n&quot;, s);
+    printf("YACC erro: %s\n", s);
 }
 
 int main()
@@ -12254,7 +12268,7 @@ int main()
 <h3 id="antlr4-1"><a class="header" href="#antlr4-1">ANTLR4</a></h3>
 <p><a href="https://github.com/antlr/antlr4">ANTLR4</a>是现在使用比较多的工具，并且能力也非常强。支持非常多语言代码的生成，比如JS、OC、Python等</p>
 <p>要使用ANTLR4，主要的工作是g4文件中定义规则，用<code>antrl4</code>生成相应源码后，再实现自己的<code>listener</code>或<code>visitor</code></p>
-<p>简单示例代码如下：(示例来源：<a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现&quot;圈4&quot;</a>)</p>
+<p>简单示例代码如下：(示例来源：<a href="https://zhuanlan.zhihu.com/p/31644101">编程语言试验之Antlr4+JavaScript实现"圈4"</a>)</p>
 <p>hello.g4</p>
 <pre><code class="language-javascript">grammar hello;
 
@@ -12280,7 +12294,7 @@ MyListener.prototype.constructor = MyListener;
 // exit***和enter***是标准的接口，表示匹配到某个规则之后，进入和进出的处理时机
 MyListener.prototype.exit求约数 = function(ctx) {
   var num = parseInt(ctx.getChild(1).getText());
-  console.log(num + &quot;的约数: &quot; + 求约数(num));
+  console.log(num + "的约数: " + 求约数(num));
 };
 
 function 求约数(num) {
@@ -12307,15 +12321,15 @@ exports.MyListener = MyListener;
 <h2 id="cookie设置方式"><a class="header" href="#cookie设置方式">Cookie设置方式</a></h2>
 <h3 id="一通过header中的cookies字段来设置"><a class="header" href="#一通过header中的cookies字段来设置">一、通过Header中的Cookies字段来设置</a></h3>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <h3 id="二通过js注入的方式来设置"><a class="header" href="#二通过js注入的方式来设置">二、通过JS注入的方式来设置</a></h3>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>
@@ -12373,7 +12387,7 @@ app.listen(port, () =&gt; {
 let store = WKWebsiteDataStore.default()
 store.fetchDataRecords(ofTypes: types) { cookies in
     store.removeData(ofTypes: types, for: cookies) {
-        print(&quot;cookies clear result:\(records.count &gt; 0)&quot;)
+        print("cookies clear result:\(records.count &gt; 0)")
     }
 }
 </code></pre>
@@ -12382,7 +12396,7 @@ store.fetchDataRecords(ofTypes: types) { cookies in
 wkStore.getAllCookies { cookies in
     cookies.forEach { cookie in
         wkStore.delete(cookie) {
-            print(&quot;cookie:\(cookie.name) clear ok&quot;)
+            print("cookie:\(cookie.name) clear ok")
         }
     }
 }
@@ -12533,7 +12547,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p><a href="https://www.jdon.com/48512">什么是Mob编程？</a></p>
 <p>Mob编程是一种软件开发方式，是结对编程的扩展，整个团队从事同一段代码编程。这类似于两个人坐在同一台计算机上，同时对一个任务或一个问题上进行结对编程。</p>
 <blockquote>
-<p><a href="https://www.thoughtworks.com/zh-cn/radar/techniques/remote-mob-programming">Thoughtworks</a> 正在实验的技术 </p>
+<p><a href="https://www.thoughtworks.com/zh-cn/radar/techniques/remote-mob-programming">Thoughtworks</a> 正在实验的技术</p>
 </blockquote>
 <h3 id="cbor"><a class="header" href="#cbor">CBOR</a></h3>
 <p>扩展性强、压缩性好、无须版本协商的二进制协议，它的数据大小要比JSON小很多，但要比ProtoBuf大。（PB是需要版本协商的）</p>
@@ -12578,7 +12592,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <ul>
 <li>下载相应sketch类型文件</li>
 <li>打开该文件</li>
-<li>&quot;文件&quot; -&gt; &quot;导入组件库&quot;</li>
+<li>"文件" -&gt; "导入组件库"</li>
 </ul>
 <p>这样就可以复用已有的组件了</p>
 <h4 id="苹果官方sketch-library"><a class="header" href="#苹果官方sketch-library">苹果官方Sketch Library</a></h4>
@@ -12632,7 +12646,7 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
 <p>如果想支持author：</p>
 <ul>
 <li>打开<code>themes/next/layout/_macro/post.swig</code>，在 <code>{% if post.comments %}</code> 之前插入如下代码</li>
-<li><code>&lt;span&gt; ｜ &lt;/span&gt;&lt;span class=&quot;fa fa-user-o&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color:#222;&quot;&gt; {{ post.author }}&lt;/span&gt;</code></li>
+<li><code>&lt;span&gt; ｜ &lt;/span&gt;&lt;span class="fa fa-user-o"&gt; &lt;/span&gt;&lt;span style="color:#222;"&gt; {{ post.author }}&lt;/span&gt;</code></li>
 <li>在文档前面添加上author字段：<code>author: xxx</code></li>
 <li><code>hexo clean &amp; hexo server</code>，即可查看效果</li>
 </ul>

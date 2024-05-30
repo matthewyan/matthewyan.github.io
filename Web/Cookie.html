@@ -196,15 +196,15 @@
 <p>WKWebView有三种设置Cookie的方式</p>
 <p>一、通过Header中的Cookies字段来设置</p>
 <pre><code class="language-swift">var req = URLRequest(url: myURL!)
-let cookieValue = &quot;uin=10000; uid=10001&quot;
-req.addValue(cookieValue, forHTTPHeaderField: &quot;Cookie&quot;)
+let cookieValue = "uin=10000; uid=10001"
+req.addValue(cookieValue, forHTTPHeaderField: "Cookie")
 self.webView.load(req)
 </code></pre>
 <blockquote>
 <p>这种设置方式，仅在请求头里包含，前端页面通过<code>document.cookie</code>是无法读取到的</p>
 </blockquote>
 <p>二、通过JS注入的方式来设置</p>
-<pre><code class="language-swift">let script = &quot;document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';&quot;
+<pre><code class="language-swift">let script = "document.cookie = 'aaaaa=11111; domain=127.0.0.1; path=/; '; document.cookie = 'bbbbbb=22222; domain=127.0.0.1; path=/; ';"
 let us = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 self.webView?.configuration.userContentController.addUserScript(us)
 </code></pre>

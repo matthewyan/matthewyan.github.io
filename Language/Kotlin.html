@@ -178,13 +178,13 @@
 <h4 id="挂起函数"><a class="header" href="#挂起函数">挂起函数</a></h4>
 <pre><code class="language-kotlin">suspend fun fetchData(): String {
     delay(1000) // 模拟耗时操作，暂停函数执行 1 秒钟
-    return &quot;Data fetched successfully&quot;
+    return "Data fetched successfully"
 }
 
 // runBlocking是 Kotlin 协程库中的一个顶层函数
 fun main() = runBlocking {
     val result = fetchData() // 在协程中调用挂起函数
-    println(&quot;After fetching data: $result&quot;)
+    println("After fetching data: $result")
 }
 </code></pre>
 

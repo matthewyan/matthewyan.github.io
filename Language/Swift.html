@@ -215,18 +215,18 @@
 <li>允许带有<code>Self</code>或者 <code>associatedtype</code> 的 <code>protocol</code> 作为不透明返回类型</li>
 </ul>
 <h4 id="_dynamicreplacementfor--dynmaic"><a class="header" href="#_dynamicreplacementfor--dynmaic">@_dynamicReplacement(for:) / dynmaic</a></h4>
-<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 &quot;Method Swizzling&quot;？</a></p>
+<p><a href="https://juejin.cn/post/6844903901599105032">Swift 5 之后 "Method Swizzling"？</a></p>
 <pre><code class="language-swift">// 来源 https://juejin.cn/post/6844903901599105032
 class Test {
     dynamic func foo() {
-        print(&quot;bar&quot;)
+        print("bar")
     }
 }
     
 extension Test {
     @_dynamicReplacement(for: foo())
     func foo_new() {
-        print(&quot;bar new&quot;)
+        print("bar new")
     }
 }
     
@@ -263,7 +263,7 @@ let r = myadd {	// r的结果是3
 <p><a href="https://medium.com/jeremy-xue-s-blog/swift-%E8%A3%BD%E4%BD%9C%E4%B8%80%E5%80%8B-userdefault-%E5%B0%88%E5%B1%AC%E7%9A%84%E5%B1%AC%E6%80%A7%E5%8C%85%E8%A3%9D%E5%99%A8%E5%90%A7-6457b2f0d886">Swift — 製作一個 UserDefault 專屬的屬性包裝器吧！</a></p>
 <p>简单理解，@propertyWrapper就是用来hook属性，可以加一些自己的操作，让属性变为自己预期中的那样</p>
 <pre><code class="language-swift">@propertyWrapper struct Beatiful {
-    private var value: String = &quot;&quot;
+    private var value: String = ""
     // 计算属性
     var wrappedValue: String {
         get { value }
@@ -280,8 +280,8 @@ struct MyData {
     @Beatiful var data: String
 }
 
-var d = MyData(data: &quot;  Hello World  &quot;)
-d.data  // 变为&quot;Hello World&quot;
+var d = MyData(data: "  Hello World  ")
+d.data  // 变为"Hello World"
 </code></pre>
 
                     </main>

@@ -290,13 +290,13 @@
 <h4 id="move"><a class="header" href="#move">Move</a></h4>
 <p>在绑定数据时，当类型实现了拷贝时，默认会进行对象的拷贝。如果不希望其拷贝，则可以使用<code>move</code>来修饰</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
-    let mut x: String = String::from(&quot;abc&quot;);
+    let mut x: String = String::from("abc");
     {
         // 这儿使用括号括起来，是为了让x用完之后将所有权释放，以便后续继续使用x
         let mut some_closure = |c: char| x.push(c);
         some_closure('d');
     }
-    println!(&quot;x={:?}&quot;, x);  // 打印：x=&quot;abcd&quot;
+    println!("x={:?}", x);  // 打印：x="abcd"
 }</code></pre></pre>
 <h4 id="lifetime"><a class="header" href="#lifetime">Lifetime</a></h4>
 <p>借用：借用方的生命周期不能比出借方的生命周期还要长。</p>
@@ -321,8 +321,8 @@
 <ul>
 <li>支持问号操作符，简化Result处理</li>
 <li>不使用的变量，可以通过加<code>下划线</code>前缀，来关闭警告</li>
-<li>使用 <code>r&quot;&quot;</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
-<li>使用 <code>r#&quot;&quot;#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>&quot;</code> 而不需要转义</li>
+<li>使用 <code>r""</code> 来包裹的字符串，里面可以使用特殊字符而不需要转义（<code>r</code>表示原始字符串）</li>
+<li>使用 <code>r#""#</code> 来包裹的字符串，里面即可以有特殊字符，也可以有 <code>"</code> 而不需要转义</li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>能力</th><th>Rust</th><th>Swift</th></tr></thead><tbody>
 <tr><td>不可变类型</td><td><code>let x = 5</code></td><td><code>let x = 5</code></td></tr>

@@ -230,7 +230,7 @@
 <p>在iOS上JavaScriptCore是作为单独的Framework提供的，并且UIWebview默认没有提供JavaScriptCore的接口。</p>
 <p>不过还有办法可以从UIWebview中获取到JSContext：</p>
 <pre><code class="language-oc">// 获取JSContext
-JSContext *context = [webView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];
+JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 </code></pre>
 <p>但此方法仅对UIWebview适用。在WKWebview上，已经不再使用JavaScriptCore引擎，而是换成了Nitro。</p>
 <p>JS Core最简单的使用： (<a href="https://segmentfault.com/a/1190000017983911">JavaScriptCore全面解析</a>)</p>
@@ -241,10 +241,10 @@ JSVirtualMachine *vm = [[JSVirtualMachine alloc] init];
 JSContext *context = [[JSContext alloc] initWithVirtualMachine:vm];
 
 //执行JavaScript代码并获取返回值
-JSValue *value = [context evaluateScript:@&quot;1+2*3&quot;];
+JSValue *value = [context evaluateScript:@"1+2*3"];
 
 //转换成OC数据并打印
-NSLog(@&quot;value = %d&quot;, [value toInt32]);  // value = 7
+NSLog(@"value = %d", [value toInt32]);  // value = 7
 </code></pre>
 <p>JSCore的启动成本：（来源ChatGPT）</p>
 <ul>

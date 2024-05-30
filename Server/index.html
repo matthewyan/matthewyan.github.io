@@ -219,30 +219,30 @@
 </ul>
 <h3 id="最简单的httpsvr"><a class="header" href="#最简单的httpsvr">最简单的HttpSvr</a></h3>
 <h4 id="js"><a class="header" href="#js">JS</a></h4>
-<pre><code class="language-js">let express = require(&quot;express&quot;);
+<pre><code class="language-js">let express = require("express");
 let app = express();
  
  // 加载指定目录作为静态页面目录
-app.use(express.static(&quot;../develop/_book&quot;));
+app.use(express.static("../develop/_book"));
  
 app.listen(8080, ()=&gt;{
-    console.log(&quot;listen 8080&quot;);
+    console.log("listen 8080");
 })
 </code></pre>
 <h4 id="go"><a class="header" href="#go">GO</a></h4>
 <pre><code class="language-go">package main
 
 import (
-	&quot;log&quot;
-	&quot;net/http&quot;
+	"log"
+	"net/http"
 )
 
 func main() {
     // 使用_book作为静态页面目录
-	h := http.FileServer(http.Dir(&quot;./_book&quot;))
-	err := http.ListenAndServe(&quot;:9090&quot;, h)
+	h := http.FileServer(http.Dir("./_book"))
+	err := http.ListenAndServe(":9090", h)
 	if err != nil {
-		log.Fatal(&quot;ListenAndServe: &quot;, err)
+		log.Fatal("ListenAndServe: ", err)
 	}
 }
 </code></pre>

@@ -195,13 +195,13 @@ RAC(self.loginBtn, enabled) = [RACSignal combineLatest:@[self.phoneNumber.rac_te
     [subscriber sendNext:@3];
     [subscriber sendCompleted];
     return [RACDisposable disposableWithBlock:^{
-        NSLog(@&quot;signal dispose&quot;);
+        NSLog(@"signal dispose");
     }];
 }];
 </code></pre>
 <p>RACSubject发送信号</p>
 <pre><code class="language-objc">RACSubject&lt;NSString *&gt; *loginMsg;
-[loginMsg sendNext:@&quot;login ok&quot;];
+[loginMsg sendNext:@"login ok"];
 </code></pre>
 
                     </main>

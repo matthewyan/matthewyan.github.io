@@ -186,8 +186,8 @@
 <tr><td>兼容性好：如MaterialApp跳转的子页面，appbar可以使用<code>CupertinoNavigationBar</code></td><td>兼容性差：如CupertinoApp跳转的子页面，appbar只能使用<code>CupertinoNavigationBar</code></td></tr>
 </tbody></table>
 </div>
-<p>​	</p>
-<p>Flutter中Material风格，与&quot;Material&quot;设计原则强烈相关。</p>
+<p>​</p>
+<p>Flutter中Material风格，与"Material"设计原则强烈相关。</p>
 <p>比如，<a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>中的<code>primaryColor</code>和<code>accentColor</code>，就是Material风格中的主要颜色和辅助颜色的使用。这儿在Material官网中对这两种颜色的使用说的非常清楚：<a href="https://material.io/design/color/#">The Color System</a></p>
 <p>简单来说就是：主色及其变种色，用来定下基调，会在大量元素上使用。辅助色，一般用来表示强调，比如选中文本、进度条的进度、打开的开关等。</p>
 <p>Material风格的简单介绍：<a href="https://zhuanlan.zhihu.com/p/34410688">Material Design的前世今生</a></p>
@@ -220,7 +220,7 @@
 <p>但黑暗模式和普通模式主色、辅色等设置，并不是一样的。比如黑暗模式的主色会固定为黑色，但普通模式就是色盘的主色。</p>
 <p>这儿可以直接查看ThemeData的构造函数来看具体的使用及差异。</p>
 </blockquote>
-<p>​	</p>
+<p>​</p>
 <p>Theme也可以仅对某个Widget进行设置的，这样的话，当前Widget的样式会优先采用当前主题风格</p>
 <pre><code class="language-dart">// 这种情况下，Card组件是dark的，展示上Card就会展示为黑底白字
 Theme(

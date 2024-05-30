@@ -177,12 +177,17 @@
 <h3 id="基础类"><a class="header" href="#基础类">基础类</a></h3>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>是java中用来支持<code>反射</code>能力的一个类。</p>
+<h4 id="context"><a class="header" href="#context">Context</a></h4>
+<p>表示应用程序环境的抽象概念，提供了访问相应上下文信息的能力。</p>
+<p><code>Application</code>, <code>Activity</code>, <code>Service</code>等，都是从<code>Context</code>中继承的。</p>
+<h4 id="application"><a class="header" href="#application">Application</a></h4>
+<p>是代表整个应用程序的类，并且是具有全局生命周期的单例对象。</p>
 <h4 id="intent"><a class="header" href="#intent">Intent</a></h4>
 <p>Intent可以用来呼起各种组件，包括Service/Activity/Broadcast等，如：</p>
 <pre><code class="language-java">// 创建一个Intent对象，指定要启动的目标Activity
 Intent intent = new Intent(context, TargetActivity.class);  // 参数也可以传Service
 // 可选：传递额外的数据给目标Activity
-intent.putExtra(&quot;key&quot;, value);
+intent.putExtra("key", value);
 // 启动目标Activity
 startActivity(intent);
 </code></pre>
@@ -191,20 +196,20 @@ startActivity(intent);
     @Override
     public void onReceive(Context context, Intent intent) {
         // 在接收到广播时执行的操作逻辑
-        String message = intent.getStringExtra(&quot;message&quot;);
-        Toast.makeText(context, &quot;Received broadcast: &quot; + message, Toast.LENGTH_SHORT).show();
+        String message = intent.getStringExtra("message");
+        Toast.makeText(context, "Received broadcast: " + message, Toast.LENGTH_SHORT).show();
     }
 }
 
 // 创建Broadcast
 receiver = new MyBroadcast();
-IntentFilter filter = new IntentFilter(&quot;com.example.myapp.MY_CUSTOM_ACTION&quot;);
+IntentFilter filter = new IntentFilter("com.example.myapp.MY_CUSTOM_ACTION");
 // filter.addAction(Intent.ACTION_TIME_CHANGED);    // 可以继续添加支持的其它Action
 registerReceiver(receiver, homeFilter); // 关联receiver与filter
 
 // 发送消息
-Intent intent = new Intent(&quot;com.example.myapp.MY_CUSTOM_ACTION&quot;);
-intent.putExtra(&quot;message&quot;, &quot;Hello, BroadcastReceiver!&quot;);
+Intent intent = new Intent("com.example.myapp.MY_CUSTOM_ACTION");
+intent.putExtra("message", "Hello, BroadcastReceiver!");
 sendBroadcast(intent);
 </code></pre>
 <h3 id="线程"><a class="header" href="#线程">线程</a></h3>
@@ -236,7 +241,7 @@ sendBroadcast(intent);
         };
 
         // 发送消息到消息队列
-        Message message = handler.obtainMessage(MESSAGE_PRINT, &quot;Hello, Android!&quot;);
+        Message message = handler.obtainMessage(MESSAGE_PRINT, "Hello, Android!");
         handler.sendMessage(message);
 
         // 启动消息循环
@@ -251,7 +256,7 @@ sendBroadcast(intent);
     private Handler handler;
 
     public void startBackgroundThread() {
-        handlerThread = new HandlerThread(&quot;MyHandlerThread&quot;);
+        handlerThread = new HandlerThread("MyHandlerThread");
         handlerThread.start();
 
         Looper looper = handlerThread.getLooper();
@@ -283,7 +288,7 @@ sendBroadcast(intent);
     @Override
     public void run() {
         // 线程要执行的任务逻辑
-        System.out.println(&quot;Hello from MyRunnable!&quot;);
+        System.out.println("Hello from MyRunnable!");
     }
 }
 
@@ -317,8 +322,8 @@ myThread.start();
 </blockquote>
 <p>使用示例：</p>
 <pre><code class="language-java">Bundle bundle = new Bundle();   // 创建Bundle对象
-bundle.putString(&quot;name&quot;, &quot;John&quot;);
-bundle.putInt(&quot;age&quot;, 25);   // 可以设置多组数据
+bundle.putString("name", "John");
+bundle.putInt("age", 25);   // 可以设置多组数据
 </code></pre>
 <h4 id="shared-preferences"><a class="header" href="#shared-preferences">Shared Preferences</a></h4>
 <p>简称SP，是Android中提供的一种轻量级的数据存储方式，用以存储简单的键值对数据。</p>

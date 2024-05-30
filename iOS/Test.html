@@ -207,9 +207,9 @@ XCTAssertThrows
 </code></pre>
 <h5 id="异步测试"><a class="header" href="#异步测试">异步测试</a></h5>
 <pre><code class="language-objective-c">- (void)testAsync {
-    XCTestExpectation *expectation = [self expectationWithDescription:@&quot;xx&quot;];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"xx"];
     
-    dispatch_queue_t queue = dispatch_queue_create(&quot;group.queue&quot;, DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = dispatch_queue_create("group.queue", DISPATCH_QUEUE_SERIAL);
     dispatch_block_t block = dispatch_block_create(0, ^{
         [NSThread sleepForTimeInterval:1.0f];
         XCTFail();   // 表示验证失败
@@ -271,7 +271,7 @@ OCMStub([mockClass someMethod:[OCMArg checkWithBlock:^BOOL(id obj) {
 <pre><code class="language-objective-c">id mockManager = OCMClassMock([OKDataManager class]);
 OCMStub([mockManager shareManager]).andReturn(mockManager);	// 重点是这句，需要将自身返回
 OKUserInfoModel *userModel = [[OKUserInfoModel alloc] init];
-userModel.userId = @&quot;123456&quot;; //在测试调用的地方userId返回的就是123456
+userModel.userId = @"123456"; //在测试调用的地方userId返回的就是123456
 OKDataManager *manager = [OKDataManager shareManager];
 OCMStub([manager userInfoModel]).andReturn(userModel);
 </code></pre>
@@ -285,7 +285,7 @@ OCMStub([mockClass myCompleteBlock:[OCMArg any]])
     void (^checkUpdateBlock)(BOOL hasNewVersion, NSString *newBundleVersion);
     // 这儿index需要注意，如果第一个参数是block，就需要填2，因为前面默认有类实例作为第1个参数
     [invocation getArgument:&amp;checkUpdateBlock atIndex:2];	
-    checkUpdateBlock(TRUE, @&quot;10.10.10&quot;);
+    checkUpdateBlock(TRUE, @"10.10.10");
   });
 </code></pre>
 <h2 id="自动化测试"><a class="header" href="#自动化测试">自动化测试</a></h2>

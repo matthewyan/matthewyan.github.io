@@ -201,9 +201,9 @@
 <p>2、根目录新建<code>build.yaml</code>，并设置为如下内容：</p>
 <pre><code class="language-json">builders:
   build_version:
-    import: &quot;package:buildver/builder.dart&quot;
-    builder_factories: [&quot;buildVersion&quot;]
-    build_extensions: {&quot;$lib$&quot;: [&quot;version.dart&quot;]}
+    import: "package:buildver/builder.dart"
+    builder_factories: ["buildVersion"]
+    build_extensions: {"$lib$": ["version.dart"]}
     build_to: source
     auto_apply: dependents
 </code></pre>
@@ -224,7 +224,7 @@ class _VersionBuilder implements Builder {
 
     await buildStep.writeAsString(
         AssetId(buildStep.inputId.package, 'lib/version.dart'),
-        &quot;const packageVersion = '${pubspec.version}';&quot;);
+        "const packageVersion = '${pubspec.version}';");
   }
 
   @override
@@ -247,7 +247,7 @@ class _VersionBuilder implements Builder {
 <p>我们需要重点关注这两个配置项的作用：</p>
 <ul>
 <li><code>builder_factories</code>：指定了构建的入口函数，执行<code>pub run build_runner build</code>时会挨个执行这些函数。(函数签名是固定的，要返回<code>B</code>)</li>
-<li><code>build_extensions</code>：指定要处理的文件类型。示例中<code>$lib$</code>，是表示lib目录。 </li>
+<li><code>build_extensions</code>：指定要处理的文件类型。示例中<code>$lib$</code>，是表示lib目录。</li>
 </ul>
 <blockquote>
 <p>该配置文件的详细介绍可以参考：<a href="https://github.com/dart-lang/build/tree/master/build_config">build_config</a>的使用</p>
@@ -270,7 +270,7 @@ class _VersionBuilder implements Builder {
     // 通过BuildStep提供的writeAsString接口，就可以将指定的代码写入指定的文件
     await buildStep.writeAsString(
         AssetId(buildStep.inputId.package, 'lib/version.dart'),
-        &quot;const packageVersion = '${pubspec.version}';&quot;);
+        "const packageVersion = '${pubspec.version}';");
   }
 
   @override

@@ -256,7 +256,7 @@ test('Stream.fromIterable() emits the values in the iterable', () {
         startsWith('Loading took'),
 
         // Stream matchers can be nested. This asserts that one of two events are
-        // emitted after the &quot;Loading took&quot; line.
+        // emitted after the "Loading took" line.
         emitsAnyOf(['Succeeded!', 'Failed!']),
 
         // By default, more events are allowed after the matcher finishes

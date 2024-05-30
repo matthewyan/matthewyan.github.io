@@ -442,11 +442,11 @@ class MyPoint {
 <pre><code class="language-dart">class AClass {
   // 非构造函数的方法，以及所有实例成员，都有生成默认的接口
   void sayHello() {
-    print(&quot;Hello&quot;);
+    print("Hello");
   }
 
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -455,12 +455,12 @@ class MyPoint {
 class BClass implements AClass {
   @override
   void sayHello() {
-    print(&quot;BClass: Hello&quot;);
+    print("BClass: Hello");
   }
 
   @override
   void sayWorld() {
-    print(&quot;BClass: World&quot;);
+    print("BClass: World");
   }
 }
 
@@ -480,7 +480,7 @@ void runCode() {
 // 即可以这样来定义： mixin MixinCls {}
 class MixinCls {
   void sayWorld() {
-    print(&quot;World&quot;);
+    print("World");
   }
 }
 
@@ -497,7 +497,7 @@ class Son1 extends Father {
 class Son2 extends Father with MixinCls {
   // 子类跟Mixin中的方法签名相同时，子类的实现有更高的优先级
   // void sayWorld() {
-  //   print(&quot;Son2: World&quot;);
+  //   print("Son2: World");
   // }
 }
 

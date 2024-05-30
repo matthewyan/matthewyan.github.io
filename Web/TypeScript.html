@@ -184,7 +184,7 @@
 <h3 id="特性"><a class="header" href="#特性">特性</a></h3>
 <ul>
 <li>是静态、弱类型语言</li>
-<li>函数也是一等公民，支持函数式编程 </li>
+<li>函数也是一等公民，支持函数式编程</li>
 <li>支持泛型</li>
 <li>支持可选参数，通过在参数类型后加<code>?</code>。可选参数需要放在参数列表的后面</li>
 <li>接口中也支持可选属性，也是通过在属性后添加<code>?</code>来表示是否</li>
@@ -196,8 +196,8 @@
 <h4 id="类型检查"><a class="header" href="#类型检查">类型检查</a></h4>
 <p>TS支持严格类型检查、非严格类型检查。通过在tsconfig.json中做如下配置即可打开严格检查模式:</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strict&quot;: true,
+    "compilerOptions": {
+        "strict": true,
     }
 }
 </code></pre>
@@ -206,8 +206,8 @@
 </blockquote>
 <p>TS中也提供了<code>strictNullChecks</code>编译选项，来检查null和undefined是否进行了无效的赋值。</p>
 <pre><code class="language-json">{
-    &quot;compilerOptions&quot;: {
-        &quot;strictNullChecks&quot;: true,
+    "compilerOptions": {
+        "strictNullChecks": true,
     }
 }
 </code></pre>
@@ -547,7 +547,7 @@ const { x, y } = point; // 即可给x和y分别赋值为0和1
 <h5 id="keyof"><a class="header" href="#keyof">keyof</a></h5>
 <p>返回对象属性名组成的<code>字面量联合类型</code></p>
 <pre><code class="language-typescript">type Dog = { name: string; age: number;  };
-type D = keyof Dog; //type D = &quot;name&quot; | &quot;age&quot;
+type D = keyof Dog; //type D = "name" | "age"
 </code></pre>
 <h5 id="in"><a class="header" href="#in">in</a></h5>
 <h3 id="其它语法"><a class="header" href="#其它语法">其它语法</a></h3>
@@ -590,7 +590,7 @@ import type { UnionType, unionValue } from './type';
 
 const value1: UnionType = 'value1'; // 作为类型使用
 const value2: typeof unionValue = 'value2'; // 获取类型
-// Error: &quot;unionValue&quot; 是使用 &quot;import type&quot; 导入的，因此不能用作值
+// Error: "unionValue" 是使用 "import type" 导入的，因此不能用作值
 const value3 = unionValue; // 作为值使用
 </code></pre>
 

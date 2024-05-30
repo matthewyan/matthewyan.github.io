@@ -330,7 +330,7 @@ struct class_rw_t {
     Class firstSubclass;
     Class nextSiblingClass;
   
-    using ro_or_rw_ext_t = objc::PointerUnion&lt;const class_ro_t, class_rw_ext_t, PTRAUTH_STR(&quot;class_ro_t&quot;), PTRAUTH_STR(&quot;class_rw_ext_t&quot;)&gt;;
+    using ro_or_rw_ext_t = objc::PointerUnion&lt;const class_ro_t, class_rw_ext_t, PTRAUTH_STR("class_ro_t"), PTRAUTH_STR("class_rw_ext_t")&gt;;
 
     const ro_or_rw_ext_t get_ro_or_rwe() const {
         return ro_or_rw_ext_t{ro_or_rw_ext};
