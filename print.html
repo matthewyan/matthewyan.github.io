@@ -810,6 +810,16 @@ driver.get('http://www.baidu.com/')
 300~399	300~305	重定向
 400~499	400~415	客户端错误
 500~599	500~505	服务器错误</p>
+<h4 id="请求预检"><a class="header" href="#请求预检">请求预检</a></h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">跨源资源共享（CORS）</a></p>
+<p>HTTP中的预检请求（Preflight Request）是CORS（Cross-Origin Resource Sharing，跨源资源共享）机制的一部分。当浏览器发现一个跨源请求可能违反安全策略时，它会先发送一个HTTP OPTIONS请求到服务器，这个OPTIONS请求就是所谓的预检请求。</p>
+<p>请求预检的目的：</p>
+<ul>
+<li>询问服务器：客户端（浏览器）询问服务器是否允许实际的跨源请求。</li>
+<li>获取权限：服务器在预检请求的响应中会指明哪些HTTP方法（如GET、POST、PUT等）和请求头是允许的。</li>
+<li>安全性检查：预检请求确保服务器允许跨源请求，从而避免违反同源策略。</li>
+</ul>
+<p>预检请求是浏览器自动帮发的，无须开发者介入。但并不是每次跨域请求都会做预检。(<a href="https://juejin.cn/post/6982501294518829093">HTTP之options预检请求</a>)</p>
 <h4 id="http1x"><a class="header" href="#http1x">HTTP/1.x</a></h4>
 <ul>
 <li>链接复用问题
