@@ -182,7 +182,7 @@
 <li>支持反射</li>
 </ul>
 <h3 id="注解"><a class="header" href="#注解">注解</a></h3>
-<p>注解可以在编译期、运行期或开发工具中使用，以提供额外的信息。其在使用场景上有：</p>
+<p>注解是在代码中添加<code>元数据</code>的机制。添加的元数据，可以在运行时由其它代码，或者在编译时由其它工具所获取的数据，并且可以根据元数据做相应处理。其在使用场景上有：</p>
 <ul>
 <li>编译时检查</li>
 <li>框架和库配置 （Retrofit使用注解来定义网络请求和处理响应的方式）</li>
@@ -219,7 +219,7 @@ MyAnnotation annotation = clazz.getAnnotation(MyAnnotation.class);
 String value = annotation.value();  // 注解使用
 </code></pre>
 <h3 id="反射"><a class="header" href="#反射">反射</a></h3>
-<p>相关反射API都位于 <code>java.lang.reflect</code> 包中</p>
+<p>反射允许程序在运行时检查、访问和修改类、接口、方法、构造函数和字段等的内部结构和状态。Java中相关反射API都位于 <code>java.lang.reflect</code> 包中。</p>
 <h4 id="class"><a class="header" href="#class">Class</a></h4>
 <p>反射的核心，表示 Java 类的运行时信息。可以获取类的构造函数、方法、字段、注解等信息，以及创建类的实例。</p>
 <h4 id="constructor"><a class="header" href="#constructor">Constructor</a></h4>

@@ -276,6 +276,15 @@ import StrFile from './c.js';   // 该导入，等同于：import { default as S
 })
 </code></pre>
 <h3 id="其它"><a class="header" href="#其它">其它</a></h3>
+<h4 id="事件循环"><a class="header" href="#事件循环">事件循环</a></h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF">MDN文档 - 事件循环</a></p>
+<p>JS是单线程的、事件循环的方式来处理方法调用。</p>
+<p>JS消息队列特点及注意事项：</p>
+<ul>
+<li>单个消息队列中，所有的方法都是按顺序执行的，即先入先出。</li>
+<li><code>setTimeout</code> 第二个参数仅仅表示最少延迟时间，如果队列中有其它执行任务时，很可能延迟时间要长于这个时间。</li>
+<li>如果某个方法耗时过长，最好将其进行裁剪一下，以避免其阻碍与用户的交互。</li>
+</ul>
 <h4 id="虚拟机"><a class="header" href="#虚拟机">虚拟机</a></h4>
 <p>JS中执行JS，有很多种方式，如最简单的<code>eval</code>接口，因为其存在安全问题，需要少用。</p>
 <p>除此之外，还有其它的虚拟机：</p>

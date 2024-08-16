@@ -401,13 +401,10 @@ console.log(o.name);	// undefined
 <p>提前终止迭代器时，也可以通过添加<code>retrun()</code>方法指定迭代器提前关闭时的执行逻辑。</p>
 <h3 id="生成器-es6"><a class="header" href="#生成器-es6">生成器 (ES6)</a></h3>
 <p>生成器可以让一个函数块内拥有暂停和恢复代码执行的能力。简单来说，它是对<code>协程</code>的支持。（ES7又提供了<code>async</code>、<code>await</code>来进一步简化使用）</p>
-<p>生成器的声明方式为:</p>
-<pre><code class="language-js">fuction *generatorFn()
-
-class Foo {
-  * generatorFn() {}
-}
-</code></pre>
+<ul>
+<li>官方文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/function*">MDN function*</a></li>
+<li>Generator原理：<a href="https://github.com/liam61/blog/blob/master/js/regenerator/index.md">Generator 协程工作原理</a></li>
+</ul>
 <p>生成器特性：</p>
 <ul>
 <li>调用生成器函数，会生产一个<code>生成器对象</code>，并且开始是处于<code>暂停执行</code>的状态。</li>
@@ -416,7 +413,7 @@ class Foo {
 <li><code>yield</code>关键字只能在生成器函数内部使用，出现在嵌套的非生成器函数中会有语法错误。</li>
 <li><code>yield *</code> 可以用来增强<code>yield</code>的行为，返回值可以返回一个可迭代对象并参与迭代。(如数组、甚至自身，可以使用<code>yield *</code> 来实现递归)</li>
 </ul>
-<p>使用<code>yield</code>实现输入：</p>
+<p>生成器简单示例：</p>
 <pre><code class="language-js">fuction *generatorFn(v) {
   console.log(v);
   console.log(yield);
@@ -426,6 +423,7 @@ let g = generatorFn('foo');
 g.next('bar');	// 仍然输出：foo，原因是首次调用next()只是用来执行生成器函数
 g.next('baz');	// 输出：baz
 </code></pre>
+<p>Generator之所以能暂停某个方法，其核心是将相应的函数转化成了switch case的代码结构，每次调用时都会执行其中一个分支条件。</p>
 <h2 id="对象继承与类"><a class="header" href="#对象继承与类">对象、继承与类</a></h2>
 <h3 id="对象"><a class="header" href="#对象">对象</a></h3>
 <h4 id="属性"><a class="header" href="#属性">属性</a></h4>
