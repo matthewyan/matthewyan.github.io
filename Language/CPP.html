@@ -208,6 +208,7 @@
 <h4 id="左值--右值"><a class="header" href="#左值--右值">左值 / 右值</a></h4>
 <p><a href="https://nettee.github.io/posts/2018/Understanding-lvalues-and-rvalues-in-C-and-C/">理解 C/C++ 中的左值和右值</a></p>
 <p>左值，是能出现在等号左右两边的。 右值，是只能出现在等号右边的。</p>
+<p>右值是为了提升应用性能而出现的。当某个对象变为右值对象时，其就是不可改的，将它在不同对象之间进行转移，就无须再进行复制操作。</p>
 <h3 id="标准库"><a class="header" href="#标准库">标准库</a></h3>
 <ul>
 <li><code>std::once_flag</code>、<code>std::call_once</code>：<a href="https://zhuanlan.zhihu.com/p/71900518">C++中once_flag、call_once使用</a></li>

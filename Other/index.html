@@ -174,18 +174,31 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="12-其它"><a class="header" href="#12-其它">12. 其它</a></h1>
+<h3 id="常用特殊符号"><a class="header" href="#常用特殊符号">常用特殊符号</a></h3>
+<p><a href="http://www.fhdq.net/">符号大全</a></p>
+<ul>
+<li>Check: ☑  ▣  √  ☐  ☒</li>
+<li>箭头: ↢ ↣ ↤ ↥ ↦ ↧ ⇡ ⇢ ⇣ ⇤ ⇥ ← → ↑ ↓ ↔ ↕   (<a href="https://www.runoob.com/charsets/ref-utf-arrows.html">link</a>)</li>
+</ul>
+<h3 id="google操作"><a class="header" href="#google操作">Google操作</a></h3>
+<h4 id="sheets中给数据自动拼写前缀和后缀"><a class="header" href="#sheets中给数据自动拼写前缀和后缀">sheets中，给数据自动拼写前缀和后缀</a></h4>
+<p><code>=arrayformula("(" &amp; D1:D42 &amp;")")</code>: 可以批量的给表格拼接内容</p>
+<h4 id="将大量的文本数据拆为多列"><a class="header" href="#将大量的文本数据拆为多列">将大量的文本数据拆为多列</a></h4>
+<p>菜单：<code>Data</code> -&gt; <code>Split text to columns</code></p>
+<p>并且在拆分时，也要以指定以什么字符作为拆分。</p>
+<h4 id="查找重复数据"><a class="header" href="#查找重复数据">查找重复数据</a></h4>
+<ul>
+<li>菜单: <code>Format</code> -&gt; <code>Conditional formatting</code></li>
+<li>Apply to range中设定好指定的范围 (也可以选择某一列)</li>
+<li><code>Format rules</code>选择<code>Custom formula is</code></li>
+<li>最终自定义规则设置为: <code>=countif($C:$C,$C1)&gt;1</code>  ($C替换为指定的列)</li>
+</ul>
 <h3 id="程序员工作流程指导手册"><a class="header" href="#程序员工作流程指导手册"><a href="https://ziyuxin.gitbooks.io/programmer-workflow-guide/content/">程序员工作流程指导手册</a></a></h3>
 <p>包括程序员、架构师等能力标准</p>
 <p><a href="https://ziyuxin.gitbooks.io/programmer-workflow-guide/content/competency-practice/part5.html">高级程序员-能力素质集合</a></p>
 <h3 id="ide"><a class="header" href="#ide">IDE</a></h3>
 <ul>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU3NzczMDI4Ng==&amp;mid=2247484469&amp;idx=1&amp;sn=31a3c50ba738445cff2ab619d5d6b18e&amp;chksm=fd0167b4ca76eea2b4fbd7554c148675e81ff8c9f6796e9566ceb8937ab06d6b5a239b40a196&amp;token=360627954&amp;lang=zh_CN#rd">从 VSCode 看大型 IDE 技术架构</a>：从事件的背景开始，讲到项目的设计和演化</li>
-</ul>
-<h3 id="常用特殊符号"><a class="header" href="#常用特殊符号">常用特殊符号</a></h3>
-<p><a href="http://www.fhdq.net/">符号大全</a></p>
-<ul>
-<li>Check: ☑  ▣  √  ☐  ☒</li>
-<li>箭头: ↢ ↣ ↤ ↥ ↦ ↧ ⇡ ⇢ ⇣ ⇤ ⇥ ← → ↑ ↓ ↔ ↕   (<a href="https://www.runoob.com/charsets/ref-utf-arrows.html">link</a>)</li>
 </ul>
 <h3 id="思维方式"><a class="header" href="#思维方式">思维方式</a></h3>
 <ul>
